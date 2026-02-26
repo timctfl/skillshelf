@@ -140,7 +140,7 @@ After CI passes, the SkillShelf team reviews your skill for quality and safety. 
 - [ ] `SKILL.md` instructions are clear, imperative, and specific about the output format
 - [ ] `skillshelf.yaml` has all required fields (`version`, `category`, `level`, `primitive`, `platforms`, `tags`)
 - [ ] Category is one of the valid values listed above
-- [ ] You have tested the skill with real inputs and the output is consistently usable
+- [ ] You have tested the skill with real inputs and the output is consistently usable — sample ecommerce data is available in [`fixtures/`](fixtures/) if you need it
 - [ ] No confidential or personal data is included in the skill or examples
 
 ## Questions?
