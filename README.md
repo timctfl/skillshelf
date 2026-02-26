@@ -20,7 +20,7 @@ Each skill is a folder containing a `SKILL.md` file (the core instructions) and 
 You can also install skills via the CLI:
 
 ```bash
-npx skills add skillshelf/skills@document-brand-voice
+npx skills add timctfl/skillshelf -s document-brand-voice
 ```
 
 ## Skill directory structure
