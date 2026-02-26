@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "name": "Apparel",
+    "slug": "apparel",
+    "parent_id": null,
+    "product_count": 12
+  },
+  {
+    "id": 2,
+    "name": "Men's Jackets",
+    "slug": "mens-jackets",
+    "parent_id": 1,
+    "product_count": 3
+  },
+  {
+    "id": 3,
+    "name": "Women's Jackets",
+    "slug": "womens-jackets",
+    "parent_id": 1,
+    "product_count": 2
+  },
+  {
+    "id": 4,
+    "name": "Base Layers",
+    "slug": "base-layers",
+    "parent_id": 1,
+    "product_count": 2
+  },
+  {
+    "id": 5,
+    "name": "Headwear",
+    "slug": "headwear",
+    "parent_id": 1,
+    "product_count": 2
+  },
+  {
+    "id": 6,
+    "name": "Bottoms",
+    "slug": "bottoms",
+    "parent_id": 1,
+    "product_count": 1
+  },
+  {
+    "id": 7,
+    "name": "Socks",
+    "slug": "socks",
+    "parent_id": 1,
+    "product_count": 2
+  },
+  {
+    "id": 8,
+    "name": "Gear",
+    "slug": "gear",
+    "parent_id": null,
+    "product_count": 10
+  },
+  {
+    "id": 9,
+    "name": "Backpacks",
+    "slug": "backpacks",
+    "parent_id": 8,
+    "product_count": 2
+  },
+  {
+    "id": 10,
+    "name": "Tents",
+    "slug": "tents",
+    "parent_id": 8,
+    "product_count": 2
+  },
+  {
+    "id": 11,
+    "name": "Sleeping Bags",
+    "slug": "sleeping-bags",
+    "parent_id": 8,
+    "product_count": 2
+  },
+  {
+    "id": 12,
+    "name": "Trekking Poles",
+    "slug": "trekking-poles",
+    "parent_id": 8,
+    "product_count": 1
+  },
+  {
+    "id": 13,
+    "name": "Camp Furniture",
+    "slug": "camp-furniture",
+    "parent_id": 8,
+    "product_count": 3
+  },
+  {
+    "id": 14,
+    "name": "Accessories",
+    "slug": "accessories",
+    "parent_id": null,
+    "product_count": 8
+  },
+  {
+    "id": 15,
+    "name": "Hydration",
+    "slug": "hydration",
+    "parent_id": 14,
+    "product_count": 2
+  },
+  {
+    "id": 16,
+    "name": "Sun Protection",
+    "slug": "sun-protection",
+    "parent_id": 14,
+    "product_count": 2
+  },
+  {
+    "id": 17,
+    "name": "Towels & Storage",
+    "slug": "towels-storage",
+    "parent_id": 14,
+    "product_count": 2
+  },
+  {
+    "id": 18,
+    "name": "Small Goods",
+    "slug": "small-goods",
+    "parent_id": 14,
+    "product_count": 2
+  }
+]
