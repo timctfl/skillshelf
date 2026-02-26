@@ -4,7 +4,7 @@ Thanks for your interest in contributing a skill.
 
 ## How to submit
 
-### Option 1: Website (recommended)
+### Option 1: Website
 
 Visit [skillshelf.ai/submit](https://skillshelf.ai/submit/) to upload your skill file directly. The site opens a pull request on your behalf. You can upload `.skill` files (exported from Claude) or `.zip` files (exported from ChatGPT or packaged manually).
 

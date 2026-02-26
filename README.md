@@ -51,7 +51,7 @@ There are two paths:
 
 ## Submitting a skill
 
-**Website (recommended).** Go to [skillshelf.ai/submit](https://skillshelf.ai/submit/) and upload your `.skill` or `.zip` file. The site opens a pull request on your behalf.
+**Website.** Go to [skillshelf.ai/submit](https://skillshelf.ai/submit/) and upload your `.skill` or `.zip` file. The site opens a pull request on your behalf.
 
 **GitHub.** Fork this repo, add your skill under `skills/your-skill-name/`, and open a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full process and requirements.
 
