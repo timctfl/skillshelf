@@ -1,0 +1,81 @@
+version: "0.1.0"
+
+category: product-content
+subcategories:
+  - brand-voice
+  - content-strategy
+
+level: beginner
+primitive: true
+
+platforms:
+  - platform-agnostic
+
+models_tested:
+  - claude-sonnet-4-5
+
+tags:
+  - brand-voice
+  - tone
+  - style-guide
+  - content-generation
+  - foundational
+
+estimated_tokens:
+  input: 2000-8000   # Varies by number and length of content samples
+  output: 3000-6000  # Voice guide length depends on sample diversity
+
+interaction_pattern: multi-turn
+# Valid values: single-turn, multi-turn
+# multi-turn means the skill requires back-and-forth with the user
+# (calibration step, follow-up questions, etc.)
+# This field informs test harness fixture design.
+
+install_method: copy
+# Valid values: copy, directory
+# copy = SKILL.md alone is the full skill (paste into project, copy to clipboard)
+# directory = skill depends on scripts/, references/, or assets/ alongside SKILL.md
+
+date_certified: "2026-02-25"
+date_added: "2026-02-15"
+date_updated: "2026-02-24"
+
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+input_schema:
+  type: object
+  description: >-
+    This skill accepts unstructured brand content samples pasted by the user.
+    No fixed input schema. The user provides 3-10 pieces of representative
+    brand content (product descriptions, emails, social captions, etc.)
+    and optionally notes about what they like or dislike about specific samples.
+  properties: {}
+
+output_schema:
+  type: object
+  description: >-
+    A Markdown document following a fixed heading structure. Downstream skills
+    and tooling can parse by heading hierarchy.
+  required_sections:
+    - Voice summary
+    - Tone spectrums
+    - Vocabulary
+    - Sentence style
+    - Formatting conventions
+    - Rhetorical patterns
+    - Demonstration rewrites
+    - How to use this guide
+
+faq:
+  - question: What does the Document Brand Voice skill do?
+    answer: It analyzes 3–10 samples of your existing brand content and extracts a structured voice guide covering tone spectrums, vocabulary preferences, sentence style, formatting conventions, and rhetorical patterns. The output is a reusable reference document that any team member or AI tool can follow.
+  - question: What kind of content samples should I provide?
+    answer: Product descriptions, marketing emails, social media captions, About Us pages, or any writing that represents how your brand sounds. A mix of content types gives the best results. You can also flag specific samples you like or dislike so the skill weighs them accordingly.
+  - question: Do I need technical skills to use this?
+    answer: No. This is a beginner-level skill that works through a guided conversation. You paste your content samples and the AI walks you through a short calibration step before generating the voice guide.
+  - question: How is this different from just asking AI to describe my brand voice?
+    answer: A one-off prompt gives you a vague paragraph. This skill runs a structured multi-turn analysis that produces a document with named sections other skills and tools can reference. The output is designed to be a durable artifact, not a throwaway answer.
+  - question: What can I do with the voice guide once it's generated?
+    answer: Feed it into other SkillShelf skills as a reference input, share it with copywriters or agencies as a style guide, or attach it to any AI prompt where you need on-brand output. The guide uses a fixed heading structure so it's easy to parse programmatically.
