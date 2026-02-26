@@ -1,0 +1,75 @@
+version: "0.1.0"
+
+category: product-content
+subcategories:
+  - brand-positioning
+  - content-strategy
+
+level: beginner
+primitive: true
+
+platforms:
+  - platform-agnostic
+
+models_tested:
+  - claude-sonnet-4-5
+
+tags:
+  - positioning
+  - brand-strategy
+  - competitive-analysis
+  - content-generation
+  - foundational
+
+estimated_tokens:
+  input: 1000-6000   # Varies by whether user pastes content or answers prompts
+  output: 3000-5000  # Brief length depends on number of segments and differentiators
+
+interaction_pattern: multi-turn
+
+install_method: copy
+
+date_certified: "2026-02-25"
+date_added: "2026-02-15"
+date_updated: "2026-02-24"
+
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+input_schema:
+  type: object
+  description: >-
+    This skill accepts brand context in various forms: About Us pages, pitch
+    decks, homepage copy, or conversational answers to guided prompts. No fixed
+    input schema. The user provides whatever positioning-relevant material they
+    have, and the skill runs gap analysis to identify what's missing.
+  properties: {}
+
+output_schema:
+  type: object
+  description: >-
+    A Markdown document following a fixed heading structure. Downstream skills
+    and tooling can parse by heading hierarchy.
+  required_sections:
+    - Positioning statement
+    - What we sell
+    - The problem we exist to solve
+    - Who we serve
+    - Why they choose us
+    - Value propositions
+    - Competitive context
+    - What we are not
+    - How to use this brief
+
+faq:
+  - question: What does the Write Positioning Overview skill do?
+    answer: It takes whatever brand context you have—About Us pages, pitch decks, homepage copy, or just conversational answers—and produces a structured positioning brief covering your positioning statement, target audience, value propositions, competitive context, and differentiators.
+  - question: What if I don't have much brand material to start with?
+    answer: The skill runs a gap analysis on whatever you provide and asks guided follow-up questions to fill in the missing pieces. You can start with as little as a homepage URL or a few sentences about what you sell and who you sell it to.
+  - question: Do I need technical skills to use this?
+    answer: No. This is a beginner-level skill that works through a guided conversation. You provide your existing brand materials and the AI guides you through the rest.
+  - question: How is this different from just asking AI to write a positioning statement?
+    answer: A one-off prompt gives you a generic paragraph. This skill produces a structured brief with named sections—positioning statement, problem, audience, differentiators, competitive context—that other skills and tools can reference by heading. It's a durable artifact, not a throwaway answer.
+  - question: How does this relate to the Document Brand Voice skill?
+    answer: They're complementary primitives. The positioning brief defines what you say (message, audience, differentiation). The brand voice guide defines how you say it (tone, vocabulary, style). Together they give downstream content skills a complete foundation to work from.
