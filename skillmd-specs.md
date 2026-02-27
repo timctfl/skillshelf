@@ -2,9 +2,13 @@
 
 # SKILL.md Format Reference
 
+**This is a reference document, not an authoring guide.** It distills the SKILL.md file format as defined across the Agent Skills open standard and platform-specific implementations (Claude Code, Codex CLI, GitHub Copilot) into a single source. It should be updated as the standard and platform implementations evolve.
+
+For SkillShelf-specific conventions, quality standards, and skill writing guidance, see [skill-authoring-guide.md](skill-authoring-guide.md).
+
 Last verified: February 22, 2026
 
-This document captures the complete SKILL.md file format specification as defined by the Agent Skills open standard (agentskills.io) and its platform-specific extensions in Claude Code and OpenAI Codex CLI. It covers two layers: the **open standard** (the canonical, cross-platform specification) and **platform extensions** (fields and behaviors added by individual implementations). Where a detail comes from only one layer, the source is noted.
+This document covers two layers: the **open standard** (the canonical, cross-platform specification maintained at agentskills.io) and **platform extensions** (fields and behaviors added by individual implementations). Where a detail comes from only one layer, the source is noted.
 
 ---
 
