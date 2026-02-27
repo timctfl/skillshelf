@@ -1,0 +1,88 @@
+version: "0.1.0"
+
+category: product-content
+subcategories:
+  - brand-voice
+  - content-strategy
+
+level: beginner
+primitive: true
+
+platforms:
+  - platform-agnostic
+
+models_tested:
+  - claude-sonnet-4-5
+
+tags:
+  - brand-voice
+  - tone
+  - style-guide
+  - content-generation
+  - foundational
+
+estimated_tokens:
+  input: 2000-8000
+  output: 3000-6000
+
+interaction_pattern: multi-turn
+
+install_method: directory
+
+date_certified: "2026-02-26"
+date_added: "2026-02-26"
+date_updated: "2026-02-26"
+
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+input_schema:
+  type: object
+  description: >-
+    Brand content samples pasted by the user or fetched from their website.
+    No fixed input schema. The user provides representative brand content
+    (product descriptions, emails, social captions, homepage copy, etc.)
+    across multiple messages.
+  properties: {}
+
+output_schema:
+  type: object
+  description: >-
+    A Markdown brand voice profile with a version marker and fixed heading
+    structure. Includes a glossary for downstream skill interpretation.
+  required_sections:
+    - Voice Summary
+    - Headlines
+    - Product Framing
+    - How [Brand] Talks to the Customer
+    - Persuasion Arc
+    - What [Brand] Avoids
+    - Style Decisions
+    - Example Copy
+
+faq:
+  - question: What does the Brand Voice Extractor do?
+    answer: >-
+      It analyzes your brand's existing written content and produces a
+      structured voice profile covering how you write headlines, frame
+      products, address customers, and make style decisions. The output
+      is a reusable document that other skills consume as input.
+  - question: What kind of content should I provide?
+    answer: >-
+      Product descriptions, marketing emails, social captions, landing
+      pages, About Us copy — anything that represents how your brand
+      sounds. A mix of content types gives the best results. The skill
+      can also fetch content from your website.
+  - question: How is this different from the Document Brand Voice skill?
+    answer: >-
+      The Brand Voice Extractor produces a versioned output with a
+      companion glossary that tells downstream skills exactly how to
+      interpret each field. This enables consistent, on-brand output
+      across any skill that consumes the voice profile.
+  - question: What can I do with the voice profile?
+    answer: >-
+      Upload it to any conversation where you need on-brand copy. Other
+      SkillShelf skills (PDP writers, email generators, landing page
+      builders) read the profile and its glossary to produce consistent
+      output. You can also share it with copywriters as a style guide.

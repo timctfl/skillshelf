@@ -20,23 +20,24 @@ Each skill is a folder containing a `SKILL.md` file (the core instructions) and 
 You can also install skills via the CLI:
 
 ```bash
-npx skills add timctfl/skillshelf -s document-brand-voice
+npx skills add timctfl/skillshelf -s brand-voice-extractor
 ```
 
 ## Skill directory structure
 
 ```
 skills/
-  document-brand-voice/
+  brand-voice-extractor/
     SKILL.md              # Core instructions (required)
     skillshelf.yaml       # SkillShelf catalog metadata
-    examples/             # Example inputs and outputs
-      sample-output.md
+    references/           # Example outputs, glossaries, supporting docs
+      example-output.md
+      glossary.md
   write-positioning-overview/
     SKILL.md
     skillshelf.yaml
-    examples/
-      sample-output.md
+    references/
+      example-positioning-brief.md
 ```
 
 See the existing skills in `skills/` for complete examples of what a finished skill looks like.
@@ -61,6 +62,7 @@ Every skill on SkillShelf goes through a certification review before it is publi
 
 - [SKILL.md Specification](skillmd-specs.md) -- format, frontmatter fields, validation rules
 - [Skill Authoring Guide](skill-authoring-guide.md) -- best practices for writing effective skills
+- [Glossary Specification](glossary-specification.md) -- how to write glossaries for downstream skill consumption
 - [Contributing Guide](CONTRIBUTING.md) -- submission process, PR requirements, metadata reference
 - [Agent Skills open standard](https://agentskills.io) -- the cross-platform format SkillShelf skills are built on
 
