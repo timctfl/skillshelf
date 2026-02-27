@@ -18,7 +18,7 @@ This skill produces a brand positioning brief from whatever the user already has
 
 The quality of this brief determines whether downstream content differentiates the brand or blends into the category. A useful positioning brief documents what is specifically true about this brand, not what every brand in the category claims.
 
-For reference on the expected output format and level of detail, see [examples/sample-positioning-brief.md](examples/sample-positioning-brief.md).
+For reference on the expected output format and level of detail, see [references/example-positioning-brief.md](references/example-positioning-brief.md).
 
 ## Interaction flow
 

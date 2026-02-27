@@ -27,8 +27,8 @@ Each skill lives in its own directory under `skills/`:
 skills/my-cool-skill/
   SKILL.md              # Required. Core instructions.
   skillshelf.yaml       # Required. SkillShelf catalog metadata.
-  examples/             # Recommended. Example inputs/outputs.
-    sample-output.md
+  references/           # Recommended. Example outputs, glossaries, supporting docs.
+    example-output.md
 ```
 
 ### SKILL.md

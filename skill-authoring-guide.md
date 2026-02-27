@@ -43,9 +43,15 @@ Do not make primitives a hard prerequisite. Every skill must produce useful outp
 
 If a skill produces a document that other skills reference, structure the output with consistent, descriptive headings. Downstream skills will point users at specific sections by name (e.g., "read the Key Differentiators section of the positioning brief"). Heading names should be stable — changing them breaks references in other skills.
 
+### Glossaries
+
+If your skill produces structured output that other skills consume, include a glossary at `references/glossary.md`. The glossary tells downstream skills how to interpret your output: what each section contains, what values to expect, and how to handle missing or unexpected input. See [glossary-specification.md](glossary-specification.md) for the template and conventions.
+
+The producing skill may also reference its own glossary during generation to ensure consistent field definitions and vocabulary.
+
 ### Cross-skill references
 
-When a skill would benefit from another skill's output, reference it by its natural-language name, not its directory name. "If you have a brand voice guide from the Document Your Brand Voice skill, upload it alongside your request" — not "see `document-brand-voice`."
+When a skill would benefit from another skill's output, reference it by its natural-language name, not its directory name. "If you have a brand voice profile from the Brand Voice Extractor skill, upload it alongside your request" — not "see `brand-voice-extractor`."
 
 ---
 
@@ -131,7 +137,9 @@ Present variations neutrally (A, B, C) without labeling them with descriptors. L
 
 ### Include an example file
 
-Every skill should include an `examples/` directory with a sample output file that demonstrates the full format and level of detail expected. The example serves as both a quality benchmark for the LLM and a preview for the user.
+Every skill should include a `references/` directory with a sample output file named `example-[description].md` (e.g., `example-output.md`, `example-positioning-brief.md`). The `references/` directory is part of the [Agent Skills open standard](https://agentskills.io). It may also contain glossaries and other supporting documentation the skill reads at runtime.
+
+Example files use the `example-` prefix so they are distinguishable from other reference documents. The example serves as both a quality benchmark for the LLM and a preview for the user.
 
 ### Fictional brand naming
 
