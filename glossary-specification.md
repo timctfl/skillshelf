@@ -4,17 +4,19 @@
 
 A glossary is a companion document that ships alongside a skill's output format. It tells any downstream skill how to interpret the fields, values, and structure of that output.
 
-When the Brand Voice Extractor produces a voice profile, the profile itself is human-readable. A merchandiser can scan it and understand their brand's writing patterns. But when the PDP Copy Writer skill receives that same document as input, it needs to know exactly what "Sparingly" means in the exclamation marks row, what to do if the Persuasion Arc section is missing, and how to handle a document the user wrote themselves instead of generating through the extractor.
+When one skill produces a document and another skill consumes it, the consuming skill needs more than the document itself. It needs to know what the fields mean, what to do when sections are missing, and how to handle values that could be interpreted multiple ways. A positioning brief that says "premium price positioning" is clear to a person who reads it in context, but a downstream skill generating product copy needs to know exactly what that implies about language, tone, and what to avoid.
 
-The glossary carries that context. The upstream document stays clean for humans. The downstream skill gets what it needs to use the document correctly.
+The glossary carries that context. The document stays clean and readable for humans. The downstream skill gets what it needs to use the document correctly.
+
+The producing skill also benefits from its own glossary. It serves as a precise specification during generation, ensuring the skill applies consistent definitions and vocabulary every time it produces output.
 
 ## Why They Exist
 
-Style decisions and structured fields are inherently ambiguous in natural language. "Sparingly" means something different to every reader, whether that reader is a copywriter or an AI model. Without a shared definition, every consumer of the document interprets it differently, and output is inconsistent across skills.
+Give the same structured document to ten different LLM models and ask each one to use it as a reference for generating new content. You will get ten meaningfully different interpretations. A field that says "Sparingly" could mean once per page, once per paragraph, or almost never, depending on the model. Multiply that variation across every field in the document and the downstream output diverges fast. A glossary narrows that spread by defining every value, every field, and every edge case in terms the model can apply without guessing.
 
-We considered embedding interpretation instructions in the output document itself. Two problems: it clutters a document designed for humans with machine-only content, and it creates a maintenance burden where every existing document needs regeneration whenever interpretation logic improves.
+This is different from how humans work with the same documents. A copywriter reads "Sparingly" and intuits the right frequency from context and experience. An LLM does not intuit. It benefits from explicit, measurable definitions: "maximum of one instance per complete piece of output" is unambiguous in a way that "use conservatively" is not. A glossary detailed enough to overwhelm a human reader is exactly the level of precision that makes an LLM produce consistent results.
 
-Glossaries solve both. The document stays human-first. The interpretation logic is versioned and updatable independently of any document already generated.
+We keep the glossary separate from the output document rather than embedding interpretation instructions inline. This keeps the document human-first, and it means the interpretation logic can be versioned and updated independently of any document already generated.
 
 ## How Versions Work
 
@@ -50,13 +52,11 @@ There is one glossary file. It always reflects the current version. Previous ver
 **Downstream skills reference the glossary by path.** When all skills live in the same repo, a downstream skill's SKILL.md points to the upstream glossary directly:
 
 ```
-Before generating output, read the brand voice glossary at
-../brand-voice-extractor/references/glossary.md
+Before generating output, read the glossary at
+../[upstream-skill]/references/glossary.md
 ```
 
 This means the upstream skill updates the glossary once and every downstream skill gets the update automatically. No copies, no syncing.
-
-The producing skill may also reference its own glossary during generation to ensure consistent field definitions and vocabulary. This dual use is intentional: the glossary defines what valid values look like and what each field means, which the producer needs just as much as the consumer.
 
 For third-party skills built outside the SkillShelf repo, authors should include a copy of the glossary in their own `references/` folder and update it when the upstream version changes.
 
