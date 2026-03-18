@@ -6,7 +6,7 @@ description: >-
 license: Apache-2.0
 ---
 
-# Brand Voice Extractor
+# Document Your Brand Voice
 
 This skill analyzes a brand's existing written content and produces a structured brand voice profile. The profile is a reusable document that the user saves and uploads to future conversations whenever they need on-brand copy.
 

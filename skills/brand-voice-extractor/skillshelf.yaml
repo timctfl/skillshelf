@@ -62,7 +62,7 @@ output_schema:
     - Example Copy
 
 faq:
-  - question: What does the Brand Voice Extractor do?
+  - question: What does the Document Your Brand Voice skill do?
     answer: >-
       It analyzes your brand's existing written content and produces a
       structured voice profile covering how you write headlines, frame
@@ -74,12 +74,12 @@ faq:
       pages, About Us copy — anything that represents how your brand
       sounds. A mix of content types gives the best results. The skill
       can also fetch content from your website.
-  - question: How is this different from the Document Brand Voice skill?
+  - question: How is this different from other brand voice tools?
     answer: >-
-      The Brand Voice Extractor produces a versioned output with a
-      companion glossary that tells downstream skills exactly how to
-      interpret each field. This enables consistent, on-brand output
-      across any skill that consumes the voice profile.
+      This skill produces a versioned output with a companion glossary
+      that tells downstream skills exactly how to interpret each field.
+      This enables consistent, on-brand output across any skill that
+      consumes the voice profile.
   - question: What can I do with the voice profile?
     answer: >-
       Upload it to any conversation where you need on-brand copy. Other

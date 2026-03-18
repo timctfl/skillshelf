@@ -12,6 +12,7 @@ Every skill must conform to the SKILL.md specification documented in `skillmd-sp
 - `name` matches the parent directory name.
 - `description` is written in third person ("Produces a positioning brief..." not "I help you write...").
 - `description` is under 155 characters. This is used as the meta description on skillshelf.ai.
+- Skill title (the h1 heading in SKILL.md) starts with a verb and describes the outcome. "Document Your Brand Voice" not "Brand Voice Extractor." "Write a Positioning Brief" not "Write a Brand and Product Positioning Overview." Keep it short and something your target user would click on.
 - Body under 500 lines (guideline, not hard limit).
 - Forward slashes in all file paths.
 - File references one level deep from SKILL.md.

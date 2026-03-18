@@ -6,7 +6,7 @@ description: >-
 license: Apache-2.0
 ---
 
-# Write a Brand and Product Positioning Overview
+# Write a Positioning Brief
 
 This skill produces a brand positioning brief from whatever the user already has — existing brand content, conversational answers, or both. The output is designed to be saved and uploaded alongside content-generation and merchandising skills (product descriptions, landing pages, emails, bundles, quizzes, collection descriptions) so that AI-generated content reflects the brand's actual positioning instead of producing generic category copy.
 
