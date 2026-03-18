@@ -46,9 +46,9 @@ See the existing skills in `skills/` for complete examples of what a finished sk
 
 There are two paths:
 
-**Conversational.** Open Claude or ChatGPT and describe the workflow you want to turn into a skill. The model will generate a properly structured `SKILL.md` for you. See the [full guide on skillshelf.ai](https://skillshelf.ai/learn/how-to-create-a-skill/) for a step-by-step walkthrough.
+**Use the Skill Writer (recommended).** The [Skill Writer](https://skillshelf.ai/skills/write-skill/) is a skill that builds other skills. It is purpose-built for ecommerce workflows and walks you through the entire process in conversation. Upload it to Claude or ChatGPT, describe the task you want to automate, and it produces a complete skill directory with all the right files and documentation. See the [full guide on skillshelf.ai](https://skillshelf.ai/learn/how-to-create-a-skill/) for a step-by-step walkthrough.
 
-**Manual.** Write a `SKILL.md` file by hand following the [SKILL.md specification](skillmd-specs.md). The [Skill Authoring Guide](skill-authoring-guide.md) covers input design, output structure, example conventions, and quality standards.
+**Write by hand.** If you want full control, write a `SKILL.md` file by hand following the [SKILL.md specification](skillmd-specs.md). The [Skill Authoring Guide](skill-authoring-guide.md) covers input design, output structure, example conventions, and quality standards.
 
 ## Submitting a skill
 
