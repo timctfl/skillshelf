@@ -11,7 +11,7 @@ description: >-
 license: Apache-2.0
 ---
 
-# Write a SkillShelf Skill
+# Write an Ecommerce Skill
 
 This skill helps users go from "I have an idea for a skill" to a complete, convention-compliant skill directory. It walks through understanding the task, designing the skill, writing the files, and reviewing them against SkillShelf conventions.
 
