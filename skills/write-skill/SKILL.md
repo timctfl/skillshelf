@@ -220,9 +220,8 @@ When writing the SKILL.md in Phase 3, follow this structure:
 ---
 name: skill-name
 description: >-
-  Third-person description under 1024 characters. Describes what
-  the skill produces, what input it accepts, and what the output
-  is used for.
+  Third-person description under 155 characters. A concise
+  summary of what the skill produces and what it is used for.
 license: Apache-2.0
 ---
 

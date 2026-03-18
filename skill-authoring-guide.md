@@ -11,6 +11,7 @@ Every skill must conform to the SKILL.md specification documented in `skillmd-sp
 - Valid YAML frontmatter with `name` and `description`.
 - `name` matches the parent directory name.
 - `description` is written in third person ("Produces a positioning brief..." not "I help you write...").
+- `description` is under 155 characters. This is used as the meta description on skillshelf.ai.
 - Body under 500 lines (guideline, not hard limit).
 - Forward slashes in all file paths.
 - File references one level deep from SKILL.md.

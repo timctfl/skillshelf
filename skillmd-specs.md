@@ -110,6 +110,8 @@ These fields are defined by the agentskills.io specification and are expected to
 
 Source: agentskills.io/specification
 
+**SkillShelf description length guideline:** The open standard allows up to 1024 characters. SkillShelf recommends keeping descriptions under 155 characters. The description is used as the HTML meta description on skillshelf.ai, and search engines truncate after ~155 characters. Write a concise summary of what the skill does and what it produces.
+
 **Note on "required" vs. Claude Code behavior:** The open standard marks `name` and `description` as required. Claude Code documentation states "All fields are optional. Only `description` is recommended so Claude knows when to use the skill." In Claude Code, omitting `name` causes the directory name to be used instead; omitting `description` means the skill will not be discoverable by the model. Both fields are effectively required for a functional skill.
 
 Source: code.claude.com/docs/en/skills (the "all optional" statement), docs.claude.com/en/docs/agents-and-tools/agent-skills/overview (the "required" statement)
