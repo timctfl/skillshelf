@@ -247,7 +247,7 @@ The document should follow this exact structure. Read `references/example-output
 
 - Produce the voice profile as a file the user can download, not as inline chat text.
 - When the user requests changes during review, edit the document in place. Do not regenerate the whole document.
-- Use the brand's name in section headers (e.g., "How Nike Talks to the Customer," not "How They Talk to the Customer").
+- Use the brand's name in section headers (e.g., "How [Brand] Talks to the Customer," not "How They Talk to the Customer").
 - Pull real examples from source material for narrative sections. Put them inline with the analysis, not in a separate examples section.
 - If the source material is insufficient for a section, say so directly in that section. Do not invent patterns you can't support.
 - Keep the full document between 600-800 words. For brands with more complex voices (multiple audience registers, detailed humor guidelines, extensive avoidance lists), do not exceed 1,000 words.
