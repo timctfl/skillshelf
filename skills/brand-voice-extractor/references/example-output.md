@@ -1,4 +1,4 @@
-# Brand Voice: Nike
+# Brand Voice: GreatOutdoors Co.
 
 <!-- brand-voice-extractor v0.1 -->
 
@@ -8,7 +8,7 @@ This is your brand voice profile, built from the content you provided. It captur
 
 ## Voice Summary
 
-Your brand voice is direct, confident, and action-oriented. You write in short declarative statements that assume the reader is already an athlete. You lead with emotion and experience, then back it up with product specifics.
+Your brand voice is direct, practical, and quietly confident. You write like a knowledgeable friend who hikes every weekend and has strong opinions about gear but zero interest in gear culture. You lead with what the product does in real conditions, skip the marketing language, and trust the reader to make their own decision.
 
 ---
 
@@ -16,45 +16,49 @@ The following sections describe the patterns that make your brand's writing dist
 
 ## Headlines
 
-Nike headlines are short, declarative, and action-oriented. They rarely describe the product. Instead they name a feeling, a challenge, or an identity.
+GreatOutdoors Co. headlines are short, declarative, and grounded in a specific use case or condition. They never promise transformation or adventure. They name a problem the reader already knows or state what the product does plainly.
 
-Examples from source material: "Find your fast." "You don't win silver. You lose gold." "Write the future."
+Examples from source material: "Rain jacket. Actual rain." "One jacket. Every Saturday." "The pack that outlasts the trail."
 
-When a headline does reference the product, it's through what it enables, not what it is. "Air" becomes about weightlessness, not a cushioning system. The product is the means, never the subject.
+Headlines occasionally use dry humor, but only when it reinforces the practical positioning. "You don't need an expedition jacket. You need a Saturday jacket." The humor comes from honesty, not cleverness.
 
-Fragments are the default. Complete sentences appear occasionally but tend to be short imperatives.
+Sentence case is the default. Title case appears on product names only.
 
 ## Product Framing
 
-Nike talks about what the product lets you do or become, then mentions what it's made of. The pattern is consistent: emotional setup, then technical validation.
+GreatOutdoors Co. leads with what the product handles (conditions, frequency, durability), then backs it up with the specific construction detail that makes it possible. The pattern is: real-world scenario, then the spec that earns trust.
 
-Example: A landing page for a running shoe opens with the feeling of a fast long run, then introduces the foam compound as the reason that feeling is possible. The spec exists to explain the experience, not the other way around.
+Example: A product page for the rain jacket opens with "Built for the kind of rain that doesn't stop in October and doesn't start again in June" and then introduces the 70-denier face fabric and taped seams as the reason it holds up across 50+ outings a year.
 
-Features are never listed without context. "ZoomX foam" always appears near "energy return" or "your fastest miles." The technical name earns credibility; the benefit earns desire.
+Specs are always paired with context. "70-denier face fabric" always appears near "outlasts three seasons of weekly use." The number earns credibility; the use case earns relevance.
 
-## How Nike Talks to the Customer
+Features are never listed in isolation and never compared to competitors. The framing is always "this is what it does for you," not "this is better than the alternative."
 
-Nike defaults to imperative statements directed at the reader without always using "you." "Push your limits" rather than "you can push your limits." The voice assumes the reader is already an athlete or already in motion. It doesn't invite or suggest. It affirms and challenges.
+## How GreatOutdoors Co. Talks to the Customer
 
-When "you" does appear, it's in moments of direct confrontation or acknowledgment: "You don't stop when you're tired. You stop when you're done." This is reserved, not constant.
+GreatOutdoors Co. uses "you" naturally and frequently, like a conversation. The tone is peer-to-peer: the brand assumes the reader already hikes every weekend and already knows cheap gear fails. It doesn't need to convince them to go outside or explain why good gear matters.
 
-Nike never talks down, never explains why exercise is good, and never positions the reader as a beginner unless the specific campaign targets new runners (and even then, the tone is "you already have what it takes").
+The voice never talks down, never over-explains, and never positions the reader as a beginner. But it also never challenges or pushes. The relationship is "I've been where you are and here's what works," not "push your limits."
+
+When addressing the reader's past experience with gear, the tone is knowing, not sympathetic: "You've replaced that rain jacket twice already. This one lasts." Not "We understand how frustrating it can be when your gear lets you down."
 
 ## Persuasion Arc
 
-Nike landing pages typically follow this structure:
+GreatOutdoors Co. product pages typically follow this structure:
 
-1. Hero statement (short, emotional, no product name)
-2. Athlete or lifestyle context (story, image-driven, 1-2 sentences of copy)
-3. Product introduction through the lens of the story
-4. 2-3 feature blocks, each connecting a spec to the experience
-5. CTA: clean and direct
+1. Opening line naming a specific condition or use case the reader recognizes
+2. What the product does in that condition (1-2 sentences, plain language)
+3. The construction detail that makes it possible (1-2 specs with context)
+4. The value framing (per-outing cost or durability lifespan)
+5. CTA: straightforward, no urgency
 
-The CTA language leans transactional but confident: "Shop," "Get yours," "Find your size." Nike doesn't soften CTAs with "explore" or "discover" on product pages. Those words appear on editorial and category-level pages.
+The CTA language is direct and low-pressure: "See the details," "Pick your size," "Add to pack." GreatOutdoors Co. never uses urgency language, scarcity cues, or exclamation marks in CTAs.
 
-## What Nike Avoids
+## What GreatOutdoors Co. Avoids
 
-Nike does not: justify its pricing, acknowledge competitors by name, use "affordable" or value-oriented language, hedge with "might" or "could," over-explain benefits the reader would already understand, or use lifestyle language that feels passive ("relax," "unwind," "treat yourself"). Even loungewear copy maintains an active tone.
+GreatOutdoors Co. does not: use aspirational language ("conquer," "summit," "push your limits"), reference extreme conditions the customer will never encounter, use lifestyle imagery language ("adventure awaits," "explore the wild"), position gear as identity ("for the bold," "built for athletes"), mention competitors by name, lead with price or discounts, use urgency or scarcity language ("limited," "act now," "selling fast"), or describe the product in terms the reader would need to look up ("hydrostatic head," "CFM rating," "denier-to-weight ratio" without plain-language context).
+
+The brand also avoids sustainability as a primary claim. Specific environmental practices can be mentioned but never as the headline or lead.
 
 ---
 
@@ -65,21 +69,21 @@ These are quick-reference rules pulled from your content. Scan them and update a
 | Decision | Value |
 |---|---|
 | Contractions | Yes, always |
-| Exclamation marks | Sparingly, never in headlines |
-| Emojis | Never in primary copy, occasionally in social |
+| Exclamation marks | Never |
+| Emojis | Never |
 | Oxford comma | Yes |
-| Headline case | Sentence case or all caps, never title case |
-| Price references | Avoided in brand copy, only on PDP |
+| Headline case | Sentence case |
+| Price references | Only in value-framing context, never as the lead |
 | Competitor mentions | Never |
-| Superlatives ("best," "most") | Rarely, prefers declarative statements |
-| Urgency language | Only for genuine drops and limited releases |
-| Technical specs | Present but always secondary to feeling |
-| Customer address | Second person, but sparingly. Prefers imperative mood ("Run." not "You should run.") |
-| Sentence length | Short. Often fragments. |
-| Paragraph length | 1-2 sentences |
-| Humor | Never |
-| Punctuation as style | Periods on fragments for emphasis. "Just do it." not "Just do it!" |
-| Primary CTAs | "Shop," "Find your size," "Get yours" |
+| Superlatives ("best," "most") | Never |
+| Urgency language | Never |
+| Technical specs | Always paired with benefit |
+| Customer address | Second person ("you"), conversational, frequent |
+| Sentence length | Short to medium |
+| Paragraph length | 2-3 sentences |
+| Humor | Sparingly, dry |
+| Punctuation as style | Periods on fragments for grounding |
+| Primary CTAs | "See the details," "Pick your size," "Add to pack" |
 
 ---
 
@@ -88,19 +92,19 @@ These are quick-reference rules pulled from your content. Scan them and update a
 These were generated from the voice profile above. If they sound like your brand, the profile is working. If something feels off, go back and adjust.
 
 **Product headline**
-Break away. Stay grounded.
+Rain jacket. Actual rain.
 
 **Short product description**
-Pegasus 42 strips away everything between you and the road. ZoomX foam returns energy stride after stride, and the engineered mesh upper moves when you do. 10.2 oz. 10mm drop. Built for the run that doesn't end when the route does.
+The Cascade Shell is built for the rain that shows up every weekend from October through June. 70-denier face fabric, fully taped seams, and YKK AquaGuard zippers that don't corrode after a season of Pacific Northwest mud. 14.2 oz. Fits over a midlayer without feeling like a bag. Tested across 60+ outings in the Cascades and Olympics.
 
 **Email subject line + preview text**
-Subject: Your long run just got longer.
-Preview: The new Pegasus 42 is here.
+Subject: Your Saturday gear, sorted.
+Preview: One jacket. One pack. No decisions left to make.
 
 **Landing page hero block**
-*The road doesn't wait. Neither should you.*
+*You hike every weekend. Your gear should keep up.*
 
-Pegasus 42 was built for the run that's yours and nobody else's. Lighter, faster, and more responsive than its predecessor, with ZoomX foam that gives back more than you put in. This is what forward feels like.
+The Cascade Shell was designed for one thing: weekly use in real rain. Not the kind of rain that shows up once on a vacation hike. The kind that's there every Saturday from fall through spring. 70-denier face fabric outlasts three seasons of weekly use. Taped seams and corrosion-resistant zippers handle the rest.
 
 **Social caption**
-10.2 oz of "try and keep up." Pegasus 42. Out now.
+52 weekends. One jacket. The Cascade Shell is built for how you actually use it.
