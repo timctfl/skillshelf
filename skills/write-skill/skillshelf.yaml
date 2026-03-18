@@ -1,0 +1,83 @@
+version: "0.1.0"
+
+category: operations-and-process
+subcategories:
+  - skill-development
+  - workflow-design
+
+level: intermediate
+primitive: false
+
+platforms:
+  - platform-agnostic
+
+models_tested:
+  - claude-sonnet-4-5
+
+tags:
+  - skill-authoring
+  - SKILL.md
+  - meta-skill
+  - workflow-design
+  - prompt-engineering
+
+estimated_tokens:
+  input: 1000-4000
+  output: 4000-10000
+
+interaction_pattern: multi-turn
+
+install_method: directory
+
+date_added: "2026-02-26"
+date_updated: "2026-02-26"
+
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+input_schema:
+  type: object
+  description: >-
+    A task description and ecommerce context provided conversationally.
+    The user may share rough notes, an existing prompt, example output,
+    or answer guided questions about what the skill should do.
+  properties: {}
+
+output_schema:
+  type: object
+  description: >-
+    A complete skill directory containing SKILL.md with valid frontmatter,
+    references/example-output.md demonstrating ceiling quality, an optional
+    references/glossary.md for skills whose output is consumed downstream,
+    and a skillshelf.yaml metadata sidecar.
+  required_files:
+    - SKILL.md
+    - skillshelf.yaml
+    - references/example-output.md
+
+faq:
+  - question: What does the Write Skill skill do?
+    answer: >-
+      It helps you create a new SkillShelf skill from scratch. You describe
+      what task the skill should handle, and it walks through designing the
+      skill, writing all the files, and reviewing them against SkillShelf
+      conventions. You end up with a complete skill directory ready to use.
+  - question: Do I need to know how SKILL.md files work?
+    answer: >-
+      No. The skill handles the format, conventions, and structure. You
+      focus on describing the ecommerce task you want to automate and
+      what good output looks like. The skill asks the right questions to
+      fill in the rest.
+  - question: What files does it produce?
+    answer: >-
+      A SKILL.md (the main skill file with instructions), an example
+      output file showing what the skill produces at its best, a
+      skillshelf.yaml metadata file, and optionally a glossary if the
+      skill's output is consumed by other skills.
+  - question: Can I use this for non-ecommerce skills?
+    answer: >-
+      Yes. The SKILL.md format works for any domain. The skill will note
+      that SkillShelf categories are ecommerce-specific and help you pick
+      the closest fit. The quality conventions (clear scope, good input
+      design, structured output) apply regardless of domain.
