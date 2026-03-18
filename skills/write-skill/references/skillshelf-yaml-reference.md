@@ -43,7 +43,6 @@ Every SkillShelf skill includes a `skillshelf.yaml` sidecar file alongside SKILL
 | Field | Type | Description |
 |-------|------|-------------|
 | `subcategories` | list of strings | More specific tags within the category |
-| `models_tested` | list of strings | Models verified to work well (e.g., `claude-sonnet-4-5`) |
 | `estimated_tokens` | object | `input` and `output` as range strings (e.g., "2000-8000") |
 | `interaction_pattern` | string | `single-turn` or `multi-turn` |
 | `install_method` | string | `copy` (just SKILL.md) or `directory` (SKILL.md + references/) |
