@@ -225,7 +225,7 @@ description: >-
 license: Apache-2.0
 ---
 
-# Skill Title
+# Skill Title (verb + outcome, e.g., "Document Your Brand Voice")
 
 [1-2 paragraph introduction: what it does, what the output is for,
  pointer to references/example-output.md]

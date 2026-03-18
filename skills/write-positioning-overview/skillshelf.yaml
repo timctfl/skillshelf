@@ -63,7 +63,7 @@ output_schema:
     - How to use this brief
 
 faq:
-  - question: What does the Write Positioning Overview skill do?
+  - question: What does the Write a Positioning Brief skill do?
     answer: It takes whatever brand context you have—About Us pages, pitch decks, homepage copy, or just conversational answers—and produces a structured positioning brief covering your positioning statement, target audience, value propositions, competitive context, and differentiators.
   - question: What if I don't have much brand material to start with?
     answer: The skill runs a gap analysis on whatever you provide and asks guided follow-up questions to fill in the missing pieces. You can start with as little as a homepage URL or a few sentences about what you sell and who you sell it to.
