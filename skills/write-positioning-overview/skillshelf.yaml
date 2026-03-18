@@ -11,9 +11,6 @@ primitive: true
 platforms:
   - platform-agnostic
 
-models_tested:
-  - claude-sonnet-4-5
-
 tags:
   - positioning
   - brand-strategy

@@ -11,9 +11,6 @@ primitive: false
 platforms:
   - platform-agnostic
 
-models_tested:
-  - claude-sonnet-4-5
-
 tags:
   - skill-authoring
   - SKILL.md
