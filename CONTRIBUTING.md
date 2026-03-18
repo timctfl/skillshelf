@@ -2,6 +2,8 @@
 
 Thanks for your interest in contributing a skill.
 
+The easiest way to create a submission-ready skill is to use the [Skill Writer](https://skillshelf.ai/skills/write-skill/). It produces all the files you need with the right structure and documentation built in.
+
 ## How to submit
 
 ### Option 1: Website
