@@ -241,4 +241,4 @@ Accept the user's intended positioning at face value. Note in the Confidence sec
 
 ### Competitive information is thin or absent
 
-Produce the brief without the "Language to avoid" subsection of Competitive context. Note in Confidence that competitive context would strengthen the brief, and recommend the user provide competitor homepage copy, taglines, or product descriptions in a future revision. Suggest the "Create a competitive positioning snapshot" skill for deeper competitive analysis.
+Produce the brief without the "Language to avoid" subsection of Competitive context. Note in Confidence that competitive context would strengthen the brief, and recommend the user provide competitor homepage copy, taglines, or product descriptions in a future revision.
