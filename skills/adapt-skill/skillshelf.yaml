@@ -1,0 +1,75 @@
+version: "0.1.0"
+
+category: operations-and-process
+subcategories:
+  - skill-development
+  - workflow-design
+
+level: intermediate
+primitive: false
+
+platforms:
+  - platform-agnostic
+
+tags:
+  - skill-authoring
+  - SKILL.md
+  - conversion
+  - prompt-engineering
+
+estimated_tokens:
+  input: 2000-10000
+  output: 4000-10000
+
+interaction_pattern: multi-turn
+
+install_method: directory
+
+date_added: "2026-03-18"
+date_updated: "2026-03-18"
+
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+input_schema:
+  type: object
+  description: >-
+    An existing AI prompt or skill file provided by the user. Can be pasted
+    text, an uploaded markdown file, or a zip containing a full skill directory.
+    The user may also provide context about what the skill does and who uses it.
+  properties: {}
+
+output_schema:
+  type: object
+  description: >-
+    A complete SkillShelf skill directory containing SKILL.md with valid
+    frontmatter, references/example-output.md demonstrating ceiling quality,
+    an optional references/glossary.md for skills whose output is consumed
+    downstream, and a skillshelf.yaml metadata sidecar.
+  required_files:
+    - SKILL.md
+    - skillshelf.yaml
+    - references/example-output.md
+
+faq:
+  - question: What does this skill do?
+    answer: >-
+      It takes a prompt or skill you already use and packages it for
+      SkillShelf. You get back a complete skill directory with everything
+      needed for other people to find and use your skill.
+  - question: What can I upload?
+    answer: >-
+      Paste a system prompt, upload a markdown file, or upload a zip
+      containing a full skill directory. Works with prompts from Claude,
+      ChatGPT, or anywhere else.
+  - question: How is this different from Build a New Skill?
+    answer: >-
+      Build a New Skill starts from scratch. This one starts from something
+      you already have. If your prompt works, this is faster because it keeps
+      your existing logic and just adds the SkillShelf structure around it.
+  - question: Will it change how my prompt works?
+    answer: >-
+      No. It keeps your prompt's logic and output. It adds structure around
+      it -- things like edge case handling, an example output file, and
+      metadata -- so it works well as a shared skill.
