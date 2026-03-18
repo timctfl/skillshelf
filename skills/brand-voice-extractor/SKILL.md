@@ -1,6 +1,8 @@
 ---
 name: brand-voice-extractor
-description: Build a structured brand voice profile from a brand's existing content. Use this skill whenever the user wants to define, document, capture, or extract their brand voice, tone, or writing style. Also use when the user mentions needing consistent copy across channels, wants to create a brand guide or style guide for writing, asks how to keep AI-generated content on-brand, or provides brand content and asks you to analyze how they write. This skill produces a reusable document that other skills consume as input.
+description: >-
+  Analyzes your brand's existing content and produces a structured voice profile.
+  Upload it to future AI conversations to keep all generated copy on-brand.
 license: Apache-2.0
 ---
 

@@ -1,14 +1,8 @@
 ---
 name: write-positioning-overview
 description: >-
-  Produces a structured brand and product positioning brief from existing brand
-  content or conversational answers. Accepts About Us pages, pitch decks,
-  homepage copy, or direct answers to guided prompts. Identifies gaps in the
-  provided material and asks targeted follow-up questions. Outputs a one-page
-  positioning brief covering positioning statement, target customer, key
-  differentiators, value propositions, competitive context, and anti-positioning.
-  Designed as a foundational primitive that downstream content-generation and
-  merchandising skills consume as a reference input.
+  Produces a positioning brief from your existing brand content or guided questions.
+  Covers target customer, differentiators, competitive context, and more.
 license: Apache-2.0
 ---
 
