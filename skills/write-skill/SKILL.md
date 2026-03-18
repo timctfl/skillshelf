@@ -1,13 +1,8 @@
 ---
 name: write-skill
 description: >-
-  Produces a complete set of SkillShelf-quality skill files from a task
-  description and ecommerce context. Use this skill when the user wants to
-  create a new AI skill, write a SKILL.md file, build a reusable prompt
-  for ecommerce tasks, or package instructions for a repeatable AI workflow.
-  Walks through skill design, convention compliance, and file generation.
-  Outputs a SKILL.md, example output, optional glossary, and skillshelf.yaml
-  sidecar ready to drop into a skill directory.
+  Walks you through creating a complete, convention-compliant AI skill for ecommerce.
+  Produces a SKILL.md, example output, and all supporting files ready to use.
 license: Apache-2.0
 ---
 
