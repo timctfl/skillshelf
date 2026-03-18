@@ -57,7 +57,7 @@ output_schema:
     - references/example-output.md
 
 faq:
-  - question: What does the Write Skill skill do?
+  - question: What does the Build a New Skill skill do?
     answer: >-
       It helps you create a new SkillShelf skill from scratch. You describe
       what task the skill should handle, and it walks through designing the
