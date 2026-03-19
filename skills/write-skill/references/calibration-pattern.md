@@ -54,7 +54,7 @@ or "customer-led." Present them neutrally as A, B, and C so the user
 reacts to the framing itself, not to a label.
 
 Ask the user: "Which of these captures [what you're calibrating] best?
-If none is exactly right, tell me what you'd change — or what you liked
+If none is exactly right, tell me what you'd change -- or what you liked
 from more than one."
 
 Use the user's selection (and any notes about what they liked or disliked)

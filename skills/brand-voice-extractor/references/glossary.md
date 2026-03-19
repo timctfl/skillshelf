@@ -27,11 +27,11 @@ One of the inputs for this skill is a brand voice profile, produced by the Brand
 
 When multiple sections provide guidance that applies to the same output:
 
-1. What [Brand] Avoids — Hard constraints. Never violate an avoidance rule.
-2. Style Decisions — Specific, binary rules. Override narrative guidance when they conflict.
-3. Headlines / Product Framing / How [Brand] Talks to the Customer / Persuasion Arc — Context, patterns, and nuance. Inform decisions within the constraints above.
-4. Voice Summary — Directional. If a specific section contradicts it, follow the specific section.
-5. Example Copy — Illustrative. Reference for tone and feel, not binding.
+1. What [Brand] Avoids -- Hard constraints. Never violate an avoidance rule.
+2. Style Decisions -- Specific, binary rules. Override narrative guidance when they conflict.
+3. Headlines / Product Framing / How [Brand] Talks to the Customer / Persuasion Arc -- Context, patterns, and nuance. Inform decisions within the constraints above.
+4. Voice Summary -- Directional. If a specific section contradicts it, follow the specific section.
+5. Example Copy -- Illustrative. Reference for tone and feel, not binding.
 
 ## Handling Missing or Unexpected Input
 
@@ -134,4 +134,4 @@ Most fields in the Style Decisions table use a common set of frequency and scope
 
 ## Changelog
 
-**v0.1** — Initial release.
+**v0.1** -- Initial release.

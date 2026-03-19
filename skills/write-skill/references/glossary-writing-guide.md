@@ -53,11 +53,11 @@ Priority order when guidance overlaps. Every section must appear.
 
 When multiple sections provide guidance that applies to the same output:
 
-1. What [Brand] Avoids — Hard constraints. Never violate an avoidance rule.
-2. Style Decisions — Specific, binary rules. Override narrative guidance when they conflict.
-3. Headlines / Product Framing — Context, patterns, and nuance.
-4. Voice Summary — Directional. If a specific section contradicts it, follow the specific section.
-5. Example Copy — Illustrative. Reference for tone, not binding.
+1. What [Brand] Avoids -- Hard constraints. Never violate an avoidance rule.
+2. Style Decisions -- Specific, binary rules. Override narrative guidance when they conflict.
+3. Headlines / Product Framing -- Context, patterns, and nuance.
+4. Voice Summary -- Directional. If a specific section contradicts it, follow the specific section.
+5. Example Copy -- Illustrative. Reference for tone, not binding.
 ```
 
 ### 4. Handling Missing or Unexpected Input
@@ -141,10 +141,10 @@ Newest first. Enough detail that a downstream skill encountering an older docume
 ```markdown
 ## Changelog
 
-**v0.2** — Added "Humor" field to Style Decisions table. Renamed
+**v0.2** -- Added "Humor" field to Style Decisions table. Renamed
 "Customer Tone" to "Customer Address" for clarity.
 
-**v0.1** — Initial release.
+**v0.1** -- Initial release.
 ```
 
 ---
