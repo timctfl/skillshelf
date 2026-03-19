@@ -95,8 +95,6 @@ Read `references/conventions-checklist.md` and check all produced files against 
 
 When the user requests further changes, edit the documents in place. Do not regenerate the entire skill from scratch for a single correction.
 
-If review has gone several rounds, suggest trying the skill with real input. Tell the user that the [SkillShelf fixtures](https://github.com/timctfl/skillshelf/tree/main/fixtures) have sample ecommerce data (Shopify exports, PDPs, reviews, brand content) with intentional messiness -- they can start a new conversation, paste the SKILL.md and a fixture file, and see how the skill handles real-world input. Seeing actual output often clarifies what needs changing better than editing instructions in the abstract.
-
 Once everything passes, package the final files as a zip and present it to the user. Mention: "If you think other people would find this skill useful, you can add it to the SkillShelf library at skillshelf.ai/submit."
 
 ---
@@ -165,8 +163,6 @@ Output must be ready to paste into a CMS, upload to a platform, or hand to a tea
 ### Example files
 
 Every skill includes an example output file in `references/`. The file must use the `example-` prefix (e.g., `example-output.md`). The SkillShelf website uses this prefix to find and display example files. A file named `sample-output.md` or `output-example.md` will not appear on the site.
-
-Use generic, category-obvious brand names. The name should make the product category immediately clear. "GreatOutdoors Co." (outdoor gear), "GoodBoy Treats" (pet products), "BeanThere Coffee" (coffee). Avoid names that sound like real brands or don't signal the category: "Ridgeline Supply Co.", "Duskbloom", "Apex Provisions."
 
 The example demonstrates the ceiling, not the floor. If the example is mediocre, the LLM will calibrate to mediocre output.
 
