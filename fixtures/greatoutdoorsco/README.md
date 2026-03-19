@@ -37,6 +37,18 @@ Several files contain deliberate messiness to test how skills handle real-world 
 - **Keyword stuffing** in `pdp-messy.md` — a block of SEO spam at the bottom
 - **Inconsistent list formatting** in `pdp-messy.md` — mixed `-`, `*`, and bare lines
 
+## Skill outputs
+
+The `skill-outputs/` directory contains example outputs from SkillShelf skills run against this fixture data. These are useful as inputs to downstream skills -- for example, a product description skill can consume the brand voice profile and positioning brief to produce on-brand copy.
+
+| File | Produced by | Description |
+|------|-------------|-------------|
+| `skill-outputs/brand-voice-profile.md` | Document Your Brand Voice | Structured voice guide extracted from the PDPs and product copy. |
+| `skill-outputs/brand-voice-glossary.md` | Document Your Brand Voice | Glossary defining how downstream skills should interpret the voice profile. |
+| `skill-outputs/positioning-brief.md` | Write a Positioning Brief | Positioning brief covering target customer, differentiators, competitive context. |
+
+These files are copies of the example outputs in each skill's `references/` directory. If they drift apart, the skill `references/` copies are authoritative (they're what the site displays and what the LLM reads as quality benchmarks).
+
 ## Coming next
 
 Additional fixture sets (marketing content, customer content, emails, reviews, ads, and social posts) will be generated in a future pass and will reference the same products by name and handle.
