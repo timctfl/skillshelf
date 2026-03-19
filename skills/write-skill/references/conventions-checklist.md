@@ -101,3 +101,9 @@ Use this checklist during Phase 4 to review a skill against SkillShelf standards
 - [ ] `primitive` is true only for foundational skills producing reusable documents
 - [ ] `platforms` is listed (specific platforms or "platform-agnostic")
 - [ ] `faq` has at least 2-3 entries
+
+## Testing
+
+- [ ] Skill tested with at least one fixture file from `fixtures/` (or equivalent real data)
+- [ ] Output handles messy/incomplete fixture input gracefully (no refusals, notes gaps)
+- [ ] If skill consumes primitive output: tested with `fixtures/greatoutdoorsco/skill-outputs/` files

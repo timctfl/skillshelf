@@ -186,7 +186,19 @@ Build this section over time. Start with an empty gotchas section after your fir
 
 ---
 
-## 8. Writing quality standards
+## 8. Testing with fixture data
+
+The `fixtures/` directory at the repo root contains sample ecommerce data for testing skills. The Great Outdoors Co. set includes Shopify CSV/JSON exports, Google Merchant XML, product attributes, taxonomy, reviews, brand content pages, and four PDPs at varying quality levels (clean, technical, minimal, messy).
+
+The fixture data has intentional quality issues -- mixed units, inconsistent casing, HTML artifacts, keyword stuffing -- so it exercises the edge cases every skill should handle.
+
+The `fixtures/greatoutdoorsco/skill-outputs/` directory contains example outputs from primitive skills (brand voice profile, positioning brief) run against this data. Use these as inputs when testing a skill that consumes primitive output.
+
+To test: paste the SKILL.md and a relevant fixture file into your AI tool and run it. Check that the output handles the data's messiness gracefully and matches the quality ceiling set by the example output.
+
+---
+
+## 9. Writing quality standards
 
 ### Specificity over generality
 
