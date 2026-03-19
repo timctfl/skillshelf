@@ -8,7 +8,7 @@ Every SkillShelf skill includes a `skillshelf.yaml` sidecar file alongside SKILL
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `version` | string | Semver version of the skill (e.g., "0.1.0") |
+| `version` | string | Version of the skill (e.g., "1.0") |
 | `category` | string | One of the 10 categories below |
 | `level` | string | `beginner`, `intermediate`, or `advanced` |
 | `primitive` | boolean | `true` only for foundational skills producing reusable reference documents. Most skills: `false` |

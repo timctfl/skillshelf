@@ -82,7 +82,7 @@ The `skillshelf.yaml` sidecar file provides catalog metadata that SkillShelf use
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `version` | string | Semantic version of your skill (e.g. `"0.1.0"`) |
+| `version` | string | Version of your skill (e.g. `"1.0"`) |
 | `category` | string | One of the valid categories (see below) |
 | `level` | string | `beginner`, `intermediate`, or `advanced` |
 | `primitive` | boolean | `true` if this is a foundational building-block skill, `false` otherwise |
@@ -123,7 +123,7 @@ The `skillshelf.yaml` sidecar file provides catalog metadata that SkillShelf use
 **Example:**
 
 ```yaml
-version: "0.1.0"
+version: "1.0"
 category: product-content
 level: beginner
 primitive: false
