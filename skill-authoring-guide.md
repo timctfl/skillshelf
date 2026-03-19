@@ -172,6 +172,18 @@ Skills that accept CSV data should also address:
 - Inconsistent formatting within columns
 - Very small datasets (< 10 rows) and very large datasets (1,000+ rows)
 
+### Gotchas (recommended, not required)
+
+If you've tested the skill and noticed the AI consistently makes certain mistakes, document them in a "Gotchas" section in the SKILL.md. These are different from edge cases -- edge cases describe input variations, gotchas describe AI behavior patterns you want to correct.
+
+Good gotchas are specific and actionable:
+
+- "The model tends to invent product features not present in the input. Every claim must trace back to something the user provided."
+- "When given a short About Us page, the model pads the positioning statement with generic industry language. Keep it grounded in what the user actually said."
+- "The model defaults to aspirational language ('elevate your experience') even when the brand voice profile says to avoid it. Re-read the voice profile before writing."
+
+Build this section over time. Start with an empty gotchas section after your first few test runs, then add entries as you discover patterns.
+
 ---
 
 ## 8. Writing quality standards
