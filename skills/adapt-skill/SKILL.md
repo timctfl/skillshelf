@@ -10,21 +10,13 @@ license: Apache-2.0
 
 You already have a prompt or skill that works. This skill converts it into the format SkillShelf uses, so other people can find it, download it, and use it with their own AI tools. Paste your prompt, upload a file, or upload a zip -- you get back a complete skill directory ready to share.
 
-Before starting, read `references/conventions-checklist.md` so you have the full checklist available during review. Read `references/skillshelf-yaml-reference.md` for metadata field definitions. Read `references/example-adaptation.md` to see what a good adaptation looks like (before and after). When the converted skill needs calibration, read `references/calibration-pattern.md`. When producing a glossary, read `references/glossary-writing-guide.md`.
-
----
-
-## Before You Start
-
-The user arrives with an existing prompt or skill that already works. Your job is to convert it to SkillShelf format, not to redesign it from scratch. Respect what the user built. The existing logic, flow, and intent should carry through to the converted version.
-
-That said, SkillShelf conventions exist for good reasons. If the source prompt has gaps (no edge case handling, no example output, rigid Q&A instead of accept-first input design), you fill those gaps during conversion. If the scope is too broad, flag it.
+Before starting, read `references/conventions-checklist.md` and `references/example-adaptation.md`. The other reference files are specialized -- read `references/calibration-pattern.md` only if the source skill needs a calibration step, and `references/glossary-writing-guide.md` only if the converted skill produces output consumed by other skills. Do not read them upfront.
 
 ---
 
 ## Conversation Flow
 
-Three phases, roughly four to five turns.
+Three phases. Most conversions take around four to five turns, but it's fine to run longer if the source needs more clarification or review goes a few rounds.
 
 ### Phase 1: Receive and Analyze
 
@@ -64,26 +56,19 @@ Present a summary:
 > - **What is already SkillShelf-ready:** [list what the source already has: clear scope, structured output, etc.]
 > - **What needs to be added or changed:** [list gaps: missing frontmatter, no example output, rigid Q&A input, no edge cases, etc.]
 
-If the scope is too broad (covers multiple distinct workflows), flag it and suggest splitting: "This covers [X] and [Y]. Those are two separate skills. Which should we convert first?"
+If the scope is too broad (covers multiple distinct workflows), flag it and explain why splitting is better: the more an LLM is trying to keep track of in a single skill, the more likely it is to make mistakes. Focused skills produce better output. Mention that SkillShelf supports workflows called playbooks that chain multiple skills together, so splitting doesn't mean losing the end-to-end workflow. Then suggest a concrete split -- name the distinct skills and what each one does.
 
 Ask the user if the summary is accurate and whether they want to adjust anything before conversion.
 
 ### Phase 2: Convert
 
-**Turn 3: Produce all files.**
+**Turn 3: Produce the SKILL.md.**
 
-Convert the source material into the complete set of SkillShelf files:
-
-1. **SKILL.md** -- The skill file with proper YAML frontmatter and structured body.
-2. **references/example-output.md** -- A complete example of what the skill produces, using a generic, category-obvious brand name.
-3. **references/glossary.md** -- Only if the skill produces structured output that other skills would consume as input.
-4. **skillshelf.yaml** -- The SkillShelf metadata sidecar.
-
-#### Converting the SKILL.md
+Tell the user: "I'm going to convert your prompt into a skill file now. This is the core document -- think of it as a playbook that tells the AI what to do, in what order, and what good output looks like. Everything else gets built around it. I'll share it with you to review before we move on."
 
 Map the source prompt's logic into SkillShelf structure:
 
-- **Frontmatter:** Generate `name` (kebab-case, matches directory), `description` (third person, under 155 characters), `license: Apache-2.0`, and `metadata` block (category, level, platforms, primitive).
+- **Frontmatter:** Generate `name` (kebab-case, matches directory), `description` (third person, under 155 characters), `license: Apache-2.0`.
 - **Title:** Verb + outcome. "Document Your Brand Voice" not "Brand Voice Extractor." Keep it short and something the target user would click on.
 - **Introduction:** 1-2 paragraphs explaining what it does and pointing to the example output in references.
 - **Conversation flow:** Map the source prompt's steps into labeled turns/phases. If the source is a single-turn prompt, structure it as a single-turn skill with clear input expectations and output format.
@@ -106,80 +91,70 @@ Map the source prompt's logic into SkillShelf structure:
 - Accept-first input pattern (if the source uses rigid Q&A, convert to accept-existing-content-first with Q&A as fallback)
 - Edge case handling (if absent)
 - Confidence notes pattern (if absent)
-- Ecosystem awareness (recommend relevant primitives like the Brand Voice Extractor or Write a Positioning Brief skill, but never require them)
 - Closing section with next steps
 - Example output file (always needed)
 - skillshelf.yaml (always needed)
 
-#### Producing the example output
+Present the SKILL.md to the user and say: "Read this as if you were the AI following these instructions. Does anything feel unclear, too vague, or too rigid?"
 
-Create a complete example in `references/example-output.md` that demonstrates the skill's output at ceiling quality. Use a generic, category-obvious brand name: "GreatOutdoors Co." for outdoor gear, "GoodBoy Treats" for pet products, "BeanThere Coffee" for coffee. The example must cover all output sections defined in the skill.
+This is the first validation gate. Do not proceed to supporting files until the user is happy with the SKILL.md.
 
-#### Producing the skillshelf.yaml
+**Turn 4+: Produce supporting files.**
 
-Use `references/skillshelf-yaml-reference.md` for valid field values. Key decisions:
+Once the SKILL.md is approved, explain to the user that the full skill package includes a few more pieces: an example output file that shows the AI what great results look like (this sets the quality ceiling), and some metadata that helps SkillShelf categorize and display the skill if they choose to share it with other ecommerce practitioners.
 
-- **Category:** Choose from the 10 SkillShelf categories. If the skill is not ecommerce-specific, use `operations-and-process`.
-- **Level:** Based on user involvement. Beginner: user talks and gets output. Intermediate: user brings prepared input. Advanced: user works outside the chat window.
-- **Primitive:** True only for foundational skills producing reusable documents consumed by many downstream skills. Most skills are not primitives.
-- **FAQ:** Write 3-4 questions and answers about the skill. The first FAQ should be "What does the [Skill Title] skill do?" with a plain-language answer.
+To build the example, ask the user whether they'd like to provide their own input data, or use the fictional Great Outdoors Co. data from SkillShelf. If they choose the SkillShelf path, fetch data from https://github.com/timctfl/skillshelf/tree/main/fixtures/greatoutdoorsco and use Great Outdoors Co. as the example brand.
 
-After producing the files, tell the user: "Start with the SKILL.md. Read it as if you were the AI following these instructions. Does anything feel unclear, too vague, or too rigid? Then check the example output -- it sets the quality ceiling for what this skill produces."
+Produce:
 
-### Phase 3: Review Against Conventions
+1. **references/example-output.md** -- A complete example of what the skill produces when run with good input. This sets the quality ceiling.
+2. **skillshelf.yaml** -- The SkillShelf metadata sidecar. Read `references/skillshelf-yaml-reference.md` for valid field values.
+3. **references/glossary.md** -- Only if the skill produces structured output that other skills consume as input. Most skills do not need this. If yours does, read `references/glossary-writing-guide.md` for the full specification.
 
-**Turn 4+: Run the checklist.**
+Present the example output to the user and say: "This example sets the quality ceiling for your skill -- it's what the AI will calibrate toward. Does the quality, tone, and level of detail feel right? Anything you'd want to change?"
 
-Read `references/conventions-checklist.md` and check the converted files against every item. Present the results to the user, grouped by concern. For any failing item, explain what needs to change and offer to fix it.
+This is the second validation gate. Do not proceed to quality control until the user is happy with the example.
 
-When the user requests changes, edit the documents in place. Do not regenerate the entire skill from scratch for a single correction.
+### Phase 3: Quality Control
+
+Tell the user: "Now I'm going to run a quality control check against the SkillShelf conventions. These are a set of standards that help make sure skills work consistently and produce reliable output. I'll fix everything I can on my own, but I might ask for some clarifications."
+
+Read `references/conventions-checklist.md` and check all produced files against it silently. Fix any issues you can without user input (formatting, naming, structural compliance). Only surface issues that require the user's judgment -- scope questions, calibration decisions, or ambiguities you can't resolve on your own.
+
+When the user requests further changes, edit the documents in place. Do not regenerate the entire skill from scratch for a single correction.
 
 If review has gone several rounds, suggest trying the skill with real input. Tell the user that the [SkillShelf fixtures](https://github.com/timctfl/skillshelf/tree/main/fixtures) have sample ecommerce data (Shopify exports, PDPs, reviews, brand content) with intentional messiness -- they can start a new conversation, paste the SKILL.md and a fixture file, and see how the skill handles real-world input. Seeing actual output often clarifies what needs changing better than editing instructions in the abstract.
 
-Once the user is happy with the skill, mention: "If you think other people would find this skill useful, you can add it to the SkillShelf library at skillshelf.ai/submit."
+Once everything passes, package the final files as a zip and present it to the user. Mention: "If you think other people would find this skill useful, you can add it to the SkillShelf library at skillshelf.ai/submit."
 
 ---
 
-## Key Conventions
+## Writing the Converted Skill
 
-These are the SkillShelf quality standards. Apply them during conversion (Phase 2) and review (Phase 3).
+Use plain, direct language. Ecommerce-specific terms are fine when appropriate. Do not use em dashes (use double hyphens `--` instead). Write in a neutral business tone.
 
-### One thing well
+Respect the source prompt's logic. You are converting format and filling gaps, not redesigning the skill. If the source prompt has domain-specific knowledge or rubrics, preserve them faithfully. Do not dilute expertise during conversion.
 
-A skill does one thing. If the source prompt covers multiple distinct workflows, flag it during Phase 1 and suggest splitting. Convert one skill at a time.
+### Output principles
 
-### Input design
+Every claim, differentiator, or recommendation must be specific to the user's brand, product, or data. Generic statements that could apply to any brand in the category are not useful.
 
-The default input pattern: accept existing content first, offer guided prompts as fallback, ask targeted follow-ups only for gaps. If the source prompt uses rigid Q&A ("Answer these 10 questions"), convert it to accept-first. The user may already have the answers in a document they can paste.
+When a skill works from limited input, include a "Confidence notes" section that flags which parts are based on limited evidence and what additional input would strengthen them. Do not pad thin input into confident-sounding output.
 
-Never refuse output due to imperfect input. Nudge once for additional input, then move forward.
+Output must be ready to paste into a CMS, upload to a platform, or hand to a team member without further editing or reformatting.
 
-### Output design
+### Example files
 
-Consistent Markdown headings that are stable and descriptive. Output must be copy-paste ready. Include a Confidence notes section when working from limited input. Every claim specific to the brand/product/data, not generic.
+Every skill includes an example output file in `references/`. The file must use the `example-` prefix (e.g., `example-output.md`). The SkillShelf website uses this prefix to find and display example files. A file named `sample-output.md` or `output-example.md` will not appear on the site.
 
-### Calibration
+The example demonstrates the ceiling, not the floor. If the example is mediocre, the LLM will calibrate to mediocre output.
 
-Include only when interpretation varies (voice, tone, creative direction). Skip when output is data-determined or when the skill receives a calibrated artifact as input. When calibrating, present 2-3 variations labeled neutrally (A, B, C).
-
-### Examples
-
-Every skill needs an example output file in `references/` with the `example-` prefix. Generic, category-obvious brand names. Ceiling quality. Covers all output sections.
-
-### Edge cases
-
-Every skill must handle thin input, inconsistent input, and missing context. Produce output and note what would improve it. Never refuse.
-
----
-
-## Important Behaviors
+### General behaviors
 
 - Produce skill files as downloadable documents, not inline chat text.
-- When the user requests changes during review, edit the file in place.
-- Respect the source prompt's logic. You are converting format and filling gaps, not redesigning the skill.
-- Use forward slashes in all file paths within the skill, even on Windows.
+- When the user requests changes, edit the file in place. Do not regenerate the entire skill from scratch for a single correction.
+- Use forward slashes in all file paths within the skill.
 - Keep file references one level deep from SKILL.md.
-- If the source prompt has domain-specific knowledge or rubrics, preserve them faithfully. Do not dilute expertise during conversion.
 
 ---
 
@@ -196,10 +171,6 @@ If the source prompt produces unstructured or free-form output, analyze what it 
 ### Source is already close to SkillShelf format
 
 If the source is a SKILL.md or structured markdown that mostly follows conventions, focus on the gaps. Do not rewrite sections that are already convention-compliant. Present a targeted list of what needs changing rather than a full rewrite.
-
-### Source scope is too broad
-
-If the source prompt covers multiple workflows ("write product descriptions AND audit the page AND generate SEO tags"), flag it during Phase 1. Suggest splitting into separate skills. Convert one at a time.
 
 ### Source references real brand names
 
