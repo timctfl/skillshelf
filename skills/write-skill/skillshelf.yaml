@@ -18,8 +18,6 @@ tags:
   - workflow-design
   - prompt-engineering
 
-install_method: directory
-
 certified: true
 
 date_added: "2026-02-26"

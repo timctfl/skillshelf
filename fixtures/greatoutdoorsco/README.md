@@ -20,24 +20,25 @@ These fixtures provide standardized, synthetic inputs for testing AI workflows s
 | `product-taxonomy.json` | Category tree with product counts. |
 | `about-us.md` | About Us / brand story page -- founder origin, design philosophy, product line overview. |
 | `homepage.md` | Full homepage content by section -- hero, categories, products, brand story, journal, email capture. |
-| `pdp-apparel.md` | Clean, well-written PDP — Cascade Rain Shell (Women's). |
-| `pdp-gear.md` | Technical, spec-heavy PDP — Cedar Ridge 45L Trek Pack. |
-| `pdp-minimal.md` | Sparse PDP with almost no detail — Ridgeline Hiking Socks. |
-| `pdp-messy.md` | Messy/migrated PDP — HTML artifacts, duplicated paragraphs, keyword stuffing. |
+| `pdp-apparel.md` | Clean, well-written PDP -- Cascade Rain Shell (Women's). |
+| `pdp-gear.md` | Technical, spec-heavy PDP -- Cedar Ridge 45L Trek Pack. |
+| `pdp-minimal.md` | Sparse PDP with almost no detail -- Ridgeline Hiking Socks. |
+| `pdp-messy.md` | Messy/migrated PDP -- HTML artifacts, duplicated paragraphs, keyword stuffing. |
+| `yotpo-reviews.csv` | Yotpo-format product reviews export -- 50 reviews across 3 products (Cascade Rain Shell, Cedar Ridge 45L Trek Pack, Alpine Meadow 2P Tent). Includes ratings, review text, tags, sentiment scores, reviewer metadata, and a custom `cf_hiking_experience_level` field. |
 
 ## Intentional data quality issues
 
 Several files contain deliberate messiness to test how skills handle real-world data. These are features, not bugs:
 
-- **Mixed weight units** in `product-attributes.csv` — "11.6 oz" vs "10.9 ounces" vs "3.5 lb"
-- **Inconsistent waterproof ratings** — "15000 mm" vs "15K mm" vs "2000 mm"
-- **Duplicate casing in color options** — "Blue, blue, ORANGE" and "Black, BLUE, blue"
-- **Empty/missing values** — blank warranty, dimensions, and packed_size fields across multiple products
-- **Trailing whitespace** — scattered throughout attribute values
-- **Duplicate paragraph** in `pdp-messy.md` — same block of copy pasted twice
-- **HTML artifacts** in `pdp-messy.md` — raw `<p>`, `<br>`, `<font>` tags from a platform migration
-- **Keyword stuffing** in `pdp-messy.md` — a block of SEO spam at the bottom
-- **Inconsistent list formatting** in `pdp-messy.md` — mixed `-`, `*`, and bare lines
+- **Mixed weight units** in `product-attributes.csv` -- "11.6 oz" vs "10.9 ounces" vs "3.5 lb"
+- **Inconsistent waterproof ratings** -- "15000 mm" vs "15K mm" vs "2000 mm"
+- **Duplicate casing in color options** -- "Blue, blue, ORANGE" and "Black, BLUE, blue"
+- **Empty/missing values** -- blank warranty, dimensions, and packed_size fields across multiple products
+- **Trailing whitespace** -- scattered throughout attribute values
+- **Duplicate paragraph** in `pdp-messy.md` -- same block of copy pasted twice
+- **HTML artifacts** in `pdp-messy.md` -- raw `<p>`, `<br>`, `<font>` tags from a platform migration
+- **Keyword stuffing** in `pdp-messy.md` -- a block of SEO spam at the bottom
+- **Inconsistent list formatting** in `pdp-messy.md` -- mixed `-`, `*`, and bare lines
 
 ## Skill outputs
 
@@ -53,4 +54,4 @@ These files are copies of the example outputs in each skill's `references/` dire
 
 ## Coming next
 
-Additional fixture sets (marketing content, customer content, emails, reviews, ads, and social posts) will be generated in a future pass and will reference the same products by name and handle.
+Additional fixture sets (marketing content, customer content, emails, ads, and social posts) will be generated in a future pass and will reference the same products by name and handle.

@@ -43,7 +43,6 @@ Every SkillShelf skill includes a `skillshelf.yaml` sidecar file alongside SKILL
 | Field | Type | Description |
 |-------|------|-------------|
 | `subcategories` | list of strings | More specific tags within the category |
-| `install_method` | string | `copy` (just SKILL.md) or `directory` (SKILL.md + references/) |
 | `certified` | boolean | `true` if the skill has passed SkillShelf review |
 | `date_added` | string | ISO date (YYYY-MM-DD) |
 | `date_updated` | string | ISO date |

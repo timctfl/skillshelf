@@ -93,7 +93,6 @@ The `skillshelf.yaml` sidecar file provides catalog metadata that SkillShelf use
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `install_method` | string | `copy` (single-file) or `directory` (multi-file) |
 | `author` | object | `name` and `url` for attribution |
 | `faq` | list | 2-4 questions and answers about the skill (displayed on the site) |
 | `subcategories` | list | More specific category tags |
@@ -133,7 +132,6 @@ platforms:
 tags:
   - brand voice
   - style guide
-install_method: directory
 
 date_added: "2026-03-19"
 date_updated: "2026-03-19"
