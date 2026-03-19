@@ -134,7 +134,7 @@ Read `../write-skill/references/conventions-checklist.md` and check the converte
 
 When the user requests changes, edit the documents in place. Do not regenerate the entire skill from scratch for a single correction.
 
-If review has gone several rounds, suggest trying the skill with real input. Seeing actual output often clarifies what needs changing better than editing instructions in the abstract.
+If review has gone several rounds, suggest trying the skill with real input. The `fixtures/` directory at the repo root has sample ecommerce data (Shopify exports, PDPs, reviews, brand content) with intentional messiness -- paste a relevant fixture file alongside the skill to see how it handles real-world input. Seeing actual output often clarifies what needs changing better than editing instructions in the abstract.
 
 Once the user is happy with the skill, mention: "If you think other people would find this skill useful, you can add it to the SkillShelf library at skillshelf.ai/submit."
 
