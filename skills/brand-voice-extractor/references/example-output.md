@@ -28,9 +28,9 @@ Sentence case is the default. Title case appears on product names only.
 
 GreatOutdoors Co. leads with what the product handles (conditions, frequency, durability), then backs it up with the specific construction detail that makes it possible. The pattern is: real-world scenario, then the spec that earns trust.
 
-Example: A product page for the rain jacket opens with "Built for the kind of rain that doesn't stop in October and doesn't start again in June" and then introduces the 70-denier face fabric and taped seams as the reason it holds up across 50+ outings a year.
+Example: A product page for the Cascade Rain Shell opens with "When the forecast is 'maybe,' the Cascade Rain Shell is the jacket you grab anyway" and then introduces the 2.5-layer waterproof/breathable fabric and fully taped seams as the reason it handles real Pacific Northwest rain.
 
-Specs are always paired with context. "70-denier face fabric" always appears near "outlasts three seasons of weekly use." The number earns credibility; the use case earns relevance.
+Specs are always paired with context. "15,000 mm waterproof rating" always appears near "handles real Pacific Northwest rain" or "not just a quick drizzle." The number earns credibility; the use case earns relevance.
 
 Features are never listed in isolation and never compared to competitors. The framing is always "this is what it does for you," not "this is better than the alternative."
 
@@ -95,7 +95,7 @@ These were generated from the voice profile above. If they sound like your brand
 Rain jacket. Actual rain.
 
 **Short product description**
-The Cascade Shell is built for the rain that shows up every weekend from October through June. 70-denier face fabric, fully taped seams, and YKK AquaGuard zippers that don't corrode after a season of Pacific Northwest mud. 14.2 oz. Fits over a midlayer without feeling like a bag. Tested across 60+ outings in the Cascades and Olympics.
+The Cascade Rain Shell is built for the rain that shows up every weekend from October through June. 2.5-layer waterproof/breathable fabric with a PFAS-free DWR finish, fully taped seams, and YKK water-resistant zippers. 330 g. Light enough to live in your daypack, quiet enough for everyday wear. Fits over a midlayer without feeling like a bag.
 
 **Email subject line + preview text**
 Subject: Your Saturday gear, sorted.
@@ -104,7 +104,7 @@ Preview: One jacket. One pack. No decisions left to make.
 **Landing page hero block**
 *You hike every weekend. Your gear should keep up.*
 
-The Cascade Shell was designed for one thing: weekly use in real rain. Not the kind of rain that shows up once on a vacation hike. The kind that's there every Saturday from fall through spring. 70-denier face fabric outlasts three seasons of weekly use. Taped seams and corrosion-resistant zippers handle the rest.
+The Cascade Rain Shell was designed for one thing: weekly use in real rain. Not the kind of rain that shows up once on a vacation hike. The kind that's there every Saturday from fall through spring. 2.5-layer waterproof/breathable fabric rated at 15,000 mm keeps weather out while letting heat escape on the climb. Fully taped seams and a PFAS-free DWR finish handle the rest.
 
 **Social caption**
-52 weekends. One jacket. The Cascade Shell is built for how you actually use it.
+52 weekends. One jacket. The Cascade Rain Shell is built for how you actually use it.
