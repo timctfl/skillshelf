@@ -4,11 +4,6 @@ description: >-
   Takes a prompt or skill you already use and converts it so other people
   can find and use it on SkillShelf.
 license: Apache-2.0
-metadata:
-  category: operations-and-process
-  level: intermediate
-  platforms: platform-agnostic
-  primitive: "false"
 ---
 
 # Share a Skill You Already Have
@@ -192,7 +187,7 @@ Every skill must handle thin input, inconsistent input, and missing context. Pro
 
 ### Source is a single-turn prompt
 
-If the source is a concise system prompt with no multi-turn flow, convert it as a single-turn skill. Set `interaction_pattern: single-turn` in skillshelf.yaml. The SKILL.md still needs all sections (introduction, output structure, edge cases, closing) but the conversation flow section describes a single exchange.
+If the source is a concise system prompt with no multi-turn flow, convert it as a single-turn skill. The SKILL.md still needs all sections (introduction, output structure, edge cases, closing) but the conversation flow section describes a single exchange.
 
 ### Source has no clear output structure
 

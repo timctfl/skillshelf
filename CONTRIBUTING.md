@@ -2,7 +2,9 @@
 
 Thanks for your interest in contributing a skill.
 
-The easiest way to create a submission-ready skill is to use the [Skill Writer](https://skillshelf.ai/skills/write-skill/). It produces all the files you need with the right structure and documentation built in.
+The easiest way to create a submission-ready skill is to use [Build a New Skill](https://skillshelf.ai/skills/write-skill/). It walks you through designing and writing a skill from scratch with all the right structure and conventions.
+
+If you already have a working prompt or skill file, use [Share a Skill You Already Have](https://skillshelf.ai/skills/adapt-skill/) to convert it into SkillShelf format.
 
 ## How to submit
 
@@ -40,27 +42,32 @@ The `SKILL.md` file has a YAML frontmatter block and a markdown instruction body
 ```markdown
 ---
 name: my-cool-skill
-description: >
-  Brief description of what this skill does and when to use it.
+description: >-
+  Third-person description under 155 characters. What the skill
+  produces and what it is used for.
 license: Apache-2.0
 ---
 
-# My Cool Skill
+# Verb + Outcome Title (e.g., "Write Collection Descriptions")
 
-## Overview
-What this skill does.
+1-2 paragraph introduction. What the skill does, who it is for,
+and a pointer to references/example-output.md.
 
-## Input
-What the user provides.
+## Conversation Flow
 
-## Instructions
-Step-by-step instructions for the AI.
+### Turn 1: Collect input
+### Turn 2+: Follow-up / gap analysis
+### Produce output
+### Review and refine
 
-## Output format
-What the result should look like.
+## Output Structure
+The exact heading hierarchy the skill produces.
 
-## Examples
-Example input and expected output.
+## Edge Cases
+How the skill handles thin input, inconsistent input, missing context.
+
+## Closing
+What the user does with the output after the skill is done.
 ```
 
 Required frontmatter fields: `name`, `description`, `license`.
@@ -82,15 +89,24 @@ The `skillshelf.yaml` sidecar file provides catalog metadata that SkillShelf use
 | `platforms` | list | Platform slugs this skill targets (e.g. `shopify`, `bigcommerce`, or `platform-agnostic`) |
 | `tags` | list | Descriptive tags for search and filtering (e.g. `["product descriptions", "seo"]`) |
 
+**Recommended fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `install_method` | string | `copy` (single-file) or `directory` (multi-file) |
+| `author` | object | `name` and `url` for attribution |
+| `faq` | list | 2-4 questions and answers about the skill (displayed on the site) |
+| `subcategories` | list | More specific category tags |
+| `date_added` | string | ISO date `YYYY-MM-DD` |
+| `date_updated` | string | ISO date `YYYY-MM-DD` |
+
 **Optional fields:**
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `interaction_pattern` | string | `single-turn` or `multi-turn` |
-| `install_method` | string | `copy` (single-file) or `directory` (multi-file) |
-| `date_certified` | string | ISO date `YYYY-MM-DD` |
-| `date_added` | string | ISO date `YYYY-MM-DD` |
-| `date_updated` | string | ISO date `YYYY-MM-DD` |
+| `certified` | boolean | Set by reviewers after certification |
+| `input_schema` | object | Describes what the skill accepts |
+| `output_schema` | object | Describes what the skill produces |
 
 **Valid categories:**
 
@@ -110,15 +126,27 @@ The `skillshelf.yaml` sidecar file provides catalog metadata that SkillShelf use
 ```yaml
 version: "0.1.0"
 category: product-content
+level: beginner
+primitive: false
+platforms:
+  - platform-agnostic
 tags:
   - brand voice
   - style guide
-level: beginner
-primitive: true
-platforms:
-  - platform-agnostic
-interaction_pattern: single-turn
-install_method: copy
+install_method: directory
+
+date_added: "2026-03-19"
+date_updated: "2026-03-19"
+
+author:
+  name: Your Name
+  url: https://your-site-or-linkedin.com
+
+faq:
+  - question: What does this skill do?
+    answer: Plain-language answer shown on the skill page.
+  - question: What do I need to get started?
+    answer: Another answer.
 ```
 
 Look at the existing skills in `skills/` for complete examples.
@@ -139,10 +167,13 @@ After CI passes, the SkillShelf team reviews your skill for quality and safety. 
 
 - [ ] Your skill directory is under `skills/` with a lowercase, hyphenated name
 - [ ] `SKILL.md` has `name`, `description`, and `license: Apache-2.0` in the frontmatter
+- [ ] `description` is under 155 characters (used as the meta description on skillshelf.ai)
+- [ ] Skill title (h1 in SKILL.md) starts with a verb and describes the outcome ("Write Collection Descriptions" not "Collection Description Generator")
 - [ ] `SKILL.md` instructions are clear, imperative, and specific about the output format
 - [ ] `skillshelf.yaml` has all required fields (`version`, `category`, `level`, `primitive`, `platforms`, `tags`)
 - [ ] Category is one of the valid values listed above
-- [ ] You have tested the skill with real inputs and the output is consistently usable — sample ecommerce data is available in [`fixtures/`](fixtures/) if you need it
+- [ ] Example output files use fictional brand names, not real ones (see [Skill Authoring Guide](skill-authoring-guide.md) Section 6)
+- [ ] You have tested the skill with real inputs and the output is consistently usable -- sample ecommerce data is available in [`fixtures/`](fixtures/) if you need it
 - [ ] No confidential or personal data is included in the skill or examples
 
 ## Questions?

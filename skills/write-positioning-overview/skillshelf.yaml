@@ -18,15 +18,10 @@ tags:
   - content-generation
   - foundational
 
-estimated_tokens:
-  input: 1000-6000   # Varies by whether user pastes content or answers prompts
-  output: 3000-5000  # Brief length depends on number of segments and differentiators
-
-interaction_pattern: multi-turn
-
 install_method: copy
 
-date_certified: "2026-02-25"
+certified: true
+
 date_added: "2026-02-15"
 date_updated: "2026-02-24"
 
@@ -37,8 +32,8 @@ author:
 input_schema:
   type: object
   description: >-
-    This skill accepts brand context in various forms: About Us pages, pitch
-    decks, homepage copy, or conversational answers to guided prompts. No fixed
+    This skill accepts brand context in various forms: About Us pages,
+    homepage copy, product pages, or conversational answers to guided prompts. No fixed
     input schema. The user provides whatever positioning-relevant material they
     have, and the skill runs gap analysis to identify what's missing.
   properties: {}

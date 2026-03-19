@@ -43,13 +43,11 @@ Every SkillShelf skill includes a `skillshelf.yaml` sidecar file alongside SKILL
 | Field | Type | Description |
 |-------|------|-------------|
 | `subcategories` | list of strings | More specific tags within the category |
-| `estimated_tokens` | object | `input` and `output` as range strings (e.g., "2000-8000") |
-| `interaction_pattern` | string | `single-turn` or `multi-turn` |
 | `install_method` | string | `copy` (just SKILL.md) or `directory` (SKILL.md + references/) |
-| `date_certified` | string | ISO date (YYYY-MM-DD) |
-| `date_added` | string | ISO date |
+| `certified` | boolean | `true` if the skill has passed SkillShelf review |
+| `date_added` | string | ISO date (YYYY-MM-DD) |
 | `date_updated` | string | ISO date |
 | `author` | object | `name` (string) and optional `url` (string) |
+| `faq` | list of objects | Each with `question` (string) and `answer` (string). 2-4 entries recommended. |
 | `input_schema` | object | Freeform description of expected input |
 | `output_schema` | object | Freeform description of produced output |
-| `faq` | list of objects | Each with `question` (string) and `answer` (string) |

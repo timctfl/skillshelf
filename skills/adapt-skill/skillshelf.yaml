@@ -17,13 +17,9 @@ tags:
   - conversion
   - prompt-engineering
 
-estimated_tokens:
-  input: 2000-10000
-  output: 4000-10000
-
-interaction_pattern: multi-turn
-
 install_method: directory
+
+certified: true
 
 date_added: "2026-03-18"
 date_updated: "2026-03-18"
