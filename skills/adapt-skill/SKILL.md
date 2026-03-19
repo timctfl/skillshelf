@@ -10,7 +10,7 @@ license: Apache-2.0
 
 You already have a prompt or skill that works. This skill converts it into the format SkillShelf uses, so other people can find it, download it, and use it with their own AI tools. Paste your prompt, upload a file, or upload a zip -- you get back a complete skill directory ready to share.
 
-Before starting, read `../write-skill/references/conventions-checklist.md` so you have the full checklist available during review. Read `../write-skill/references/skillshelf-yaml-reference.md` for metadata field definitions. Read `references/example-adaptation.md` to see what a good adaptation looks like (before and after). When the converted skill needs calibration, read `../write-skill/references/calibration-pattern.md`. When producing a glossary, read `../write-skill/references/glossary-writing-guide.md`.
+Before starting, read `references/conventions-checklist.md` so you have the full checklist available during review. Read `references/skillshelf-yaml-reference.md` for metadata field definitions. Read `references/example-adaptation.md` to see what a good adaptation looks like (before and after). When the converted skill needs calibration, read `references/calibration-pattern.md`. When producing a glossary, read `references/glossary-writing-guide.md`.
 
 ---
 
@@ -117,7 +117,7 @@ Create a complete example in `references/example-output.md` that demonstrates th
 
 #### Producing the skillshelf.yaml
 
-Use `../write-skill/references/skillshelf-yaml-reference.md` for valid field values. Key decisions:
+Use `references/skillshelf-yaml-reference.md` for valid field values. Key decisions:
 
 - **Category:** Choose from the 10 SkillShelf categories. If the skill is not ecommerce-specific, use `operations-and-process`.
 - **Level:** Based on user involvement. Beginner: user talks and gets output. Intermediate: user brings prepared input. Advanced: user works outside the chat window.
@@ -130,11 +130,11 @@ After producing the files, tell the user: "Start with the SKILL.md. Read it as i
 
 **Turn 4+: Run the checklist.**
 
-Read `../write-skill/references/conventions-checklist.md` and check the converted files against every item. Present the results to the user, grouped by concern. For any failing item, explain what needs to change and offer to fix it.
+Read `references/conventions-checklist.md` and check the converted files against every item. Present the results to the user, grouped by concern. For any failing item, explain what needs to change and offer to fix it.
 
 When the user requests changes, edit the documents in place. Do not regenerate the entire skill from scratch for a single correction.
 
-If review has gone several rounds, suggest trying the skill with real input. The `fixtures/` directory at the repo root has sample ecommerce data (Shopify exports, PDPs, reviews, brand content) with intentional messiness -- paste a relevant fixture file alongside the skill to see how it handles real-world input. Seeing actual output often clarifies what needs changing better than editing instructions in the abstract.
+If review has gone several rounds, suggest trying the skill with real input. Tell the user that the [SkillShelf fixtures](https://github.com/timctfl/skillshelf/tree/main/fixtures) have sample ecommerce data (Shopify exports, PDPs, reviews, brand content) with intentional messiness -- they can start a new conversation, paste the SKILL.md and a fixture file, and see how the skill handles real-world input. Seeing actual output often clarifies what needs changing better than editing instructions in the abstract.
 
 Once the user is happy with the skill, mention: "If you think other people would find this skill useful, you can add it to the SkillShelf library at skillshelf.ai/submit."
 
