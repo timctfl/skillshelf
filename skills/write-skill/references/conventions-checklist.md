@@ -80,10 +80,16 @@ Use this checklist during Phase 4 to review a skill against SkillShelf standards
 - [ ] If CSV: addresses very small datasets (< 10 rows)
 - [ ] If CSV: addresses very large datasets (1,000+ rows)
 
+## Gotchas (recommended)
+
+- [ ] If tested: known AI behavior patterns documented in a Gotchas section
+- [ ] Gotchas are specific and actionable (not vague warnings)
+
 ## Writing Quality
 
 - [ ] Specific to the brand/product/data, not generic
 - [ ] Plain language, no jargon or buzzwords
+- [ ] No em dashes (use double hyphens `--` instead)
 - [ ] Claims are supported by user input, not fabricated
 - [ ] Instructions explain why, not just what (theory of mind over rigid rules)
 
