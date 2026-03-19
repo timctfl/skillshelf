@@ -18,13 +18,9 @@ tags:
   - workflow-design
   - prompt-engineering
 
-estimated_tokens:
-  input: 1000-4000
-  output: 4000-10000
-
-interaction_pattern: multi-turn
-
 install_method: directory
+
+certified: true
 
 date_added: "2026-02-26"
 date_updated: "2026-02-26"

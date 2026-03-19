@@ -18,15 +18,10 @@ tags:
   - content-generation
   - foundational
 
-estimated_tokens:
-  input: 2000-8000
-  output: 3000-6000
-
-interaction_pattern: multi-turn
-
 install_method: directory
 
-date_certified: "2026-02-26"
+certified: true
+
 date_added: "2026-02-26"
 date_updated: "2026-02-26"
 

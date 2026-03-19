@@ -34,8 +34,6 @@ VALID_CATEGORIES = {
 
 VALID_LEVELS = {"beginner", "intermediate", "advanced"}
 
-VALID_INTERACTION_PATTERNS = {"single-turn", "multi-turn"}
-
 VALID_INSTALL_METHODS = {"copy", "directory"}
 
 # Individual platform slug: lowercase alphanumeric and hyphens
@@ -138,14 +136,6 @@ def validate_skill(skill_dir: Path) -> list[str]:
     if not isinstance(tags, list) or not all(isinstance(t, str) for t in tags):
         errors.append(f"{skill_name}: 'tags' must be a list of strings")
 
-    # interaction_pattern (optional, specific enum)
-    ip = data.get("interaction_pattern")
-    if ip is not None and ip not in VALID_INTERACTION_PATTERNS:
-        errors.append(
-            f"{skill_name}: Invalid interaction_pattern '{ip}'. "
-            f"Must be one of: {', '.join(sorted(VALID_INTERACTION_PATTERNS))}"
-        )
-
     # install_method (optional, specific enum, defaults to copy)
     im = data.get("install_method")
     if im is not None and im not in VALID_INSTALL_METHODS:
@@ -155,7 +145,7 @@ def validate_skill(skill_dir: Path) -> list[str]:
         )
 
     # date fields (optional, must be YYYY-MM-DD if present)
-    for date_field in ("date_certified", "date_added", "date_updated"):
+    for date_field in ("date_added", "date_updated"):
         val = data.get(date_field)
         if val is not None and (not isinstance(val, str) or not DATE_PATTERN.match(val)):
             errors.append(
