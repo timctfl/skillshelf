@@ -37,13 +37,13 @@ SkillShelf skills do not exist in isolation. Before writing a skill, understand 
 
 ### Primitives
 
-Primitives are foundational skills that produce reusable reference documents. The current primitives are documented in `launch-skill-ideas/primitives_claude.md`. If a skill would benefit from a primitive's output (brand voice guide, positioning brief, customer persona, benefit map), note that in the skill's instructions — tell the user what to upload alongside their request and explain what improves when they do.
+Primitives are foundational skills that produce reusable reference documents. The current primitives are documented in `launch-skill-ideas/primitives_claude.md`. If a skill would benefit from a primitive's output (brand voice guide, positioning brief, customer persona, benefit map), note that in the skill's instructions -- tell the user what to upload alongside their request and explain what improves when they do.
 
 Do not make primitives a hard prerequisite. Every skill must produce useful output without them. But the output quality difference between "with primitive" and "without" should be real and obvious.
 
 ### Downstream consumption
 
-If a skill produces a document that other skills reference, structure the output with consistent, descriptive headings. Downstream skills will point users at specific sections by name (e.g., "read the Key Differentiators section of the positioning brief"). Heading names should be stable — changing them breaks references in other skills.
+If a skill produces a document that other skills reference, structure the output with consistent, descriptive headings. Downstream skills will point users at specific sections by name (e.g., "read the Key Differentiators section of the positioning brief"). Heading names should be stable -- changing them breaks references in other skills.
 
 ### Glossaries
 
@@ -53,7 +53,7 @@ The producing skill may also reference its own glossary during generation to ens
 
 ### Cross-skill references
 
-When a skill would benefit from another skill's output, reference it by its natural-language name, not its directory name. "If you have a brand voice profile from the Brand Voice Extractor skill, upload it alongside your request" — not "see `brand-voice-extractor`."
+When a skill would benefit from another skill's output, reference it by its natural-language name, not its directory name. "If you have a brand voice profile from the Brand Voice Extractor skill, upload it alongside your request" -- not "see `brand-voice-extractor`."
 
 ---
 
@@ -65,7 +65,7 @@ Do not force users through a rigid Q&A when they might already have the informat
 
 1. Tell the user what kinds of existing content are useful (About Us pages, homepage copy, product pages, exported CSVs, email campaigns, etc.).
 2. Offer guided prompts as a fallback for users who don't have existing content.
-3. Identify gaps in whatever they provide and ask targeted follow-up questions — only for what's missing.
+3. Identify gaps in whatever they provide and ask targeted follow-up questions -- only for what's missing.
 
 This reduces friction for users who have material and provides structure for users who don't.
 
@@ -79,8 +79,8 @@ Common exports skills should expect and handle:
 |--------|--------|------------|
 | Shopify product export | CSV | Title, Body (HTML), Vendor, Type, Tags, Variant Price, Variant SKU, Image Src |
 | WooCommerce product export | CSV | Name, Description, Regular price, Categories, Tags, Images |
-| Amazon listing report | TSV/CSV | item-name, product-description, bullet-point1–5, generic-keyword |
-| Google Merchant Center | CSV/TSV | title, description, price, brand, google_product_category, custom_label_0–4 |
+| Amazon listing report | TSV/CSV | item-name, product-description, bullet-point1-5, generic-keyword |
+| Google Merchant Center | CSV/TSV | title, description, price, brand, google_product_category, custom_label_0-4 |
 | Klaviyo campaign export | CSV | Campaign Name, Subject, Send Date, Recipients, Open Rate, Click Rate, Revenue |
 | Yotpo/Stamped/Judge.me reviews | CSV | Product, Rating, Title, Body, Date, Reviewer |
 | Google Analytics (GA4) | CSV | Various; usually includes sessions, conversions, revenue by channel/page |
@@ -89,7 +89,7 @@ When a skill accepts CSV input, be explicit about which columns it needs and han
 
 ### Do not require perfect input
 
-Users frequently have messy, incomplete, or inconsistent data. Skills should handle imperfect input gracefully — produce the best output possible from what's provided, note what's missing, and suggest what would improve the result. Never refuse to produce output because the input isn't ideal.
+Users frequently have messy, incomplete, or inconsistent data. Skills should handle imperfect input gracefully -- produce the best output possible from what's provided, note what's missing, and suggest what would improve the result. Never refuse to produce output because the input isn't ideal.
 
 ---
 
@@ -113,7 +113,7 @@ When a skill works from limited input, the output should say so. Use a "Confiden
 
 ## 5. Calibration steps
 
-Some skills should include a calibration step where the user chooses between 2-3 variations before the final output is produced. This is not a default for every skill — it is appropriate only when the same input legitimately supports multiple good outputs and the user's preference is the tiebreaker.
+Some skills should include a calibration step where the user chooses between 2-3 variations before the final output is produced. This is not a default for every skill -- it is appropriate only when the same input legitimately supports multiple good outputs and the user's preference is the tiebreaker.
 
 **When to calibrate:**
 - The output involves interpretation of voice, tone, or personality (brand voice extraction, positioning framing, creative direction).
@@ -121,14 +121,14 @@ Some skills should include a calibration step where the user chooses between 2-3
 
 **When not to calibrate:**
 - The output is primarily determined by the input (product descriptions from specs, CSV formatting, data normalization, audits, checklists).
-- The skill already receives a calibrated artifact as input (e.g., a description skill that consumes a brand voice guide — the voice guide already encodes the user's preferences).
+- The skill already receives a calibrated artifact as input (e.g., a description skill that consumes a brand voice guide -- the voice guide already encodes the user's preferences).
 - The skill produces structured analysis where there is a right answer, not a preference (review analysis, performance summaries, taxonomy mapping).
 
 **The calibration pattern (when used):**
 
 1. Analyze the user's input silently.
 2. Present 2-3 variations that represent plausible but meaningfully different interpretations.
-3. Ask the user which resonates — or what they'd change.
+3. Ask the user which resonates -- or what they'd change.
 4. Use their selection to anchor the final output.
 
 Present variations neutrally (A, B, C) without labeling them with descriptors. Let the user react to the output itself, not to a category name.
@@ -149,7 +149,7 @@ Use **generic, category-obvious brand names** in examples. The name should make 
 
 Good: "GreatOutdoors Co." (outdoor gear), "GoodBoy Treats" (pet products), "BeanThere Coffee" (coffee)
 
-Bad: "Ridgeline Supply Co.", "Duskbloom", "Apex Provisions" — these sound like real brands and don't signal the category instantly.
+Bad: "Ridgeline Supply Co.", "Duskbloom", "Apex Provisions" -- these sound like real brands and don't signal the category instantly.
 
 The goal is that anyone reading the example immediately understands it's a template, not a case study.
 
@@ -163,7 +163,7 @@ The example should be good enough to use as a reference in production. It demons
 
 Every skill should include an "Edge cases" section that addresses at minimum:
 
-- **Thin input:** What happens when the user provides minimal information. The skill should produce output and note what would improve it — not refuse.
+- **Thin input:** What happens when the user provides minimal information. The skill should produce output and note what would improve it -- not refuse.
 - **Inconsistent input:** What happens when the user's input contradicts itself. Document the variation rather than averaging into a bland middle ground.
 - **Missing context:** What happens when a key dimension (competitors, target customer, etc.) isn't provided. Produce the brief without that section and note it in confidence notes.
 
@@ -180,11 +180,15 @@ Skills that accept CSV data should also address:
 
 Every claim, differentiator, or recommendation in skill output should be specific to the user's brand, product, or data. Generic statements that could apply to any brand in the category are not useful. "High-quality ingredients" is generic. "Single-origin cacao from Piura, Peru, fermented on-site for 6 days" is specific.
 
-If the user's input is generic, reflect that honestly and suggest how to sharpen it — do not fabricate specificity.
+If the user's input is generic, reflect that honestly and suggest how to sharpen it -- do not fabricate specificity.
 
 ### Plain language
 
 Skill instructions and output should use clear, direct language. Avoid marketing jargon, buzzwords, and abstraction. The output is a working document, not a manifesto.
+
+### No em dashes
+
+Use double hyphens (`--`) instead of em dashes or en dashes in all skill files, example output, and reference documents. This applies to SKILL.md, example output files, glossaries, and skillshelf.yaml content.
 
 ### Do not over-scope
 
