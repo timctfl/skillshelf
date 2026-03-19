@@ -63,7 +63,7 @@ When a skill would benefit from another skill's output, reference it by its natu
 
 Do not force users through a rigid Q&A when they might already have the information in an existing document. The default input pattern for skills that need business context should be:
 
-1. Tell the user what kinds of existing content are useful (About Us pages, pitch decks, homepage copy, exported CSVs, etc.).
+1. Tell the user what kinds of existing content are useful (About Us pages, homepage copy, product pages, exported CSVs, email campaigns, etc.).
 2. Offer guided prompts as a fallback for users who don't have existing content.
 3. Identify gaps in whatever they provide and ask targeted follow-up questions — only for what's missing.
 

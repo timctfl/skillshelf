@@ -24,9 +24,9 @@ Ask the user to share whatever positioning-relevant material they already have. 
 
 - About Us or brand story page
 - Homepage hero copy or tagline
-- Pitch deck introduction (pasted as text)
-- Kickstarter or crowdfunding campaign description
-- Investor summary or one-pager
+- Product pages that represent your best copy
+- Email campaigns (welcome series, product launches, newsletters)
+- Social media bios or captions that capture your brand
 - Brand guidelines (the strategy section, not visual identity)
 - Product packaging copy that explains the brand
 - Press page or boilerplate
