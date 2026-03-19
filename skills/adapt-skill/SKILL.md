@@ -123,8 +123,6 @@ Read `references/conventions-checklist.md` and check all produced files against 
 
 When the user requests further changes, edit the documents in place. Do not regenerate the entire skill from scratch for a single correction.
 
-If review has gone several rounds, suggest trying the skill with real input. Tell the user that the [SkillShelf fixtures](https://github.com/timctfl/skillshelf/tree/main/fixtures) have sample ecommerce data (Shopify exports, PDPs, reviews, brand content) with intentional messiness -- they can start a new conversation, paste the SKILL.md and a fixture file, and see how the skill handles real-world input. Seeing actual output often clarifies what needs changing better than editing instructions in the abstract.
-
 Once everything passes, package the final files as a zip and present it to the user. Mention: "If you think other people would find this skill useful, you can add it to the SkillShelf library at skillshelf.ai/submit."
 
 ---
