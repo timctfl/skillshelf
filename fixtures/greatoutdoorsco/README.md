@@ -18,6 +18,7 @@ These fixtures provide standardized, synthetic inputs for testing AI workflows s
 | `google-merchant-feed.xml` | Google Merchant Center XML feed (variant-level items). |
 | `product-attributes.csv` | Flat attribute/value pairs per product handle. |
 | `product-taxonomy.json` | Category tree with product counts. |
+| `about-us.md` | About Us / brand story page -- founder origin, design philosophy, product line overview. |
 | `pdp-apparel.md` | Clean, well-written PDP — Cascade Rain Shell (Women's). |
 | `pdp-gear.md` | Technical, spec-heavy PDP — Cedar Ridge 45L Trek Pack. |
 | `pdp-minimal.md` | Sparse PDP with almost no detail — Ridgeline Hiking Socks. |
