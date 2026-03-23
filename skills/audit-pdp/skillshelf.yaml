@@ -1,0 +1,61 @@
+version: "1.0"
+category: conversion-and-page-optimization
+level: intermediate
+primitive: false
+platforms:
+  - platform-agnostic
+tags:
+  - pdp
+  - product-detail-page
+  - audit
+  - ux
+  - conversion
+  - mobile
+  - ecommerce
+
+author:
+  name: Cartful Solutions
+  url: https://cartful.io
+
+faq:
+  - question: What inputs does this skill need?
+    answer: >-
+      Desktop and mobile PDP screenshots and a brand voice guide are required.
+      A GA4 Pages and Screens screenshot with the device category dimension is
+      strongly recommended. The skill provides step-by-step instructions for
+      pulling the GA4 data.
+  - question: What does the audit cover?
+    answer: >-
+      Product copy and content structure, imagery, page layout and information
+      architecture, calls to action, mobile UX, SEO metadata, social proof,
+      and accessibility. Every recommendation is grounded in published research
+      from Baymard Institute, Nielsen Norman Group, Google, and WCAG standards.
+  - question: Who is this skill for?
+    answer: >-
+      Ecommerce directors and merchandising managers who want evidence-based
+      PDP optimization recommendations. The output is split into changes the
+      ecommerce team can make through their CMS and changes that need dev or
+      design involvement.
+  - question: Can I ask follow-up questions about the recommendations?
+    answer: >-
+      Yes. After the audit is delivered, you can ask about the reasoning behind
+      any recommendation and the skill will look up the underlying research to
+      provide a fuller explanation.
+
+input_schema:
+  required:
+    - Desktop PDP screenshot
+    - Mobile PDP screenshot
+    - Brand voice guide or positioning brief
+  recommended:
+    - GA4 Pages and Screens screenshot with device category dimension
+
+output_schema:
+  format: Markdown document
+  sections:
+    - PDP Summary
+    - Performance Context
+    - Content & Merchandising Opportunities
+    - Dev & Design Opportunities
+    - Priority Actions
+    - Confidence Notes
