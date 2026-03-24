@@ -22,9 +22,9 @@ Every SkillShelf skill includes a `skillshelf.yaml` sidecar file alongside SKILL
 | `product-content` | Writing product descriptions, titles, bullets, A+ content |
 | `catalog-operations` | Cleaning, normalizing, enriching product data |
 | `brand-and-identity` | Brand voice, visual identity, positioning guidelines |
-| `customer-research-and-voice-of-customer` | Reviews, surveys, feedback analysis |
+| `customer-research` | Reviews, surveys, feedback analysis |
 | `feeds-and-merchandising` | Product feeds, discovery, assortment planning, channel sync |
-| `conversion-and-page-optimization` | Landing pages, A/B copy, page audits |
+| `conversion-optimization` | Landing pages, A/B copy, page audits |
 | `email-and-lifecycle` | Email campaigns, flows, lifecycle marketing |
 | `reporting-and-analysis` | Performance reports, dashboards, trend analysis |
 | `operations-and-process` | Internal workflows, SOPs, process documentation |
