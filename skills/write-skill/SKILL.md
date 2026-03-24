@@ -83,7 +83,7 @@ Write the complete SKILL.md with YAML frontmatter and body. After sharing the sk
 
 Once the SKILL.md is approved, let the user know there are a few more files to produce: an example showing what the skill's output looks like at its best, and a metadata file for SkillShelf if they want to share it.
 
-To build the example, ask the user whether they'd like to provide their own input data, or use the fictional Great Outdoors Co. data from SkillShelf. If they choose the SkillShelf path, pull data from https://github.com/timctfl/skillshelf/tree/main/fixtures/greatoutdoorsco and use Great Outdoors Co. as the example brand. Claude should use `curl` or `git clone` via bash to pull this data, not web fetch.
+To build the example output to be saved with the skill, ask the user whether they'd like to provide their own input data, or use the fictional brand data from SkillShelf. If they choose the SkillShelf path, pull data from https://github.com/timctfl/skillshelf/tree/main/fixtures/greatoutdoorsco and use Great Outdoors Co. as the example brand. Claude should use `curl` or `git clone` via bash to pull this data, not web fetch.
 
 Produce:
 
