@@ -63,7 +63,7 @@ Silently analyze the user's input and produce a structured skill plan. Present i
 
 After presenting the skill plan, ask the user to review it and flag anything they'd change. Let them know that once the plan looks right, the next step is writing the skill itself.
 
-Do not proceed to writing until the user confirms the plan or provides feedback.
+**Stop here and wait for the user.** The plan often changes after the user sees it written out, so getting confirmation before writing saves rework.
 
 **Turn 4: Incorporate feedback.**
 
@@ -77,7 +77,7 @@ Let the user know you're translating the plan into a detailed skill file and tha
 
 Write the complete SKILL.md with YAML frontmatter and body. After sharing the skill file, ask the user to review it. Suggest they read it from the perspective of an AI following the instructions, and flag anything unclear, too vague, or too rigid.
 
-Do not proceed to supporting files until the user is happy with the SKILL.md.
+**Stop here and wait for the user.** The skill file is the foundation for everything else, so it needs to be right before producing supporting files.
 
 **Turn 6+: Produce supporting files.**
 
@@ -93,7 +93,7 @@ Produce:
 
 After sharing the example output, ask the user to review it. Explain that this example is what the AI will aim for when the skill runs, so the quality, tone, and level of detail should match what they'd actually want to use.
 
-Do not proceed to quality control until the user is happy with the example.
+**Stop here and wait for the user.** The example sets the bar for the skill's output quality, so it needs to match what the user would actually want to use.
 
 ### Phase 4: Quality Control
 
