@@ -1,0 +1,34 @@
+version: "1.0"
+category: customer-research
+level: intermediate
+primitive: false
+certified: true
+platforms:
+  - platform-agnostic
+tags:
+  - reviews
+  - voice-of-customer
+  - product-insights
+  - customer-language
+  - claim-validation
+
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+faq:
+  - question: How many reviews does this skill need to be useful?
+    answer: >-
+      It works with any number, but patterns are more reliable with 15+
+      reviews. With fewer than 10, the analysis will flag that most findings
+      are individual opinions rather than trends.
+  - question: What review formats does it accept?
+    answer: >-
+      Pasted text, CSV exports from common review platforms (Yotpo,
+      Bazaarvoice, PowerReviews, Judge.me, Stamped, Shopify), or documents
+      (PDF, Word, text files).
+  - question: Do I need to provide product data?
+    answer: >-
+      No. Product data (a feed entry or PDP content) is optional but
+      strengthens the Claims section by giving the skill specific claims
+      and features to check reviews against.
