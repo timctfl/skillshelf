@@ -25,6 +25,7 @@ These fixtures provide standardized, synthetic inputs for testing AI workflows s
 | `pdp-minimal.md` | Sparse PDP with almost no detail -- Ridgeline Hiking Socks. |
 | `pdp-messy.md` | Messy/migrated PDP -- HTML artifacts, duplicated paragraphs, keyword stuffing. |
 | `yotpo-reviews.csv` | Yotpo-format product reviews export -- 50 reviews across 3 products (Cascade Rain Shell, Cedar Ridge 45L Trek Pack, Alpine Meadow 2P Tent). Includes ratings, review text, tags, sentiment scores, reviewer metadata, and a custom `cf_hiking_experience_level` field. |
+| `greatoutdoorsco-tailwind.css` | Tailwind CSS stylesheet -- design tokens (CSS custom properties), component classes, and utility layers for the storefront. |
 
 ## Intentional data quality issues
 

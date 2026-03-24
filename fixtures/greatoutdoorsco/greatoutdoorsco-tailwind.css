@@ -1,0 +1,709 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Great Outdoors Co. mock Tailwind stylesheet
+  Direction: calm, rugged, premium-functional outdoor DTC
+  Built to support homepage, category pages, PDPs, trust bars, and editorial content.
+*/
+
+@layer base {
+  :root {
+    --go-bg: 248 247 243;
+    --go-surface: 255 255 252;
+    --go-surface-muted: 242 240 233;
+    --go-surface-deep: 230 235 231;
+
+    --go-text: 28 34 31;
+    --go-text-soft: 78 88 82;
+    --go-text-faint: 112 121 116;
+
+    --go-border: 210 215 208;
+    --go-border-strong: 168 177 171;
+
+    --go-forest: 52 77 64;
+    --go-forest-deep: 35 53 44;
+    /* --go-forest-light: 78 112 91; */
+    --go-moss: 104 125 94;
+    --go-rain: 93 113 126;
+    --go-rain-deep: 62 80 91;
+    --go-clay: 142 97 72;
+    --go-gold: 166 138 86;
+
+    /* old brand teal — replaced Q3 2024, keeping for reference */
+    /* --go-accent: 58 140 128; */
+
+    --go-success: 67 102 80;
+    --go-warning: 150 111 65;
+    --go-danger: 128 69 56;
+
+    --go-shadow-soft: 0 1px 2px rgba(22, 28, 25, 0.04), 0 8px 24px rgba(22, 28, 25, 0.05);
+    --go-shadow-card: 0 1px 2px rgba(22, 28, 25, 0.05), 0 12px 32px rgba(22, 28, 25, 0.08);
+    --go-radius-sm: 0.5rem;
+    --go-radius-md: 0.875rem;
+    --go-radius-lg: 1.25rem;
+    --go-radius-xl: 1.5rem;
+
+    --go-max-width: 80rem;
+    --go-copy-width: 44rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    background-color: rgb(var(--go-bg));
+    color: rgb(var(--go-text));
+    font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  }
+
+  ::selection {
+    background-color: rgb(var(--go-forest) / 0.18);
+    color: rgb(var(--go-text));
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  hr {
+    border-color: rgb(var(--go-border));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-medium tracking-tight text-balance;
+    color: rgb(var(--go-text));
+  }
+
+  h1 {
+    @apply text-4xl leading-tight md:text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl leading-tight md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl leading-snug md:text-3xl;
+  }
+
+  p {
+    @apply leading-7;
+    color: rgb(var(--go-text-soft));
+  }
+
+  ul,
+  ol {
+    @apply pl-5;
+    color: rgb(var(--go-text-soft));
+  }
+
+  li {
+    @apply leading-7;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply min-h-12;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+    --tw-ring-color: rgb(var(--go-rain) / 0.55);
+    --tw-ring-offset-color: rgb(var(--go-bg));
+  }
+}
+
+@layer components {
+  .go-shell {
+    @apply mx-auto w-full px-4 sm:px-6 lg:px-8;
+    max-width: var(--go-max-width);
+  }
+
+  .go-section {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .go-section-tight {
+    @apply py-8 md:py-10 lg:py-12;
+  }
+
+  .go-copy {
+    max-width: var(--go-copy-width);
+  }
+
+  .go-kicker {
+    @apply mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em];
+    color: rgb(var(--go-forest));
+  }
+
+  .go-kicker::before {
+    content: "";
+    @apply inline-block h-px w-8;
+    background-color: rgb(var(--go-moss));
+  }
+
+  .go-announcement {
+    @apply flex min-h-11 items-center justify-center px-4 text-center text-sm font-medium;
+    background-color: rgb(var(--go-forest-deep));
+    color: rgb(245 244 239);
+  }
+
+  .go-header {
+    @apply sticky top-0 z-40 border-b backdrop-blur supports-[backdrop-filter]:bg-[rgba(248,247,243,0.88)];
+    border-color: rgb(var(--go-border) / 0.9);
+    background-color: rgb(var(--go-bg) / 0.96);
+  }
+
+  .go-nav-link {
+    @apply text-sm font-medium transition-colors duration-200;
+    color: rgb(var(--go-text-soft));
+  }
+
+  .go-nav-link:hover {
+    color: rgb(var(--go-text));
+  }
+
+  .go-hero {
+    @apply relative overflow-hidden rounded-[1.75rem] border px-6 py-10 md:px-10 md:py-14 lg:px-14 lg:py-20;
+    border-color: rgb(var(--go-border));
+    background:
+      linear-gradient(180deg, rgba(248, 247, 243, 0.72), rgba(248, 247, 243, 0.94)),
+      radial-gradient(circle at top right, rgba(93, 113, 126, 0.18), transparent 32%),
+      radial-gradient(circle at left center, rgba(104, 125, 94, 0.12), transparent 28%),
+      rgb(var(--go-surface));
+    box-shadow: var(--go-shadow-card);
+  }
+
+  .go-hero-title {
+    @apply max-w-3xl text-4xl font-medium leading-tight md:text-5xl lg:text-6xl;
+  }
+
+  .go-hero-subtitle {
+    @apply mt-4 max-w-2xl text-base md:text-lg;
+    color: rgb(var(--go-text-soft));
+  }
+
+  .go-button-primary {
+    @apply inline-flex min-h-12 items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200;
+    background-color: rgb(var(--go-forest));
+    color: rgb(248 247 243);
+  }
+
+  .go-button-primary:hover {
+    background-color: rgb(var(--go-forest-deep));
+    transform: translateY(-1px);
+  }
+
+  .go-button-secondary {
+    @apply inline-flex min-h-12 items-center justify-center rounded-full border px-5 py-3 text-sm font-semibold transition-all duration-200;
+    border-color: rgb(var(--go-border-strong));
+    background-color: rgb(var(--go-surface));
+    color: rgb(var(--go-text));
+  }
+
+  .go-button-secondary:hover {
+    border-color: rgb(var(--go-forest));
+    background-color: rgb(var(--go-surface-muted));
+  }
+
+  /* TODO: add go-button-text for inline/link-style actions */
+
+  .go-category-tile {
+    @apply group relative flex min-h-40 flex-col justify-end overflow-hidden rounded-2xl border p-5;
+    border-color: rgb(var(--go-border));
+    background:
+      linear-gradient(180deg, rgba(255,255,252,0.25), rgba(255,255,252,0.88)),
+      rgb(var(--go-surface-deep));
+    box-shadow: var(--go-shadow-soft);
+  }
+
+  .go-category-tile:hover {
+    border-color: rgb(var(--go-border-strong));
+    transform: translateY(-1px);
+  }
+
+  .go-category-label {
+    @apply text-lg font-medium;
+    color: rgb(var(--go-text));
+  }
+
+  .go-card {
+    @apply overflow-hidden rounded-2xl border;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface));
+    box-shadow: var(--go-shadow-soft);
+  }
+
+  .go-card-body {
+    @apply p-5 md:p-6;
+  }
+
+  .go-product-card {
+    @apply flex h-full flex-col overflow-hidden rounded-2xl border;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface));
+    box-shadow: var(--go-shadow-soft);
+  }
+
+  .go-product-media {
+    @apply aspect-[4/5] w-full;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0.06)),
+      rgb(var(--go-surface-deep));
+  }
+
+  .go-product-body {
+    @apply flex flex-1 flex-col gap-3 p-5;
+  }
+
+  .go-product-title {
+    @apply text-lg font-medium leading-snug;
+    color: rgb(var(--go-text));
+  }
+
+  .go-product-meta {
+    @apply flex items-center justify-between gap-3 text-sm;
+    color: rgb(var(--go-text-faint));
+  }
+
+  .go-price {
+    @apply text-base font-semibold;
+    color: rgb(var(--go-text));
+  }
+
+  .go-price-compare {
+    @apply text-sm line-through;
+    color: rgb(var(--go-text-faint));
+  }
+
+  .go-rating {
+    @apply inline-flex items-center gap-2 text-sm;
+    color: rgb(var(--go-text-soft));
+  }
+
+  .go-review-quote {
+    @apply mt-auto border-t pt-4 text-sm italic;
+    border-color: rgb(var(--go-border));
+    color: rgb(var(--go-text-soft));
+  }
+
+  .go-badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em];
+    background-color: rgb(var(--go-surface-muted));
+    color: rgb(var(--go-forest));
+  }
+
+  .go-badge-rain {
+    background-color: rgb(var(--go-rain) / 0.12);
+    color: rgb(var(--go-rain-deep));
+  }
+
+  .go-badge-gear {
+    background-color: rgb(var(--go-forest) / 0.12);
+    color: rgb(var(--go-forest-deep));
+  }
+
+  .go-badge-new {
+    background-color: rgb(var(--go-gold) / 0.16);
+    color: rgb(var(--go-clay));
+  }
+
+  .go-badge-sale {
+    background-color: rgb(var(--go-danger) / 0.12);
+    color: rgb(var(--go-danger));
+  }
+
+  .go-story-block {
+    @apply overflow-hidden rounded-[1.75rem] border p-6 md:p-8 lg:p-10;
+    border-color: rgb(var(--go-border));
+    background:
+      linear-gradient(135deg, rgba(230, 235, 231, 0.7), rgba(255, 255, 252, 0.94)),
+      rgb(var(--go-surface));
+  }
+
+  .go-trust-bar {
+    @apply grid gap-3 rounded-2xl border p-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-4 lg:p-5;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface));
+    box-shadow: var(--go-shadow-soft);
+  }
+
+  .go-trust-item {
+    @apply flex items-center gap-3 rounded-xl px-3 py-3;
+    background-color: rgb(var(--go-surface-muted));
+  }
+
+  .go-trust-icon {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold;
+    background-color: rgb(var(--go-forest) / 0.12);
+    color: rgb(var(--go-forest-deep));
+  }
+
+  .go-trust-copy {
+    @apply text-sm font-medium leading-snug;
+    color: rgb(var(--go-text));
+  }
+
+  .go-journal-card {
+    @apply flex h-full flex-col rounded-2xl border p-5 md:p-6;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface));
+    box-shadow: var(--go-shadow-soft);
+  }
+
+  .go-journal-card:hover {
+    border-color: rgb(var(--go-border-strong));
+  }
+
+  .go-journal-title {
+    @apply text-xl font-medium leading-snug;
+    color: rgb(var(--go-text));
+  }
+
+  .go-journal-excerpt {
+    @apply mt-3 text-sm md:text-base;
+    color: rgb(var(--go-text-soft));
+  }
+
+  /* carried over from Shopify Dawn — not sure this is used anywhere */
+  .go-collection-banner {
+    @apply relative overflow-hidden rounded-[1.75rem] border px-6 py-10 md:px-10 md:py-14;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface-deep));
+  }
+
+  .go-input {
+    @apply w-full rounded-full border px-4 py-3 text-sm shadow-none transition-colors duration-200;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface));
+    color: rgb(var(--go-text));
+  }
+
+  .go-input::placeholder {
+    color: rgb(var(--go-text-faint));
+  }
+
+  .go-input:hover {
+    border-color: rgb(var(--go-border-strong));
+  }
+
+  .go-footer {
+    @apply border-t pt-10 pb-8;
+    border-color: rgb(var(--go-border));
+  }
+
+  .go-footer-heading {
+    @apply mb-4 text-sm font-semibold uppercase tracking-[0.14em];
+    color: rgb(var(--go-text-faint));
+  }
+
+  .go-footer-link {
+    @apply text-sm transition-colors duration-200;
+    color: rgb(var(--go-text-soft));
+  }
+
+  .go-footer-link:hover {
+    color: rgb(var(--go-text));
+  }
+
+  .go-pdp {
+    @apply grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12;
+  }
+
+  .go-gallery {
+    @apply grid gap-4;
+  }
+
+  .go-gallery-main {
+    @apply aspect-square overflow-hidden rounded-[1.5rem] border;
+    border-color: rgb(var(--go-border));
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0.06)),
+      rgb(var(--go-surface-deep));
+  }
+
+  .go-gallery-thumbs {
+    @apply grid grid-cols-4 gap-3;
+  }
+
+  .go-gallery-thumb {
+    @apply aspect-square rounded-xl border transition-colors duration-200;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface-muted));
+  }
+
+  .go-gallery-thumb.is-active,
+  .go-gallery-thumb:hover {
+    border-color: rgb(var(--go-forest));
+  }
+
+  .go-product-panel {
+    @apply rounded-[1.5rem] border p-5 md:p-6;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface));
+    box-shadow: var(--go-shadow-soft);
+  }
+
+  .go-product-title-xl {
+    @apply text-3xl font-medium leading-tight md:text-4xl;
+    color: rgb(var(--go-text));
+  }
+
+  .go-product-lede {
+    @apply mt-4 text-base md:text-lg;
+    color: rgb(var(--go-text-soft));
+  }
+
+  .go-buy-box {
+    @apply mt-6 grid gap-4 rounded-2xl border p-4 md:p-5;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface-muted));
+  }
+
+  .go-option-group {
+    @apply grid gap-2;
+  }
+
+  .go-option-label {
+    @apply text-sm font-semibold;
+    color: rgb(var(--go-text));
+  }
+
+  .go-swatch-row {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .go-swatch {
+    @apply inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border px-3 text-sm font-medium transition-colors duration-200;
+    border-color: rgb(var(--go-border-strong));
+    background-color: rgb(var(--go-surface));
+    color: rgb(var(--go-text));
+  }
+
+  .go-swatch.is-active,
+  .go-swatch:hover {
+    border-color: rgb(var(--go-forest));
+    background-color: rgb(var(--go-surface-deep));
+  }
+
+  .go-feature-list {
+    @apply grid gap-3;
+  }
+
+  .go-feature-item {
+    @apply flex gap-3 rounded-xl border p-4;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface));
+  }
+
+  .go-feature-bullet {
+    @apply mt-1 h-2.5 w-2.5 shrink-0 rounded-full;
+    background-color: rgb(var(--go-moss));
+  }
+
+  .go-feature-copy {
+    @apply text-sm md:text-base;
+    color: rgb(var(--go-text-soft));
+  }
+
+  .go-spec-card {
+    @apply overflow-hidden rounded-2xl border;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface));
+  }
+
+  .go-spec-row {
+    @apply grid grid-cols-[10rem_1fr] gap-4 px-4 py-3 md:px-5;
+    border-top: 1px solid rgb(var(--go-border));
+  }
+
+  .go-spec-row:first-child {
+    border-top: 0;
+  }
+
+  .go-spec-label {
+    @apply text-sm font-semibold;
+    color: rgb(var(--go-text-faint));
+  }
+
+  .go-spec-value {
+    @apply text-sm md:text-base;
+    color: rgb(var(--go-text));
+  }
+
+  .go-accordion {
+    @apply divide-y overflow-hidden rounded-2xl border;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface));
+  }
+
+  .go-accordion-item {
+    @apply px-5;
+  }
+
+  .go-accordion-trigger {
+    @apply flex w-full items-center justify-between gap-4 py-4 text-left text-base font-medium;
+    color: rgb(var(--go-text));
+  }
+
+  .go-accordion-panel {
+    @apply pb-5 text-sm md:text-base;
+    color: rgb(var(--go-text-soft));
+  }
+
+  .go-richtext {
+    @apply space-y-6;
+  }
+
+  .go-richtext h2,
+  .go-richtext h3,
+  .go-richtext h4 {
+    color: rgb(var(--go-text));
+  }
+
+  .go-richtext p,
+  .go-richtext li {
+    color: rgb(var(--go-text-soft));
+  }
+
+  .go-richtext ul {
+    @apply space-y-2;
+  }
+
+  .go-richtext strong {
+    color: rgb(var(--go-text));
+  }
+
+  .go-compare-table {
+    @apply w-full border-separate border-spacing-0 overflow-hidden rounded-2xl border text-sm md:text-base;
+    border-color: rgb(var(--go-border));
+    background-color: rgb(var(--go-surface));
+  }
+
+  .go-compare-table th,
+  .go-compare-table td {
+    @apply px-4 py-3 text-left align-top;
+    border-top: 1px solid rgb(var(--go-border));
+  }
+
+  .go-compare-table thead th {
+    @apply border-t-0 text-xs font-semibold uppercase tracking-[0.14em];
+    background-color: rgb(var(--go-surface-muted));
+    color: rgb(var(--go-text-faint));
+  }
+
+  .go-compare-table tbody th {
+    @apply font-semibold;
+    color: rgb(var(--go-text));
+  }
+
+  .go-divider-label {
+    @apply flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.14em];
+    color: rgb(var(--go-text-faint));
+  }
+
+  .go-divider-label::before,
+  .go-divider-label::after {
+    content: "";
+    @apply h-px flex-1;
+    background-color: rgb(var(--go-border));
+  }
+
+  .go-promo-bar {
+    @apply flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium;
+    background-color: rgb(var(--go-forest));
+    color: rgb(248 247 243);
+  }
+}
+
+@layer utilities {
+  .text-faint {
+    color: rgb(var(--go-text-faint));
+  }
+
+  .text-soft {
+    color: rgb(var(--go-text-soft));
+  }
+
+  .text-forest {
+    color: rgb(var(--go-forest));
+  }
+
+  .text-rain {
+    color: rgb(var(--go-rain-deep));
+  }
+
+  .bg-mist {
+    background-color: rgb(var(--go-surface-muted));
+  }
+
+  .bg-surface {
+    background-color: rgb(var(--go-surface));
+  }
+
+  .bg-forest {
+    background-color: rgb(var(--go-forest));
+  }
+
+  .bg-rain {
+    background-color: rgb(var(--go-rain));
+  }
+
+  .border-soft {
+    border-color: rgb(var(--go-border));
+  }
+
+  .border-strong {
+    border-color: rgb(var(--go-border-strong));
+  }
+
+  .shadow-soft {
+    box-shadow: var(--go-shadow-soft);
+  }
+
+  .shadow-card {
+    box-shadow: var(--go-shadow-card);
+  }
+
+  .radius-panel {
+    border-radius: var(--go-radius-lg);
+  }
+
+  .radius-hero {
+    border-radius: 1.75rem;
+  }
+
+  .max-copy {
+    max-width: var(--go-copy-width);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .texture-rain {
+    background-image:
+      linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0)),
+      radial-gradient(circle at 20% 10%, rgba(93, 113, 126, 0.16), transparent 25%),
+      radial-gradient(circle at 80% 0%, rgba(104, 125, 94, 0.12), transparent 20%);
+  }
+
+  /* same as go-announcement bg but as a utility — probably should just use the component */
+  .bg-forest-deep {
+    background-color: rgb(var(--go-forest-deep));
+  }
+}
