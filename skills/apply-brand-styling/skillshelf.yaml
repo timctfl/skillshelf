@@ -1,0 +1,38 @@
+version: "1.0"
+category: brand-and-identity
+level: intermediate
+primitive: false
+certified: true
+platforms:
+  - platform-agnostic
+tags:
+  - brand-styling
+  - typography
+  - colors
+  - document-formatting
+  - presentations
+  - word-docs
+
+date_added: "2026-03-24"
+date_updated: "2026-03-24"
+
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+faq:
+  - question: Does this skill rewrite any of my text?
+    answer: >-
+      No. It only changes fonts, colors, heading levels, and structural
+      formatting. All of your original text stays exactly as-is.
+  - question: What brand file formats does it accept?
+    answer: >-
+      It works best with the output of the Brand Guidelines Extractor,
+      but it also accepts style guide PDFs, brand books, or any document
+      that defines your colors and typography.
+  - question: Can it brand a PDF?
+    answer: >-
+      PDFs can't be restyled directly. The skill will explain the
+      tradeoffs and let you choose between converting to a branded
+      Word doc or getting a checklist of changes to apply in the
+      original design tool.
