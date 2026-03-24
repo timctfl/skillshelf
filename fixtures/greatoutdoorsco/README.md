@@ -50,6 +50,7 @@ The `skill-outputs/` directory contains example outputs from SkillShelf skills r
 | `skill-outputs/brand-voice-profile.md` | Document Your Brand Voice | Structured voice guide extracted from the PDPs and product copy. |
 | `skill-outputs/brand-voice-glossary.md` | Document Your Brand Voice | Glossary defining how downstream skills should interpret the voice profile. |
 | `skill-outputs/positioning-brief.md` | Write a Positioning Brief | Positioning brief covering target customer, differentiators, competitive context. |
+| `skill-outputs/brand-guidelines.md` | Extract Brand Guidelines | Brand colors, typography, and usage patterns extracted from the Tailwind CSS stylesheet. |
 
 These files are copies of the example outputs in each skill's `references/` directory. If they drift apart, the skill `references/` copies are authoritative (they're what the site displays and what the LLM reads as quality benchmarks).
 
