@@ -1,0 +1,41 @@
+version: "1.0"
+category: operations-and-process
+level: intermediate
+primitive: true
+platforms:
+  - platform-agnostic
+tags:
+  - brand-guidelines
+  - brand-colors
+  - typography
+  - css-extraction
+  - visual-identity
+  - styling
+
+certified: true
+
+date_added: "2026-03-24"
+date_updated: "2026-03-24"
+
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+faq:
+  - question: What if I don't have access to my site's CSS?
+    answer: >-
+      The skill walks you through a simple copy-paste process in your
+      browser console that extracts colors and fonts automatically. You
+      can also just upload screenshots and the skill will extract what
+      it can visually.
+  - question: Do I need to be technical to use this?
+    answer: >-
+      No. The skill provides step-by-step instructions for every path,
+      including what to type, where to click, and what to look for. If
+      you'd rather not touch the browser console at all, you can ask a
+      developer or send screenshots.
+  - question: What do I do with the output file?
+    answer: >-
+      Upload it to any future conversation where you want your brand's
+      look and feel applied. Styling skills that format presentations,
+      documents, or other artifacts can read it automatically.
