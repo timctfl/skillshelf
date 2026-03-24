@@ -1,6 +1,10 @@
 # SkillShelf
 
-Open-source AI skill catalog for ecommerce teams. Every skill is a structured workflow you can load into Claude, ChatGPT, or any AI tool that supports the [Agent Skills](https://agentskills.io) format.
+SkillShelf is an open-source catalog of production-ready AI workflows for ecommerce teams. Use proven skills for audits, writing, merchandising, and research in Claude, ChatGPT, and other tools that support the [SKILL.md / Agent Skills](https://agentskills.io) format.
+
+- **For:** ecommerce operators, marketers, merchandisers, and consultants
+- **Use it to:** run repeatable workflows instead of rewriting prompts from scratch
+- **Works with:** Claude, ChatGPT, and tools that support Agent Skills
 
 **[Browse the catalog on skillshelf.ai](https://skillshelf.ai)**
 
