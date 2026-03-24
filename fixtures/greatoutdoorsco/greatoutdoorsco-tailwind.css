@@ -6,10 +6,17 @@
   Great Outdoors Co. mock Tailwind stylesheet
   Direction: calm, rugged, premium-functional outdoor DTC
   Built to support homepage, category pages, PDPs, trust bars, and editorial content.
+
+  Fonts:
+    DM Sans       — body, UI, nav, buttons, product meta
+    Source Serif 4 — hero headlines, journal titles, editorial pullquotes
 */
 
 @layer base {
   :root {
+    --go-font-body: "DM Sans", system-ui, -apple-system, sans-serif;
+    --go-font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+
     --go-bg: 248 247 243;
     --go-surface: 255 255 252;
     --go-surface-muted: 242 240 233;
@@ -55,6 +62,7 @@
 
   body {
     @apply antialiased;
+    font-family: var(--go-font-body);
     background-color: rgb(var(--go-bg));
     color: rgb(var(--go-text));
     font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
@@ -85,10 +93,12 @@
 
   h1 {
     @apply text-4xl leading-tight md:text-5xl;
+    font-family: var(--go-font-display);
   }
 
   h2 {
     @apply text-3xl leading-tight md:text-4xl;
+    font-family: var(--go-font-display);
   }
 
   h3 {
@@ -190,6 +200,7 @@
 
   .go-hero-title {
     @apply max-w-3xl text-4xl font-medium leading-tight md:text-5xl lg:text-6xl;
+    font-family: var(--go-font-display);
   }
 
   .go-hero-subtitle {
@@ -297,6 +308,7 @@
 
   .go-review-quote {
     @apply mt-auto border-t pt-4 text-sm italic;
+    font-family: var(--go-font-display);
     border-color: rgb(var(--go-border));
     color: rgb(var(--go-text-soft));
   }
@@ -371,6 +383,7 @@
 
   .go-journal-title {
     @apply text-xl font-medium leading-snug;
+    font-family: var(--go-font-display);
     color: rgb(var(--go-text));
   }
 
@@ -460,6 +473,7 @@
 
   .go-product-title-xl {
     @apply text-3xl font-medium leading-tight md:text-4xl;
+    font-family: var(--go-font-display);
     color: rgb(var(--go-text));
   }
 
@@ -705,5 +719,13 @@
   /* same as go-announcement bg but as a utility — probably should just use the component */
   .bg-forest-deep {
     background-color: rgb(var(--go-forest-deep));
+  }
+
+  .font-body {
+    font-family: var(--go-font-body);
+  }
+
+  .font-display {
+    font-family: var(--go-font-display);
   }
 }
