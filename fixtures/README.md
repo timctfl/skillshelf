@@ -17,4 +17,4 @@ For skills that consume primitive output (brand voice profile, positioning brief
 
 | Set | Description |
 |-----|-------------|
-| [Great Outdoors Co.](greatoutdoorsco/) | 30-product DTC outdoor brand. Shopify CSV/JSON, Google Merchant XML, product attributes, taxonomy, and 4 PDPs (clean, technical, minimal, messy). |
+| [Great Outdoors Co.](greatoutdoorsco/) | 30-product DTC outdoor brand. Shopify CSV/JSON, Google Merchant XML, product attributes, taxonomy, Tailwind CSS stylesheet, and 4 PDPs (clean, technical, minimal, messy). |
