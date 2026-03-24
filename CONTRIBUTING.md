@@ -111,14 +111,13 @@ The `skillshelf.yaml` sidecar file provides catalog metadata that SkillShelf use
 
 - `product-content`
 - `catalog-operations`
-- `product-discovery-and-recommendations`
+- `brand-and-identity`
 - `customer-research-and-voice-of-customer`
-- `merchandising-and-assortment`
+- `feeds-and-merchandising`
 - `conversion-and-page-optimization`
 - `email-and-lifecycle`
 - `reporting-and-analysis`
 - `operations-and-process`
-- `feed-and-channel-management`
 
 **Example:**
 

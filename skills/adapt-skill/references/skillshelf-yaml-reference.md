@@ -9,7 +9,7 @@ Every SkillShelf skill includes a `skillshelf.yaml` sidecar file alongside SKILL
 | Field | Type | Description |
 |-------|------|-------------|
 | `version` | string | Version of the skill (e.g., "1.0") |
-| `category` | string | One of the 10 categories below |
+| `category` | string | One of the categories below |
 | `level` | string | `beginner`, `intermediate`, or `advanced` |
 | `primitive` | boolean | `true` only for foundational skills producing reusable reference documents. Most skills: `false` |
 | `platforms` | list of strings | Target platforms or `["platform-agnostic"]` |
@@ -21,14 +21,13 @@ Every SkillShelf skill includes a `skillshelf.yaml` sidecar file alongside SKILL
 |------|-------------|
 | `product-content` | Writing product descriptions, titles, bullets, A+ content |
 | `catalog-operations` | Cleaning, normalizing, enriching product data |
-| `product-discovery-and-recommendations` | Search, recommendations, quizzes, gift guides |
+| `brand-and-identity` | Brand voice, visual identity, positioning guidelines |
 | `customer-research-and-voice-of-customer` | Reviews, surveys, feedback analysis |
-| `merchandising-and-assortment` | Bundles, collections, assortment planning |
+| `feeds-and-merchandising` | Product feeds, discovery, assortment planning, channel sync |
 | `conversion-and-page-optimization` | Landing pages, A/B copy, page audits |
 | `email-and-lifecycle` | Email campaigns, flows, lifecycle marketing |
 | `reporting-and-analysis` | Performance reports, dashboards, trend analysis |
 | `operations-and-process` | Internal workflows, SOPs, process documentation |
-| `feed-and-channel-management` | Product feeds, marketplace listings, channel sync |
 
 ## Levels
 
