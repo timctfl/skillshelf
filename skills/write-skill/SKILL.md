@@ -115,6 +115,12 @@ Once everything passes, package the final files as a zip and present it to the u
 
 Use plain, direct language. Ecommerce-specific terms are fine when appropriate. Do not use em dashes (use double hyphens `--` instead). Write in a neutral business tone.
 
+### Writing style for skill instructions
+
+Write skill instructions as intent, not scripts. Tell the agent what information needs to be conveyed and why -- not the exact words to say. Instead of writing "Say to the user: 'Here is your brand voice profile. Review it and let me know if anything feels off,'" write "Present the output and ask the user to review it. Explain that this is the document other skills will reference, so accuracy matters more than polish."
+
+Every skill should include a short Voice and Approach section near the top that sets tone, register, and interaction style. This replaces scattered scripted lines throughout the conversation flow. See this skill's own Voice and Approach section as a model.
+
 When writing the SKILL.md in Phase 3, follow this structure:
 
 ```markdown
