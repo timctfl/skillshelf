@@ -1,0 +1,25 @@
+version: "1.0"
+category: product-content
+level: intermediate
+primitive: false
+platforms:
+  - platform-agnostic
+tags:
+  - pdp
+  - product-copy
+  - rewrite
+  - brand-voice
+  - ecommerce
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+certified: true
+
+faq:
+  - question: "Do I need a brand voice profile to use this skill?"
+    answer: "No. The skill works without one by matching the voice of the existing PDP copy you provide. But a voice profile produces more consistent results, especially if you're rewriting multiple PDPs. You can create one at skillshelf.ai/skills."
+  - question: "Can I use this for a new product that doesn't have any existing copy?"
+    answer: "Yes, as long as you provide the PDP template (from another product on your site) and enough product information (specs, ingredients, features) to write from. The skill fills the template sections with new copy rather than rewriting existing copy."
+  - question: "Does this skill handle batch rewrites?"
+    answer: "It produces one product at a time. For batch rewrites, run the skill once to get the template and voice dialed in, then use the output as a reference for scripting multiple products."
