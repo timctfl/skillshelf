@@ -1,0 +1,34 @@
+version: "1.0"
+category: feeds-and-merchandising
+level: intermediate
+primitive: false
+platforms:
+  - platform-agnostic
+tags:
+  - badges
+  - plp
+  - merchandising
+  - product-listing
+  - comparison-shopping
+  - product-discovery
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+certified: true
+
+faq:
+  - question: What input do I need to run this skill?
+    answer: >-
+      Product data for a single category (CSV export, pasted product list,
+      or PDP content). Review data and existing badges are optional but
+      helpful.
+  - question: How many badges does it produce?
+    answer: >-
+      Typically 3-5 badges, each pointing to 1-2 products. Most products
+      in the category will not get a badge. That's intentional.
+  - question: Can I run this across multiple categories at once?
+    answer: >-
+      No. The skill works one category at a time. Badge themes that work
+      for insulated jackets are different from ones that work for
+      moisturizers. Run it separately per category.
