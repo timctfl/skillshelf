@@ -182,8 +182,6 @@ Output must be ready to paste into a CMS, upload to a platform, or hand to a tea
 
 Every skill includes an example output file in `references/`. The file must use the `example-` prefix (e.g., `example-output.md`). The SkillShelf website uses this prefix to find and display example files. A file named `sample-output.md` or `output-example.md` will not appear on the site.
 
-Use generic, category-obvious brand names. The name should make the product category immediately clear. "GreatOutdoors Co." (outdoor gear), "GoodBoy Treats" (pet products), "BeanThere Coffee" (coffee). Avoid names that sound like real brands or don't signal the category: "Ridgeline Supply Co.", "Duskbloom", "Apex Provisions."
-
 The example demonstrates the ceiling, not the floor. If the example is mediocre, the LLM will calibrate to mediocre output.
 
 ### General behaviors
