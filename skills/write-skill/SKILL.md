@@ -153,11 +153,6 @@ license: Apache-2.0
 
 ## Edge Cases
 [Thin input, inconsistent input, missing context, CSV-specific]
-
-## Closing
-[Tell the user what to do with the output: download, save, upload
- to future conversations, pair with other skills. Example: "Download
- this file. Whenever you need [task], upload it to a new conversation."]
 ```
 
 Keep the body under 500 lines. If the skill needs more detail, move supporting information into reference files and point to them.
