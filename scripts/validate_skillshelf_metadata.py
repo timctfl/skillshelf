@@ -141,6 +141,28 @@ def validate_skill(skill_dir: Path) -> list[str]:
                 f"{skill_name}: Invalid {date_field} '{val}'. Must be YYYY-MM-DD format"
             )
 
+    # consumes (optional list of objects with skill, output, why)
+    consumes = data.get("consumes")
+    if consumes is not None:
+        if not isinstance(consumes, list):
+            errors.append(f"{skill_name}: 'consumes' must be a list")
+        else:
+            for i, entry in enumerate(consumes):
+                if not isinstance(entry, dict):
+                    errors.append(f"{skill_name}: consumes[{i}] must be an object")
+                    continue
+                for field in ("skill", "output", "why"):
+                    if field not in entry or not isinstance(entry[field], str):
+                        errors.append(f"{skill_name}: consumes[{i}] missing or invalid '{field}' (must be a string)")
+                # Validate referenced skill exists
+                if "skill" in entry and isinstance(entry["skill"], str):
+                    ref_dir = skill_dir.parent / entry["skill"]
+                    if not ref_dir.is_dir():
+                        errors.append(
+                            f"{skill_name}: consumes[{i}] references '{entry['skill']}' "
+                            f"but no skill directory found at {ref_dir}"
+                        )
+
     return errors
 
 

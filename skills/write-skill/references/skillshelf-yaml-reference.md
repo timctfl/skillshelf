@@ -47,5 +47,26 @@ Every SkillShelf skill includes a `skillshelf.yaml` sidecar file alongside SKILL
 | `date_updated` | string | ISO date |
 | `author` | object | `name` (string) and optional `url` (string) |
 | `faq` | list of objects | Each with `question` (string) and `answer` (string). 2-4 entries recommended. |
+| `consumes` | list of objects | Skills/primitives that improve this skill's output. See below. |
 | `input_schema` | object | Freeform description of expected input |
 | `output_schema` | object | Freeform description of produced output |
+
+## Consumes
+
+Declares which primitives or skill outputs this skill benefits from. The site renders these as a "Best with" section on the skill page. The consuming skill declares the relationship -- primitives don't need to declare anything.
+
+```yaml
+consumes:
+  - skill: brand-voice-extractor
+    output: brand voice profile
+    why: Keeps rewritten copy on-brand
+  - skill: content-template
+    output: content template
+    why: Tells the skill your exact PDP structure
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `skill` | string | Directory name of the consumed skill (must exist in the catalog) |
+| `output` | string | Human-readable name of the artifact this skill produces |
+| `why` | string | One-line explanation of how it helps (shown on the site) |

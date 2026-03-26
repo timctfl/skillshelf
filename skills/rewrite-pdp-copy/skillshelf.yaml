@@ -16,6 +16,14 @@ author:
 
 certified: true
 
+consumes:
+  - skill: brand-voice-extractor
+    output: brand voice profile
+    why: Keeps rewritten copy on-brand across multiple PDPs
+  - skill: content-template
+    output: content template
+    why: Tells the skill your exact PDP structure so it matches your site
+
 faq:
   - question: "Do I need a brand voice profile to use this skill?"
     answer: "No. The skill works without one by matching the voice of the existing PDP copy you provide. But a voice profile produces more consistent results, especially if you're rewriting multiple PDPs. You can create one at skillshelf.ai/skills."

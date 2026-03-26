@@ -17,6 +17,14 @@ author:
   name: Tim Petrella
   url: https://www.linkedin.com/in/timpetrella/
 
+consumes:
+  - skill: brand-voice-extractor
+    output: brand voice profile
+    why: Grounds the audit in your actual brand voice instead of generic best practices
+  - skill: write-positioning-overview
+    output: positioning brief
+    why: Lets the audit assess whether copy reflects your positioning and differentiators
+
 faq:
   - question: What inputs does this skill need?
     answer: >-

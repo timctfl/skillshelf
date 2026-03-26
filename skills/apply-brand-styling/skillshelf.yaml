@@ -20,6 +20,11 @@ author:
   name: Tim Petrella
   url: https://www.linkedin.com/in/timpetrella/
 
+consumes:
+  - skill: brand-guidelines-extractor
+    output: brand guidelines
+    why: Provides the exact colors, fonts, and usage rules to apply
+
 faq:
   - question: Does this skill rewrite any of my text?
     answer: >-

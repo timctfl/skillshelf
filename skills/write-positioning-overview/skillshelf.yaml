@@ -52,6 +52,11 @@ output_schema:
     - What we are not
     - How to use this brief
 
+consumes:
+  - skill: brand-voice-extractor
+    output: brand voice profile
+    why: Helps the positioning brief reflect the brand's actual tone and language patterns
+
 faq:
   - question: What does the Write a Positioning Brief skill do?
     answer: It takes whatever brand context you have--About Us pages, homepage copy, product pages, email campaigns, or just conversational answers--and produces a structured positioning brief covering your positioning statement, target audience, value propositions, competitive context, and differentiators.
