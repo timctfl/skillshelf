@@ -2,7 +2,7 @@
 
 Thanks for your interest in contributing a skill.
 
-The easiest way to create a submission-ready skill is to use [Build a New Skill](https://skillshelf.ai/skills/write-skill/). It walks you through designing and writing a skill from scratch with all the right structure and conventions.
+**Start with the skill-building skill.** The fastest path to a submission-ready skill is [Build a New Skill](https://skillshelf.ai/skills/write-skill/). Upload it to Claude or ChatGPT, describe the task you want to automate, and it produces a complete skill directory that follows all SkillShelf conventions. You should still review and manually edit the output -- especially for technical skills or skills that require specific platform conventions -- but it handles the structure and boilerplate so you can focus on the domain expertise.
 
 If you already have a working prompt or skill file, use [Share a Skill You Already Have](https://skillshelf.ai/skills/adapt-skill/) to convert it into SkillShelf format.
 
@@ -65,9 +65,6 @@ The exact heading hierarchy the skill produces.
 
 ## Edge Cases
 How the skill handles thin input, inconsistent input, missing context.
-
-## Closing
-What the user does with the output after the skill is done.
 ```
 
 Required frontmatter fields: `name`, `description`, `license`.
@@ -172,6 +169,14 @@ After CI passes, the SkillShelf team reviews your skill for quality and safety. 
 - [ ] Example output files use fictional brand names, not real ones (see [Skill Authoring Guide](skill-authoring-guide.md) Section 6)
 - [ ] You have tested the skill with real inputs and the output is consistently usable -- the [`fixtures/`](fixtures/) directory has sample Shopify exports, PDPs, reviews, and brand content with intentional data quality issues for testing edge cases
 - [ ] No confidential or personal data is included in the skill or examples
+
+## Platform-specific skills
+
+If your skill targets a specific ecommerce platform (Shopify, BigCommerce, etc.), set the `platforms` field in `skillshelf.yaml` to the platform slug instead of `platform-agnostic`.
+
+The [`fixtures/greatoutdoorsco/`](fixtures/greatoutdoorsco/) directory has sample data for testing, including Shopify product CSV exports, product detail pages, customer reviews, and brand content. The data has intentional messiness (inconsistent formatting, missing fields, thin descriptions) to test how skills handle real-world input.
+
+When writing a platform-specific skill, be explicit about which export format it expects (e.g., Shopify's Products CSV vs Matrixify export) and handle common column naming variations.
 
 ## Questions?
 
