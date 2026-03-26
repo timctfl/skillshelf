@@ -31,12 +31,14 @@ jobs:
       - name: Check contributor attestation
         if: steps.skill-changes.outputs.skills_changed == 'true' && github.event.pull_request.head.repo.fork == true
         env:
-          PR_BODY: ${{ github.event.pull_request.body }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          if echo "$PR_BODY" | grep -qE '\- \[[xX]\] I agree to the \[Terms of Service\].*\[Privacy Policy\]'; then
+          # Use GitHub API to get the PR body -- more reliable than the event payload
+          PR_BODY=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }} --jq '.body // ""')
+
+          # Check for a checked attestation checkbox (permissive match)
+          if echo "$PR_BODY" | grep -qiE '\-\s*\[[xX]\]\s.*agree.*Terms of Service.*Privacy Policy'; then
             echo "Contributor attestation confirmed."
-          elif echo "$PR_BODY" | grep -qE '\- \[[xX]\] I agree to the Terms of Service and Privacy Policy'; then
-            echo "Contributor attestation confirmed (plain text)."
           else
             echo "::error::Contributor attestation required. Check the attestation checkbox in your PR description."
             echo ""
