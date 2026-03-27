@@ -101,6 +101,7 @@ The `skillshelf.yaml` sidecar file provides catalog metadata that SkillShelf use
 | Field | Type | Description |
 |-------|------|-------------|
 | `certified` | boolean | Set by reviewers after certification |
+| `consumes` | list | Skills/primitives that improve this skill's output. Each entry has `skill` (directory name), `output` (artifact name), and `why` (one-line explanation). See [yaml reference](skills/write-skill/references/skillshelf-yaml-reference.md). |
 | `input_schema` | object | Describes what the skill accepts |
 | `output_schema` | object | Describes what the skill produces |
 

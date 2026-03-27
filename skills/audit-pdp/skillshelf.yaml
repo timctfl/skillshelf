@@ -17,6 +17,8 @@ author:
   name: Tim Petrella
   url: https://www.linkedin.com/in/timpetrella/
 
+certified: true
+
 consumes:
   - skill: brand-voice-extractor
     output: brand voice profile
