@@ -19,10 +19,10 @@ certified: true
 
 faq:
   - question: What content types can this skill document?
-    answer: Any recurring content format -- PDPs, collection pages, campaign emails, flow emails, landing pages, blog posts, social media posts, performance reports, or anything else your brand produces repeatedly with a consistent structure.
+    answer: Any recurring content format. PDPs, collection pages, campaign emails, flow emails, landing pages, blog posts, social media posts, performance reports, or anything else your brand produces repeatedly with a consistent structure.
   - question: What input does it need?
-    answer: Whatever you have -- a screenshot of an existing page, pasted content, a URL, an uploaded file, or a verbal description of the structure. Multiple examples of the same content type help, but one is enough.
+    answer: Whatever you have. A screenshot of an existing page, pasted content, a URL, an uploaded file, or a verbal description of the structure all work. Multiple examples of the same content type help, but one is enough.
   - question: How does the output get used?
     answer: The template document is a reusable primitive. Upload it alongside any content-generation skill (PDP copy, email copy, collection descriptions) so the AI knows the target structure without you explaining it each time.
   - question: Does it suggest improvements to my template?
-    answer: No. This skill documents the structure as it is (or as you want it to be). It does not critique or recommend changes -- that is a separate task.
+    answer: No. This skill documents the structure as it is (or as you want it to be). It does not critique or recommend changes. That is a separate task.

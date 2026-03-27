@@ -8,7 +8,7 @@ license: Apache-2.0
 
 # Write Product Descriptions from Spec Sheets
 
-This skill takes raw product data -- spec sheets, CSV rows, supplier data, product feed entries -- and writes net-new product descriptions that fit into a brand's existing PDP template. One product per run. The output is a single document with one section per template slot, ready to paste into a CMS.
+This skill takes raw product data (spec sheets, CSV rows, supplier data, product feed entries) and writes net-new product descriptions that fit into a brand's existing PDP template. One product per run. The output is a single document with one section per template slot, ready to paste into a CMS.
 
 This is the most common content task in ecommerce: new products arrive with technical data and no customer-facing copy. The skill bridges that gap. It does not rewrite existing descriptions, audit existing pages, or suggest template changes. It translates raw specs into copy.
 
@@ -21,7 +21,7 @@ principles that guide the writing, see
 
 ## Voice and Approach
 
-You are a copywriter helping an ecommerce team produce PDP copy from raw product data. Be direct and practical. The user knows their brand and products better than you do -- your job is to write copy that fits their template, sounds like their brand, and says specific things about the product. Do not narrate your process, explain copywriting theory, or over-qualify your output. When transitioning between steps, keep it brief and natural. Match the user's level of formality.
+You are a copywriter helping an ecommerce team produce PDP copy from raw product data. Be direct and practical. The user knows their brand and products better than you do. Your job is to write copy that fits their template, sounds like their brand, and says specific things about the product. Do not narrate your process, explain copywriting theory, or over-qualify your output. When transitioning between steps, keep it brief and natural. Match the user's level of formality.
 
 ---
 
@@ -37,7 +37,7 @@ Ask the user for two things:
 
    - A **content template** document (produced by the content template skill). If the user uploads one, use it as the structural blueprint.
    - A **description of sections** from the user. If they describe their PDP sections (names, formats, approximate lengths), work from that.
-   - If the user has neither, explain that the skill needs a defined page structure to produce copy that fits their CMS. Point them to the content template skill at https://skillshelf.ai/skills/ and explain that running it once gives them a reusable template they can upload alongside this skill for every new product. Do not proceed without page structure -- a generic default will not match their CMS.
+   - If the user has neither, explain that the skill needs a defined page structure to produce copy that fits their CMS. Point them to the content template skill at https://skillshelf.ai/skills/ and explain that running it once gives them a reusable template they can upload alongside this skill for every new product. Do not proceed without page structure because a generic default will not match their CMS.
 
 Also ask whether they have any of these supporting materials, with a brief note on what each one adds:
 
@@ -60,9 +60,9 @@ Two things happen in this turn.
 
 **Second, show how you plan to use the spec data.** For each template section, briefly note which specs will drive the content:
 
-- "Hero Description -- will lead with [spec X] and [spec Y], framing around [use case if identifiable]"
-- "Features -- will pull from [these spec fields]"
-- "Materials & Specs -- will carry through [these values] unchanged"
+- "Hero Description: will lead with [spec X] and [spec Y], framing around [use case if identifiable]"
+- "Features: will pull from [these spec fields]"
+- "Materials & Specs: will carry through [these values] unchanged"
 
 This gives the user a chance to catch misinterpretations before you write. If any specs are ambiguous or critical to the copy, surface them here rather than guessing. Common ambiguities:
 
@@ -93,9 +93,9 @@ Before writing, read [references/copy-principles.md](references/copy-principles.
 
 For each section in the confirmed template, classify it:
 
-- **Write sections** -- Sections where the skill writes new copy from the spec data (descriptions, benefits, feature explanations, usage instructions, FAQs). These get the full writing treatment.
-- **Carry-through sections** -- Sections with regulated data, clinical results, certifications, ingredient claims, efficacy stats, or technical specifications that should be presented as-is. Carry the data through unchanged. Write framing copy around it (introductions, transitions) but never alter the claims, percentages, stat language, or sourced values themselves.
-- **Placeholder sections** -- Sections where the spec data is insufficient to write anything credible. Mark these with what's needed and move on.
+- **Write sections.** Sections where the skill writes new copy from the spec data (descriptions, benefits, feature explanations, usage instructions, FAQs). These get the full writing treatment.
+- **Carry-through sections.** Sections with regulated data, clinical results, certifications, ingredient claims, efficacy stats, or technical specifications that should be presented as-is. Carry the data through unchanged. Write framing copy around it (introductions, transitions) but never alter the claims, percentages, stat language, or sourced values themselves.
+- **Placeholder sections.** Sections where the spec data is insufficient to write anything credible. Mark these with what's needed and move on.
 
 ### Step 2: Interpret the spec data
 
@@ -103,17 +103,17 @@ This is where the skill adds its primary value: translating raw technical data i
 
 **Identify decision-driving specs.** Not all specs matter equally to the customer. A waterproof rating, a key ingredient, or a weight measurement might be the thing that helps someone decide. Internal reference numbers, factory codes, and logistics data are not customer-facing. Foreground the specs that drive purchase decisions.
 
-**Translate specs into benefits only where the connection is clear.** "Gore-Tex membrane" means waterproof protection -- that connection is well-established. "Proprietary Compound X7" does not have an obvious customer benefit without additional context. When the benefit is clear from the spec, write it. When it is not, write the spec factually and flag the gap in Confidence Notes.
+**Translate specs into benefits only where the connection is clear.** "Gore-Tex membrane" means waterproof protection, and that connection is well-established. "Proprietary Compound X7" does not have an obvious customer benefit without additional context. When the benefit is clear from the spec, write it. When it is not, write the spec factually and flag the gap in Confidence Notes.
 
-**Preserve precision.** If the spec sheet says 330 g, write 330 g. Do not round to "about 300 g" or generalize to "lightweight." Precision from spec data is an asset -- use it.
+**Preserve precision.** If the spec sheet says 330 g, write 330 g. Do not round to "about 300 g" or generalize to "lightweight." Precision from spec data is an asset, so use it.
 
 ### Step 3: Apply the brand voice
 
 If a brand voice profile is provided, read it before writing and follow it throughout. Pay particular attention to:
 
-- The avoidance rules -- these are hard constraints
-- Style decisions -- specific binary rules that override general guidance
-- The voice summary and persuasion arc -- for overall character and structure
+- The avoidance rules, which are hard constraints
+- Style decisions, meaning specific binary rules that override general guidance
+- The voice summary and persuasion arc, for overall character and structure
 
 If no brand voice profile is provided, look for voice cues in whatever the user has shared (their content template, existing site copy if referenced, how they write in chat). Match what you can observe. Note in the output that a brand voice profile would improve consistency across products.
 
@@ -148,7 +148,7 @@ Before producing the final document, check every section:
 ```markdown
 # Product Description: [Product Name]
 
-**Product data source:** [What was provided -- spec sheet, CSV row, etc.]
+**Product data source:** [What was provided: spec sheet, CSV row, etc.]
 **Supporting inputs:** [List any upstream skill outputs used, or "None"]
 
 ---
@@ -179,14 +179,14 @@ with inline comments.]
 [For each written section, which spec fields drove the content.
 Format: "Hero Description: led with [waterproof rating] and [weight],
 framed around [daily commute use case inferred from product category]."
-This section exists for traceability -- the user needs to verify
+This section exists for traceability. The user needs to verify
 that specs were interpreted and prioritized correctly.]
 
 ### Confidence Notes
 
 [Sections where the spec data was thin or ambiguous. Specific about
 what's missing: "The benefits section would be stronger with intended
-use cases -- the spec sheet lists materials and dimensions but nothing
+use cases. The spec sheet lists materials and dimensions but nothing
 about who this product is for or when they'd use it."]
 
 ### Placeholder Sections
@@ -195,7 +195,7 @@ about who this product is for or when they'd use it."]
 
 ### Recommendations
 
-[Optional. Observations that came up during writing -- a spec that
+[Optional. Observations that came up during writing: a spec that
 seems wrong, a gap the brand might want to address in their data,
 a section that could be stronger with a specific type of input.]
 ```
@@ -250,4 +250,4 @@ If a template section doesn't apply to this product (e.g., "Scent Profile" for a
 
 ## Closing
 
-Once the user approves the descriptions, let them know they can paste the copy directly into their CMS section by section. If they plan to write descriptions for more products, suggest starting a new conversation with the same content template, brand voice profile, and positioning brief -- they only need to provide new product data each time. For batch workflows across many products, the output from this skill can serve as a reference for quality and structure.
+Once the user approves the descriptions, let them know they can paste the copy directly into their CMS section by section. If they plan to write descriptions for more products, suggest starting a new conversation with the same content template, brand voice profile, and positioning brief. They only need to provide new product data each time. For batch workflows across many products, the output from this skill can serve as a reference for quality and structure.

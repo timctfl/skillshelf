@@ -5,7 +5,7 @@ This is an example of what the apply-brand-styling skill produces when run with 
 **Scenario:** The user uploads two files:
 
 1. **Brand file:** The Great Outdoors Co. Brand Styling document (output of the Brand Guidelines Extractor), which defines a forest green and natural neutral palette, Source Serif 4 for display headings, and DM Sans for body text.
-2. **Document to brand:** A Word doc titled "Great Outdoors Co. Q3 Trail Report" -- an internal quarterly summary. The document uses default Calibri throughout, has no color styling, and has inconsistent heading levels (jumps from Heading 1 to Heading 3 in several places).
+2. **Document to brand:** A Word doc titled "Great Outdoors Co. Q3 Trail Report," an internal quarterly summary. The document uses default Calibri throughout, has no color styling, and has inconsistent heading levels (jumps from Heading 1 to Heading 3 in several places).
 
 **What the skill produces:** A branded .docx file with the brand's typography, colors, and heading hierarchy applied, plus the Branding Summary and Confidence Notes below.
 

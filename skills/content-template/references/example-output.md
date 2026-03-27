@@ -9,7 +9,7 @@ This document captures the structural template for TrailForge's product detail p
 ## Template Overview
 
 - **Content type:** Product detail page (PDP)
-- **Typical use:** Every product on the site -- apparel, footwear, and gear
+- **Typical use:** Every product on the site (apparel, footwear, and gear)
 - **Number of sections:** 14 (8 in the buy box, 6 in the accordion panel)
 - **Estimated total length:** 400-800 words of written content, depending on product complexity
 
@@ -22,13 +22,13 @@ This document captures the structural template for TrailForge's product detail p
 - **Format:** Single headline
 - **Length:** 3-6 words
 - **Content:** Product name followed by gender designation
-- **Notes:** All caps. Format is "[Product Name] [Gender]" -- e.g., "SUMMIT AR JACKET MEN'S"
+- **Notes:** All caps. Format is "[Product Name] [Gender]," e.g., "SUMMIT AR JACKET MEN'S"
 
 ### 2. Badge
 
 - **Format:** Small label above or beside the title
 - **Length:** 1-2 words
-- **Content:** Product status indicator -- "Best seller," "New," "Revised," etc.
+- **Content:** Product status indicator ("Best seller," "New," "Revised," etc.)
 - **Notes:** Conditional. Not all products have a badge. Only one badge displays at a time.
 
 ### 3. Star Rating & Review Link
@@ -43,7 +43,7 @@ This document captures the structural template for TrailForge's product detail p
 - **Format:** Single sentence
 - **Length:** 60-100 characters
 - **Content:** One-line product summary covering core function, primary technology, and intended use
-- **Notes:** Appears above the price. Factual and concise -- not a marketing tagline. Reads as a product identifier, not a sell line.
+- **Notes:** Appears above the price. Factual and concise, not a marketing tagline. Reads as a product identifier, not a sell line.
 
 ### 5. Price Block
 
@@ -73,7 +73,7 @@ This document captures the structural template for TrailForge's product detail p
 - **Content:** The main product narrative. Contains the following sub-sections in order:
 
   **8a. Main Description**
-  - 3-5 sentences. Narrative product description in second person ("you"). Opens with a use-case scenario, then explains key construction details and how they benefit the user. Ends with a short payoff sentence. Tone is confident and direct -- not breathless or hyperbolic.
+  - 3-5 sentences. Narrative product description in second person ("you"). Opens with a use-case scenario, then explains key construction details and how they benefit the user. Ends with a short payoff sentence. Tone is confident and direct, not breathless or hyperbolic.
 
   **8b. What's Been Updated** *(conditional)*
   - 2-3 sentences preceded by a bold "What's been updated:" label. Appears only for revised or updated products. Lists specific changes: materials, construction, patterning. Factual, not promotional.
@@ -82,7 +82,7 @@ This document captures the structural template for TrailForge's product detail p
   - Single sentence with an inline linked product name. Format: "Need [alternative use case]? Try the [Product Name]." Points the user to a related product that serves a different need.
 
   **8d. Product Tip**
-  - 1-3 sentences preceded by a bold "Product tip:" label. Practical usage advice -- fit guidance, care notes, or performance expectations. Written as peer advice, not marketing copy.
+  - 1-3 sentences preceded by a bold "Product tip:" label. Practical usage advice: fit guidance, care notes, or performance expectations. Written as peer advice, not marketing copy.
 
 - **Notes:** The Description section is the primary content block and the only section with a narrative voice. All other accordion sections are structured/tabular.
 
@@ -144,7 +144,7 @@ This document captures the structural template for TrailForge's product detail p
 
 The PDP is split into two zones. The top zone is the buy box: product images on the left, title through add-to-cart on the right. The bottom zone is an accordion panel with a sticky left-side navigation listing all section names. Sections expand inline when clicked from the nav.
 
-The Description section is the only section with a narrative voice. All other sections are structured, tabular, or functional. This means downstream content skills primarily need to produce copy for sections 4, 8, 9, 10, and 11 -- the short description, the description accordion, features & specs, fit & sizing, and materials & care.
+The Description section is the only section with a narrative voice. All other sections are structured, tabular, or functional. This means downstream content skills primarily need to produce copy for sections 4, 8, 9, 10, and 11: the short description, the description accordion, features & specs, fit & sizing, and materials & care.
 
 The Features & Specs section varies the most between product types. The overall structure (Technical Features group at top, category-specific groups in a two-column grid, product details table at bottom) is consistent, but the specific category group names change entirely between apparel and footwear. A downstream skill writing feature bullets needs to know the product type to use the correct group names.
 

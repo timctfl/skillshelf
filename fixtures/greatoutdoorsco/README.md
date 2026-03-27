@@ -18,32 +18,32 @@ These fixtures provide standardized, synthetic inputs for testing AI workflows s
 | `google-merchant-feed.xml` | Google Merchant Center XML feed (variant-level items). |
 | `product-attributes.csv` | Flat attribute/value pairs per product handle. |
 | `product-taxonomy.json` | Category tree with product counts. |
-| `about-us.md` | About Us / brand story page -- founder origin, design philosophy, product line overview. |
-| `homepage.md` | Full homepage content by section -- hero, categories, products, brand story, journal, email capture. |
-| `pdp-apparel.md` | Clean, well-written PDP -- Cascade Rain Shell (Women's). |
-| `pdp-gear.md` | Technical, spec-heavy PDP -- Cedar Ridge 45L Trek Pack. |
-| `pdp-minimal.md` | Sparse PDP with almost no detail -- Ridgeline Hiking Socks. |
-| `pdp-messy.md` | Messy/migrated PDP -- HTML artifacts, duplicated paragraphs, keyword stuffing. |
-| `yotpo-reviews.csv` | Yotpo-format product reviews export -- 50 reviews across 3 products (Cascade Rain Shell, Cedar Ridge 45L Trek Pack, Alpine Meadow 2P Tent). Includes ratings, review text, tags, sentiment scores, reviewer metadata, and a custom `cf_hiking_experience_level` field. |
-| `greatoutdoorsco-tailwind.css` | Tailwind CSS stylesheet -- design tokens (CSS custom properties), component classes, and utility layers for the storefront. |
+| `about-us.md` | About Us / brand story page covering founder origin, design philosophy, and product line overview. |
+| `homepage.md` | Full homepage content by section (hero, categories, products, brand story, journal, email capture). |
+| `pdp-apparel.md` | Clean, well-written PDP for the Cascade Rain Shell (Women's). |
+| `pdp-gear.md` | Technical, spec-heavy PDP for the Cedar Ridge 45L Trek Pack. |
+| `pdp-minimal.md` | Sparse PDP with almost no detail for the Ridgeline Hiking Socks. |
+| `pdp-messy.md` | Messy/migrated PDP with HTML artifacts, duplicated paragraphs, and keyword stuffing. |
+| `yotpo-reviews.csv` | Yotpo-format product reviews export with 50 reviews across 3 products (Cascade Rain Shell, Cedar Ridge 45L Trek Pack, Alpine Meadow 2P Tent). Includes ratings, review text, tags, sentiment scores, reviewer metadata, and a custom `cf_hiking_experience_level` field. |
+| `greatoutdoorsco-tailwind.css` | Tailwind CSS stylesheet containing design tokens (CSS custom properties), component classes, and utility layers for the storefront. |
 
 ## Intentional data quality issues
 
 Several files contain deliberate messiness to test how skills handle real-world data. These are features, not bugs:
 
-- **Mixed weight units** in `product-attributes.csv` -- "11.6 oz" vs "10.9 ounces" vs "3.5 lb"
-- **Inconsistent waterproof ratings** -- "15000 mm" vs "15K mm" vs "2000 mm"
-- **Duplicate casing in color options** -- "Blue, blue, ORANGE" and "Black, BLUE, blue"
-- **Empty/missing values** -- blank warranty, dimensions, and packed_size fields across multiple products
-- **Trailing whitespace** -- scattered throughout attribute values
-- **Duplicate paragraph** in `pdp-messy.md` -- same block of copy pasted twice
-- **HTML artifacts** in `pdp-messy.md` -- raw `<p>`, `<br>`, `<font>` tags from a platform migration
-- **Keyword stuffing** in `pdp-messy.md` -- a block of SEO spam at the bottom
-- **Inconsistent list formatting** in `pdp-messy.md` -- mixed `-`, `*`, and bare lines
+- **Mixed weight units** in `product-attributes.csv`: "11.6 oz" vs "10.9 ounces" vs "3.5 lb"
+- **Inconsistent waterproof ratings**: "15000 mm" vs "15K mm" vs "2000 mm"
+- **Duplicate casing in color options**: "Blue, blue, ORANGE" and "Black, BLUE, blue"
+- **Empty/missing values**: blank warranty, dimensions, and packed_size fields across multiple products
+- **Trailing whitespace** scattered throughout attribute values
+- **Duplicate paragraph** in `pdp-messy.md` (same block of copy pasted twice)
+- **HTML artifacts** in `pdp-messy.md`: raw `<p>`, `<br>`, `<font>` tags from a platform migration
+- **Keyword stuffing** in `pdp-messy.md` (a block of SEO spam at the bottom)
+- **Inconsistent list formatting** in `pdp-messy.md`: mixed `-`, `*`, and bare lines
 
 ## Skill outputs
 
-The `skill-outputs/` directory contains example outputs from SkillShelf skills run against this fixture data. These are useful as inputs to downstream skills -- for example, a product description skill can consume the brand voice profile and positioning brief to produce on-brand copy.
+The `skill-outputs/` directory contains example outputs from SkillShelf skills run against this fixture data. These are useful as inputs to downstream skills. For example, a product description skill can consume the brand voice profile and positioning brief to produce on-brand copy.
 
 | File | Produced by | Description |
 |------|-------------|-------------|

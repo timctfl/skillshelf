@@ -16,7 +16,7 @@ The most common positive theme. Reviewers describe staying dry in sustained rain
 
 ### A reliable upgrade from cheap rain gear
 
-Many reviewers frame the purchase as replacing a cheaper jacket that failed. The $149 price point comes up as a value -- not cheap, but worth it compared to burning through a $40 jacket every year.
+Many reviewers frame the purchase as replacing a cheaper jacket that failed. The $149 price point comes up as a value: not cheap, but worth it compared to burning through a $40 jacket every year.
 
 ### Comfortable enough for everyday use
 
@@ -38,7 +38,7 @@ A few reviewers note the hand pockets sit exactly where a backpack hip belt goes
 
 ### Waterproofing durability (isolated reports)
 
-One reviewer reported shoulder seams leaking on the third wear (likely defective -- returned it). Another described waterproofing fading after three months of regular weekend use, partially restored by washing and drying per care instructions. These are a small minority against many positive waterproofing reports, but worth noting.
+One reviewer reported shoulder seams leaking on the third wear (likely defective; returned it). Another described waterproofing fading after three months of regular weekend use, partially restored by washing and drying per care instructions. These are a small minority against many positive waterproofing reports, but worth noting.
 
 ### Stiff zipper out of the box
 
@@ -60,17 +60,17 @@ Product data was provided (PDP content for the Cascade Rain Shell).
 
 **Supported by reviews:**
 
-- *Waterproof/breathable fabric with fully taped seams* -- Strongly supported. Most reviewers confirm staying dry in sustained rain. Two isolated reports of seam or waterproofing issues do not undermine the pattern.
-- *Pit zips for quick venting* -- Supported. Multiple reviewers specifically mention pit zips helping with heat management.
-- *Packs into its own pocket* -- Supported. Several reviewers describe packing it into a daypack easily.
-- *Quiet fabric* -- Supported. Mentioned by name as a differentiator by at least one reviewer, implicitly confirmed by others describing comfort.
-- *PFAS-free DWR finish* -- Not mentioned by any reviewer. Neither confirmed nor contradicted.
+- *Waterproof/breathable fabric with fully taped seams.* Strongly supported. Most reviewers confirm staying dry in sustained rain. Two isolated reports of seam or waterproofing issues do not undermine the pattern.
+- *Pit zips for quick venting.* Supported. Multiple reviewers specifically mention pit zips helping with heat management.
+- *Packs into its own pocket.* Supported. Several reviewers describe packing it into a daypack easily.
+- *Quiet fabric.* Supported. Mentioned by name as a differentiator by at least one reviewer, implicitly confirmed by others describing comfort.
+- *PFAS-free DWR finish.* Not mentioned by any reviewer. Neither confirmed nor contradicted.
 
 **Be careful with:**
 
-- *Two hand pockets sit above a hipbelt or harness* -- The PDP claims pockets are positioned above a hip belt. Multiple reviewers contradict this, saying pockets sit right where the hip belt goes. This claim may not match the men's version, or the pocket placement may not work for all pack styles.
-- *Regular fit (room for a light midlayer)* -- Reviewers consistently describe the fit as generous or boxy, not just "room for a midlayer." The sizing note to "size up for layering" may lead to an overly large fit for some customers. Several reviewers suggest sizing down.
+- *Two hand pockets sit above a hipbelt or harness.* The PDP claims pockets are positioned above a hip belt. Multiple reviewers contradict this, saying pockets sit right where the hip belt goes. This claim may not match the men's version, or the pocket placement may not work for all pack styles.
+- *Regular fit (room for a light midlayer).* Reviewers consistently describe the fit as generous or boxy, not just "room for a midlayer." The sizing note to "size up for layering" may lead to an overly large fit for some customers. Several reviewers suggest sizing down.
 
 ## Confidence Notes
 
-This analysis is based on 20 reviews, which is enough to identify the strongest patterns (waterproofing, fit, everyday comfort) but not enough to draw firm conclusions on less-mentioned topics. The waterproofing durability complaints (2 out of 20) could be isolated incidents or early signs of a broader issue -- a larger review set would clarify. The pocket placement conflict with hip belts appears in a few reviews and is worth investigating but shouldn't be treated as a universal problem from this sample size alone.
+This analysis is based on 20 reviews, which is enough to identify the strongest patterns (waterproofing, fit, everyday comfort) but not enough to draw firm conclusions on less-mentioned topics. The waterproofing durability complaints (2 out of 20) could be isolated incidents or early signs of a broader issue, and a larger review set would clarify. The pocket placement conflict with hip belts appears in a few reviews and is worth investigating but shouldn't be treated as a universal problem from this sample size alone.

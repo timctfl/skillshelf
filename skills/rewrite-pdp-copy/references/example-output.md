@@ -17,9 +17,9 @@ The example uses Great Outdoors Co., the canonical SkillShelf test brand. The pr
 
 ## Hero Description
 
-The Cascade Rain Shell is the jacket you grab when the forecast says "maybe" -- which in the Pacific Northwest is most weekends from October through June. 2.5-layer waterproof/breathable fabric with fully taped seams keeps you dry in sustained rain, not just a quick drizzle between the car and the trailhead.
+The Cascade Rain Shell is the jacket you grab when the forecast says "maybe," which in the Pacific Northwest is most weekends from October through June. 2.5-layer waterproof/breathable fabric with fully taped seams keeps you dry in sustained rain, not just a quick drizzle between the car and the trailhead.
 
-At 330 g, it packs into its own pocket and stays in your daypack until you need it. The fabric is quiet -- no loud swishing on the trail or on the walk to work. Light enough for everyday use, built well enough that you're not replacing it next fall.
+At 330 g, it packs into its own pocket and stays in your daypack until you need it. The fabric is quiet, with no loud swishing on the trail or on the walk to work. Light enough for everyday use, built well enough that you're not replacing it next fall.
 
 ## Features
 
@@ -71,7 +71,7 @@ Care instructions carried through from the Women's PDP template. These are stand
 
 ### Confidence Notes
 
-**Hero description:** The opening line ("the jacket you grab when the forecast says 'maybe'") and the framing around everyday use are informed by the review insights -- customers repeatedly describe the Cascade as their default grab-and-go jacket. The waterproofing claim ("sustained rain, not just a quick drizzle") is supported by multiple reviews describing multi-hour hikes in steady rain.
+**Hero description:** The opening line ("the jacket you grab when the forecast says 'maybe'") and the framing around everyday use are informed by the review insights. Customers repeatedly describe the Cascade as their default grab-and-go jacket. The waterproofing claim ("sustained rain, not just a quick drizzle") is supported by multiple reviews describing multi-hour hikes in steady rain.
 
 **Features:** Feature bullets are drawn from the Shopify product data (3 bullets) and expanded using details from the Women's PDP template, which lists the same feature set. The helmet-compatible hood, pit zips, and pack-into-pocket features were not in the Shopify data but are present in the template and consistent with the product line.
 
@@ -88,9 +88,9 @@ Care instructions carried through from the Women's PDP template. These are stand
 
 ## How This Example Demonstrates the Skill
 
-**Brand voice alignment.** The copy follows the voice profile: short declarative sentences, contractions, no exclamation marks, no superlatives, dry humor where it fits naturally ("which in the Pacific Northwest is most weekends from October through June"). It avoids everything in the "What GreatOutdoors Co. Avoids" list -- no aspirational language, no competitor comparisons, no urgency cues.
+**Brand voice alignment.** The copy follows the voice profile: short declarative sentences, contractions, no exclamation marks, no superlatives, dry humor where it fits naturally ("which in the Pacific Northwest is most weekends from October through June"). It avoids everything in the "What GreatOutdoors Co. Avoids" list: no aspirational language, no competitor comparisons, no urgency cues.
 
-**Positioning awareness.** The copy frames the product through GreatOutdoors Co.'s positioning: gear for every-weekend hikers, not expedition athletes. The hero leads with the use pattern (weekly use in real rain), not with technical specs. The value framing is implicit -- "you're not replacing it next fall" -- rather than leading with the $149 price point, which matches the positioning brief's guidance on how to talk about price.
+**Positioning awareness.** The copy frames the product through GreatOutdoors Co.'s positioning: gear for every-weekend hikers, not expedition athletes. The hero leads with the use pattern (weekly use in real rain), not with technical specs. The value framing is implicit ("you're not replacing it next fall") rather than leading with the $149 price point, which matches the positioning brief's guidance on how to talk about price.
 
 **Template compliance.** Every section from the Women's PDP template appears in the output with the same format: paragraph hero, bullet features, table specs, bullet care instructions, bullet sizing notes. No sections were added, renamed, or restructured.
 

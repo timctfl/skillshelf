@@ -2,7 +2,7 @@
 
 Thanks for your interest in contributing a skill.
 
-**Start with the skill-building skill.** The fastest path to a submission-ready skill is [Build a New Skill](https://skillshelf.ai/skills/write-skill/). Upload it to Claude or ChatGPT, describe the task you want to automate, and it produces a complete skill directory that follows all SkillShelf conventions. You should still review and manually edit the output -- especially for technical skills or skills that require specific platform conventions -- but it handles the structure and boilerplate so you can focus on the domain expertise.
+**Start with the skill-building skill.** The fastest path to a submission-ready skill is [Build a New Skill](https://skillshelf.ai/skills/write-skill/). Upload it to Claude or ChatGPT, describe the task you want to automate, and it produces a complete skill directory that follows all SkillShelf conventions. You should still review and manually edit the output (especially for technical skills or skills that require specific platform conventions), but it handles the structure and boilerplate so you can focus on the domain expertise.
 
 If you already have a working prompt or skill file, use [Share a Skill You Already Have](https://skillshelf.ai/skills/adapt-skill/) to convert it into SkillShelf format.
 
@@ -168,7 +168,7 @@ After CI passes, the SkillShelf team reviews your skill for quality and safety. 
 - [ ] `skillshelf.yaml` has all required fields (`version`, `category`, `level`, `primitive`, `platforms`, `tags`)
 - [ ] Category is one of the valid values listed above
 - [ ] Example output files use fictional brand names, not real ones (see [Skill Authoring Guide](skill-authoring-guide.md) Section 6)
-- [ ] You have tested the skill with real inputs and the output is consistently usable -- the [`fixtures/`](fixtures/) directory has sample Shopify exports, PDPs, reviews, and brand content with intentional data quality issues for testing edge cases
+- [ ] You have tested the skill with real inputs and the output is consistently usable. The [`fixtures/`](fixtures/) directory has sample Shopify exports, PDPs, reviews, and brand content with intentional data quality issues for testing edge cases.
 - [ ] No confidential or personal data is included in the skill or examples
 
 ## Platform-specific skills

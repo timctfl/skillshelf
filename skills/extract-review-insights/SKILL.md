@@ -39,7 +39,7 @@ or similar), or a document (PDF, Word, text file).
 Optionally, the user may also provide:
 
 - Product/brand name
-- Product data (feed entry, PDP content, or product description) -- this
+- Product data (feed entry, PDP content, or product description), which
   gives the skill concrete claims and features to check reviews against
 - Review metadata (star ratings, dates, verified purchase flags)
 

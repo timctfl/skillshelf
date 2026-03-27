@@ -3,38 +3,38 @@
 
 ## Overview
 
-This file documents the brand colors, typography, and visual styling for Great Outdoors Co. (greatoutdoorsco.com). It was extracted from the site's Tailwind CSS stylesheet. The brand direction is calm, rugged, and premium-functional -- an outdoor DTC aesthetic built around forest greens, natural neutrals, and earthy accents.
+This file documents the brand colors, typography, and visual styling for Great Outdoors Co. (greatoutdoorsco.com). It was extracted from the site's Tailwind CSS stylesheet. The brand direction is calm, rugged, and premium-functional, an outdoor DTC aesthetic built around forest greens, natural neutrals, and earthy accents.
 
 ## Brand Guidelines
 
 ### Colors
 
 **Main Colors:**
-- Dark: `#1c221f` -- Primary text and dark foreground elements. A deep forest-tinged near-black.
-- Soft Text: `#4e5852` -- Body text and secondary copy. A muted dark olive-gray.
-- Faint Text: `#707974` -- Tertiary text, labels, and metadata. A quiet sage gray.
-- Background: `#f8f7f3` -- Page background. A warm off-white with a slight cream undertone.
-- Surface: `#fffffc` -- Cards, panels, and elevated containers. Nearly pure white.
-- Surface Muted: `#f2f0e9` -- Subtle backgrounds, badges, and trust bar items. A soft cream.
-- Surface Deep: `#e6ebe7` -- Image placeholders and deeper surface areas. A light sage.
+- Dark: `#1c221f`. Primary text and dark foreground elements. A deep forest-tinged near-black.
+- Soft Text: `#4e5852`. Body text and secondary copy. A muted dark olive-gray.
+- Faint Text: `#707974`. Tertiary text, labels, and metadata. A quiet sage gray.
+- Background: `#f8f7f3`. Page background. A warm off-white with a slight cream undertone.
+- Surface: `#fffffc`. Cards, panels, and elevated containers. Nearly pure white.
+- Surface Muted: `#f2f0e9`. Subtle backgrounds, badges, and trust bar items. A soft cream.
+- Surface Deep: `#e6ebe7`. Image placeholders and deeper surface areas. A light sage.
 
 **Border Colors:**
-- Default: `#d2d7d0` -- Standard borders, dividers, and card outlines. A light warm gray.
-- Strong: `#a8b1ab` -- Emphasized borders on hover and interactive states. A medium sage gray.
+- Default: `#d2d7d0`. Standard borders, dividers, and card outlines. A light warm gray.
+- Strong: `#a8b1ab`. Emphasized borders on hover and interactive states. A medium sage gray.
 
 **Accent Colors:**
-- Forest: `#344d40` -- Primary accent, CTAs, buttons, and brand identity color. A deep muted green.
-- Forest Deep: `#23352c` -- Hover states on primary buttons, announcement bars. Darker forest.
-- Moss: `#687d5e` -- Feature bullets, kicker lines, and secondary green accents. An earthy moss green.
-- Rain: `#5d717e` -- Focus rings, badge variants, and cool-toned accents. A slate blue-gray.
-- Rain Deep: `#3e505b` -- Rain badge text and deeper blue-gray applications.
-- Clay: `#8e6148` -- "New" badge text and warm accent. A muted terracotta.
-- Gold: `#a68a56` -- "New" badge backgrounds (at 16% opacity) and warm highlights. A dusty gold.
+- Forest: `#344d40`. Primary accent, CTAs, buttons, and brand identity color. A deep muted green.
+- Forest Deep: `#23352c`. Hover states on primary buttons, announcement bars. Darker forest.
+- Moss: `#687d5e`. Feature bullets, kicker lines, and secondary green accents. An earthy moss green.
+- Rain: `#5d717e`. Focus rings, badge variants, and cool-toned accents. A slate blue-gray.
+- Rain Deep: `#3e505b`. Rain badge text and deeper blue-gray applications.
+- Clay: `#8e6148`. "New" badge text and warm accent. A muted terracotta.
+- Gold: `#a68a56`. "New" badge backgrounds (at 16% opacity) and warm highlights. A dusty gold.
 
 **Status Colors:**
-- Success: `#436650` -- Positive feedback and confirmation states.
-- Warning: `#966f41` -- Caution states and alerts.
-- Danger: `#804538` -- Error states and sale badges.
+- Success: `#436650`. Positive feedback and confirmation states.
+- Warning: `#966f41`. Caution states and alerts.
+- Danger: `#804538`. Error states and sale badges.
 
 ### Typography
 
@@ -50,7 +50,7 @@ This file documents the brand colors, typography, and visual styling for Great O
 - H1 and H2: Source Serif 4 (display font), `font-medium` weight, `tracking-tight`
 - H1: 2.25rem (mobile), 3rem (desktop)
 - H2: 1.875rem (mobile), 2.25rem (desktop)
-- H3: 1.5rem (mobile), 1.875rem (desktop) -- uses DM Sans (body font), not the display serif
+- H3: 1.5rem (mobile), 1.875rem (desktop). Uses DM Sans (body font), not the display serif
 - Hero titles, product titles (XL), journal titles, and review quotes also use Source Serif 4
 - Body text, nav links, buttons, badges, and all other UI elements: DM Sans
 - Kickers and labels use DM Sans at `font-semibold` with wide letter spacing (0.16em)

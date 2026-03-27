@@ -2,7 +2,7 @@
 
 This is an example of what the write-product-descriptions skill produces. It demonstrates the full output when given a detailed spec sheet, a content template from the Women's version of the same product, a brand voice profile, and a positioning brief.
 
-The example uses Great Outdoors Co., the canonical SkillShelf test brand. The product is the Cascade Rain Shell - Men's. The spec data comes from a product spec sheet (material, construction, features, care, sizing) and a product attributes CSV (waterproof rating, breathability, colors). The template structure comes from the Women's version PDP. Unlike the rewrite skill, there is no existing customer-facing copy to start from -- just raw product data.
+The example uses Great Outdoors Co., the canonical SkillShelf test brand. The product is the Cascade Rain Shell - Men's. The spec data comes from a product spec sheet (material, construction, features, care, sizing) and a product attributes CSV (waterproof rating, breathability, colors). The template structure comes from the Women's version PDP. Unlike the rewrite skill, there is no existing customer-facing copy to start from, just raw product data.
 
 ---
 
@@ -16,9 +16,9 @@ The example uses Great Outdoors Co., the canonical SkillShelf test brand. The pr
 
 ## Hero Description
 
-The Cascade Rain Shell is the jacket you grab when the forecast says "maybe" -- which in the Pacific Northwest is most weekends from October through June. 2.5-layer waterproof/breathable fabric with fully taped seams keeps you dry in sustained rain, not just a quick drizzle between the car and the trailhead.
+The Cascade Rain Shell is the jacket you grab when the forecast says "maybe," which in the Pacific Northwest is most weekends from October through June. 2.5-layer waterproof/breathable fabric with fully taped seams keeps you dry in sustained rain, not just a quick drizzle between the car and the trailhead.
 
-At 330 g, it packs into its own pocket and stays in your daypack until you need it. The fabric is quiet -- no loud swishing on the trail or on the walk to work. Light enough for everyday use, built well enough that you're not replacing it next fall.
+At 330 g, it packs into its own pocket and stays in your daypack until you need it. The fabric is quiet, with no loud swishing on the trail or on the walk to work. Light enough for everyday use, built well enough that you're not replacing it next fall.
 
 ## Features
 
@@ -82,7 +82,7 @@ Care instructions carried through from the product spec sheet. These are standar
 
 ### Confidence Notes
 
-**Hero description:** The opening line ("the jacket you grab when the forecast says 'maybe'") and the framing around everyday use are inferred from the product category (rain shell), the brand's positioning brief (weekly-use gear for PNW hikers), and the weight/packability specs. The positioning brief is doing most of the work here -- without it, the hero would be more generic.
+**Hero description:** The opening line ("the jacket you grab when the forecast says 'maybe'") and the framing around everyday use are inferred from the product category (rain shell), the brand's positioning brief (weekly-use gear for PNW hikers), and the weight/packability specs. The positioning brief is doing most of the work here. Without it, the hero would be more generic.
 
 **Value framing:** "You're not replacing it next fall" is inferred from the limited lifetime warranty and the brand's positioning around durability. The spec sheet doesn't include explicit durability claims or test data, so this is a soft inference from warranty + positioning. Flagged in case the brand prefers to avoid durability claims without test data.
 
@@ -97,9 +97,9 @@ Care instructions carried through from the product spec sheet. These are standar
 
 **Writes from specs, not from existing copy.** The input is raw product data: a spec sheet and an attributes CSV. There is no existing PDP to rewrite. The skill translates technical specs into customer-facing copy.
 
-**Brand voice alignment.** The copy follows the voice profile: short declarative sentences, contractions, no exclamation marks, no superlatives, dry humor where it fits naturally ("which in the Pacific Northwest is most weekends from October through June"). It avoids everything in the "What GreatOutdoors Co. Avoids" list -- no aspirational language, no competitor comparisons, no urgency cues.
+**Brand voice alignment.** The copy follows the voice profile: short declarative sentences, contractions, no exclamation marks, no superlatives, dry humor where it fits naturally ("which in the Pacific Northwest is most weekends from October through June"). It avoids everything in the "What GreatOutdoors Co. Avoids" list: no aspirational language, no competitor comparisons, no urgency cues.
 
-**Positioning awareness.** The copy frames the product through GreatOutdoors Co.'s positioning: gear for every-weekend hikers, not expedition athletes. The hero leads with the use pattern (weekly use in real rain), not with technical specs. The value framing is implicit -- "you're not replacing it next fall" -- rather than leading with the $149 price point.
+**Positioning awareness.** The copy frames the product through GreatOutdoors Co.'s positioning: gear for every-weekend hikers, not expedition athletes. The hero leads with the use pattern (weekly use in real rain), not with technical specs. The value framing is implicit ("you're not replacing it next fall") rather than leading with the $149 price point.
 
 **Template compliance.** Every section from the Women's PDP template appears in the output with the same format: paragraph hero, bullet features, table specs, bullet care instructions, bullet sizing notes. No sections were added, renamed, or restructured.
 
@@ -107,4 +107,4 @@ Care instructions carried through from the product spec sheet. These are standar
 
 **Specificity extracted from specs.** The hero names the specific weight (330 g), the specific construction (2.5-layer laminate, fully taped seams), and the specific performance context (sustained rain, not a drizzle). The features section preserves spec-level detail (PFAS-free DWR, structured brim, carabiner loop) rather than abstracting to generic benefit language.
 
-**Honest confidence notes.** The value framing ("not replacing it next fall") is flagged as a soft inference from warranty + positioning rather than presented as a hard claim. This is the kind of transparency that builds trust when writing from specs -- the user knows exactly where the skill was confident and where it was interpreting.
+**Honest confidence notes.** The value framing ("not replacing it next fall") is flagged as a soft inference from warranty + positioning rather than presented as a hard claim. This is the kind of transparency that builds trust when writing from specs. The user knows exactly where the skill was confident and where it was interpreting.

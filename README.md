@@ -64,11 +64,11 @@ Every skill on SkillShelf goes through a certification review before it is publi
 
 ## Reference
 
-- [SKILL.md Specification](skillmd-specs.md) -- format, frontmatter fields, validation rules
-- [Skill Authoring Guide](skill-authoring-guide.md) -- best practices for writing effective skills
-- [Glossary Specification](glossary-specification.md) -- how to write glossaries for downstream skill consumption
-- [Contributing Guide](CONTRIBUTING.md) -- submission process, PR requirements, metadata reference
-- [Agent Skills open standard](https://agentskills.io) -- the cross-platform format SkillShelf skills are built on
+- [SKILL.md Specification](skillmd-specs.md): format, frontmatter fields, validation rules
+- [Skill Authoring Guide](skill-authoring-guide.md): best practices for writing effective skills
+- [Glossary Specification](glossary-specification.md): how to write glossaries for downstream skill consumption
+- [Contributing Guide](CONTRIBUTING.md): submission process, PR requirements, metadata reference
+- [Agent Skills open standard](https://agentskills.io): the cross-platform format SkillShelf skills are built on
 
 ## License
 
