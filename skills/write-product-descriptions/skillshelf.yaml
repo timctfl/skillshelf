@@ -1,0 +1,36 @@
+version: "1.0"
+category: product-content
+level: intermediate
+primitive: false
+platforms:
+  - platform-agnostic
+tags:
+  - pdp
+  - product-descriptions
+  - spec-sheets
+  - product-copy
+  - brand-voice
+  - ecommerce
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+
+certified: true
+
+consumes:
+  - skill: content-template
+    output: content template
+    why: Tells the skill your exact PDP structure so copy fits your CMS
+  - skill: brand-voice-extractor
+    output: brand voice profile
+    why: Keeps copy on-brand across multiple products
+
+faq:
+  - question: "What kind of product data does it accept?"
+    answer: "Whatever you have -- spec sheets (PDF, image, or pasted), Shopify CSV rows, supplier data sheets, product feed entries, or raw notes. The more specific the input, the more specific the output."
+  - question: "Do I need a content template?"
+    answer: "Yes. The skill needs to know what sections to write. You can upload a content template document (from the content template skill), or describe your PDP sections directly. The skill won't guess at a page structure."
+  - question: "How is this different from the rewrite PDP copy skill?"
+    answer: "The rewrite skill takes existing PDP copy and improves it. This skill writes net-new descriptions when no customer-facing copy exists yet -- the typical scenario when new products arrive with only spec data."
+  - question: "What happens when the spec data is incomplete?"
+    answer: "The skill writes what the data supports, marks gaps as placeholders with specific asks, and documents what additional data would strengthen the copy. It never fills gaps with plausible guesses."
