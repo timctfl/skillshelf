@@ -98,7 +98,7 @@ products accordingly.
 
 ## Badge Analysis Process
 
-Every badge should represent a decision criterion -- a reason a specific
+Every badge should represent a decision criterion: a reason a specific
 type of shopper would pick one product over another. A high review count
 is a proxy for "this is a safe, universal pick." A use-case label like
 "best for side sleepers" lets the right shopper self-select immediately.
@@ -169,7 +169,7 @@ the pick.
 
 **Most products get no badge.** A category of 10 products should have
 roughly 4-6 badged and the rest unbadged. That's a feature, not a
-problem. Unbadged products are still good -- they just don't stand out
+problem. Unbadged products are still good; they just don't stand out
 on the specific axes this framework measures.
 
 In the recommended product field, explain why this product was picked
@@ -195,7 +195,7 @@ The output is a single Markdown document:
   badge serves]
 - **Considerations:** [What makes a product the right pick for this
   badge]
-- **Recommended product:** [Product name] -- [evidence for why this
+- **Recommended product:** [Product name]. [Evidence for why this
   product was picked over others]
 
 [Repeat for each badge in the framework]
@@ -211,11 +211,11 @@ Keep badge names short (2-4 words). Use plain shopper language, not
 internal merchandising jargon. Badge names should be:
 
 - Short enough to fit on a product card
-- Comparative -- they should help a shopper distinguish this product
+- Comparative, helping a shopper distinguish this product
   from others in the set
-- Meaningful in the category -- a shopper browsing this category should
-  immediately understand what the badge signals
-- Not just restatements of technical specs -- translate specs into
+- Meaningful in the category, so a shopper browsing this category
+  immediately understands what the badge signals
+- Not just restatements of technical specs. Translate specs into
   shopper benefit when possible (e.g., "Lightweight Warmth" is often
   more useful than "700 Fill Power," though there are cases where the
   spec itself is the clearest label)

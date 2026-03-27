@@ -14,7 +14,7 @@ These are pass/fail. If the rewritten copy fails on any of these, the quality of
 
 The copy should sound like it was written by the brand's team, not by an AI or a generic copywriter. This means matching the brand's tone, sentence structure, vocabulary, and personality.
 
-When a brand voice profile is available, follow it -- especially the avoidance rules and style decisions, which are the most concrete constraints. When no voice profile is available, study the existing PDP copy and match its patterns.
+When a brand voice profile is available, follow it. Pay particular attention to the avoidance rules and style decisions, which are the most concrete constraints. When no voice profile is available, study the existing PDP copy and match its patterns.
 
 Common failures:
 - Introducing superlatives or hype the brand doesn't use ("revolutionary," "game-changing," "ultimate")
@@ -54,7 +54,7 @@ This is especially important for:
 - Efficacy stats and clinical results (carry through unchanged)
 - Sourcing, certifications, and regulatory statements
 - Customer quotes or attributed language
-- Specific outcomes ("reduces fine lines in 4 weeks") -- only include if the data supports it
+- Specific outcomes ("reduces fine lines in 4 weeks"), which should only be included if the data supports them
 
 When the product data is thin, write what you can support and flag the gaps. Confident-sounding copy built on guesses is worse than shorter copy built on facts.
 
@@ -72,7 +72,7 @@ These are the difference between copy that clears the bar and copy that's worth 
 
 ### 5. Specific to this product
 
-Strong PDP copy says things that are true of this product and not easily interchangeable with a competitor in the same category. This comes from working the product data hard -- pulling out specific ingredients, mechanisms, use cases, materials, sourcing details, or customer outcomes rather than defaulting to category-level language.
+Strong PDP copy says things that are true of this product and not easily interchangeable with a competitor in the same category. This comes from working the product data hard: pulling out specific ingredients, mechanisms, use cases, materials, sourcing details, or customer outcomes rather than defaulting to category-level language.
 
 Not every sentence needs to be unique to the product. Some things are category-standard and fine to state plainly ("apply to clean skin"). But the copy overall should leave no doubt about what makes this product this product.
 

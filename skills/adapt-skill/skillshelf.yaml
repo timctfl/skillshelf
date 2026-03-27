@@ -65,5 +65,5 @@ faq:
   - question: Will it change how my prompt works?
     answer: >-
       No. It keeps your prompt's logic and output. It adds structure around
-      it -- things like edge case handling, an example output file, and
-      metadata -- so it works well as a shared skill.
+      it (things like edge case handling, an example output file, and
+      metadata) so it works well as a shared skill.

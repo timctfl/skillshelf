@@ -14,7 +14,7 @@ These are pass/fail. If the copy fails on any of these, the quality of everythin
 
 The copy should sound like it was written by the brand's team, not by an AI or a generic copywriter. This means matching the brand's tone, sentence structure, vocabulary, and personality.
 
-When a brand voice profile is available, follow it -- especially the avoidance rules and style decisions, which are the most concrete constraints. When no voice profile is available, look for cues in whatever the user has shared (their content template, how they write, existing copy on their site if referenced).
+When a brand voice profile is available, follow it. Pay particular attention to the avoidance rules and style decisions, which are the most concrete constraints. When no voice profile is available, look for cues in whatever the user has shared (their content template, how they write, existing copy on their site if referenced).
 
 Common failures:
 - Introducing superlatives or hype the brand doesn't use ("revolutionary," "game-changing," "ultimate")
@@ -55,7 +55,7 @@ This is especially important for:
 - Ingredient claims and mechanisms of action
 - Performance stats and test results
 - Sourcing, certifications, and regulatory statements
-- Specific outcomes ("reduces fine lines in 4 weeks") -- only include if the data supports it
+- Specific outcomes ("reduces fine lines in 4 weeks"); only include if the data supports it
 - Benefits that go beyond what the spec data actually implies
 
 When the spec data is thin, write what you can support and flag the gaps. Confident-sounding copy built on guesses is worse than shorter copy built on facts.

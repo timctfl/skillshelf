@@ -33,25 +33,25 @@ Ask the user for two things:
 2. Their website URL.
 
 Then ask how they'd like to get their brand data. Frame it as three
-simple options -- not technical jargon:
+simple options, not technical jargon:
 
 > "There are a few ways to pull your brand's colors and fonts from your
 > site. Which sounds most like you?"
 >
-> **Option A -- "I already have the style file, or I can ask someone
+> **Option A: "I already have the style file, or I can ask someone
 > for it."** If you have a CSS file or know your brand's colors and
 > fonts, share them here. If not, I'll give you a message to send
 > your developer with exactly what to ask for.
 >
-> **Option B -- "I'll poke around in Chrome myself."** I'll walk you
+> **Option B: "I'll poke around in Chrome myself."** I'll walk you
 > through a quick copy-paste process in your browser. Takes about two
 > minutes, and you can't break anything.
 >
-> **Option C -- "I'll just send screenshots."** Upload a couple of
+> **Option C: "I'll just send screenshots."** Upload a couple of
 > screenshots and I'll extract what I can. The colors won't be as
 > precise, but it works.
 >
-> You can also combine these -- screenshots plus extracted data gives
+> You can also combine these. Screenshots plus extracted data gives
 > the best result.
 
 Wait for their answer before proceeding.
@@ -70,7 +70,7 @@ upload or paste it directly.
 If they need to ask someone, give them a ready-to-send message.
 Something they can paste into Slack, email, or a text. Example:
 
-> "Hey -- I need our brand's color and font info in a specific format.
+> "Hey, I need our brand's color and font info in a specific format.
 > Could you send me:
 >
 > 1. Our CSS custom properties for colors (the `--color-*` or
@@ -81,7 +81,7 @@ Something they can paste into Slack, email, or a text. Example:
 >    any fallback fonts.
 > 3. If easy, the CSS file or a link to it.
 >
-> Just the raw values are fine -- no need to format it."
+> Just the raw values are fine, no need to format it."
 
 Tell the user: "If you already have a CSS file or style guide, upload
 or paste it here. Otherwise, send that message along and paste whatever
@@ -97,7 +97,7 @@ to be explicit. Walk through it like this:
 **What we're doing (one sentence):** "We're going to open a hidden panel
 in your browser that lets you run a small script. The script reads the
 colors and fonts from your website and copies them for you. It only reads
--- it doesn't change anything on your site."
+and doesn't change anything on your site."
 
 **Step-by-step for Chrome (the default):**
 
@@ -114,7 +114,7 @@ colors and fonts from your website and copies them for you. It only reads
    default. You'll see a message that says something like "don't paste
    code here." Click into the text area at the bottom of the Console
    panel, type the words `allow pasting` (exactly like that, no quotes),
-   and press Enter. Nothing visible will happen -- that's normal. It
+   and press Enter. Nothing visible will happen, and that's normal. It
    just unlocked paste.
 
 4. **Paste the script.** Copy the entire script below, click into the
@@ -144,7 +144,7 @@ Use the extraction script stored in
 [references/console-script.js](references/console-script.js). Present
 it to the user inside a code block so they can copy it easily. Before
 showing the script, tell them: "Here's the script. It looks long, but
-you don't need to read it -- just copy the whole thing and paste it
+you don't need to read it. Just copy the whole thing and paste it
 into the Console."
 
 ---
@@ -153,12 +153,12 @@ into the Console."
 
 Tell the user what to capture:
 
-1. **Homepage** -- full page or at least the header, hero section, and
-   footer. This usually shows the primary colors, heading fonts, and
+1. **Homepage** (full page or at least the header, hero section, and
+   footer). This usually shows the primary colors, heading fonts, and
    navigation styling.
-2. **A product or content page** -- shows body text fonts and secondary
+2. **A product or content page**, which shows body text fonts and secondary
    colors.
-3. **Bonus: any page with buttons or CTAs** -- these reveal accent
+3. **Bonus: any page with buttons or CTAs.** These reveal accent
    colors.
 
 Tell the user: "I'll pull what I can from the screenshots. The font
@@ -186,7 +186,7 @@ results in plain language.
 
 - The font family name
 - Where it's used (headings, body text)
-- A suggested fallback (based on the font category -- serif, sans-serif,
+- A suggested fallback (based on the font category: serif, sans-serif,
   monospace)
 
 Organize the summary clearly and ask: "Does this look right? If any
@@ -218,7 +218,7 @@ regenerate the entire file for a single correction.
 
 ## Output Structure
 
-The output document follows this format. Every heading is stable --
+The output document follows this format. Every heading is stable, and
 downstream skills reference them by name.
 
 ```

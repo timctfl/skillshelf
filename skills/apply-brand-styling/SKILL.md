@@ -11,7 +11,7 @@ license: Apache-2.0
 This skill takes a brand guidelines file and an existing document, then
 applies the brand's visual identity to that document. It handles fonts,
 colors, heading hierarchy, and general structural polish. It does not
-change any of the text itself -- only the styling and structure around it.
+change any of the text itself, only the styling and structure around it.
 
 The brand guidelines file can be the output of the Brand Guidelines
 Extractor, a style guide PDF, or any document that defines colors and
@@ -139,10 +139,10 @@ the branded file:
 
 A brief list of what was applied, organized by category:
 
-- **Typography** -- which fonts were applied where, and any fallbacks used.
-- **Colors** -- which colors were applied to text, headings, accents, and backgrounds.
-- **Heading structure** -- any hierarchy changes made (e.g., "Promoted 3 H3s to H2s to fix a gap in the hierarchy").
-- **Structural polish** -- any spacing, list, or formatting cleanup.
+- **Typography:** which fonts were applied where, and any fallbacks used.
+- **Colors:** which colors were applied to text, headings, accents, and backgrounds.
+- **Heading structure:** any hierarchy changes made (e.g., "Promoted 3 H3s to H2s to fix a gap in the hierarchy").
+- **Structural polish:** any spacing, list, or formatting cleanup.
 
 ### Confidence Notes
 
@@ -207,9 +207,9 @@ PowerPoints do. I have two options, but both have tradeoffs:
 
 1. **Extract the content into a Word doc**, apply branding, and deliver
    a .docx. This gives you a fully branded document, but the original
-   PDF layout will not be preserved exactly -- tables, columns, and
+   PDF layout will not be preserved exactly. Tables, columns, and
    page breaks may shift.
-2. **Review the PDF and produce a branding checklist** -- a list of
+2. **Review the PDF and produce a branding checklist:** a list of
    specific changes (fonts, colors, heading styles) that you or a
    designer can apply in the original tool that created the PDF.
 

@@ -27,10 +27,10 @@ consumes:
 
 faq:
   - question: "What kind of product data does it accept?"
-    answer: "Whatever you have -- spec sheets (PDF, image, or pasted), Shopify CSV rows, supplier data sheets, product feed entries, or raw notes. The more specific the input, the more specific the output."
+    answer: "Whatever you have: spec sheets (PDF, image, or pasted), Shopify CSV rows, supplier data sheets, product feed entries, or raw notes. The more specific the input, the more specific the output."
   - question: "Do I need a content template?"
     answer: "Yes. The skill needs to know what sections to write. You can upload a content template document (from the content template skill), or describe your PDP sections directly. The skill won't guess at a page structure."
   - question: "How is this different from the rewrite PDP copy skill?"
-    answer: "The rewrite skill takes existing PDP copy and improves it. This skill writes net-new descriptions when no customer-facing copy exists yet -- the typical scenario when new products arrive with only spec data."
+    answer: "The rewrite skill takes existing PDP copy and improves it. This skill writes net-new descriptions when no customer-facing copy exists yet, which is the typical scenario when new products arrive with only spec data."
   - question: "What happens when the spec data is incomplete?"
     answer: "The skill writes what the data supports, marks gaps as placeholders with specific asks, and documents what additional data would strengthen the copy. It never fills gaps with plausible guesses."

@@ -53,7 +53,7 @@ Every SkillShelf skill includes a `skillshelf.yaml` sidecar file alongside SKILL
 
 ## Consumes
 
-Declares which primitives or skill outputs this skill benefits from. The site renders these as a "Best with" section on the skill page. The consuming skill declares the relationship -- primitives don't need to declare anything.
+Declares which primitives or skill outputs this skill benefits from. The site renders these as a "Best with" section on the skill page. The consuming skill declares the relationship; primitives don't need to declare anything.
 
 ```yaml
 consumes:

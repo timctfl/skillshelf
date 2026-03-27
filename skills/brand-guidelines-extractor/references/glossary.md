@@ -1,4 +1,4 @@
-# Brand Guidelines Extractor -- Glossary
+# Brand Guidelines Extractor Glossary
 
 ## Overview
 
@@ -31,11 +31,11 @@ what values to expect, and how to interpret them.
 
 When multiple sections provide guidance that applies to the same output:
 
-1. Colors / Typography -- These are facts. Apply them exactly.
-2. Smart Font Application / Text Styling -- Specific rules for element types. Follow these over general guidance.
-3. Shape and Accent Colors -- Directional guidance for non-text elements. Follow the cycling order if specified.
-4. Overview -- Context only. Does not override any specific section.
-5. Confidence Notes -- If present, treat flagged values as approximate and allow reasonable interpretation.
+1. Colors / Typography. These are facts. Apply them exactly.
+2. Smart Font Application / Text Styling. Specific rules for element types. Follow these over general guidance.
+3. Shape and Accent Colors. Directional guidance for non-text elements. Follow the cycling order if specified.
+4. Overview. Context only. Does not override any specific section.
+5. Confidence Notes. If present, treat flagged values as approximate and allow reasonable interpretation.
 
 ## Handling Missing or Unexpected Input
 
@@ -66,13 +66,13 @@ where coverage is missing.
 **What to expect:** One paragraph with brand name, URL, and a note about extraction method.
 **How to apply:** Read for context. Do not extract styling values from this section.
 
-### Colors -- Main Colors
+### Colors: Main Colors
 
 **What it represents:** The core palette used for backgrounds, text, and neutral elements.
 **What to expect:** A list of 3-6 colors, each with a hex code, plain-English name (e.g., "dark charcoal"), and a role (e.g., "Primary text and dark backgrounds").
 **How to apply:** Match hex codes exactly. Use the role descriptions to decide which color applies to which element. "Primary text" means default text color. "Light backgrounds" means the default page/canvas background.
 
-### Colors -- Accent Colors
+### Colors: Accent Colors
 
 **What it represents:** Non-neutral colors used for interactive elements, CTAs, decorative shapes, and visual emphasis.
 **What to expect:** A list of 1-5 colors with hex codes, plain-English names, and usage notes. Colors are listed in priority order (first = primary accent).
@@ -110,4 +110,4 @@ where coverage is missing.
 
 ## Changelog
 
-**v1.0** -- Initial release.
+**v1.0** Initial release.

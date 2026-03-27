@@ -1,4 +1,4 @@
-# Great Outdoors Co. -- Homepage Content
+# Great Outdoors Co. Homepage Content
 
 This file contains the text content for the Great Outdoors Co. homepage, organized by section. Each section includes the copy, character/word counts, and notes on what visual content would accompany it. This follows the standard small-to-mid DTC outdoor brand homepage structure.
 
@@ -49,7 +49,7 @@ This file contains the text content for the Great Outdoors Co. homepage, organiz
 
 **CTA button:** Shop the Cascade
 
-**Notes:** Full-width lifestyle image of a hiker on a misty PNW trail wearing the Cascade Rain Shell. Rain visible. No dramatic summit shot -- a realistic Saturday morning trail scene. The image should feel like a photo someone's hiking partner took, not a professional campaign.
+**Notes:** Full-width lifestyle image of a hiker on a misty PNW trail wearing the Cascade Rain Shell. Rain visible. No dramatic summit shot. A realistic Saturday morning trail scene. The image should feel like a photo someone's hiking partner took, not a professional campaign.
 
 ---
 
@@ -70,7 +70,7 @@ Six tiles, 2x3 grid on desktop, stacked on mobile:
 
 ---
 
-## 5. Featured Products -- "New This Season"
+## 5. Featured Products: "New This Season"
 
 **Section headline:** New this season
 
@@ -152,7 +152,7 @@ We make technical outdoor gear for people who hike most weekends but don't ident
 | Guarantee | 30-day free returns |
 | Shipping | Free shipping over $99 |
 
-**Notes:** Icons paired with short text. Not a testimonial section -- a trust bar. Each item is 30-40 characters.
+**Notes:** Icons paired with short text. Not a testimonial section; it is a trust bar. Each item is 30-40 characters.
 
 ---
 
@@ -200,7 +200,7 @@ We make technical outdoor gear for people who hike most weekends but don't ident
 
 ## 11. Footer
 
-**Column 1 -- Shop:**
+**Column 1: Shop:**
 - Rain Shells
 - Fleece & Layers
 - Packs
@@ -208,13 +208,13 @@ We make technical outdoor gear for people who hike most weekends but don't ident
 - Sleeping Bags
 - Accessories
 
-**Column 2 -- Support:**
+**Column 2: Support:**
 - Shipping & Returns
 - Sizing Guide
 - Care Instructions
 - Contact Us
 
-**Column 3 -- Company:**
+**Column 3: Company:**
 - Our Story
 - Journal
 - Sustainability

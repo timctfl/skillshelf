@@ -8,7 +8,7 @@ license: Apache-2.0
 
 # Document a Content Template
 
-This skill extracts and documents the recurring structure of a specific content type -- PDP, collection page, campaign email, landing page, or any other format a brand produces repeatedly. The output is a template primitive: a Markdown document that captures section names, order, format, constraints, and content expectations.
+This skill extracts and documents the recurring structure of a specific content type (PDP, collection page, campaign email, landing page, or any other format a brand produces repeatedly). The output is a template primitive: a Markdown document that captures section names, order, format, constraints, and content expectations.
 
 The template primitive is not content. It is the blueprint. Once saved, the user uploads it alongside content-generation skills so the AI knows the target structure without the user explaining it each time. The brand voice profile tells a skill how to sound. The positioning brief tells it what to emphasize. The template primitive tells it where everything goes and what shape each section takes.
 
@@ -18,7 +18,7 @@ See `references/example-output.md` for what the finished document looks like.
 
 ## Voice and Approach
 
-Be direct and efficient. The user is here to document a structure, not explore options. Use their terminology for sections and content types -- do not rename to generic labels. When the extracted structure is ambiguous, surface it plainly and ask. Do not editorialize about the template's quality or suggest improvements. That is a different skill's job.
+Be direct and efficient. The user is here to document a structure, not explore options. Use their terminology for sections and content types. Do not rename to generic labels. When the extracted structure is ambiguous, surface it plainly and ask. Do not editorialize about the template's quality or suggest improvements. That is a different skill's job.
 
 ---
 
@@ -29,7 +29,7 @@ Be direct and efficient. The user is here to document a structure, not explore o
 Ask the user two things:
 
 1. What content type they want to document (PDP, collection page, email, etc.)
-2. An example of that content type -- screenshot, pasted content, URL, uploaded file, or verbal description
+2. An example of that content type (screenshot, pasted content, URL, uploaded file, or verbal description)
 
 Let them know that sharing 2-3 examples of the same content type with different products or campaigns helps distinguish fixed structure from variable content, but one example is enough to start.
 
@@ -41,11 +41,11 @@ Do not require a specific format. Do not ask for something they have not offered
 
 Read back the extracted structure as a numbered list of sections. For each section, include:
 
-- **Section name** -- use whatever the brand calls it, not generic labels
-- **Format** -- paragraph, bullet list, stat block, headline, image + caption, accordion, table, etc.
-- **Approximate constraints** -- character count range, number of bullets, sentence count, estimated from the example
-- **Content type** -- what goes here: product description, technical specs, social proof, usage instructions, CTA, etc.
-- **Notes** -- anything distinctive: sentence fragments vs. full sentences, person (second person "you"), bold lead-ins on bullets, icon usage, column layout
+- **Section name:** use whatever the brand calls it, not generic labels
+- **Format:** paragraph, bullet list, stat block, headline, image + caption, accordion, table, etc.
+- **Approximate constraints:** character count range, number of bullets, sentence count, estimated from the example
+- **Content type:** what goes here (product description, technical specs, social proof, usage instructions, CTA, etc.)
+- **Notes:** anything distinctive (sentence fragments vs. full sentences, person (second person "you"), bold lead-ins on bullets, icon usage, column layout)
 
 Surface anything ambiguous. Common ambiguities:
 
@@ -62,7 +62,7 @@ Ask the user to confirm the list. Tell them to rename sections, add missing ones
 
 After the user confirms (or after incorporating their edits), produce the full template primitive as a downloadable Markdown document following the output structure below.
 
-Present the document and ask the user to review it. Let them know this is the file they will upload alongside content skills, so accuracy matters -- especially section names, format types, and constraints.
+Present the document and ask the user to review it. Let them know this is the file they will upload alongside content skills, so accuracy matters, especially section names, format types, and constraints.
 
 ### Turn 4+: Revise
 
@@ -99,7 +99,7 @@ each time.]
 ### 1. [Section Name]
 
 - **Format:** [paragraph / bullet list / stat block / headline / etc.]
-- **Length:** [approximate -- e.g., "2-3 sentences," "4-6 bullets," "50-70 characters"]
+- **Length:** [approximate, e.g., "2-3 sentences," "4-6 bullets," "50-70 characters"]
 - **Content:** [what goes here]
 - **Notes:** [anything distinctive about how this section is written or displayed]
 
@@ -191,7 +191,7 @@ Extract what is available. Note in the Template Overview or Structural Notes tha
 
 ### Partial screenshot
 
-Ask once if the user has additional screenshots showing the rest of the page. If not, document what is visible. Add a note in Structural Notes: "Template may be incomplete -- extracted from a partial screenshot that did not capture the full page."
+Ask once if the user has additional screenshots showing the rest of the page. If not, document what is visible. Add a note in Structural Notes: "Template may be incomplete. Extracted from a partial screenshot that did not capture the full page."
 
 ### Verbal description only
 
@@ -203,7 +203,7 @@ The user wants to document what they want, not what they have. Produce the docum
 
 ### Content type not in the common list
 
-Handle it identically. The skill works with any recurring content format -- wholesale line sheets, retail sell sheets, investor updates, internal reports. The extraction process is the same regardless of content type.
+Handle it identically. The skill works with any recurring content format: wholesale line sheets, retail sell sheets, investor updates, internal reports. The extraction process is the same regardless of content type.
 
 ---
 

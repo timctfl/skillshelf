@@ -8,7 +8,7 @@ The example demonstrates how the skill inventories the page, evaluates against t
 
 ## PDP Summary
 
-**Product:** Ridgewalker GTX Hiking Boot -- Great Outdoors Co.
+**Product:** Ridgewalker GTX Hiking Boot (Great Outdoors Co.)
 **Category:** Footwear / Hiking
 **Price:** $189
 

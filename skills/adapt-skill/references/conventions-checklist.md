@@ -89,7 +89,7 @@ Use this checklist during Phase 4 to review a skill against SkillShelf standards
 
 - [ ] Specific to the brand/product/data, not generic
 - [ ] Plain language, no jargon or buzzwords
-- [ ] No em dashes (use double hyphens `--` instead)
+- [ ] No em dashes, en dashes, or double hyphens as punctuation (rewrite using periods, commas, parentheses, or conjunctions)
 - [ ] Claims are supported by user input, not fabricated
 - [ ] Instructions explain why, not just what (theory of mind over rigid rules)
 

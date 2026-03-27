@@ -24,7 +24,7 @@ Tell the user:
 
 **Required:**
 - Desktop PDP screenshot (feel free to include a few screenshots if you need to cover the main parts of the page)
-- Mobile PDP screenshot (same idea -- a few screenshots to cover the full page is fine)
+- Mobile PDP screenshot (same idea; a few screenshots to cover the full page is fine)
 - Brand voice guide or positioning brief
 
 **Strongly recommended:**
@@ -48,7 +48,7 @@ After sharing: "Review the audit and let me know if you want me to dig deeper on
 
 Edit the audit in place when the user requests changes. Do not regenerate the entire document for a single correction. If the user wants to audit a second PDP, start a fresh document rather than appending to the first.
 
-If the user asks about the reasoning behind a recommendation, use web search to look up the cited source (the article title is in the inline citation) and provide a fuller explanation of the finding. Be honest about what you can access -- Baymard paywalls much of their full research, so you may only have the article summary and key stats rather than the complete study. Say "here's what the research summary covers" rather than implying you read the full report.
+If the user asks about the reasoning behind a recommendation, use web search to look up the cited source (the article title is in the inline citation) and provide a fuller explanation of the finding. Be honest about what you can access. Baymard paywalls much of their full research, so you may only have the article summary and key stats rather than the complete study. Say "here's what the research summary covers" rather than implying you read the full report.
 
 ## Analysis Process
 
@@ -66,9 +66,9 @@ This inventory becomes the "PDP Summary" section of the output and grounds the r
 
 ### Step 2: Evaluate against the rubric
 
-Work through [references/pdp-best-practices.md](references/pdp-best-practices.md) section by section. For each best practice, assess whether the PDP meets, partially meets, or does not meet the standard based on what's visible in the screenshots. Not every best practice will be relevant to every product type -- skip practices that don't apply and note why if it's not obvious.
+Work through [references/pdp-best-practices.md](references/pdp-best-practices.md) section by section. For each best practice, assess whether the PDP meets, partially meets, or does not meet the standard based on what's visible in the screenshots. Not every best practice will be relevant to every product type. Skip practices that don't apply and note why if it's not obvious.
 
-When GA4 data is available, use it to weight recommendations. Pay particular attention to the mobile/desktop split -- if mobile engagement rate is significantly lower than desktop, that shifts priority toward mobile-specific recommendations. A copy issue on a page with strong engagement metrics is lower priority than a copy issue on a page where users are bouncing. When GA4 data is not available, weight recommendations based on the rubric's evidence strength and the likely impact for the product category.
+When GA4 data is available, use it to weight recommendations. Pay particular attention to the mobile/desktop split. If mobile engagement rate is significantly lower than desktop, that shifts priority toward mobile-specific recommendations. A copy issue on a page with strong engagement metrics is lower priority than a copy issue on a page where users are bouncing. When GA4 data is not available, weight recommendations based on the rubric's evidence strength and the likely impact for the product category.
 
 ### Step 3: Evaluate copy against the brand voice guide
 
