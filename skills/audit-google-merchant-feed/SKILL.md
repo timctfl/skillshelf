@@ -30,8 +30,10 @@ Tell the user:
 **Required:**
 - Google Merchant Center XML feed file
 
+**How to get your feed file:** If you use the Shopify Google & YouTube channel (or any feed app that submits directly), you may not have a local XML file. To download it: go to Google Merchant Center > Products > Feeds > click your primary feed > click the three-dot menu > Download file. Save the XML and upload it here.
+
 **Strongly recommended:**
-- Shopify product export CSV (Admin > Products > Export > All products as CSV). This unlocks cross-reference checks: sale price mapping, GTIN sync, price mismatches, and coverage gaps between your store and your feed.
+- Shopify product export CSV. To export: go to Shopify Admin > Products > click Export > select 'All products' and 'Plain CSV file' > Export. This unlocks cross-reference checks: sale price mapping, GTIN sync, price mismatches, and coverage gaps between your store and your feed.
 
 Without the Shopify CSV, I'll still catch feed-level issues (missing attributes, duplicates, malformed HTML, category depth, inconsistent variants), but I won't be able to compare the feed against your store data."
 
@@ -75,9 +77,9 @@ When the user asks about a specific issue:
 |---|---|
 | Total items in feed | [count] |
 | Items with issues | [count] |
-| Disapproved (will not serve) | [count] |
-| Demoted (reduced visibility) | [count] |
-| Advisory (optimization opportunity) | [count] |
+| Disapproved (will not serve) | [issue count] across [item count] items |
+| Demoted (reduced visibility) | [issue count] across [item count] items |
+| Advisory (optimization opportunity) | [issue count] across [item count] items |
 | Shopify CSV provided | Yes / No |
 | Cross-reference checks | Enabled / Skipped |
 

@@ -3,6 +3,8 @@
 against a Shopify product export CSV. Outputs structured JSON that an LLM
 reads and explains.
 
+Requires Python 3.10+ (uses X | Y union syntax and list[dict] generics).
+
 Usage:
     python validate_merchant_feed.py feed.xml [shopify.csv]
 
@@ -20,7 +22,6 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
-from io import StringIO
 from pathlib import Path
 
 NS = {"g": "http://base.google.com/ns/1.0"}
@@ -37,16 +38,32 @@ VALID_GENDER = {"male", "female", "unisex"}
 VALID_AGE_GROUP = {"adult", "kids", "toddler", "infant", "newborn"}
 VALID_CONDITION = {"new", "refurbished", "used"}
 
+VALIDATED_ATTRS = {
+    "availability": VALID_AVAILABILITY,
+    "gender": VALID_GENDER,
+    "age_group": VALID_AGE_GROUP,
+    "condition": VALID_CONDITION,
+}
+
+VALID_GTIN_LENGTHS = {8, 12, 13, 14}
+
 STOP_WORDS = {
     "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for",
     "of", "with", "by", "from", "is", "it", "as", "be", "was", "are",
     "that", "this", "its", "not", "your", "you", "our", "we", "all",
 }
 
-PROMO_PATTERNS = [
+TITLE_PROMO_PATTERNS = [
     r"\bbuy\s+now\b", r"\bfree\s+shipping\b", r"\bbest\s+price\b",
-    r"\blimited\s+time\b", r"\border\s+now\b", r"\bsale\b",
-    r"\bclearance\b", r"\bdiscount\b", r"\bcheap\b",
+    r"\blimited\s+time\b", r"\border\s+now\b", r"\bon\s+sale\b",
+    r"\bclearance\b", r"\bdiscount\b", r"\bcheap(est)?\b",
+    r"\b\d+%\s*off\b", r"\bbogo\b",
+]
+
+DESC_PROMO_PATTERNS = [
+    r"\bbuy\s+now\b", r"\border\s+now\b", r"\bbest\s+price\b",
+    r"\blimited\s+time\s+offer\b", r"\bcheapest\b",
+    r"\bclick\s+here\b", r"\bact\s+now\b",
 ]
 
 
@@ -172,6 +189,30 @@ def get_attr(item: dict, attr: str) -> str:
     return (item.get(attr) or "").strip()
 
 
+def validate_gtin(gtin: str) -> tuple[bool, str]:
+    """Validate a GTIN using the standard modulo-10 check digit algorithm.
+    Returns (is_valid, reason).
+    """
+    digits_only = re.sub(r"\D", "", gtin)
+    if not digits_only:
+        return False, "GTIN contains no digits"
+    if len(digits_only) not in VALID_GTIN_LENGTHS:
+        return False, f"GTIN has {len(digits_only)} digits (valid lengths: 8, 12, 13, 14)"
+
+    digits = [int(d) for d in digits_only]
+    check = digits[-1]
+    payload = digits[:-1]
+
+    total = 0
+    for i, d in enumerate(reversed(payload)):
+        total += d * (3 if i % 2 == 0 else 1)
+    expected = (10 - (total % 10)) % 10
+
+    if check != expected:
+        return False, f"Check digit is {check}, expected {expected}"
+    return True, ""
+
+
 # ---------------------------------------------------------------------------
 # Rules: Disapproved
 # ---------------------------------------------------------------------------
@@ -274,34 +315,41 @@ def check_d05_prohibited_content(item: dict) -> list[dict]:
     """D05: Prohibited content in title or description."""
     issues = []
 
-    for field_name in ("title", "description"):
-        text = get_attr(item, field_name)
-        if not text:
-            continue
-
-        plain = strip_html(text) if field_name == "description" else text
-
-        for pattern in PROMO_PATTERNS:
-            if re.search(pattern, plain, re.IGNORECASE):
+    title = get_attr(item, "title")
+    if title:
+        for pattern in TITLE_PROMO_PATTERNS:
+            if re.search(pattern, title, re.IGNORECASE):
                 issues.append({
                     "rule": "D05",
                     "severity": "disapproved",
-                    "attribute": field_name,
-                    "message": f"Promotional text detected in {field_name}: matches '{pattern}'.",
+                    "attribute": "title",
+                    "message": f"Promotional text detected in title: matches '{pattern}'.",
                 })
                 break
 
-        if field_name == "title":
-            words = plain.split()
-            if words:
-                upper_count = sum(1 for w in words if w.isupper() and len(w) > 1)
-                if upper_count / len(words) > 0.5:
-                    issues.append({
-                        "rule": "D05",
-                        "severity": "disapproved",
-                        "attribute": "title",
-                        "message": "Title has excessive capitalization (>50% uppercase words).",
-                    })
+        words = title.split()
+        if words:
+            upper_count = sum(1 for w in words if w.isupper() and len(w) > 1)
+            if upper_count / len(words) > 0.5:
+                issues.append({
+                    "rule": "D05",
+                    "severity": "disapproved",
+                    "attribute": "title",
+                    "message": "Title has excessive capitalization (>50% uppercase words).",
+                })
+
+    desc = get_attr(item, "description")
+    if desc:
+        plain = strip_html(desc)
+        for pattern in DESC_PROMO_PATTERNS:
+            if re.search(pattern, plain, re.IGNORECASE):
+                issues.append({
+                    "rule": "D05",
+                    "severity": "demoted",
+                    "attribute": "description",
+                    "message": f"Possible promotional text in description: matches '{pattern}'.",
+                })
+                break
 
     return issues
 
@@ -477,6 +525,40 @@ def check_w08_missing_gtin(item: dict) -> list[dict]:
     }]
 
 
+def check_w09_invalid_gtin(item: dict) -> list[dict]:
+    """W09: GTIN present but invalid format or check digit."""
+    gtin = get_attr(item, "gtin")
+    if not gtin:
+        return []
+    is_valid, reason = validate_gtin(gtin)
+    if not is_valid:
+        return [{
+            "rule": "W09",
+            "severity": "demoted",
+            "attribute": "gtin",
+            "message": f"Invalid GTIN '{gtin}': {reason}.",
+        }]
+    return []
+
+
+def check_w10_invalid_attr_value(item: dict) -> list[dict]:
+    """W10: Attribute has a value outside Google's accepted set."""
+    issues = []
+    for attr, valid_set in VALIDATED_ATTRS.items():
+        val = get_attr(item, attr)
+        if val and val.lower() not in valid_set:
+            issues.append({
+                "rule": "W10",
+                "severity": "demoted",
+                "attribute": attr,
+                "message": (
+                    f"g:{attr} value '{val}' is not valid. "
+                    f"Accepted values: {', '.join(sorted(valid_set))}."
+                ),
+            })
+    return issues
+
+
 # ---------------------------------------------------------------------------
 # Rules: Advisory
 # ---------------------------------------------------------------------------
@@ -601,54 +683,92 @@ def check_duplicate_items(items: list[dict]) -> list[dict]:
 # Cross-reference rules (require both XML and CSV)
 # ---------------------------------------------------------------------------
 
-def build_shopify_lookup(shopify_rows: list[dict]) -> dict:
-    """Build a lookup keyed by Variant SKU for cross-referencing."""
-    lookup = {}
+def build_shopify_lookups(shopify_rows: list[dict]) -> dict:
+    """Build multiple lookups for matching feed items to Shopify rows.
+    Returns a dict with 'by_sku', 'by_barcode', and 'by_handle_options' keys.
+    """
+    by_sku = {}
+    by_barcode = {}
+    by_handle_options = {}
+
     for row in shopify_rows:
         sku = (row.get("Variant SKU") or "").strip()
+        barcode = (row.get("Variant Barcode") or "").strip()
+        handle = (row.get("Handle") or "").strip()
+
+        option_parts = []
+        for i in range(1, 4):
+            val = (row.get(f"Option{i} Value") or "").strip()
+            if val:
+                option_parts.append(val.lower())
+        handle_key = (handle, tuple(sorted(option_parts))) if handle else None
+
         if sku:
-            lookup[sku] = row
-    return lookup
+            by_sku[sku] = row
+        if barcode:
+            by_barcode[barcode] = row
+        if handle_key:
+            by_handle_options[handle_key] = row
+
+    return {
+        "by_sku": by_sku,
+        "by_barcode": by_barcode,
+        "by_handle_options": by_handle_options,
+    }
 
 
-def find_sku_in_feed_id(item_id: str, shopify_lookup: dict) -> str | None:
-    """Try to match a feed item ID to a Shopify SKU.
-    Feed IDs may be raw SKUs, or shopify_{country}_{product_id}_{variant_id} format.
+def match_feed_item_to_shopify(item: dict, lookups: dict) -> dict | None:
+    """Try multiple matching strategies to find the Shopify row for a feed item.
+    Priority: MPN/SKU match, g:id match, GTIN/barcode match, handle+options match.
     """
-    if item_id in shopify_lookup:
-        return item_id
+    by_sku = lookups["by_sku"]
+    by_barcode = lookups["by_barcode"]
+    by_handle_options = lookups["by_handle_options"]
+
+    mpn = get_attr(item, "mpn")
+    if mpn and mpn in by_sku:
+        return by_sku[mpn]
+
+    item_id = get_attr(item, "id")
+    if item_id and item_id in by_sku:
+        return by_sku[item_id]
+
+    gtin = get_attr(item, "gtin")
+    if gtin and gtin in by_barcode:
+        return by_barcode[gtin]
+
+    link = get_attr(item, "link")
+    if link:
+        handle_match = re.search(r"/products/([^/?#]+)", link)
+        if handle_match:
+            handle = handle_match.group(1)
+            option_parts = []
+            for attr in ("color", "size"):
+                val = get_attr(item, attr)
+                if val:
+                    option_parts.append(val.lower())
+            handle_key = (handle, tuple(sorted(option_parts)))
+            if handle_key in by_handle_options:
+                return by_handle_options[handle_key]
+
     return None
 
 
 def cross_reference(items: list[dict], shopify_rows: list[dict]) -> list[dict]:
     """Run cross-reference rules between feed items and Shopify CSV rows."""
-    shopify_lookup = build_shopify_lookup(shopify_rows)
+    lookups = build_shopify_lookups(shopify_rows)
     issues = []
 
-    feed_mpns = {}
-    for item in items:
-        mpn = get_attr(item, "mpn")
-        if mpn:
-            feed_mpns[mpn] = item
-
-    shopify_skus = set()
-    for row in shopify_rows:
-        sku = (row.get("Variant SKU") or "").strip()
-        if sku:
-            shopify_skus.add(sku)
+    matched_skus = set()
 
     for item in items:
-        item_id = get_attr(item, "id")
-        mpn = get_attr(item, "mpn")
-
-        shopify_row = None
-        if mpn and mpn in shopify_lookup:
-            shopify_row = shopify_lookup[mpn]
-        elif item_id in shopify_lookup:
-            shopify_row = shopify_lookup[item_id]
-
+        shopify_row = match_feed_item_to_shopify(item, lookups)
         if shopify_row is None:
             continue
+
+        sku = (shopify_row.get("Variant SKU") or "").strip()
+        if sku:
+            matched_skus.add(sku)
 
         issues.extend(_check_a01_sale_price(item, shopify_row))
         issues.extend(_check_a03_gtin_sync(item, shopify_row))
@@ -663,18 +783,9 @@ def cross_reference(items: list[dict], shopify_rows: list[dict]) -> list[dict]:
         if sku and published == "TRUE" and status == "active":
             shopify_active_skus.add(sku)
 
-    feed_skus = set()
-    for item in items:
-        mpn = get_attr(item, "mpn")
-        if mpn:
-            feed_skus.add(mpn)
-        item_id = get_attr(item, "id")
-        if item_id:
-            feed_skus.add(item_id)
-
-    missing_from_feed = shopify_active_skus - feed_skus
+    missing_from_feed = shopify_active_skus - matched_skus
     for sku in sorted(missing_from_feed):
-        row = shopify_lookup.get(sku, {})
+        row = lookups["by_sku"].get(sku, {})
         title = (row.get("Title") or "").strip()
         has_required = all([
             (row.get("Variant Price") or "").strip(),
@@ -826,6 +937,8 @@ def run_per_item_rules(item: dict) -> list[dict]:
         check_w03_broad_category,
         check_w07_keyword_stuffing,
         check_w08_missing_gtin,
+        check_w09_invalid_gtin,
+        check_w10_invalid_attr_value,
         check_a02_no_additional_images,
         check_a05_no_product_highlight,
         check_a06_variant_title_no_options,
@@ -888,11 +1001,31 @@ def build_output(items: list[dict], shopify_rows: list[dict] | None) -> dict:
     severity_counts = Counter(i["severity"] for i in all_issues)
     rule_counts = Counter(i["rule"] for i in all_issues)
 
+    items_by_severity = {"disapproved": set(), "demoted": set(), "advisory": set()}
+    for item_id, item_data in per_item_issues.items():
+        for issue in item_data["issues"]:
+            items_by_severity[issue["severity"]].add(item_id)
+    for issue in feed_level_issues:
+        sev = issue["severity"]
+        if "item_id" in issue:
+            items_by_severity[sev].add(issue["item_id"])
+        elif "item_group_id" in issue:
+            items_by_severity[sev].add(issue["item_group_id"])
+    for issue in cross_ref_issues:
+        sev = issue["severity"]
+        if "shopify_sku" in issue:
+            items_by_severity[sev].add(issue["shopify_sku"])
+
     return {
         "summary": {
             "total_items": len(items),
             "items_with_issues": len(per_item_issues),
             "total_issues": len(all_issues),
+            "items_affected_by_severity": {
+                "disapproved": len(items_by_severity["disapproved"]),
+                "demoted": len(items_by_severity["demoted"]),
+                "advisory": len(items_by_severity["advisory"]),
+            },
             "shopify_csv_provided": shopify_rows is not None,
             "shopify_rows": len(shopify_rows) if shopify_rows is not None else 0,
             "by_severity": {

@@ -29,22 +29,22 @@ The item is accepted and functional but is missing an optimization that would im
 
 - **Attributes checked**: `g:color`, `g:size`, `g:gender`, `g:age_group`
 - **Condition**: The item's `g:google_product_category` starts with "Apparel & Accessories" (or uses a numeric ID in the 166-5598 range) and one or more of these attributes is absent.
-- **Shopify fix**: For gender and age_group, go to Shopify Admin > Products > [product] > scroll to the "Product organization" section and fill the Google Shopping fields. Alternatively, use Bulk Editor (Products > select all apparel items > Edit products) to set gender and age_group across multiple products at once. For color and size, ensure the product's variant options include an option named "Color" and/or "Size".
+- **Shopify fix**: For gender and age_group, go to Shopify Admin > Products > select affected products > Bulk edit. Add the "Google Shopping / Gender" and "Google Shopping / Age Group" columns if not visible (click "Columns"). If these fields are not available in the product editor (some themes and newer Shopify versions manage them through the Google & YouTube channel), open the Google & YouTube channel app and check its product data mapping. For color and size, ensure the product's variant options include an option named "Color" and/or "Size".
 - **Google reference**: [Apparel and accessories requirements](https://support.google.com/merchants/answer/6324463)
 
 ### D03: Duplicate item ID
 
 - **Condition**: Two or more items in the feed share the same `g:id` value.
-- **Shopify fix**: Each variant must have a unique SKU. Go to Shopify Admin > Products > [product] > Variants and assign unique SKUs. If the feed uses Shopify's internal ID format (`shopify_{country}_{product_id}_{variant_id}`), the issue is in the feed generation tool, not the Shopify data.
+- **Shopify fix**: Each variant must have a unique SKU. Go to Shopify Admin > Products > [product] > edit the variant and assign a unique SKU. If the feed uses Shopify's internal ID format (`shopify_{country}_{product_id}_{variant_id}`), the issue is in the feed generation tool, not the Shopify data. To resolve feed-level duplicates: check your feed app's sync status page for errors, or go to Google Merchant Center > Products > All products, filter to the affected items, and remove the duplicate entries. Avoid disconnecting and reconnecting the Google & YouTube channel, as this resets product approval status and campaign history.
 - **Google reference**: [Product data specification, id](https://support.google.com/merchants/answer/6324405)
 
 ### D04: Malformed HTML in description
 
 - **Condition**: The `g:description` contains unclosed HTML tags (e.g., `</p` missing `>`), nested block elements (e.g., `<p>...<p>` without closing), or HTML entity artifacts (e.g., `&amp;amp;`). Google may reject items with broken HTML or display garbled text in Shopping ads.
-- **Shopify fix**: Go to Shopify Admin > Products > [product] > click the `<>` (Show HTML) button in the description editor. Find and fix the broken tags. Common patterns:
+- **Shopify fix**: Go to Shopify Admin > Products > [product] > in the description editor, click "Show HTML" (or the code view icon) to view the raw markup. Find and fix the broken tags. Common patterns:
   - `</p` at the end of a paragraph: add the closing `>`.
   - `<p>...<br><p>`: replace the second `<p>` with `</p><p>`.
-  - For bulk fixes, export the CSV, fix in a spreadsheet, and re-import.
+  - For bulk fixes, export the CSV, fix the Body (HTML) column in a spreadsheet, and re-import.
 - **Google reference**: [Product data specification, description](https://support.google.com/merchants/answer/6324468)
 
 ### D05: Prohibited content in title or description
@@ -85,12 +85,6 @@ The item is accepted and functional but is missing an optimization that would im
 - **Impact**: Google may treat these as different colors, fragmenting the product's variant presentation.
 - **Shopify fix**: Go to Shopify Admin > Products > [product] > Variants and normalize color option values to title case (e.g., "Forest Green", "Slate").
 
-### W06: SEO description too long or duplicated
-
-- **Condition**: The `g:description` is identical to the meta description (detectable when the Shopify CSV's `SEO Description` matches a truncated version of `Body (HTML)`) or exceeds 5000 characters.
-- **Impact**: Duplicate or truncated descriptions provide weaker signals than purpose-written feed descriptions.
-- **Shopify fix**: Write distinct product descriptions and SEO descriptions. The product description (Body HTML) should be comprehensive. The SEO description should be a 150 to 300 character summary for search results.
-
 ### W07: Keyword stuffing in title or description
 
 - **Condition**: The title or description contains repeated keywords, lists of synonyms, or unnatural keyword density. Heuristic: any single word (excluding stop words) appearing more than 3 times in the title, or more than 5 times per 100 words in the description.
@@ -102,6 +96,22 @@ The item is accepted and functional but is missing an optimization that would im
 - **Condition**: `g:gtin` is absent and the product is not custom-made, vintage, or a category-specific exemption (e.g., some apparel items, handmade goods). Specifically, the `g:brand` is populated (suggesting a manufactured product) but no GTIN is present.
 - **Impact**: Products with GTINs get higher placement in Shopping results. Google has stated that items from known brands without GTINs may see reduced visibility.
 - **Shopify fix**: Go to Shopify Admin > Products > [product] > Variants > edit the Barcode field for each variant. The UPC/EAN can typically be found on product packaging or obtained from the manufacturer.
+
+### W09: Invalid GTIN format
+
+- **Condition**: `g:gtin` is present but does not conform to a valid GTIN format. Valid formats are GTIN-8 (8 digits), GTIN-12/UPC (12 digits), GTIN-13/EAN (13 digits), or GTIN-14 (14 digits). The check digit (last digit) must pass the standard modulo-10 algorithm.
+- **Impact**: Invalid GTINs cause disapproval or warnings in Google Merchant Center. Google validates GTIN check digits and cross-references them against the GS1 database.
+- **Shopify fix**: Verify the barcode on the product packaging. Go to Shopify Admin > Products > [product] > Variants > correct the Barcode field. Common errors: transcription typos, using internal SKUs instead of UPCs, and entering ISBNs without converting to GTIN-13.
+
+### W10: Invalid attribute value
+
+- **Condition**: An attribute has a value that is not in Google's accepted set. Checked attributes:
+  - `g:availability` must be one of: `in_stock`, `out_of_stock`, `preorder`, `backorder`
+  - `g:gender` must be one of: `male`, `female`, `unisex`
+  - `g:age_group` must be one of: `adult`, `kids`, `toddler`, `infant`, `newborn`
+  - `g:condition` must be one of: `new`, `refurbished`, `used`
+- **Impact**: Invalid values cause disapproval. Google rejects items with unrecognized attribute values.
+- **Shopify fix**: Correct the value in Shopify Admin or in the feed tool's mapping configuration. For gender and age_group, use Bulk Editor to update across multiple products.
 
 ## Advisory rules
 
@@ -122,12 +132,6 @@ The item is accepted and functional but is missing an optimization that would im
 - **Condition**: The feed contains a `g:gtin` for an item, but the corresponding Shopify CSV row has an empty `Variant Barcode` field.
 - **Impact**: Data integrity risk. If the feed is regenerated from Shopify data alone (e.g., switching feed tools), all GTINs will be lost. This causes a sudden drop in product visibility.
 - **Shopify fix**: Backfill the Barcode field in Shopify Admin. Go to Products > [product] > Variants > edit the Barcode field and enter the GTIN that is currently only in the feed. This ensures the GTIN is stored at the source of truth.
-
-### A04: Missing gender on non-apparel products
-
-- **Condition**: The product is not in an apparel category but sells products that are inherently gendered (e.g., shoes, watches, bags) and `g:gender` is not set.
-- **Impact**: Gender-specific products without the gender attribute miss gender-filtered searches. This is advisory (not required) for non-apparel categories but still valuable.
-- **Shopify fix**: Go to Shopify Admin > Products > [product] > Product organization and set the Google Shopping / Gender field.
 
 ### A05: Missing product_highlight
 
@@ -168,12 +172,6 @@ These rules require both the Google Merchant XML feed and the Shopify product ex
 - **Condition**: An active, published product/variant exists in the Shopify CSV but has no corresponding item in the feed.
 - **Impact**: Lost exposure. Every active product should be in the feed unless intentionally excluded.
 - **Shopify fix**: Check if the product meets all feed requirements (has a price, image, title, description). If it does and is still missing, the issue is in the feed generation tool. Check for filtering rules or errors in the feed app.
-
-### X04: Items in feed but not in Shopify
-
-- **Condition**: A feed item's ID does not match any product/variant in the Shopify CSV.
-- **Impact**: Potential "item not found" errors when Google crawls the landing page. May indicate deleted products still lingering in the feed.
-- **Shopify fix**: Remove the item from the feed. If using auto-generated feeds, regenerate. If using a supplemental feed, remove the row.
 
 ## Rule interaction notes
 

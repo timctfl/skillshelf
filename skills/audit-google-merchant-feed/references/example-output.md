@@ -12,13 +12,13 @@ The example demonstrates how the skill aggregates findings by severity, explains
 |---|---|
 | Total items in feed | 120 |
 | Items with issues | 120 |
-| Disapproved (will not serve) | 40 |
-| Demoted (reduced visibility) | 199 |
-| Advisory (optimization opportunity) | 381 |
+| Disapproved issues (will not serve) | 40 issues across ~21 items |
+| Demoted issues (reduced visibility) | 199 issues across ~120 items |
+| Advisory issues (optimization opportunity) | 381 issues across ~120 items |
 | Shopify CSV provided | Yes |
 | Cross-reference checks | Enabled |
 
-All 120 items have at least one finding, though most are advisory-level optimizations rather than blocking errors. The 40 disapproved findings are concentrated on two issue types: missing apparel attributes and duplicate items.
+All 120 items have at least one finding, though most are advisory-level optimizations rather than blocking errors. The 40 disapproved findings are concentrated on two issue types (missing apparel attributes and duplicate items) affecting approximately 21 distinct items, not 40 separate products.
 
 ## Disapproved Issues
 
@@ -42,8 +42,8 @@ Issues that prevent items from appearing in Google Shopping. Fix these first.
 For **gender and age_group** (Neck Gaiters, Carabiner Keychains, Sunglasses):
 1. Go to Shopify Admin > Products.
 2. Select all affected products using the checkboxes.
-3. Click "Edit products" to open Bulk Editor.
-4. Add the columns "Google Shopping / Gender" and "Google Shopping / Age Group" if not visible (click "Columns" to add them).
+3. Click "Bulk edit."
+4. Add the columns "Google Shopping / Gender" and "Google Shopping / Age Group" if not visible (click "Columns" to add them). If these columns are not available, your store may manage them through the Google & YouTube channel app instead.
 5. Set gender to "unisex" and age_group to "adult" for all selected items.
 6. Save.
 
@@ -65,9 +65,10 @@ For **size** (Trucker Hat, Beanie): These are one-size products. Options: add a 
 **What's wrong:** These items share the same title, item group, color, and size as another item in the feed, but have different g:id values. Google will flag or reject one of each pair. The Trucker Hat duplicate also has a price discrepancy ($27 vs. $28), which suggests a stale or misconfigured feed entry.
 
 **How to fix in Shopify:** This is a feed-generation issue, not a Shopify data issue. Check your feed app for duplicate variant entries or stale data:
-1. If using Shopify Google Channel: disconnect and reconnect the channel, then resync products.
+1. If using the Google & YouTube channel: open the app, check the product sync status for errors. If specific items are stuck, remove and re-add them from the channel. Do not disconnect the entire channel, as this resets product approval status and campaign history in Merchant Center.
 2. If using a third-party feed tool: check for duplicate rules, variant mapping errors, or products that were deleted in Shopify but persist in the feed cache.
 3. Verify in Shopify Admin > Products that each product has the expected number of variants (no accidental duplicates).
+4. In Google Merchant Center: go to Products > All products, filter by the duplicate item IDs, and remove the stale entries directly.
 
 ### D04: Malformed HTML in description
 
@@ -78,7 +79,7 @@ For **size** (Trucker Hat, Beanie): These are one-size products. Options: add a 
 
 **How to fix in Shopify:**
 1. Go to Shopify Admin > Products > find the product for item 1076000107.
-2. In the description editor, click the `<>` (Show HTML) button.
+2. In the description editor, click "Show HTML" (or the code view icon).
 3. Find the `</p` tag and add the closing `>` to make it `</p>`.
 4. Save and regenerate the feed.
 
@@ -96,7 +97,7 @@ Issues that reduce visibility or click-through rate. Fix these after resolving a
 
 **How to fix in Shopify (if needed):**
 1. Go to Shopify Admin > Products.
-2. Select all products, click "Edit products" to open Bulk Editor.
+2. Select all products, click "Bulk edit."
 3. Add "Great Outdoors Co." to the beginning of each title.
 4. Save and regenerate the feed.
 
