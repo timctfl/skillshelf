@@ -132,6 +132,8 @@ Variants should appear in logical size order within each product. Check whether 
 
 Flag products where size-based variants are out of sequence. Note: this check only applies to Option columns that contain size values.
 
+When reordering rows, keep product-level metadata (Title, Body, Vendor, Tags, Image Src, SEO fields, Published, Status) on the first row of each product handle group. If a row moves into the first position, transfer those fields to it and clear them from the displaced row.
+
 ### 5. Duplicate Variants
 
 Two or more rows on the same product handle with identical Option1 + Option2 + Option3 value combinations. Compare after normalizing case and trimming whitespace to catch duplicates hidden by inconsistencies.
