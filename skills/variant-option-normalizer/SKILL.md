@@ -112,7 +112,7 @@ Same color, size, or material referred to by different strings across variants o
 - Size: XL/Extra Large/X-Large, S/Small, M/Medium
 - Material: variations in fiber content descriptions
 
-Compare values using normalized lowercase forms. Flag any pair of values within the same option name where one could be an alias of the other.
+Compare values using normalized lowercase, whitespace-trimmed forms. Flag any pair of values within the same option name where one could be an alias of the other. When two values appear on the same product, note that explicitly (same-product aliases are almost certainly errors; cross-product aliases may be intentional).
 
 ### 2. Case Inconsistencies
 
@@ -142,7 +142,7 @@ If duplicates have different prices or inventory quantities, flag them for manua
 
 ### 6. Missing Variant Images
 
-The `Variant Image` column is empty on a variant row while other variants on the same product have images. This check only applies when the input CSV includes the Variant Image column.
+The `Variant Image` column is empty on a variant row while other variants on the same product have images. This check only applies when the input CSV includes the Variant Image column. Note: this check detects missing URLs, not broken URLs. Populated image URLs are not validated.
 
 ### 7. Option Name Inconsistencies
 
@@ -150,7 +150,7 @@ The same dimension called different things across products: Size vs Dimensions, 
 
 ### 8. Handle/Title Drift
 
-The product handle should be a slugified version of the product title. Flag cases where the handle does not match what the title would produce (lowercase, hyphens for spaces, no special characters). Minor differences (e.g., dropping "Men's" or "Women's" from the handle) are acceptable and should not be flagged.
+The product handle should be a slugified version of the product title. Flag cases where the handle does not match what the title would produce (lowercase, hyphens for spaces, apostrophes removed, consecutive hyphens collapsed, no other special characters). Minor differences (e.g., dropping "Men's" or "Women's" from the handle) are acceptable and should not be flagged.
 
 ---
 
@@ -158,7 +158,7 @@ The product handle should be a slugified version of the product title. Flag case
 
 ### Output 1: Corrected CSV
 
-- Same columns as input, in the same order.
+- Same columns as input, in the same order. Copy every non-option cell verbatim. Do not parse, reformat, or truncate HTML in the Body column. Do not drop columns, including Google Shopping fields, metafield columns, or any other columns present in the input.
 - All non-option columns preserved exactly (SKUs, prices, inventory, images, SEO fields, Google Shopping fields).
 - Only Option Name cells, Option Value cells, and row ordering are modified.
 - Offer as a downloadable file.
@@ -263,6 +263,10 @@ The skill works with a single product. Cross-product checks (option name consist
 
 ## Closing
 
-Once the merchant approves the corrected CSV, note that it is ready for Shopify bulk import via Settings > Import in the Shopify admin. If variants were reordered, remind them that the import will update variant display order on the storefront.
+Once the merchant approves the corrected CSV, note that it is ready for Shopify bulk import via Settings > Import in the Shopify admin. Include these reminders:
+
+- If variants were reordered, the import will update variant display order on the storefront.
+- Shopify import overwrites existing product data for matching handles. Back up the current export before importing.
+- Shopify import cannot delete variants, only add or update them. If a duplicate row was removed from the CSV, the merchant must also delete that variant manually in the admin.
 
 Suggest running this skill again after the next supplier data import or seasonal catalog update to catch new inconsistencies before they reach customers.
