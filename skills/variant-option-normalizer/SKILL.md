@@ -92,6 +92,13 @@ Generate two outputs:
 1. **Corrected CSV** as a downloadable file. Same column structure as the input. All header columns preserved. Changes applied inline.
 2. **Change log** as a Markdown document using the output structure below.
 
+After generating both outputs, ask the merchant:
+
+- Where to save the corrected CSV (suggest a filename based on the input, e.g. `shopify-products-normalized.csv` in the same directory).
+- Where to save the change log (suggest a filename alongside the CSV, e.g. `shopify-products-normalized-changelog.md`).
+
+Write both files to the confirmed paths before closing out the turn.
+
 Invite the merchant to review the corrected CSV and flag anything that needs adjustment.
 
 ### Turn 4+: Revise
