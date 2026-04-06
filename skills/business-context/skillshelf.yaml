@@ -1,0 +1,38 @@
+version: "0.1.0"
+category: operations-and-process
+tags:
+  - business-context
+  - foundation
+  - channels
+  - seasonality
+  - pricing
+  - shipping
+  - returns
+level: beginner
+primitive: true
+platforms:
+  - platform-agnostic
+author:
+  name: Tim Petrella
+faq:
+  - question: What is a business context document?
+    answer: >-
+      A structured summary of how your brand operates: sales channels, shipping
+      policies, pricing strategy, seasonality, growth priorities, and anything
+      else that helps AI tools do ecommerce work with the right context.
+  - question: How is this different from a brand voice profile or positioning brief?
+    answer: >-
+      Brand voice covers how you sound. Positioning covers what makes you different.
+      Business context covers how you operate. An email skill needs all three: voice
+      to write on-brand, positioning to message correctly, and business context to
+      know your shipping policy, promotional calendar, and channel strategy.
+  - question: What if I don't have all the information?
+    answer: >-
+      Share what you know. The skill produces the best document it can from what you
+      provide and flags where more detail would help. A thin document is still useful
+      context for downstream work.
+  - question: Which skills use this document?
+    answer: >-
+      Any skill that needs to understand how your business operates, including skills
+      for analytics, email and lifecycle marketing, promotions, product content,
+      and feed optimization.
