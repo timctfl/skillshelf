@@ -765,11 +765,12 @@ def check_option_value_aliases(products: list[Product], alias_config: dict, size
                 # Determine if they appear on the same product
                 same_product = bool(info_a["handles"] & info_b["handles"])
 
-                # Suggest the more frequent value as canonical
-                if len(info_a["rows"]) >= len(info_b["rows"]):
-                    suggested = info_a["original"]
-                else:
-                    suggested = info_b["original"]
+                # Suggest the more frequent value as canonical (unless already set by size alias)
+                if not suggested:
+                    if len(info_a["rows"]) >= len(info_b["rows"]):
+                        suggested = info_a["original"]
+                    else:
+                        suggested = info_b["original"]
 
                 # Find a display name for the option
                 opt_display = opt_name
@@ -1026,7 +1027,7 @@ def run_audit(csv_path: Path, assets_dir: Path | None) -> dict:
     duplicates = check_duplicate_variants(products)
     missing_images = check_missing_variant_images(products, columns)
     size_order = check_size_ordering(products, size_config)
-    value_aliases = check_option_value_aliases(products, alias_config)
+    value_aliases = check_option_value_aliases(products, alias_config, size_config)
     name_issues = check_option_name_inconsistencies(products, alias_config)
     handle_drift = check_handle_title_drift(products)
     warnings = check_warnings(products, columns, metadata)
