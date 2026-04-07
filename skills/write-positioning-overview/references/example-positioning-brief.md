@@ -66,12 +66,6 @@ Consistent weekend hikers outgrow budget gear fast. The $40 rain jacket from a b
 
 **We are not a discount brand.** We do not lead with price, run frequent sales, or use urgency/scarcity language. The value story is per-outing cost over the product lifespan, not "save 30% today." Price is mentioned in context of the value equation, never as the headline.
 
-## How to use this brief
-
-Save this document and keep it accessible. When using AI skills for content generation (product descriptions, landing pages, emails, quiz content, bundle descriptions, collection copy), upload or paste this brief alongside your request. Provide the brief in full rather than excerpting individual sections. Positioning is the combination of all dimensions (who you serve, what makes you different, and what you are not) working together.
-
-This brief pairs well with a brand voice guide. Positioning defines what you say; voice defines how you say it. If you have both documents, upload both when generating content.
-
 ## Confidence summary
 
 **Well-supported:** The positioning statement, problem framing, core customer profile, and all four differentiators are grounded in specific product details, pricing data, and stated brand strategy provided by the team. The "What we are not" section reflects explicit positioning choices confirmed during the conversation.

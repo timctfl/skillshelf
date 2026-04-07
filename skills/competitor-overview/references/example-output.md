@@ -2,8 +2,6 @@
 
 # Competitor Overview
 
-> **Note:** This example uses fictionalized brand names. A real competitor overview should reference specific URLs visited, name the actual review sites and publications consulted, and include concrete details (product names, taglines, page locations) that tie findings to their sources.
-
 Prepared for: Great Outdoors Co. (outdoor apparel and gear, DTC ecommerce)
 
 ---
