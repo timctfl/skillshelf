@@ -116,7 +116,7 @@ Use plain, direct language. Ecommerce-specific terms are fine when appropriate. 
 
 ### Writing style for skill instructions
 
-Write skill instructions as intent, not scripts. Tell the agent what information needs to be conveyed and why, not the exact words to say. Instead of writing "Say to the user: 'Here is your brand voice profile. Review it and let me know if anything feels off,'" write "Present the output and ask the user to review it. Explain that this is the document other skills will reference, so accuracy matters more than polish."
+Write skill instructions as intent, not scripts. Tell the agent what to produce and what information to convey, not how to reason about it or the exact words to say. Instead of writing "Say to the user: 'Here is your brand voice profile. Review it and let me know if anything feels off,'" write "Present the output and ask the user to review it. Explain that this is the document other skills will reference, so accuracy matters more than polish."
 
 Every skill should include a short Voice and Approach section near the top that sets tone, register, and interaction style. This replaces scattered scripted lines throughout the conversation flow. See this skill's own Voice and Approach section as a model.
 
@@ -136,16 +136,13 @@ license: Apache-2.0
 [1-2 paragraph introduction: what it does, what the output is for,
  pointer to references/example-output.md]
 
+## Voice and Approach
+[Tone, register, interaction style. 2-3 sentences.]
+
 ## Conversation Flow
-
-### Turn 1: [Welcome and collect]
-### Turn 2+: [Follow-up / gap analysis]
-### [Analysis / Calibration if needed]
-### [Produce output]
-### [Review and refine]
-
-## [Analysis Rubric / Synthesis Instructions]
-[How to evaluate input and produce each section of the output]
+[What the skill collects, what it produces, when it pauses
+ for user review. Use labeled turns only when the sequence
+ matters. Most skills need 2-4 turns.]
 
 ## Output Structure
 [The exact heading hierarchy the skill produces]
