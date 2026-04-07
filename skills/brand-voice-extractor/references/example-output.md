@@ -2,17 +2,11 @@
 
 <!-- brand-voice-extractor v0.1 -->
 
-This is your brand voice profile, built from the content you provided. It captures the patterns and style decisions that make your brand's writing feel like yours. Review it, correct anything that doesn't match, and save it. When you use other skills to write copy, this document is what keeps the output on-brand.
-
----
-
 ## Voice Summary
 
 Your brand voice is direct, practical, and quietly confident. You write like a knowledgeable friend who hikes every weekend and has strong opinions about gear but zero interest in gear culture. You lead with what the product does in real conditions, skip the marketing language, and trust the reader to make their own decision.
 
 ---
-
-The following sections describe the patterns that make your brand's writing distinctive. These are harder to reduce to a yes/no, but they're what separate generic copy from copy that sounds like yours.
 
 ## Headlines
 
@@ -64,8 +58,6 @@ The brand also avoids sustainability as a primary claim. Specific environmental 
 
 ## Style Decisions
 
-These are quick-reference rules pulled from your content. Scan them and update anything that doesn't match how you actually want to write.
-
 | Decision | Value |
 |---|---|
 | Contractions | Yes, always |
@@ -88,8 +80,6 @@ These are quick-reference rules pulled from your content. Scan them and update a
 ---
 
 ## Example Copy
-
-These were generated from the voice profile above. If they sound like your brand, the profile is working. If something feels off, go back and adjust.
 
 **Product headline**
 Rain jacket. Actual rain.
