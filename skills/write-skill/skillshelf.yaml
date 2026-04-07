@@ -47,6 +47,9 @@ output_schema:
     - skillshelf.yaml
     - references/example-output.md
 
+conversation_starter: |
+  What skill do you want to build? Describe the task, share a rough prompt, paste example output from a workflow you do manually, or just give me a one-sentence idea. Whatever form your thinking is in, I can work with it.
+
 faq:
   - question: What does the Build a New Skill skill do?
     answer: >-

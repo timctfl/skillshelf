@@ -14,6 +14,11 @@ tags:
   - social-copy
 author:
   name: Tim Petrella
+conversation_starter: |
+  Upload your product catalog CSV (Shopify preferred for the Body HTML field; other platform exports also work).
+
+  To build stronger benefit statements, also share any of these: homepage copy, key PDP pages, your About page, a brand deck, product launch briefs, marketing one-pagers, or internal docs. The more context about what makes your products valuable, the better.
+
 faq:
   - question: What input does this skill need?
     answer: A product catalog export (Shopify CSV works best) is required. Homepage copy, PDP pages, brand decks, and other supporting material are optional but improve the output.

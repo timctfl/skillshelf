@@ -13,6 +13,16 @@ tags:
 author:
   name: Tim Petrella
   url: https://cartful.com
+conversation_starter: |
+  What do you have about your customers? I can work with any combination of:
+
+  - Existing personas, customer research, or segmentation decks
+  - Analytics exports or summaries (GA4, Shopify, platform dashboards, screenshots)
+  - Your own knowledge from talking to customers
+  - Output from the Extract Review Insights skill
+
+  No single input type is required. Share whatever you have and I'll build the profile from there.
+
 faq:
   - question: What inputs does this skill need?
     answer: Any combination of existing persona documents, analytics data (GA4, Shopify, etc.), output from the Extract Review Insights skill, and your own knowledge of your customers. No single input is required.

@@ -91,6 +91,7 @@ The `skillshelf.yaml` sidecar file provides catalog metadata that SkillShelf use
 | Field | Type | Description |
 |-------|------|-------------|
 | `author` | object | `name` and `url` for attribution |
+| `conversation_starter` | string | The opening message the AI sends when the skill starts (displayed on the skill page). Use YAML `\|` for multi-line content. |
 | `faq` | list | 2-4 questions and answers about the skill (displayed on the site) |
 | `subcategories` | list | More specific category tags |
 | `date_added` | string | ISO date `YYYY-MM-DD` |
@@ -136,6 +137,13 @@ date_updated: "2026-03-19"
 author:
   name: Your Name
   url: https://your-site-or-linkedin.com
+
+conversation_starter: |
+  I'll do [what this skill does]. Here's what I need:
+
+  **Required:** [What the user must provide]
+
+  **Optional:** [What strengthens the output]
 
 faq:
   - question: What does this skill do?
