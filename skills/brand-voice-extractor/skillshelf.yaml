@@ -51,6 +51,15 @@ output_schema:
     - Style Decisions
     - Example Copy
 
+conversation_starter: |
+  I'm going to build your brand voice profile. This is a document that captures how your brand writes, so you (and other AI tools) can produce on-brand copy consistently. Here's how it works:
+
+  1. You share examples of your brand's writing
+  2. I analyze the patterns and produce your voice profile
+  3. You review it, we refine anything that's off
+
+  Any questions? If not, we can get started. What's your brand name and website URL?
+
 faq:
   - question: What does the Document Your Brand Voice skill do?
     answer: >-

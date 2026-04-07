@@ -163,6 +163,11 @@ def validate_skill(skill_dir: Path) -> list[str]:
                             f"but no skill directory found at {ref_dir}"
                         )
 
+    # conversation_starter (optional string)
+    conversation_starter = data.get("conversation_starter")
+    if conversation_starter is not None and not isinstance(conversation_starter, str):
+        errors.append(f"{skill_name}: 'conversation_starter' must be a string if provided")
+
     return errors
 
 

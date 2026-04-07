@@ -23,6 +23,11 @@ consumes:
   - skill: brand-voice-extractor
     output: brand voice profile
     why: Helps the positioning brief reflect the brand's actual tone and language patterns
+conversation_starter: |
+  What's your brand name and website URL? I'll start by pulling positioning-relevant content from your site (homepage, about page, product pages, mission and values).
+
+  After that, share anything the site doesn't capture: internal brand guidelines, notes on positioning strengths or weaknesses, customer or competitor context, or output from the Research Your Competitors or Build a Customer Profile skills.
+
 faq:
   - question: What does the Write a Positioning Brief skill do?
     answer: It takes your brand name and website URL, reviews your public-facing content, then combines that with whatever additional context you provide to produce a structured positioning brief covering your positioning statement, target audience, differentiators, competitive context, and anti-positioning.

@@ -48,8 +48,22 @@ Every SkillShelf skill includes a `skillshelf.yaml` sidecar file alongside SKILL
 | `author` | object | `name` (string) and optional `url` (string) |
 | `faq` | list of objects | Each with `question` (string) and `answer` (string). 2-4 entries recommended. |
 | `consumes` | list of objects | Skills/primitives that improve this skill's output. See below. |
+| `conversation_starter` | string | The opening message the AI sends when the user starts the skill. Displayed on the skill page. Use YAML `|` block scalar for multi-line content. Supports markdown (bold, lists). |
 | `input_schema` | object | Freeform description of expected input |
 | `output_schema` | object | Freeform description of produced output |
+
+## Conversation Starter
+
+The opening message shown on the skill page under "Here's how the conversation starts." Write it as the first thing the AI says when the user begins the skill. It should set expectations, explain what inputs are needed, and invite the user to get started.
+
+```yaml
+conversation_starter: |
+  I'll write product descriptions that match your page structure. Here's what I need:
+
+  **Product data** (required): Spec sheet, CSV row, supplier data sheet, or raw notes.
+
+  **Page structure** (required): A content template document or a description of your PDP sections.
+```
 
 ## Consumes
 

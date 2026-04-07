@@ -11,6 +11,11 @@ platforms:
   - platform-agnostic
 interaction_pattern: multi-turn
 install_method: copy
+conversation_starter: |
+  Who are your competitors? Share a list of names, with any context you'd like to add about each one. Also tell me your brand name and category so I have the right lens for the analysis.
+
+  If you have more than five or six competitors, start with your top five. We can add more after the first pass.
+
 faq:
   - question: "What do I need to provide?"
     answer: "A list of competitor names and your brand's category. Optionally, any context you already have about specific competitors."

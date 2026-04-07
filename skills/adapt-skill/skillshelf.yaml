@@ -46,6 +46,11 @@ output_schema:
     - skillshelf.yaml
     - references/example-output.md
 
+conversation_starter: |
+  Paste your existing prompt or upload the skill file you'd like to convert to SkillShelf format. I accept system prompts, single markdown files, or zip archives containing a skill directory.
+
+  Any context about what the skill does, who uses it, or how it fits into a workflow is helpful but not required.
+
 faq:
   - question: What does this skill do?
     answer: >-

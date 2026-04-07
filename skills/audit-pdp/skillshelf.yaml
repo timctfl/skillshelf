@@ -27,6 +27,19 @@ consumes:
     output: positioning brief
     why: Lets the audit assess whether copy reflects your positioning and differentiators
 
+conversation_starter: |
+  Share your PDP screenshots and I'll produce an optimization audit. Here's what I need:
+
+  **Required:**
+  - Desktop PDP screenshot (include a few screenshots if you need to cover the main parts of the page)
+  - Mobile PDP screenshot (same idea, a few screenshots to cover the full page is fine)
+  - Brand voice guide or positioning brief
+
+  **Strongly recommended:**
+  - GA4 screenshot for this PDP. To pull it: go to Reports > Engagement > Pages and Screens in GA4, filter to the PDP URL, set the date range to last 30 days, add "Device category" as a secondary dimension, and screenshot. The metrics that matter most: engagement rate, average engagement time, and add-to-cart rate.
+
+  If you don't have the GA4 data, I'll work from the screenshots alone and flag where performance data would have strengthened a recommendation.
+
 faq:
   - question: What inputs does this skill need?
     answer: >-

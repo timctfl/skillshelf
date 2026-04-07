@@ -24,6 +24,17 @@ consumes:
     output: content template
     why: Tells the skill your exact PDP structure so it matches your site
 
+conversation_starter: |
+  Share your PDP template or an example of your current PDP. A screenshot, pasted content, or a content template document all work.
+
+  If you have any of these, they'll strengthen the rewrite:
+  - **Content template** (defines your exact page structure)
+  - **Brand voice profile** (keeps the copy on-brand)
+  - **Positioning brief** (grounds the copy in your differentiators)
+  - **Review insights** or a **PDP audit** (highlights what to prioritize)
+
+  These are recommended, not required. If you don't have them yet, you can create them at skillshelf.ai/skills.
+
 faq:
   - question: "Do I need a brand voice profile to use this skill?"
     answer: "No. The skill works without one by matching the voice of the existing PDP copy you provide. But a voice profile produces more consistent results, especially if you're rewriting multiple PDPs. You can create one at skillshelf.ai/skills."

@@ -21,6 +21,17 @@ author:
   name: Tim Petrella
   url: https://www.linkedin.com/in/timpetrella/
 
+conversation_starter: |
+  What's your brand name and website URL? I'll extract your brand's colors, fonts, and visual style. There are a few ways to pull this information:
+
+  **Option A: "I have the style file, or I can ask someone for it."** Share a CSS file or your known brand colors and fonts. If you don't have them, I'll give you a message to send your developer.
+
+  **Option B: "I'll poke around in Chrome myself."** I'll walk you through a quick copy-paste process in your browser. Takes about two minutes.
+
+  **Option C: "I'll just send screenshots."** Upload a couple of screenshots and I'll extract what I can. Colors won't be as precise, but it works.
+
+  You can also combine these. Screenshots plus extracted data gives the best result.
+
 faq:
   - question: What if I don't have access to my site's CSS?
     answer: >-

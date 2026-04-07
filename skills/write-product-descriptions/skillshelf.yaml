@@ -25,6 +25,15 @@ consumes:
     output: brand voice profile
     why: Keeps copy on-brand across multiple products
 
+conversation_starter: |
+  I'll write product descriptions that match your page structure. Here's what I need:
+
+  **Product data** (required): Spec sheet, CSV row, supplier data sheet, product feed entry, or raw notes. Upload a file, paste the content, or share a screenshot.
+
+  **Page structure** (required): A content template document is ideal. If you don't have one, describe your PDP sections (e.g., headline, feature bullets, long description, specs table). I need to know what sections to write.
+
+  **Optional:** Brand voice profile, positioning brief. These help the copy match your brand.
+
 faq:
   - question: "What kind of product data does it accept?"
     answer: "Whatever you have: spec sheets (PDF, image, or pasted), Shopify CSV rows, supplier data sheets, product feed entries, or raw notes. The more specific the input, the more specific the output."

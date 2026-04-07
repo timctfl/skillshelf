@@ -16,6 +16,14 @@ author:
   name: Tim Petrella
   url: https://www.linkedin.com/in/timpetrella/
 
+conversation_starter: |
+  Share the customer reviews for one product. I accept pasted text, CSV exports (Shopify, Yotpo, Bazaarvoice, Judge.me, or similar), PDFs, or other documents.
+
+  Optional but helpful:
+  - Product or brand name
+  - Product data (a feed entry, PDP content, or product description)
+  - Review metadata (star ratings, dates, verified purchase flags)
+
 faq:
   - question: How many reviews does this skill need to be useful?
     answer: >-

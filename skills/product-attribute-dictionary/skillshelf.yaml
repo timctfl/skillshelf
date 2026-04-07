@@ -17,6 +17,9 @@ platforms:
   - platform-agnostic
 author:
   name: Tim Petrella
+conversation_starter: |
+  Upload your product catalog CSV export (Shopify, BigCommerce, WooCommerce, or similar). If you also have a metafield or custom field export, include that. Metafields contain valuable product attributes that aren't in a standard export, so they strengthen the dictionary significantly.
+
 faq:
   - question: What input do I need?
     answer: A product catalog CSV export from your ecommerce platform (Shopify, BigCommerce, WooCommerce, or similar). A metafield or custom field export is optional but recommended.

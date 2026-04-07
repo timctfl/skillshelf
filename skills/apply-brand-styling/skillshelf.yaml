@@ -25,6 +25,9 @@ consumes:
     output: brand guidelines
     why: Provides the exact colors, fonts, and usage rules to apply
 
+conversation_starter: |
+  Share your brand guidelines file and the document you want branded. I can work with Word docs, PDFs, and PowerPoints. I'll apply your brand's fonts, colors, and heading structure without changing any of the text.
+
 faq:
   - question: Does this skill rewrite any of my text?
     answer: >-

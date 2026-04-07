@@ -40,6 +40,19 @@ output_schema:
     - Priority Fix Order
     - Confidence Notes
 
+conversation_starter: |
+  Share your Google Merchant Center feed and I'll produce a prioritized audit with Shopify-specific fix instructions. Here's what I need:
+
+  **Required:**
+  - Google Merchant Center XML feed file
+
+  **How to get your feed file:** Go to Google Merchant Center > Products > Feeds > click your primary feed > click the three-dot menu > Download file. Save the XML and upload it here.
+
+  **Strongly recommended:**
+  - Shopify product export CSV. To export: go to Shopify Admin > Products > Export > select "All products" and "Plain CSV file." This unlocks cross-reference checks for sale price mapping, GTIN sync, price mismatches, and coverage gaps between your store and your feed.
+
+  Without the Shopify CSV, I'll still catch feed-level issues (missing attributes, duplicates, malformed HTML, category depth, inconsistent variants), but I won't be able to compare the feed against your store data.
+
 faq:
   - question: What does the Audit a Google Merchant Feed skill do?
     answer: >-
