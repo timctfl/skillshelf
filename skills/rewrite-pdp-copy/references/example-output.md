@@ -1,11 +1,3 @@
-# Example: Rewrite PDP Copy
-
-This is an example of what the rewrite-pdp-copy skill produces. It demonstrates the full output when given a PDP template, thin product data from a Shopify export, and three upstream skill outputs (brand voice profile, positioning brief, review insights).
-
-The example uses Great Outdoors Co., the canonical SkillShelf test brand. The product is the Cascade Rain Shell - Men's. The template structure comes from the Women's version PDP (both use the same page layout). The product data comes from the Shopify product export, which has a much shorter description than the full PDP. The skill uses the upstream inputs to fill the gap between the thin product data and the full template.
-
----
-
 ```markdown
 # PDP Copy: Cascade Rain Shell - Men's
 
@@ -83,19 +75,3 @@ Care instructions carried through from the Women's PDP template. These are stand
 
 **Add a "Good to know" or FAQ section.** The review data surfaced two recurring themes (generous fit and pocket-hipbelt conflict) that customers would benefit from seeing on the PDP. The current template doesn't have a natural place for this kind of practical guidance. A short section with 2-3 common questions would reduce sizing-related returns and set better expectations for hikers who carry packs.
 ```
-
----
-
-## How This Example Demonstrates the Skill
-
-**Brand voice alignment.** The copy follows the voice profile: short declarative sentences, contractions, no exclamation marks, no superlatives, dry humor where it fits naturally ("which in the Pacific Northwest is most weekends from October through June"). It avoids everything in the "What GreatOutdoors Co. Avoids" list: no aspirational language, no competitor comparisons, no urgency cues.
-
-**Positioning awareness.** The copy frames the product through GreatOutdoors Co.'s positioning: gear for every-weekend hikers, not expedition athletes. The hero leads with the use pattern (weekly use in real rain), not with technical specs. The value framing is implicit ("you're not replacing it next fall") rather than leading with the $149 price point, which matches the positioning brief's guidance on how to talk about price.
-
-**Template compliance.** Every section from the Women's PDP template appears in the output with the same format: paragraph hero, bullet features, table specs, bullet care instructions, bullet sizing notes. No sections were added, renamed, or restructured.
-
-**No fabrication.** Every claim traces to either the Shopify product data, the Women's PDP template (same product line), or the review insights. The confidence notes document which claims came from which source. Where the Shopify data was thin (no sizing info, only 3 feature bullets), the skill filled gaps from the template and reviews and documented what it did.
-
-**Specificity.** The hero copy names the specific conditions ("Pacific Northwest rain," "October through June"), the specific weight (330 g), and a specific customer behavior from reviews ("stays in your daypack until you need it"). The sizing notes draw on specific reviewer feedback rather than generic fit guidance.
-
-**Decision-driving details.** The hero leads with what the jacket does (keeps you dry in sustained rain) and how it fits into the customer's life (light enough for everyday, quiet fabric). The specs are in a dedicated section for people who want them, but the hero gives enough information to decide without scrolling.

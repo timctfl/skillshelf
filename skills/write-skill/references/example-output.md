@@ -1,11 +1,3 @@
-# Example: Write Collection Descriptions
-
-This is an example of what the write-skill produces. It is a complete SKILL.md for a fictional skill that writes product collection descriptions from a Shopify catalog. It demonstrates SkillShelf conventions: proper frontmatter, conversation flow, input design, output structure, edge cases, and ecosystem awareness.
-
-The example uses Great Outdoors Co., the canonical SkillShelf test brand.
-
----
-
 ```markdown
 ---
 name: write-collection-descriptions
