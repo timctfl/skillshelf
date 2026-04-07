@@ -2,35 +2,123 @@
   "apparel_letter_order": [
     "XXS", "XS", "S", "M", "L", "XL", "XXL", "2XL", "3XL", "4XL", "5XL"
   ],
+  "plus_order": [
+    "0X", "1X", "2X", "3X", "4X", "5X"
+  ],
+  "toddler_order": [
+    "2T", "3T", "4T", "5T", "6T"
+  ],
+  "youth_order": [
+    "YXS", "YS", "YM", "YL", "YXL"
+  ],
   "aliases": {
     "extra extra small": "XXS",
+    "double extra small": "XXS",
+    "xxs": "XXS",
+
     "extra small": "XS",
     "x-small": "XS",
+    "x small": "XS",
     "xs": "XS",
+
     "small": "S",
     "sm": "S",
+
     "medium": "M",
     "med": "M",
+
     "large": "L",
     "lg": "L",
+
     "extra large": "XL",
     "x-large": "XL",
     "extra-large": "XL",
+    "x large": "XL",
+    "xl": "XL",
+
+    "extra extra large": "XXL",
+    "double extra large": "XXL",
     "xx-large": "XXL",
+    "xx large": "XXL",
+    "xxl": "XXL",
+
     "2x-large": "2XL",
+    "2 xl": "2XL",
+    "2x large": "2XL",
+    "2xlarge": "2XL",
     "2xl": "2XL",
+
     "3x-large": "3XL",
+    "3 xl": "3XL",
+    "3x large": "3XL",
+    "3xlarge": "3XL",
     "3xl": "3XL",
+    "triple extra large": "3XL",
+    "xxxl": "3XL",
+
     "4x-large": "4XL",
+    "4 xl": "4XL",
+    "4x large": "4XL",
+    "4xlarge": "4XL",
     "4xl": "4XL",
+    "xxxxl": "4XL",
+
     "5x-large": "5XL",
+    "5 xl": "5XL",
+    "5x large": "5XL",
+    "5xlarge": "5XL",
     "5xl": "5XL",
+    "xxxxxl": "5XL",
+
+    "0x": "0X",
+    "1x": "1X",
+    "2x": "2X",
+    "3x": "3X",
+    "4x": "4X",
+    "5x": "5X",
+
+    "2t": "2T",
+    "3t": "3T",
+    "4t": "4T",
+    "5t": "5T",
+    "6t": "6T",
+
+    "yxs": "YXS",
+    "youth xs": "YXS",
+    "youth extra small": "YXS",
+
+    "ys": "YS",
+    "youth s": "YS",
+    "youth small": "YS",
+
+    "ym": "YM",
+    "youth m": "YM",
+    "youth medium": "YM",
+
+    "yl": "YL",
+    "youth l": "YL",
+    "youth large": "YL",
+
+    "yxl": "YXL",
+    "youth xl": "YXL",
+    "youth extra large": "YXL",
+
     "one size": "OS",
+    "one-size": "OS",
     "o/s": "OS",
     "os": "OS",
-    "onesize": "OS"
+    "onesize": "OS",
+    "one size fits all": "OS",
+    "one size fits most": "OS",
+    "osfa": "OS",
+    "osfm": "OS",
+    "free size": "OS"
   },
   "size_option_names": [
-    "size", "sizes", "dimension", "dimensions"
+    "size", "sizes", "sizing",
+    "dimension", "dimensions",
+    "waist", "inseam", "length", "width",
+    "chest", "neck",
+    "shoe size", "hat size", "ring size"
   ]
 }
