@@ -1,0 +1,26 @@
+{
+  "option_name_synonyms": [
+    ["Color", "Colour"],
+    ["Size", "Sizes", "Dimension", "Dimensions"],
+    ["Material", "Fabric", "Composition"],
+    ["Style", "Design"],
+    ["Pattern", "Print"],
+    ["Flavor", "Flavour"],
+    ["Scent", "Fragrance"],
+    ["Length", "Inseam"],
+    ["Width", "Waist"],
+    ["Weight", "Mass"],
+    ["Volume", "Capacity"]
+  ],
+  "color_aliases": {
+    "grey": ["gray"],
+    "charcoal heather": ["charcoal"],
+    "navy blue": ["navy"],
+    "heather grey": ["heather gray"],
+    "burgundy": ["wine"],
+    "cream": ["ivory", "off-white", "offwhite"],
+    "tan": ["khaki", "beige"],
+    "fuchsia": ["hot pink"],
+    "magenta": ["hot pink"]
+  }
+}
