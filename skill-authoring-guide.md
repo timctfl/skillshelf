@@ -143,7 +143,9 @@ Present variations neutrally (A, B, C) without labeling them with descriptors. L
 
 Every skill should include a `references/` directory with a sample output file named `example-[description].md` (e.g., `example-output.md`, `example-positioning-brief.md`). The `references/` directory is part of the [Agent Skills open standard](https://agentskills.io). It may also contain glossaries and other supporting documentation the skill reads at runtime.
 
-Example files use the `example-` prefix so they are distinguishable from other reference documents. The example serves as both a quality benchmark for the LLM and a preview for the user.
+Example files use the `example-` prefix so they are distinguishable from other reference documents. The example serves as both a quality benchmark for the LLM and a preview for the user on the skill page.
+
+The example file should contain only the skill's actual output. Do not include preambles ("This example demonstrates..."), "How to use this document" sections, or commentary explaining what the example shows. The output should speak for itself.
 
 ### Fictional brand naming
 
