@@ -1,0 +1,28 @@
+version: "0.1.0"
+category: customer-research
+level: intermediate
+primitive: true
+platforms:
+  - platform-agnostic
+tags:
+  - customer-persona
+  - customer-research
+  - foundation-skill
+  - analytics
+  - reviews
+author:
+  name: Tim Petrella
+  url: https://cartful.com
+faq:
+  - question: What inputs does this skill need?
+    answer: Any combination of existing persona documents, analytics data (GA4, Shopify, etc.), output from the Extract Review Insights skill, and your own knowledge of your customers. No single input is required.
+  - question: Does this skill analyze reviews directly?
+    answer: It can work with review data, but for best results we recommend running the Extract Review Insights skill first and uploading that output as one of your inputs.
+  - question: What if I only have one source of customer data?
+    answer: The skill works with whatever you have. A profile built from one source will be thinner than one built from four, and the confidence summary will reflect that.
+  - question: Is this a foundation skill?
+    answer: Yes. The customer profile it produces is designed to be uploaded alongside other skills (product descriptions, email copy, landing page audits, etc.) to give them context about who the customer is.
+consumes:
+  - skill: extract-review-insights
+    output: review insights report
+    why: Provides structured customer language, praise, and complaint data from product reviews

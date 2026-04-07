@@ -1,0 +1,22 @@
+version: "0.1.0"
+category: brand-and-identity
+tags:
+  - competitive-analysis
+  - competitor-research
+  - positioning
+  - market-landscape
+level: beginner
+primitive: true
+platforms:
+  - platform-agnostic
+interaction_pattern: multi-turn
+install_method: copy
+faq:
+  - question: "What do I need to provide?"
+    answer: "A list of competitor names and your brand's category. Optionally, any context you already have about specific competitors."
+  - question: "Does this skill do primary research?"
+    answer: "Yes. The skill visits each competitor's website and searches for third-party coverage to build each profile."
+  - question: "How does this relate to the positioning brief skill?"
+    answer: "This skill documents competitors on their own terms. The positioning brief skill consumes this document and maps your brand's position relative to the competitive field."
+  - question: "How many competitors should I include?"
+    answer: "Four to six is the sweet spot. More than that and the research depth drops. You can always add more in a follow-up."

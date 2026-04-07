@@ -1,0 +1,29 @@
+version: "0.1.0"
+category: catalog-operations
+tags:
+  - product-data
+  - data-dictionary
+  - attributes
+  - catalog
+  - shopify
+  - bigcommerce
+  - woocommerce
+  - metafields
+  - product-types
+  - variants
+level: intermediate
+primitive: true
+platforms:
+  - platform-agnostic
+author:
+  name: Tim Petrella
+faq:
+  - question: What input do I need?
+    answer: A product catalog CSV export from your ecommerce platform (Shopify, BigCommerce, WooCommerce, or similar). A metafield or custom field export is optional but recommended.
+  - question: What does this skill produce?
+    answer: A structured data dictionary documenting every field in your catalog, organized by product type. It includes field definitions, valid value conventions, variant attributes, metafield coverage per type, and catalog-wide structural patterns like SKU encoding and tag taxonomy.
+  - question: How is this different from the Brand Glossary skill?
+    answer: The Brand Glossary documents terminology and language rules. The Product Attribute Dictionary documents data structure and field values. One tells you what words to use, the other tells you what fields exist and what goes in them. Downstream skills may reference both.
+  - question: Does this work for non-Shopify stores?
+    answer: Yes. The skill accepts any tabular product export and reads the actual columns and values. Shopify, BigCommerce, and WooCommerce are explicitly supported with platform detection. Other platforms work as long as the export is a standard CSV.
+consumes: []

@@ -1,0 +1,32 @@
+version: "0.1.0"
+category: brand-and-identity
+level: intermediate
+primitive: true
+platforms:
+  - platform-agnostic
+tags:
+  - product-benefits
+  - product-copy
+  - foundation-document
+  - brand-content
+  - product-descriptions
+  - email-copy
+  - social-copy
+author:
+  name: Tim Petrella
+faq:
+  - question: What input does this skill need?
+    answer: A product catalog export (Shopify CSV works best) is required. Homepage copy, PDP pages, brand decks, and other supporting material are optional but improve the output.
+  - question: How is this different from a positioning brief?
+    answer: A positioning brief captures brand-level strategy (who the customer is, what differentiates the brand). The benefits map is product-specific. It captures what individual products and lines actually do and what makes them specific.
+  - question: What if my catalog has hundreds of products?
+    answer: The skill will propose a focused scope based on your catalog, consolidating into product lines or categories where needed. You can run it again for additional lines.
+  - question: How do I use the output?
+    answer: Save the document and upload it to future conversations when you need to write product descriptions, emails, social posts, or other product copy. It gives the AI specific material to work with.
+consumes:
+  - skill: brand-voice-extractor
+    output: brand voice profile
+    why: Informs the tone and register of benefit statements
+  - skill: write-positioning-overview
+    output: positioning brief
+    why: Helps frame which benefits to emphasize and how to differentiate

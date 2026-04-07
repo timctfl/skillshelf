@@ -1,70 +1,36 @@
-version: "1.0"
-
+version: "1.1"
 category: brand-and-identity
-subcategories:
-  - brand-positioning
-  - content-strategy
-
-level: beginner
-primitive: true
-
-platforms:
-  - platform-agnostic
-
 tags:
   - positioning
   - brand-strategy
   - competitive-analysis
   - content-generation
-  - foundational
-
-certified: true
-
-date_added: "2026-02-15"
-date_updated: "2026-02-24"
-
+  - foundation-skill
+level: beginner
+primitive: true
+platforms:
+  - platform-agnostic
 author:
   name: Tim Petrella
   url: https://www.linkedin.com/in/timpetrella/
-
-input_schema:
-  type: object
-  description: >-
-    This skill accepts brand context in various forms: About Us pages,
-    homepage copy, product pages, or conversational answers to guided prompts. No fixed
-    input schema. The user provides whatever positioning-relevant material they
-    have, and the skill runs gap analysis to identify what's missing.
-  properties: {}
-
-output_schema:
-  type: object
-  description: >-
-    A Markdown document following a fixed heading structure. Downstream skills
-    and tooling can parse by heading hierarchy.
-  required_sections:
-    - Positioning statement
-    - What we sell
-    - The problem we exist to solve
-    - Who we serve
-    - Why they choose us
-    - Value propositions
-    - Competitive context
-    - What we are not
-    - How to use this brief
-
 consumes:
+  - skill: competitor-overview
+    output: competitor overview document
+    why: Strengthens the competitive context section with research-backed competitor profiles rather than relying on user recall alone
+  - skill: customer-profile
+    output: customer profile document
+    why: Gives the "who we serve" dimension real depth grounded in analytics and review data
   - skill: brand-voice-extractor
     output: brand voice profile
     why: Helps the positioning brief reflect the brand's actual tone and language patterns
-
 faq:
   - question: What does the Write a Positioning Brief skill do?
-    answer: It takes whatever brand context you have--About Us pages, homepage copy, product pages, email campaigns, or just conversational answers--and produces a structured positioning brief covering your positioning statement, target audience, value propositions, competitive context, and differentiators.
+    answer: It takes your brand name and website URL, reviews your public-facing content, then combines that with whatever additional context you provide to produce a structured positioning brief covering your positioning statement, target audience, differentiators, competitive context, and anti-positioning.
   - question: What if I don't have much brand material to start with?
-    answer: The skill runs a gap analysis on whatever you provide and asks guided follow-up questions to fill in the missing pieces. You can start with as little as a homepage URL or a few sentences about what you sell and who you sell it to.
+    answer: The skill works with whatever you have. If you have a website, the agent will pull content from it directly. If you don't, a short conversation about what you sell and who you sell to is enough to get started. The confidence summary at the end will flag which areas are thin and what would strengthen them.
   - question: Do I need technical skills to use this?
-    answer: No. This is a beginner-level skill that works through a guided conversation. You provide your existing brand materials and the AI guides you through the rest.
+    answer: No. This is a beginner-level skill that works through a guided conversation. You provide your brand name and URL, the AI does the initial research, and you fill in whatever the site doesn't capture.
   - question: How is this different from just asking AI to write a positioning statement?
-    answer: A one-off prompt gives you a generic paragraph. This skill produces a structured brief with named sections--positioning statement, problem, audience, differentiators, competitive context--that other skills and tools can reference by heading. It's a durable artifact, not a throwaway answer.
-  - question: How does this relate to the Document Brand Voice skill?
-    answer: They're complementary primitives. The positioning brief defines what you say (message, audience, differentiation). The brand voice guide defines how you say it (tone, vocabulary, style). Together they give downstream content skills a complete foundation to work from.
+    answer: A one-off prompt gives you a generic paragraph. This skill produces a structured brief with named dimensions (positioning statement, problem, audience, differentiators, competitive context, anti-positioning) that other skills and tools can reference. It's a durable foundation document, not a throwaway answer.
+  - question: How does this relate to the other foundation skills?
+    answer: The positioning brief defines what you say. The brand voice guide (from the Document Your Brand Voice skill) defines how you say it. The competitor overview (from the Research Your Competitors skill) feeds into the competitive context section. Together they give downstream content skills a complete foundation to work from.

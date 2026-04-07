@@ -1,0 +1,74 @@
+version: "1.0"
+
+category: feeds-and-merchandising
+
+level: intermediate
+primitive: false
+
+platforms:
+  - shopify
+
+tags:
+  - google-merchant-center
+  - google-shopping
+  - feed-audit
+  - product-feed
+  - shopify
+  - data-quality
+  - validation
+
+date_added: "2026-03-27"
+date_updated: "2026-03-27"
+
+author:
+  name: Raqib Abdullah
+  url: https://github.com/raqibdev
+
+input_schema:
+  required:
+    - Google Merchant Center XML feed
+  recommended:
+    - Shopify product export CSV
+
+output_schema:
+  format: Markdown document
+  sections:
+    - Feed Audit Summary
+    - Disapproved Issues
+    - Demoted Issues
+    - Advisory
+    - Priority Fix Order
+    - Confidence Notes
+
+faq:
+  - question: What does the Audit a Google Merchant Feed skill do?
+    answer: >-
+      It validates a Google Merchant Center XML feed against Google's product
+      data specification and, when a Shopify product export CSV is provided,
+      cross-references the feed against the store's source data. The output
+      is a prioritized error report with Shopify-specific fix instructions.
+  - question: What inputs does this skill need?
+    answer: >-
+      A Google Merchant Center XML feed file is required. A Shopify product
+      export CSV is strongly recommended because it unlocks cross-reference
+      checks for sale price mapping, GTIN sync, price mismatches, and
+      coverage gaps between the store and the feed.
+  - question: What kinds of errors does the audit catch?
+    answer: >-
+      Three tiers. Disapproved errors (missing required attributes, duplicates,
+      malformed HTML) that block items from appearing in Google Shopping.
+      Demoted errors (thin descriptions, broad categories, inconsistent
+      variant naming) that reduce visibility. Advisory optimizations (missing
+      sale prices, additional images, product highlights) that improve
+      click-through rate.
+  - question: Does the skill include a validation script?
+    answer: >-
+      Yes. A Python script (validate_merchant_feed.py) runs mechanical checks
+      on the feed and outputs structured JSON. The AI reads the JSON and
+      explains each finding with Shopify-specific fix instructions.
+  - question: Can I use this skill with a non-Shopify store?
+    answer: >-
+      The validation script works on any Google Merchant Center XML feed.
+      However, the fix instructions reference Shopify Admin paths and
+      terminology. Merchants on other platforms should adapt the admin
+      instructions to their own platform.
