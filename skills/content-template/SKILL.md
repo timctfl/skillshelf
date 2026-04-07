@@ -62,7 +62,7 @@ Ask the user to confirm the list. Tell them to rename sections, add missing ones
 
 After the user confirms (or after incorporating their edits), produce the full template primitive as a downloadable Markdown document following the output structure below.
 
-Present the document and ask the user to review it. Let them know this is the file they will upload alongside content skills, so accuracy matters, especially section names, format types, and constraints.
+Present the document and ask the user to review it. Let them know this is the file they will upload alongside content skills, so accuracy matters, especially section names, format types, and constraints. If they produce multiple content types (PDPs and collection pages, for example), they can run this skill once per content type to build a set of templates.
 
 ### Turn 4+: Revise
 
@@ -220,8 +220,3 @@ Before presenting the final document, verify:
 - [ ] No editorial commentary about the template's quality or effectiveness
 - [ ] The intro paragraph and How to Use section reference the correct content type
 
----
-
-## Closing
-
-After the user approves the document, let them know how to use it: download the file and upload it alongside any SkillShelf skill that produces this content type. The skill will use the template as the structural blueprint. If they produce multiple content types (PDPs and collection pages, for example), they can run this skill once per content type to build a set of template primitives.

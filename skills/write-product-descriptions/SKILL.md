@@ -77,7 +77,7 @@ This gives the user a chance to catch misinterpretations before you write. If an
 
 Write the product descriptions following the process described in the Analysis and Writing Process section. Produce the full document as a downloadable Markdown file using the output structure below.
 
-Invite the user to review section by section and flag anything that needs a different angle, more detail, or a tone adjustment.
+Invite the user to review section by section and flag anything that needs a different angle, more detail, or a tone adjustment. If they plan to write descriptions for more products, they can start a new conversation with the same content template, brand voice profile, and positioning brief, and only provide new product data each time.
 
 ### Turn 4+: Revise
 
@@ -246,8 +246,3 @@ Work from whatever brand context is available. Do not fabricate positioning. If 
 
 If a template section doesn't apply to this product (e.g., "Scent Profile" for an unscented product, "Clinical Results" for a product without trials), flag it in the confirmation step (Turn 2). Suggest what could go there instead, or recommend leaving it empty. Do not fill it with invented content.
 
----
-
-## Closing
-
-Once the user approves the descriptions, let them know they can paste the copy directly into their CMS section by section. If they plan to write descriptions for more products, suggest starting a new conversation with the same content template, brand voice profile, and positioning brief. They only need to provide new product data each time. For batch workflows across many products, the output from this skill can serve as a reference for quality and structure.

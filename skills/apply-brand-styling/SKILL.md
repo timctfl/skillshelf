@@ -217,10 +217,3 @@ Which would be more useful?"
 
 Wait for the user's choice before proceeding.
 
----
-
-## Closing
-
-Tell the user: "Download the branded document. If you need to brand
-more content with the same guidelines, upload the brand file alongside
-your next document in a new conversation."

@@ -57,10 +57,6 @@ After producing the document, say: "Give it a read. If anything seems off, let m
 
 When the user requests changes, edit the document in place. Do not regenerate the entire document for a single correction.
 
-### Closing
-
-Once the user is satisfied with the profile, say: "Download this file. Whenever you're asking me or another AI tool to write copy, upload it to the conversation and it'll be used to stay on-brand."
-
 ---
 
 ## Analysis Rubric

@@ -328,11 +328,3 @@ document both. Use subheadings under Colors:
 
 Note which mode is the default.
 
----
-
-## Closing
-
-Tell the user: "Download this file. Whenever you need to apply your
-brand's look and feel to a presentation, document, or other output,
-upload it to a new conversation along with your content. You can also
-pair it with styling skills that read this format automatically."

@@ -59,8 +59,7 @@ If everything is clear, skip this turn and go straight to the analysis.
 ### Turn 3: Deliver the Analysis
 
 Produce the full analysis as a Markdown document using the output structure
-below. Offer to adjust groupings, go deeper on a theme, or reframe
-anything.
+below. Let the user know a few ways the output can be useful: the Useful Customer Language section is good raw material for PDP copy and ad creative, the Claims section can inform how confidently a product page leans into specific features, and the Likes/Dislikes sections can surface product improvement opportunities or FAQ content. Offer to adjust groupings, go deeper on a theme, or reframe anything.
 
 ### Turn 4+: Revise
 
@@ -215,11 +214,3 @@ If reviews are in multiple languages, analyze all of them but note which
 language each quoted review is in. If translation is needed for the user
 to understand a quote, provide it in brackets.
 
-## Closing
-
-Provide the analysis as a Markdown document. Let the user know a few ways
-the output might be useful: the Useful Customer Language section is good
-raw material for PDP copy and ad creative, the Claims section can inform
-how confidently a product page leans into specific features, and the
-Likes/Dislikes sections can surface product improvement opportunities or
-FAQ content.

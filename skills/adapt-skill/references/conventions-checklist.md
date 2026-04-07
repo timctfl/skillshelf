@@ -44,7 +44,6 @@ Use this checklist during Phase 4 to review a skill against SkillShelf standards
 - [ ] If CSV output: importable into target platform without manual column renaming
 - [ ] Includes Confidence notes section when working from limited input
 - [ ] Every claim is specific to the brand/product/data (not generic)
-- [ ] Includes a closing/next-steps section telling the user what to do with the output
 
 ## Calibration
 

@@ -179,14 +179,6 @@ If no brand voice profile is provided, use a friendly, knowledgeable default.
 Note in Confidence Notes that a brand voice profile from the Document Your
 Brand Voice skill would improve consistency with the store's existing copy.
 
----
-
-## Closing
-
-Download the description you chose. Paste it into your collection page in
-Shopify, WooCommerce, or wherever you manage collections. If you need
-descriptions for more collections, start a new conversation with this skill
-and your brand voice profile.
 ```
 
 ### What Changed in the Conversion
@@ -199,7 +191,6 @@ and your brand voice profile.
 | No input guidance | Accept-first pattern: paste existing content, CSV, or describe |
 | No edge cases | Thin input, inconsistent input, missing brand voice all addressed |
 | No example output | Separate `references/example-output.md` file (not shown here) |
-| No closing | Closing section tells user what to do with the output |
 | No ecosystem awareness | References the Document Your Brand Voice skill as optional input |
 | No metadata | skillshelf.yaml with category, level, tags, FAQ |
 | "Default to friendly tone" | Preserved as default, but positioned as fallback when no voice profile exists |

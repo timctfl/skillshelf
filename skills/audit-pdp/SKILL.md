@@ -197,7 +197,3 @@ Without specific examples from the brand voice guide to anchor against, the LLM 
 ### GA4 metrics can be misinterpreted without context
 
 A 40% engagement rate might be terrible for a $200 product and fine for a $15 consumable. The LLM should frame metrics relative to the product type and price point rather than treating any number as inherently good or bad. If you don't have enough context to interpret a metric, say so.
-
-## Closing
-
-Download this audit. If you want to audit additional PDPs, start a new conversation and upload the screenshots for each.
