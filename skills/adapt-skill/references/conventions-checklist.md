@@ -66,9 +66,6 @@ Use this checklist during Phase 4 to review a skill against SkillShelf standards
 
 - [ ] References to other skills use natural-language names, not directory names
 - [ ] Primitives are recommended but not required (skill works without them)
-- [ ] If output is consumed by other skills: `references/glossary.md` exists
-- [ ] If output is consumed by other skills: output includes version marker (`<!-- skill-name v0.1 -->`)
-- [ ] If glossary exists: follows the six-section structure (Overview, Document Structure, Section Hierarchy, Handling Missing Input, Field Definitions, Changelog)
 
 ## Edge Cases
 

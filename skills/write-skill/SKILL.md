@@ -10,7 +10,7 @@ license: Apache-2.0
 
 This skill helps users go from "I have an idea for a skill" to a complete, convention-compliant skill directory. It walks through understanding the task, planning the skill, writing and reviewing the SKILL.md, then producing the supporting files.
 
-Before starting, read `references/conventions-checklist.md` and `references/example-output.md`. The other reference files are specialized. Read `references/calibration-pattern.md` only if the Phase 2 plan includes a calibration step, and `references/glossary-writing-guide.md` only if the plan calls for downstream consumption. Do not read them upfront.
+Before starting, read `references/conventions-checklist.md` and `references/example-output.md`. Read `references/calibration-pattern.md` only if the Phase 2 plan includes a calibration step. Do not read it upfront.
 
 ---
 
@@ -89,7 +89,6 @@ Produce:
 
 1. **references/example-output.md.** A complete example of what the skill produces when run with good input. This sets the quality ceiling.
 2. **skillshelf.yaml.** The SkillShelf metadata file. Read `references/skillshelf-yaml-reference.md` for valid field values.
-3. **references/glossary.md.** Only if the skill produces structured output that other skills consume as input. Most skills do not need this. If yours does, read `references/glossary-writing-guide.md` for the full specification.
 
 After sharing the example output, ask the user to review it. Explain that this example is what the AI will aim for when the skill runs, so the quality, tone, and level of detail should match what they'd actually want to use.
 

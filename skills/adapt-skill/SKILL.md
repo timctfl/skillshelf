@@ -10,7 +10,7 @@ license: Apache-2.0
 
 You already have a prompt or skill that works. This skill converts it into the format SkillShelf uses, so other people can find it, download it, and use it with their own AI tools. Paste your prompt, upload a file, or upload a zip, and you get back a complete skill directory ready to share.
 
-Before starting, read `references/conventions-checklist.md` and `references/example-adaptation.md`. The other reference files are specialized. Read `references/calibration-pattern.md` only if the source skill needs a calibration step, and `references/glossary-writing-guide.md` only if the converted skill produces output consumed by other skills. Do not read them upfront.
+Before starting, read `references/conventions-checklist.md` and `references/example-adaptation.md`. Read `references/calibration-pattern.md` only if the source skill needs a calibration step. Do not read it upfront.
 
 ---
 
@@ -104,7 +104,6 @@ Produce:
 
 1. **references/example-output.md.** A complete example of what the skill produces when run with good input. This sets the quality ceiling.
 2. **skillshelf.yaml.** The SkillShelf metadata file. Read `references/skillshelf-yaml-reference.md` for valid field values.
-3. **references/glossary.md.** Only if the skill produces structured output that other skills consume as input. Most skills do not need this. If yours does, read `references/glossary-writing-guide.md` for the full specification.
 
 After sharing the example output, ask the user to review it. Explain that this example is what the AI will aim for when the skill runs, so the quality, tone, and level of detail should match what they'd actually want to use.
 
