@@ -11,6 +11,15 @@
   "youth_order": [
     "YXS", "YS", "YM", "YL", "YXL"
   ],
+  "infant_order": [
+    "NB", "0-3M", "3-6M", "6-9M", "6-12M", "12-18M", "18-24M"
+  ],
+  "petite_order": [
+    "PS", "PM", "PL", "PXL"
+  ],
+  "tall_order": [
+    "TS", "TM", "TL", "TXL"
+  ],
   "aliases": {
     "extra extra small": "XXS",
     "double extra small": "XXS",
@@ -86,22 +95,107 @@
     "yxs": "YXS",
     "youth xs": "YXS",
     "youth extra small": "YXS",
-
     "ys": "YS",
     "youth s": "YS",
     "youth small": "YS",
-
     "ym": "YM",
     "youth m": "YM",
     "youth medium": "YM",
-
     "yl": "YL",
     "youth l": "YL",
     "youth large": "YL",
-
     "yxl": "YXL",
     "youth xl": "YXL",
     "youth extra large": "YXL",
+
+    "newborn": "NB",
+    "nb": "NB",
+    "new born": "NB",
+
+    "0-3 months": "0-3M",
+    "0/3m": "0-3M",
+    "0-3mo": "0-3M",
+    "0-3 mo": "0-3M",
+    "0 to 3 months": "0-3M",
+    "preemie": "NB",
+
+    "3-6 months": "3-6M",
+    "3/6m": "3-6M",
+    "3-6mo": "3-6M",
+    "3-6 mo": "3-6M",
+    "3 to 6 months": "3-6M",
+
+    "6-9 months": "6-9M",
+    "6/9m": "6-9M",
+    "6-9mo": "6-9M",
+    "6-9 mo": "6-9M",
+    "6 to 9 months": "6-9M",
+
+    "6-12 months": "6-12M",
+    "6/12m": "6-12M",
+    "6-12mo": "6-12M",
+    "6-12 mo": "6-12M",
+    "6 to 12 months": "6-12M",
+
+    "12-18 months": "12-18M",
+    "12/18m": "12-18M",
+    "12-18mo": "12-18M",
+    "12-18 mo": "12-18M",
+    "12 to 18 months": "12-18M",
+
+    "18-24 months": "18-24M",
+    "18/24m": "18-24M",
+    "18-24mo": "18-24M",
+    "18-24 mo": "18-24M",
+    "18 to 24 months": "18-24M",
+
+    "petite s": "PS",
+    "petite small": "PS",
+    "p/s": "PS",
+    "p-s": "PS",
+    "ps": "PS",
+
+    "petite m": "PM",
+    "petite medium": "PM",
+    "p/m": "PM",
+    "p-m": "PM",
+    "pm": "PM",
+
+    "petite l": "PL",
+    "petite large": "PL",
+    "p/l": "PL",
+    "p-l": "PL",
+    "pl": "PL",
+
+    "petite xl": "PXL",
+    "petite extra large": "PXL",
+    "p/xl": "PXL",
+    "p-xl": "PXL",
+    "pxl": "PXL",
+
+    "tall s": "TS",
+    "tall small": "TS",
+    "t/s": "TS",
+    "t-s": "TS",
+    "ts": "TS",
+
+    "tall m": "TM",
+    "tall medium": "TM",
+    "t/m": "TM",
+    "t-m": "TM",
+    "tm": "TM",
+
+    "tall l": "TL",
+    "tall large": "TL",
+    "t/l": "TL",
+    "t-l": "TL",
+    "tl": "TL",
+
+    "tall xl": "TXL",
+    "tall extra large": "TXL",
+    "t/xl": "TXL",
+    "t-xl": "TXL",
+    "txl": "TXL",
 
     "one size": "OS",
     "one-size": "OS",
@@ -112,13 +206,18 @@
     "one size fits most": "OS",
     "osfa": "OS",
     "osfm": "OS",
-    "free size": "OS"
+    "free size": "OS",
+    "adjustable": "OS",
+    "universal": "OS"
   },
   "size_option_names": [
     "size", "sizes", "sizing",
     "dimension", "dimensions",
     "waist", "inseam", "length", "width",
-    "chest", "neck",
-    "shoe size", "hat size", "ring size"
+    "chest", "neck", "sleeve", "sleeve length",
+    "shoe size", "hat size", "ring size",
+    "cup size", "band size",
+    "age", "age group",
+    "pack size", "net weight"
   ]
 }
