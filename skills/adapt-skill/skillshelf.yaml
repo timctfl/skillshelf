@@ -39,8 +39,7 @@ output_schema:
   description: >-
     A complete SkillShelf skill directory containing SKILL.md with valid
     frontmatter, references/example-output.md demonstrating ceiling quality,
-    an optional references/glossary.md for skills whose output is consumed
-    downstream, and a skillshelf.yaml metadata sidecar.
+    and a skillshelf.yaml metadata sidecar.
   required_files:
     - SKILL.md
     - skillshelf.yaml
