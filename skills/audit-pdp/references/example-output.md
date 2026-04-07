@@ -1,11 +1,3 @@
-# Example: Audit a Product Detail Page
-
-This is an example of what the audit-pdp skill produces when given desktop and mobile PDP screenshots, a brand voice guide, and a GA4 performance screenshot. The example uses Great Outdoors Co., a fictional outdoor gear brand. The PDP audited is the Ridgewalker GTX Hiking Boot.
-
-The example demonstrates how the skill inventories the page, evaluates against the best practices rubric, sorts recommendations into content/merchandising and dev/design buckets, and prioritizes actions. It also shows how GA4 data with the mobile/desktop split influences recommendation weighting.
-
----
-
 ## PDP Summary
 
 **Product:** Ridgewalker GTX Hiking Boot (Great Outdoors Co.)

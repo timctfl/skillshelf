@@ -1,11 +1,3 @@
-# Example: Write Product Descriptions from Spec Sheets
-
-This is an example of what the write-product-descriptions skill produces. It demonstrates the full output when given a detailed spec sheet, a content template from the Women's version of the same product, a brand voice profile, and a positioning brief.
-
-The example uses Great Outdoors Co., the canonical SkillShelf test brand. The product is the Cascade Rain Shell - Men's. The spec data comes from a product spec sheet (material, construction, features, care, sizing) and a product attributes CSV (waterproof rating, breathability, colors). The template structure comes from the Women's version PDP. Unlike the rewrite skill, there is no existing customer-facing copy to start from, just raw product data.
-
----
-
 ```markdown
 # Product Description: Cascade Rain Shell - Men's
 
@@ -90,21 +82,3 @@ Care instructions carried through from the product spec sheet. These are standar
 
 **Add a "Good to know" or FAQ section to the template.** The spec sheet includes fit details (generous, size down for slim builds, pocket placement relative to hipbelts) that are useful for purchase decisions but don't have a natural home in the current template. A short section with 2-3 common questions would help customers self-select the right size and set expectations for pack compatibility.
 ```
-
----
-
-## How This Example Demonstrates the Skill
-
-**Writes from specs, not from existing copy.** The input is raw product data: a spec sheet and an attributes CSV. There is no existing PDP to rewrite. The skill translates technical specs into customer-facing copy.
-
-**Brand voice alignment.** The copy follows the voice profile: short declarative sentences, contractions, no exclamation marks, no superlatives, dry humor where it fits naturally ("which in the Pacific Northwest is most weekends from October through June"). It avoids everything in the "What GreatOutdoors Co. Avoids" list: no aspirational language, no competitor comparisons, no urgency cues.
-
-**Positioning awareness.** The copy frames the product through GreatOutdoors Co.'s positioning: gear for every-weekend hikers, not expedition athletes. The hero leads with the use pattern (weekly use in real rain), not with technical specs. The value framing is implicit ("you're not replacing it next fall") rather than leading with the $149 price point.
-
-**Template compliance.** Every section from the Women's PDP template appears in the output with the same format: paragraph hero, bullet features, table specs, bullet care instructions, bullet sizing notes. No sections were added, renamed, or restructured.
-
-**Spec-to-Copy Mapping provides traceability.** Every section traces back to specific fields in the spec sheet or attributes CSV. The user can verify that the skill interpreted "15K/15K" correctly, that the "quiet fabric" claim came from the spec sheet's noise note, and that the "Pacific Northwest" framing came from the positioning brief rather than being invented.
-
-**Specificity extracted from specs.** The hero names the specific weight (330 g), the specific construction (2.5-layer laminate, fully taped seams), and the specific performance context (sustained rain, not a drizzle). The features section preserves spec-level detail (PFAS-free DWR, structured brim, carabiner loop) rather than abstracting to generic benefit language.
-
-**Honest confidence notes.** The value framing ("not replacing it next fall") is flagged as a soft inference from warranty + positioning rather than presented as a hard claim. This is the kind of transparency that builds trust when writing from specs. The user knows exactly where the skill was confident and where it was interpreting.
