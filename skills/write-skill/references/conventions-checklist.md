@@ -60,6 +60,7 @@ Use this checklist during Phase 4 to review a skill against SkillShelf standards
 - [ ] Brand name makes product category immediately clear
 - [ ] Example demonstrates ceiling quality (not floor)
 - [ ] Example covers all output sections
+- [ ] Example contains only the output (no preambles, commentary, or "how to use" sections)
 
 ## Ecosystem
 

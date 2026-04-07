@@ -139,7 +139,7 @@ Output must be ready to paste into a CMS, upload to a platform, or hand to a tea
 
 Every skill includes an example output file in `references/`. The file must use the `example-` prefix (e.g., `example-output.md`). The SkillShelf website uses this prefix to find and display example files. A file named `sample-output.md` or `output-example.md` will not appear on the site.
 
-The example demonstrates the ceiling, not the floor. If the example is mediocre, the LLM will calibrate to mediocre output.
+The example demonstrates the ceiling, not the floor. If the example is mediocre, the LLM will calibrate to mediocre output. The example file should contain only the skill's actual output, with no preambles, commentary, or "how to use" sections.
 
 ### General behaviors
 
