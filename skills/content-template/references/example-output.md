@@ -150,8 +150,3 @@ The Features & Specs section varies the most between product types. The overall 
 
 Conditional sections include: Badge (not all products), What's Been Updated (revised products only), Layering Guide / Educational Content (category-dependent), and In-store Availability (may depend on retail presence).
 
----
-
-## How to Use This Document
-
-Upload this file alongside any SkillShelf skill that produces PDP content. The skill will use it as the structural blueprint: writing content that fits your section names, follows your format constraints, and matches your content expectations. The skill's other inputs (brand voice profile, positioning brief, product data) determine what the content says and how it sounds. This document determines where it goes and what shape it takes.
