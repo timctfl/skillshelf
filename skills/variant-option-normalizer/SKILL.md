@@ -4,6 +4,7 @@ description: >-
   Detects inconsistent Shopify variant option values, proposes a canonical
   naming system, and produces a corrected CSV with a change log.
 license: Apache-2.0
+compatibility: "Requires Python 3.10+. Falls back to pure LLM analysis if Python is unavailable."
 ---
 
 # Normalize and Repair Variant Options
@@ -13,6 +14,45 @@ This skill accepts a Shopify product CSV export, scans every Option Name and Opt
 It produces two outputs: a corrected CSV ready for Shopify bulk re-import and a structured change log documenting every modification. Ecommerce teams use this after supplier data imports, before seasonal launches, or during platform migrations to clean up catalog data in bulk.
 
 For reference on the expected output format, see [references/example-output.md](references/example-output.md).
+
+---
+
+## Script Execution
+
+This skill uses a hybrid approach: a Python script handles deterministic checks (whitespace, case, duplicates, size ordering, missing images) and outputs structured JSON. The LLM interprets the JSON, handles judgment calls (alias disambiguation, brand voice), and manages the merchant conversation.
+
+**Before analyzing any CSV yourself, run the audit script:**
+
+```
+python3 scripts/normalize_audit.py <csv_path> --assets-dir assets/
+```
+
+The script outputs JSON to stdout. Capture the full output and use it as the basis for the audit report.
+
+**Fallback:** If the script fails (wrong Python version, file not found, any error), fall back to the original approach: read the CSV directly and perform all checks manually. Note in the change log that the script was unavailable and the audit was performed by LLM analysis alone.
+
+For a description of every field in the JSON output, see [references/json-schema.md](references/json-schema.md).
+
+---
+
+## Interpreting Script Output
+
+When presenting the script's JSON findings to the merchant:
+
+1. **Do not show raw JSON.** Translate every finding into the Markdown audit report format described in the Conversation Flow.
+2. **Map confidence levels to presentation style:**
+   - `high` confidence: state as a finding ("These values are aliases and should be merged.")
+   - `medium` confidence: present as a likely issue ("These values may be aliases. Can you confirm?")
+   - `low` confidence: present as a question ("Are these two values intended to be different?")
+3. **Handle warnings selectively.** Surface BOM detection, encoding issues, empty option values, and HTML entities in option values. Skip routine metadata like script version and timestamp.
+4. **For handle/title drift:** Apply your own judgment about acceptable differences. The script flags all mismatches; filter out gendered suffix variations (e.g., dropping "Men's" or "Women's" from handles) before presenting to the merchant.
+5. **For alias candidates with `same_product: true`:** These are almost certainly errors. Present them confidently. Cross-product aliases (`same_product: false`) may be intentional and should be framed as questions.
+
+**Supplement the script's findings with LLM-only checks:**
+
+- **Semantic alias detection:** Values that are semantically equivalent but not in the known alias map (e.g., "Crimson" and "Red", "Burgundy" and "Wine"). Use your knowledge of colors, materials, and sizing to identify candidates.
+- **Context-aware judgment:** Determine whether ambiguous values are sizes, colors, or something else based on the option name and product type.
+- **Brand voice alignment:** Consider whether the store's positioning suggests spelled-out sizes ("Extra Large") or abbreviations ("XL").
 
 ---
 
@@ -32,11 +72,12 @@ Example prompt: "Please share your Shopify product CSV. You can paste the rows d
 
 Once you have the CSV:
 
-1. Parse all rows. Identify every unique product handle.
-2. For each product, extract all Option1/Option2/Option3 Name and Value cells.
-3. Build a master catalog of every unique option name and every unique option value, both per-product and across the full file.
-4. Run the Detection Categories analysis (see below).
-5. Present findings as a structured audit report, grouped by issue type.
+1. Run the audit script: `python3 scripts/normalize_audit.py <csv_path> --assets-dir assets/`
+2. Parse the JSON output. Use the metadata section for summary counts.
+3. Translate each non-empty issues array into the corresponding audit report section.
+4. Apply the Interpreting Script Output rules above to filter, frame, and supplement the findings.
+5. Run your own semantic checks for aliases, context-dependent values, and brand voice considerations that the script cannot detect.
+6. Present findings as a structured audit report, grouped by issue type.
 
 Do not ask clarifying questions before producing the audit. Show the findings first so the merchant can see what needs attention.
 
