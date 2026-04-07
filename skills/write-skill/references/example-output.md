@@ -1,169 +1,116 @@
 ```markdown
 ---
-name: write-collection-descriptions
+name: competitor-overview
 description: >-
-  Produces SEO-ready product collection descriptions from a Shopify product
-  catalog or similar structured export. Accepts a CSV or pasted product list
-  and generates a description for each collection (by product type, tag, or
-  vendor). Descriptions lead with customer need, highlight the range of
-  products in the collection, and include relevant search terms naturally.
-  Output is ready to paste into Shopify collection pages.
+  Researches a set of competitors identified by the user and produces a
+  competitor overview document capturing each competitor's positioning,
+  messaging, target audience, and market perception. Accepts a list of
+  competitor names and the user's category for context. Output is a
+  foundation document consumed by positioning briefs, comparison copy,
+  and other downstream skills.
 license: Apache-2.0
 ---
 
-# Write Collection Descriptions
+# Research Your Competitors
 
-This skill takes a product catalog and writes descriptions for each product
-collection. A collection description tells the customer what they will find,
-why it matters, and what to look for when choosing. The output is designed
-for Shopify collection pages but works for any platform with category or
-collection landing pages.
+This skill takes a list of competitors from the user, researches each one using their public web presence, and produces a competitor overview document. The document captures how each competitor positions themselves, what they say, who they're targeting, and how the market perceives them. It does not compare competitors back to the user's brand. That analysis belongs in downstream skills like the positioning brief, which consumes this document as input.
 
-For reference on the expected output, see
-[references/example-output.md](references/example-output.md).
+For reference on the expected output, see [references/example-output.md](references/example-output.md).
+
+## Voice and Approach
+
+Be direct and efficient. The user is sharing competitors they already know about, so don't over-explain what a competitive overview is or why it matters. Get the list, do the research, present what you found. When presenting findings, be specific and evidence-based. Don't editorialize or speculate beyond what the research supports. If a competitor's site is vague or thin, say so rather than inflating weak evidence into confident claims.
 
 ## Conversation Flow
 
-### Turn 1: Welcome and Collect
+### Turn 1: Collect the List
 
-Ask the user to share their product catalog. Accept any of these formats:
+Ask the user for their competitor list and their own brand name and category. The brand and category give you a lens for the research, not a basis for comparison. Accept whatever format the user provides: a simple list of names, names with context, or a longer explanation of the competitive landscape.
 
-- Shopify product export CSV (preferred: has Type, Tags, Vendor columns)
-- WooCommerce product export CSV (map Categories to collection names)
-- A pasted list of products grouped by collection
-- A link to their store (attempt to extract collection structure)
+If the user shares additional context about specific competitors ("they're the budget option," "they just launched a DTC channel"), note it. This context helps focus the research but should be validated against what the competitor's own presence says.
 
-Tell the user: "Share your product catalog and I'll write a description for
-each collection. A Shopify CSV export works best, but I can work with any
-product list. If you have a brand voice profile or positioning brief, upload
-those too and I'll write on-brand."
+If the user lists more than six or seven competitors, flag that the research quality will be better with a tighter list and suggest prioritizing. Offer to do a first pass on their top five and come back for the rest.
 
-### Turn 2: Identify Collections and Confirm
+### Turn 2: Research and Present
 
-After receiving the catalog:
+Research each competitor using their public web presence and third-party sources. For each competitor, capture whatever the research supports across these dimensions:
 
-1. Parse the data and identify distinct collections by product type, tags,
-   or vendor (whichever produces the most meaningful groupings).
-2. For each collection, note the product count and representative products.
-3. Present the collection list to the user: "I found N collections in your
-   catalog. Here's what I'll write descriptions for: [list]. Should I add,
-   remove, or rename any of these?"
+- **Positioning:** How they describe themselves and their value proposition. What they lead with.
+- **Target audience:** Who they appear to be selling to, based on messaging, imagery, and product range.
+- **Messaging patterns:** The language they use, recurring themes, tone and register.
+- **Product/service focus:** What they emphasize, what they seem to deprioritize, how broad or narrow their range is.
+- **Channel presence:** Where they sell (DTC, marketplaces, retail, wholesale) if discernible.
+- **Market perception:** What third-party sources (reviews, press, forums) say about them, if available.
 
-Wait for confirmation before writing.
+If pricing is visible and straightforward (a public pricing page, clearly listed price points), note it briefly. But don't try to characterize a competitor's pricing strategy from a handful of SKUs or a single pricing page. Incomplete pricing data is easy to misread, and the resulting claims tend to be more misleading than useful.
 
-### Turn 3: Produce Descriptions
+These dimensions are a menu, not a checklist. Write what the research supports. If a competitor's pricing isn't visible, skip that dimension. If their messaging is generic and doesn't reveal much, say that in a sentence rather than padding it into a full section. A competitor with a rich public presence should get a detailed profile. A competitor with a thin or generic site should get a short one. The depth should reflect the evidence, not a template.
 
-Generate one description per collection using the output structure below.
-Produce all descriptions in a single downloadable document.
+Present all findings in a single document. After the per-competitor profiles, include a landscape summary that describes patterns across the group: common positioning themes, audience overlaps, messaging conventions in the category. This summary describes the competitive field on its own terms.
 
-After sharing: "Review these and let me know if any need adjustments. I can
-change the tone, add specific product callouts, or restructure any
-description."
+After sharing the document, ask the user to review. They will often know things the research can't surface (recent pivots, reputation in the market, sales conversations) and this is where that knowledge gets folded in.
 
-### Turn 4+: Revise
+### Turn 3+: Review and Refine
 
-Edit individual descriptions in place when the user requests changes.
-Do not regenerate the entire document for one correction.
+When the user provides corrections or additional context, update the document in place. If they add information that enriches a thin profile, incorporate it and note the source ("based on your input" or similar) so downstream skills can distinguish research-based findings from user-supplied context.
 
-## Synthesis Instructions
+If the user identifies a competitor that was missed or wants to add one, research it and add it to the document.
 
-### Core principles
+## Research Guidelines
 
-- **Lead with the customer need, not the product list.** A collection
-  description answers "what am I looking for?" before "what's in here?"
-- **Be specific to the catalog.** Reference actual products, materials,
-  price ranges, and use cases from the data. "Waterproof jackets rated
-  from 10K to 20K mm" is useful. "A range of quality outerwear" is not.
-- **Include search terms naturally.** Weave relevant keywords into the
-  description without keyword stuffing. The description should read as
-  helpful prose that happens to contain the terms people search for.
-- **Respect the brand voice.** If a brand voice profile is provided, follow
-  it. If not, write in a clear, direct, helpful tone.
+For each competitor, start by visiting their actual website. Fetch their homepage, about page, and at least one product or collection page. This is non-negotiable. Do not build a competitor profile from search results about a brand without having visited the brand's own site. Articles and analyses written about a company are no substitute for reading what the company says about itself in its own words.
 
-### Per-collection process
+After visiting the site, use web search to supplement with third-party perspectives: review sites (G2, Trustpilot, Capterra), press coverage, industry reports, forum discussions. This is where you find reputation, common complaints, and how the competitor is actually perceived versus how they want to be perceived. The gap between first-party and third-party is often the most interesting finding.
 
-For each collection:
+When writing profiles, make the source legible. "Their homepage leads with sustainability messaging" is a first-party finding based on visiting their site. "They have a 4.2 on G2 with reviewers frequently citing ease of setup" is third-party. Both belong in the profile, and downstream skills benefit from knowing which is which.
 
-1. Read all products in the collection. Note the range of prices, key
-   materials or features, and the use cases they cover.
-2. Identify the unifying theme: what problem does this collection solve,
-   or what activity does it serve?
-3. Write the description following the output structure.
+Be precise about what you found versus what you're inferring. "Their homepage leads with sustainability messaging" is a finding. "They appear to be targeting environmentally conscious consumers" is a reasonable inference. "They're the sustainability leader in the category" is a claim you probably can't support.
+
+If a competitor's website is behind a login, is mostly an app with no marketing site, or is otherwise inaccessible, note that and work with whatever is available.
 
 ## Output Structure
 
-Each collection description follows this format:
+The output is a Markdown document. The structure adapts to the research rather than following a rigid template.
+
+Each competitor gets a section headed with their name. Within that section, include whichever dimensions the research supports. Use subheadings for dimensions when there's enough to say, or combine lighter dimensions into prose when a subheading would feel like overkill for a sentence or two.
+
+After all competitor profiles, include a Landscape Summary section that identifies patterns across the competitive field.
+
+If any profiles are based on limited information, include a Coverage Notes section at the end that flags which competitors had thin research and what would help fill the gaps.
 
 ```
-## [Collection Name]
+# Competitor Overview
 
-[Opening sentence: who this collection is for and what need it serves.]
+## [Competitor Name]
+[Profile with relevant dimensions, depth proportional to evidence]
 
-[Body paragraph: what the collection contains, with specific references
-to product types, materials, features, and the range of options. Include
-price range if it helps the customer understand the tier.]
+## [Competitor Name]
+[Profile with relevant dimensions, depth proportional to evidence]
 
-[Closing sentence: what to consider when choosing, or a natural transition
-to browsing the products.]
+...
+
+## Landscape Summary
+[Patterns, clusters, common themes across the competitive field]
+
+## Coverage Notes (if needed)
+[Which competitors had limited information, what would help]
 ```
-
-Target length: 80-150 words per description. Long enough to be useful for
-SEO and customer context. Short enough that customers actually read it.
-
-## Important Behaviors
-
-- Produce all descriptions in a single downloadable Markdown file.
-- Use the collection name as an H2 heading.
-- If the user provides a brand voice profile, read it before writing and
-  follow it throughout. If not provided, write in a clear, direct tone.
-- When editing, change only the requested description.
 
 ## Edge Cases
 
-### Very small catalog (< 10 products)
+### Competitor has very little public presence
 
-Some collections may have only 1-2 products. Write descriptions anyway,
-but keep them shorter (2-3 sentences). Note to the user: "Some collections
-have very few products. The descriptions reflect what's there now. As you
-add products, you may want to regenerate these."
+Some competitors operate primarily through marketplaces, wholesale, or word of mouth and have minimal web presence. Produce a short profile noting what's available and what isn't. Don't pad a thin profile with speculation.
 
-### Missing product descriptions in the catalog
+### Competitor is in an adjacent category
 
-If the CSV has product titles but empty description fields, work from the
-titles, types, tags, and any other available fields. Note which descriptions
-were written from limited data in a Confidence notes section.
+If research reveals a listed competitor operates in a different category than the user's, note it and ask the user whether to keep them in the overview. They may have a good reason for including them, or it may have been a mistake.
 
-### Collections that overlap heavily
+### User provides extensive context upfront
 
-If two collections share most of their products (e.g., "Rain Jackets" and
-"Waterproof Gear"), flag the overlap: "These two collections share N
-products. I've written distinct descriptions that emphasize what makes each
-collection different. You may want to consolidate them."
+If the user shares detailed knowledge about competitors in Turn 1, incorporate it into the profiles alongside the research. Distinguish between user-provided context and research findings so downstream skills know the source.
 
-### Very large catalog (1,000+ products)
+### Very large competitor list
 
-Process all collections but warn about potential grouping issues: "With a
-large catalog, the automatic collection grouping may not match your store's
-actual collections. Review the list in Turn 2 and let me know if any need
-adjusting."
-```
-
----
-
-## Example of What This Skill Produces
-
-Below is a sample collection description for Great Outdoors Co., showing
-the output quality this skill should achieve.
-
-```markdown
-## Rain Shells
-
-When the forecast turns and you're two miles from the trailhead, your
-shell is the difference between pushing through and turning back. This
-collection covers the range: from the Cascade Rain Shell with 15K mm
-waterproofing and fully taped seams for all-day downpours, to lighter
-wind-resistant layers for drizzly morning runs. Prices run from $89 to
-$189. If you're choosing between them, start with where you'll wear it
-most. Day hikes in the Pacific Northwest need different protection than
-a quick trail run in light rain.
+If the user lists more than six or seven competitors, suggest prioritizing. Research quality degrades when spread too thin. Offer to handle them in batches.
 ```
