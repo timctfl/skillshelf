@@ -102,7 +102,7 @@ Each entry represents a product with out-of-order size variants.
 | size_option_field | string | Which column holds sizes, e.g., "Option1 Value" |
 | current_order | string[] | Size values in their current row order |
 | expected_order | string[] | Size values in the correct order |
-| size_system | string | One of: "apparel_letter", "numeric", "compound", "unknown" |
+| size_system | string | One of: "apparel_letter", "plus_size", "toddler", "youth", "infant", "petite", "tall", "numeric", "compound", "unknown" |
 
 ### issues.option_value_aliases
 

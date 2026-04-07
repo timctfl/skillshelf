@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import Any
 
 
-SCRIPT_VERSION = "1.0.0"
+SCRIPT_VERSION = "1.1.0"
 
 # Shopify caps option values at 255 characters
 SHOPIFY_OPTION_VALUE_MAX_LENGTH = 255
@@ -565,13 +565,28 @@ def resolve_size_canonical(value: str, aliases: dict) -> str:
     return aliases.get(lower, value.strip())
 
 
-def detect_size_system(values: list[str], apparel_order: list[str]) -> str:
-    """Determine if values are apparel letters, numeric, compound, or unknown."""
-    apparel_set = set(s.upper() for s in apparel_order)
-    canonical_values = [v.upper() for v in values]
+def detect_size_system(values: list[str], size_config: dict) -> str:
+    """Determine the size system in use from the values present."""
+    upper_values = [v.upper() for v in values]
 
-    if all(v in apparel_set or v == "OS" for v in canonical_values):
-        return "apparel_letter"
+    # Check each named order array in priority order
+    order_arrays = [
+        ("apparel_letter_order", "apparel_letter"),
+        ("plus_order", "plus_size"),
+        ("toddler_order", "toddler"),
+        ("youth_order", "youth"),
+        ("infant_order", "infant"),
+        ("petite_order", "petite"),
+        ("tall_order", "tall"),
+    ]
+    for config_key, system_name in order_arrays:
+        order = size_config.get(config_key, [])
+        if not order:
+            continue
+        order_set = set(s.upper() for s in order)
+        # Allow OS (one size) alongside any named system
+        if all(v in order_set or v == "OS" for v in upper_values):
+            return system_name
 
     # Check numeric (including decimals like shoe sizes)
     numeric_pattern = re.compile(r"^\d+(\.\d+)?$")
@@ -586,29 +601,41 @@ def detect_size_system(values: list[str], apparel_order: list[str]) -> str:
     return "unknown"
 
 
-def sort_key_for_size(value: str, aliases: dict, apparel_order: list[str]) -> tuple:
-    """Return a sort key for a size value."""
+def sort_key_for_size(value: str, aliases: dict, size_config: dict) -> tuple:
+    """Return a sort key for a size value across all supported size systems."""
     canonical = resolve_size_canonical(value, aliases)
     upper = canonical.upper()
 
-    # Check apparel ladder
-    if upper in apparel_order:
-        return (0, apparel_order.index(upper), 0)
+    # Each named order array gets its own bucket so systems don't intermix
+    order_arrays = [
+        "apparel_letter_order",
+        "plus_order",
+        "toddler_order",
+        "youth_order",
+        "infant_order",
+        "petite_order",
+        "tall_order",
+    ]
+    for bucket, config_key in enumerate(order_arrays):
+        order = size_config.get(config_key, [])
+        order_upper = [s.upper() for s in order]
+        if upper in order_upper:
+            return (bucket, order_upper.index(upper), 0)
 
-    # Check numeric
+    # Numeric (shoe sizes, waist measurements entered as plain numbers)
     try:
         num = float(canonical)
-        return (1, num, 0)
+        return (len(order_arrays), num, 0)
     except ValueError:
         pass
 
-    # Check compound (waist x inseam)
+    # Compound (waist x inseam)
     match = re.match(r"^(\d+)\s*[x/]\s*(\d+)$", canonical, re.IGNORECASE)
     if match:
-        return (1, float(match.group(1)), float(match.group(2)))
+        return (len(order_arrays), float(match.group(1)), float(match.group(2)))
 
-    # Unknown: sort alphabetically at the end
-    return (2, 0, 0)
+    # Unknown: sort at the end, alphabetically within that bucket
+    return (len(order_arrays) + 1, 0, 0)
 
 
 def check_size_ordering(products: list[Product], size_config: dict) -> list[dict]:
@@ -636,9 +663,9 @@ def check_size_ordering(products: list[Product], size_config: dict) -> list[dict
         if len(seen) <= 1:
             continue  # Single size or OS: nothing to order
 
-        size_system = detect_size_system(seen, apparel_order)
+        size_system = detect_size_system(seen, size_config)
 
-        expected = sorted(seen, key=lambda v: sort_key_for_size(v, aliases, apparel_order))
+        expected = sorted(seen, key=lambda v: sort_key_for_size(v, aliases, size_config))
 
         if seen != expected:
             issues.append({
@@ -683,13 +710,16 @@ def load_alias_config(assets_dir: Path | None) -> dict:
 def check_option_value_aliases(products: list[Product], alias_config: dict, size_config: dict) -> list[dict]:
     issues: list[dict] = []
 
-    # Build a bidirectional alias lookup from the color_aliases config
-    known_pairs: dict[str, str] = {}
+    # Build a canonical-group map: every value (including the canonical key itself)
+    # maps to its group's canonical form. Handles multi-variant groups like
+    # wine/maroon/burgundy correctly where a bidirectional pair map would not.
+    known_canonical: dict[str, str] = {}
     color_aliases = alias_config.get("color_aliases", {})
     for canonical, variants in color_aliases.items():
+        canonical_lower = canonical.lower()
+        known_canonical[canonical_lower] = canonical_lower
         for v in variants:
-            known_pairs[v.lower()] = canonical.lower()
-            known_pairs[canonical.lower()] = v.lower()
+            known_canonical[v.lower()] = canonical_lower
 
     # Build size canonical lookup for detecting size aliases like "Extra Large" / "XL"
     size_aliases = size_config.get("aliases", {})
@@ -732,12 +762,11 @@ def check_option_value_aliases(products: list[Product], alias_config: dict, size
                 suggested = None
 
                 # Strategy 1: Known color alias map
-                if val_a in known_pairs and known_pairs[val_a] == val_b:
-                    detection_method = "known_alias_map"
-                    confidence = "high"
-                elif val_b in known_pairs and known_pairs[val_b] == val_a:
-                    detection_method = "known_alias_map"
-                    confidence = "high"
+                # Two values alias if they resolve to the same canonical group root
+                if val_a in known_canonical and val_b in known_canonical:
+                    if known_canonical[val_a] == known_canonical[val_b]:
+                        detection_method = "known_alias_map"
+                        confidence = "high"
 
                 # Strategy 2: Size alias map (two values resolve to the same canonical size)
                 if not detection_method and opt_name in size_option_names:
@@ -1018,9 +1047,6 @@ def run_audit(csv_path: Path, assets_dir: Path | None) -> dict:
 
     size_config = load_size_config(assets_dir)
     alias_config = load_alias_config(assets_dir)
-
-    # Filter out default-title products for counting
-    active_products = [p for p in products if not is_default_title_product(p)]
 
     whitespace = check_whitespace(products)
     case_issues = check_case_inconsistencies(products)

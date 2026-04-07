@@ -50,7 +50,7 @@ When presenting the script's JSON findings to the merchant:
 
 **Supplement the script's findings with LLM-only checks:**
 
-- **Semantic alias detection:** Values that are semantically equivalent but not in the known alias map (e.g., "Crimson" and "Red", "Burgundy" and "Wine"). Use your knowledge of colors, materials, and sizing to identify candidates.
+- **Semantic alias detection:** Values that are semantically equivalent but not in the known alias map (e.g., "Crimson" and "Red", "Forest Green" and "Fir Green", "Cobalt" and "Royal Blue"). Use your knowledge of colors, materials, and sizing to identify candidates.
 - **Context-aware judgment:** Determine whether ambiguous values are sizes, colors, or something else based on the option name and product type.
 - **Brand voice alignment:** Consider whether the store's positioning suggests spelled-out sizes ("Extra Large") or abbreviations ("XL").
 
@@ -176,8 +176,14 @@ Leading or trailing spaces in any Option Name or Option Value cell. These are in
 
 Variants should appear in logical size order within each product. Check whether variant rows follow the expected sequence:
 
-- **Apparel letter sizes:** XS, S, M, L, XL, XXL, 2XL, 3XL
-- **Numeric sizes:** ascending order (28, 30, 32, 34...)
+- **Apparel letter sizes:** XXS, XS, S, M, L, XL, XXL, 2XL, 3XL, 4XL, 5XL
+- **Plus sizes:** 0X, 1X, 2X, 3X, 4X, 5X
+- **Toddler sizes:** 2T, 3T, 4T, 5T, 6T
+- **Youth sizes:** YXS, YS, YM, YL, YXL
+- **Infant sizes:** NB, 0-3M, 3-6M, 6-9M, 6-12M, 12-18M, 18-24M
+- **Petite sizes:** PS, PM, PL, PXL
+- **Tall sizes:** TS, TM, TL, TXL
+- **Numeric sizes:** ascending order (28, 30, 32... for waists; 7, 7.5, 8... for shoes)
 - **Named sizes (e.g., Small, Medium, Large):** map to their letter equivalents first
 
 Flag products where size-based variants are out of sequence. Note: this check only applies to Option columns that contain size values.

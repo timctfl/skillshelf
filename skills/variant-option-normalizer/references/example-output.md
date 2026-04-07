@@ -19,7 +19,7 @@ python3 scripts/normalize_audit.py summitgear-products.csv --assets-dir assets/
   "metadata": {
     "products_scanned": 4,
     "variants_scanned": 22,
-    "total_issues_found": 9,
+    "total_issues_found": 11,
     "has_variant_image_column": true,
     "csv_encoding": "utf-8-sig",
     "bom_detected": false
@@ -27,7 +27,7 @@ python3 scripts/normalize_audit.py summitgear-products.csv --assets-dir assets/
 }
 ```
 
-LLM analysis identified 2 additional semantic alias candidates not in the known alias map (Grey/Gray and XL/Extra Large), bringing the total presented to the merchant to 11.
+The script detected all 11 issues, including both alias pairs (Grey/Gray via the color alias map, XL/Extra Large via the size alias map).
 
 ### Variant Option Audit
 
