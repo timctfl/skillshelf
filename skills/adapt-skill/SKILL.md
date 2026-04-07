@@ -154,7 +154,7 @@ The example demonstrates the ceiling, not the floor. If the example is mediocre,
 
 ### Source is a single-turn prompt
 
-If the source is a concise system prompt with no multi-turn flow, convert it as a single-turn skill. The SKILL.md still needs all sections (introduction, output structure, edge cases, closing) but the conversation flow section describes a single exchange.
+If the source is a concise system prompt with no multi-turn flow, convert it as a single-turn skill. The SKILL.md still needs all sections (introduction, output structure, edge cases) but the conversation flow section describes a single exchange.
 
 ### Source has no clear output structure
 
