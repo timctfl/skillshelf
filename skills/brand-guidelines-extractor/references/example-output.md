@@ -1,9 +1,3 @@
-# Example: Extract Brand Guidelines
-
-This is an example of what the brand-guidelines-extractor skill produces when run with good input. It uses Great Outdoors Co., the canonical SkillShelf test brand. The input was a Tailwind CSS file containing custom properties, component classes, and utility definitions.
-
----
-
 ```markdown
 <!-- brand-guidelines-extractor v1.0 -->
 # Great Outdoors Co. Brand Styling

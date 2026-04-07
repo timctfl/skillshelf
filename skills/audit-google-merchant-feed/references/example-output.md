@@ -1,11 +1,3 @@
-# Example: Audit a Google Merchant Feed
-
-This is an example of what the audit-google-merchant-feed skill produces when given a Google Merchant Center XML feed and a Shopify product export CSV. The example uses Great Outdoors Co., a fictional outdoor gear brand with 120 feed items and 30 products across apparel, gear, and accessories.
-
-The example demonstrates how the skill aggregates findings by severity, explains issues in Shopify-native language, distinguishes between data fixes and feed tool fixes, and prioritizes actions by impact.
-
----
-
 ## Feed Audit Summary
 
 | Metric | Value |

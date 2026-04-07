@@ -1,12 +1,3 @@
-# Example Output: Build Category Badge Framework
-
-This example demonstrates the skill's output using a fictional Insulated
-Jackets category from Great Outdoors Co., an outdoor gear brand. The input
-was a product export with 10 insulated jackets, product attributes, and
-48 customer reviews across the category.
-
----
-
 # Badge Framework: Insulated Jackets
 
 ## Category Badge Framework
