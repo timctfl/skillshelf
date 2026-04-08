@@ -16,18 +16,3 @@ author:
   url: https://www.linkedin.com/in/timpetrella/
 
 certified: true
-
-conversation_starter: |
-  What content type do you want to document? This could be a PDP, collection page, email, landing page, or anything else with a repeatable structure.
-
-  Share an example of that content type. A screenshot, pasted content, URL, uploaded file, or verbal description all work. Sharing 2-3 examples helps me distinguish fixed structure from variable content, but one is enough to start.
-
-faq:
-  - question: What content types can this skill document?
-    answer: Any recurring content format. PDPs, collection pages, campaign emails, flow emails, landing pages, blog posts, social media posts, performance reports, or anything else your brand produces repeatedly with a consistent structure.
-  - question: What input does it need?
-    answer: Whatever you have. A screenshot of an existing page, pasted content, a URL, an uploaded file, or a verbal description of the structure all work. Multiple examples of the same content type help, but one is enough.
-  - question: How does the output get used?
-    answer: The template document is a reusable primitive. Upload it alongside any content-generation skill (PDP copy, email copy, collection descriptions) so the AI knows the target structure without you explaining it each time.
-  - question: Does it suggest improvements to my template?
-    answer: No. This skill documents the structure as it is (or as you want it to be). It does not critique or recommend changes. That is a separate task.

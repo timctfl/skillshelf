@@ -97,7 +97,7 @@ Use this checklist during Phase 4 to review a skill against SkillShelf standards
 - [ ] `level` matches user involvement: beginner (talk and get output), intermediate (prepared input), advanced (works outside chat)
 - [ ] `primitive` is true only for foundational skills producing reusable documents
 - [ ] `platforms` is listed (specific platforms or "platform-agnostic")
-- [ ] `faq` has at least 2-3 entries
+
 
 ## Testing
 
