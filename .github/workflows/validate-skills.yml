@@ -128,3 +128,37 @@ jobs:
         if: steps.discover.outputs.skills_found == 'true'
         run: |
           python scripts/validate_skillshelf_metadata.py ${{ steps.discover.outputs.skill_dirs }}
+
+      - name: Install safety scanner dependencies
+        if: steps.discover.outputs.skills_found == 'true'
+        run: pip install anthropic
+
+      - name: Discover changed skill directories
+        id: changed-skills
+        run: |
+          CHANGED=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }})
+          CHANGED_SKILLS=""
+          for file in $CHANGED; do
+            if [[ "$file" == skills/* ]]; then
+              dir=$(echo "$file" | cut -d'/' -f1-2)
+              if [ -d "$dir" ] && [ -f "$dir/SKILL.md" ] && [[ ! " $CHANGED_SKILLS " == *" $dir "* ]]; then
+                CHANGED_SKILLS="$CHANGED_SKILLS $dir"
+              fi
+            fi
+          done
+          CHANGED_SKILLS=$(echo "$CHANGED_SKILLS" | xargs)
+          if [ -z "$CHANGED_SKILLS" ]; then
+            echo "No changed skills found. Safety scan not needed."
+            echo "changed_found=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Changed skills: $CHANGED_SKILLS"
+            echo "changed_found=true" >> "$GITHUB_OUTPUT"
+            echo "changed_dirs=$CHANGED_SKILLS" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run safety scanner
+        if: steps.changed-skills.outputs.changed_found == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python scripts/safety_scanner.py ${{ steps.changed-skills.outputs.changed_dirs }}
