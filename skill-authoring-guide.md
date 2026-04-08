@@ -29,7 +29,7 @@ metadata:
 
 Level definitions are in `project-scaffold.md` under "Skill levels." The short version: beginner means the user just talks and gets output; intermediate means they bring prepared input; advanced means they work outside the chat window.
 
-Include a `conversation_starter` in `skillshelf.yaml` that matches your Turn 1 opening message. This is displayed on the skill page under "Here's how the conversation starts." It should set expectations, explain what inputs are needed, and invite the user to get started. See the [yaml reference](skills/write-skill/references/skillshelf-yaml-reference.md) for format details.
+The SKILL.md body should define the opening conversational flow: what the skill says first, what inputs it asks for, and how it sets expectations. This is how the skill greets the user when it starts. See the [yaml reference](skills/write-skill/references/skillshelf-yaml-reference.md) for `skillshelf.yaml` field details.
 
 ---
 
