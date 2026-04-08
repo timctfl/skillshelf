@@ -192,7 +192,7 @@ Brand Voice skill would improve consistency with the store's existing copy.
 | No edge cases | Thin input, inconsistent input, missing brand voice all addressed |
 | No example output | Separate `references/example-output.md` file (not shown here) |
 | No ecosystem awareness | References the Document Your Brand Voice skill as optional input |
-| No metadata | skillshelf.yaml with category, level, tags, FAQ |
+| No metadata | skillshelf.yaml with category, level, tags |
 | "Default to friendly tone" | Preserved as default, but positioned as fallback when no voice profile exists |
 
 ### What Was Preserved

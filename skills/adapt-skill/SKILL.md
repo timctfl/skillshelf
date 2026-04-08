@@ -170,4 +170,4 @@ If the source prompt or its examples use real brand names, replace them with gen
 
 ### Source is not ecommerce
 
-SkillShelf categories are ecommerce-specific, but the SKILL.md format works for any domain. Use `operations-and-process` as the closest fit for general-purpose tasks. Note this in the skillshelf.yaml FAQ.
+SkillShelf categories are ecommerce-specific, but the SKILL.md format works for any domain. Use `operations-and-process` as the closest fit for general-purpose tasks.
