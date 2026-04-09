@@ -170,61 +170,15 @@ Edit specific changes in place when the merchant requests corrections. Do not re
 
 ## Detection Categories
 
-Apply these checks in order. Each category is independent.
+The audit script runs 8 checks: option value aliases, case inconsistencies, whitespace issues, size sequence ordering, duplicate variants, missing variant images, option name inconsistencies, and handle/title drift. For the full field-level specification of each check's JSON output, see [references/json-schema.md](references/json-schema.md).
 
-### 1. Option Value Aliases
+Behavioral notes for interpreting results:
 
-Same color, size, or material referred to by different strings across variants or products. Common patterns:
-
-- Color: Gray/Grey, Charcoal/Charcoal Heather, Navy/Navy Blue
-- Size: XL/Extra Large/X-Large, S/Small, M/Medium
-- Material: variations in fiber content descriptions
-
-Compare values using normalized lowercase, whitespace-trimmed forms. Flag any pair of values within the same option name where one could be an alias of the other. When two values appear on the same product, note that explicitly (same-product aliases are almost certainly errors; cross-product aliases may be intentional).
-
-### 2. Case Inconsistencies
-
-Same value in different casing across variants: BLACK, Black, black. Compare within each option name across the full file. The most common casing form is the default canonical choice, but title case (e.g., "Black") is preferred when frequency is tied.
-
-### 3. Whitespace Issues
-
-Leading or trailing spaces in any Option Name or Option Value cell. These are invisible in spreadsheets but cause Shopify to treat "Black" and "Black " as different values, creating phantom variants.
-
-### 4. Size Sequence Ordering
-
-Variants should appear in logical size order within each product. Check whether variant rows follow the expected sequence:
-
-- **Apparel letter sizes:** XXS, XS, S, M, L, XL, XXL, 2XL, 3XL, 4XL, 5XL
-- **Plus sizes:** 0X, 1X, 2X, 3X, 4X, 5X
-- **Toddler sizes:** 2T, 3T, 4T, 5T, 6T
-- **Youth sizes:** YXS, YS, YM, YL, YXL
-- **Infant sizes:** NB, 0-3M, 3-6M, 6-9M, 6-12M, 12-18M, 18-24M
-- **Petite sizes:** PS, PM, PL, PXL
-- **Tall sizes:** TS, TM, TL, TXL
-- **Numeric sizes:** ascending order (28, 30, 32... for waists; 7, 7.5, 8... for shoes)
-- **Named sizes (e.g., Small, Medium, Large):** map to their letter equivalents first
-
-Flag products where size-based variants are out of sequence. Note: this check only applies to Option columns that contain size values.
-
-When reordering rows, keep product-level metadata (Title, Body, Vendor, Tags, Image Src, SEO fields, Published, Status) on the first row of each product handle group. If a row moves into the first position, transfer those fields to it and clear them from the displaced row.
-
-### 5. Duplicate Variants
-
-Two or more rows on the same product handle with identical Option1 + Option2 + Option3 value combinations. Compare after normalizing case and trimming whitespace to catch duplicates hidden by inconsistencies.
-
-If duplicates have different prices or inventory quantities, flag them for manual review rather than auto-merging.
-
-### 6. Missing Variant Images
-
-The `Variant Image` column is empty on a variant row while other variants on the same product have images. This check only applies when the input CSV includes the Variant Image column. Note: this check detects missing URLs, not broken URLs. Populated image URLs are not validated.
-
-### 7. Option Name Inconsistencies
-
-The same dimension called different things across products: Size vs Dimensions, Color vs Colour, Material vs Fabric. Compare all Option1/Option2/Option3 Name values across the file. Flag any near-matches.
-
-### 8. Handle/Title Drift
-
-The product handle should be a slugified version of the product title. Flag cases where the handle does not match what the title would produce (lowercase, hyphens for spaces, apostrophes removed, consecutive hyphens collapsed, no other special characters). Minor differences (e.g., dropping "Men's" or "Women's" from the handle) are acceptable and should not be flagged.
+- **Size sequence:** Only applies to Option columns the script classifies as containing size values. Read the `size_system` field in size ordering findings and use it to constrain your alias proposals — do not suggest apparel letter sizes for a product with an infant or numeric size system.
+- **Missing variant images:** Only runs when the input CSV includes the `Variant Image` column. Detects missing URLs only — does not validate whether populated URLs resolve.
+- **Duplicate variants:** Comparison is after normalizing case and trimming whitespace, so duplicates hidden by casing differences are caught. If duplicates have different prices or inventory, flag for manual review rather than auto-merging.
+- **Handle/title drift:** The script flags all mismatches. Apply your own judgment — filter out acceptable differences (gendered suffixes, minor punctuation) before presenting to the merchant.
+- **Row reordering for size fixes:** When reordering variant rows, keep product-level metadata (Title, Body, Vendor, Tags, Image Src, SEO fields, Published, Status) on the first row of each product handle group. If a row moves into the first position, transfer those fields to it and clear them from the displaced row.
 
 ---
 
