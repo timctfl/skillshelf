@@ -125,6 +125,7 @@ After the merchant reviews the audit, present the proposed normalization plan:
 2. **Ambiguous choices.** Where multiple valid canonical forms exist (e.g., "Grey" vs "Gray", "Navy Blue" vs "Navy"), ask the merchant to choose. Do not assume a preference.
 3. **Size ordering.** Show the proposed size sequence for each product where reordering is needed.
 4. **Duplicates.** Confirm what action to take (flag only, remove second row, or merge).
+5. **Post-normalization collision check.** Before presenting the plan, apply the proposed canonical mappings mentally across each product's variant rows. If any two distinct values on the same product would map to the same canonical form (e.g., both "XL" and "Extra Large" normalizing to "XL"), flag this explicitly in the plan. Do not silently merge these rows. Present both rows and ask the merchant to confirm which to keep, or whether they are intentionally distinct values that should not be merged.
 
 Wait for explicit confirmation before producing output. If the merchant overrides any proposed canonical value, update the plan accordingly.
 
