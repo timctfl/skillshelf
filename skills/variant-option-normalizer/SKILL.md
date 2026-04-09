@@ -44,9 +44,17 @@ When presenting the script's JSON findings to the merchant:
    - `high` confidence: state as a finding ("These values are aliases and should be merged.")
    - `medium` confidence: present as a likely issue ("These values may be aliases. Can you confirm?")
    - `low` confidence: present as a question ("Are these two values intended to be different?")
-3. **Handle warnings selectively.** Surface BOM detection, encoding issues, empty option values, and HTML entities in option values. Skip routine metadata like script version and timestamp.
-4. **For handle/title drift:** Apply your own judgment about acceptable differences. The script flags all mismatches; filter out gendered suffix variations (e.g., dropping "Men's" or "Women's" from handles) before presenting to the merchant.
-5. **For alias candidates with `same_product: true`:** These are almost certainly errors. Present them confidently. Cross-product aliases (`same_product: false`) may be intentional and should be framed as questions.
+3. **Apply confidence framing to every category, not just aliases.** Use these rules to infer confidence for categories the script does not score:
+   - **Whitespace issues:** Always `high`. An invisible space is never intentional.
+   - **Case inconsistencies:** `high` when all variants of the value appear on the same product. `medium` when spread across multiple products (could be a supplier convention).
+   - **Size sequence ordering:** `high` when the sequence clearly violates a known size ladder (e.g., XL before S). `medium` when the size system is ambiguous or mixed.
+   - **Duplicate variants:** `high` when option combos are identical after normalization and prices/inventory match. `medium` when prices or inventory differ (could be intentional price variants). `low` when only one of the rows has a SKU (may be an import artifact).
+   - **Missing variant images:** `high` when sibling variants with the same color have images. `medium` when no sibling has an image for that color (could be a new color not yet photographed).
+   - **Option name inconsistencies:** `high` when the same synonym group appears across products (e.g., Color/Colour). `medium` when the names are semantically adjacent but not synonyms (e.g., Size/Dimensions).
+   - **Handle/title drift:** `low` by default. Only raise to `medium` when the drift is significant (e.g., handle is "blue-shirt" but title is "Red Jacket").
+4. **Handle warnings selectively.** Surface BOM detection, encoding issues, empty option values, and HTML entities in option values. Skip routine metadata like script version and timestamp.
+5. **For handle/title drift:** Apply your own judgment about acceptable differences. The script flags all mismatches; filter out gendered suffix variations (e.g., dropping "Men's" or "Women's" from handles) before presenting to the merchant.
+6. **For alias candidates with `same_product: true`:** These are almost certainly errors. Present them confidently. Cross-product aliases (`same_product: false`) may be intentional and should be framed as questions.
 
 **Supplement the script's findings with LLM-only checks:**
 
