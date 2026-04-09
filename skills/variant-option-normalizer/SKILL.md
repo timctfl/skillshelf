@@ -297,6 +297,21 @@ The skill works with a single product. Cross-product checks (option name consist
 
 ---
 
+## Error Handling
+
+Stop and report clearly to the merchant rather than proceeding with bad data. Do not attempt normalization on a file you cannot parse reliably.
+
+| Error | What to do |
+|---|---|
+| Script exits with code 1 (fatal error) | Report the script error message verbatim. Fall back to LLM-only analysis if the merchant wants to continue. Note in the change log that the audit was performed without the script. |
+| Missing required columns (Handle, Title, Option1 Name, Option1 Value) | Tell the merchant which columns are missing. Ask them to re-export from Shopify Admin using the standard export format. Do not proceed. |
+| Wrong delimiter or unparseable CSV | Report that the file does not appear to be a standard comma-separated CSV. Mention that Shopify exports use UTF-8 encoding with comma delimiters. Ask the merchant to re-export or check if the file was opened and re-saved by Excel (which can change delimiters). |
+| Corrupt rows (column count mismatch) | Report the row numbers that appear malformed. Ask the merchant to inspect those rows in a spreadsheet before re-uploading. Do not skip silently. |
+| All products are default-title products | Tell the merchant the file contains only single-variant products (no option columns in use). There is nothing to normalize. Confirm whether they uploaded the correct file. |
+| Unrecoverable ambiguity (e.g., two conflicting canonical values both supported by the data) | Present both options to the merchant with the evidence for each. Do not guess. Wait for explicit direction before proceeding. |
+
+---
+
 ## Closing
 
 Once the merchant approves the corrected CSV, note that it is ready for Shopify bulk import via Settings > Import in the Shopify admin. Include these reminders:
