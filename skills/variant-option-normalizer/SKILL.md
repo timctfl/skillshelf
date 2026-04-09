@@ -251,38 +251,42 @@ The product handle should be a slugified version of the product title. Flag case
 
 ## Canonical Option Values Established
 
-| Original Value | Canonical Value | Products Affected | Reason |
-|---|---|---|---|
+| Original Value | Canonical Value | Products Affected | Reason | Confidence | Needs Review |
+|---|---|---|---|---|---|
 
 ## Issues Fixed
 
 ### Option Value Aliases Merged
-[Details per merge with affected products]
+| Original Value | Canonical Value | Products Affected | Confidence | Needs Review |
+|---|---|---|---|---|
 
 ### Case Normalized
-[Details per value with affected products]
+| Original Value | Canonical Value | Products Affected | Confidence | Needs Review |
+|---|---|---|---|---|
 
 ### Whitespace Removed
-[Details per field with affected products]
+| Field | Original Value | Product Handle | Confidence | Needs Review |
+|---|---|---|---|---|
 
 ### Size Order Corrected
-| Product Handle | Previous Order | Corrected Order |
-|---|---|---|
+| Product Handle | Previous Order | Corrected Order | Confidence | Needs Review |
+|---|---|---|---|---|
 
 ### Duplicate Variants Flagged
-| Product Handle | Option Combination | SKUs | Action Taken |
-|---|---|---|---|
+| Product Handle | Option Combination | SKUs | Action Taken | Confidence | Needs Review |
+|---|---|---|---|---|---|
 
 ### Missing Variant Images Flagged
-| Product Handle | SKU | Option Values | Note |
-|---|---|---|---|
+| Product Handle | SKU | Option Values | Note | Confidence | Needs Review |
+|---|---|---|---|---|---|
 
 ### Option Names Standardized
-[Details per name change with affected products]
+| Original Name | Canonical Name | Products Affected | Confidence | Needs Review |
+|---|---|---|---|---|
 
 ### Handle/Title Drift Flagged
-| Handle | Title | Recommendation |
-|---|---|---|
+| Handle | Title | Recommendation | Confidence | Needs Review |
+|---|---|---|---|---|
 
 ---
 
