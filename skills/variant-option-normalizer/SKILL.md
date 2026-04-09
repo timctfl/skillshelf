@@ -207,8 +207,10 @@ Behavioral notes for interpreting results:
 
 ## Canonical Option Values Established
 
-| Original Value | Canonical Value | Products Affected | Reason | Confidence | Needs Review |
-|---|---|---|---|---|---|
+| Original Value | Canonical Value | Products Affected | Category | Reason | Confidence | Needs Review |
+|---|---|---|---|---|---|---|
+
+Valid category values: `synonym_normalized`, `case_normalized`, `whitespace_removed`, `size_reordered`, `duplicate_flagged`, `image_flagged`, `option_name_standardized`, `handle_drift_flagged`.
 
 ## Issues Fixed
 
