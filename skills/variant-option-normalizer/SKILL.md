@@ -58,9 +58,10 @@ When presenting the script's JSON findings to the merchant:
 
 **Supplement the script's findings with LLM-only checks:**
 
-- **Semantic alias detection:** Values that are semantically equivalent but not in the known alias map (e.g., "Crimson" and "Red", "Forest Green" and "Fir Green", "Cobalt" and "Royal Blue"). Use your knowledge of colors, materials, and sizing to identify candidates.
-- **Context-aware judgment:** Determine whether ambiguous values are sizes, colors, or something else based on the option name and product type.
-- **Brand voice alignment:** Consider whether the store's positioning suggests spelled-out sizes ("Extra Large") or abbreviations ("XL").
+- **Semantic alias detection:** Look for values that are semantically equivalent but not in the script's known alias map. Scope this check to values within the same `option_name` group only — do not compare across option slots. Examples: "Crimson" and "Cherry Red" within a Color option, "Cobalt" and "Royal Blue" within a Color option. Do not propose merging values that are close but intentionally distinct (e.g., "Fir Green" and "Forest Green" may be separate SKUs — flag as a question, not a finding). Never merge across different option names (e.g., do not conflate a size value with a color value even if they share a word).
+- **Locale and unit awareness:** Values that look like aliases may actually be distinct. "US 10" and "UK 9" are different shoe sizes and must never be merged. "S (AU)" and "S" may differ. When a value includes a locale or unit qualifier, treat it as distinct unless the merchant confirms otherwise.
+- **Context-aware judgment:** Determine whether an ambiguous value is a size, color, or material based on the `option_name` column and the surrounding values in that product. Read the `size_system` field from any size ordering findings to constrain size alias proposals — do not suggest apparel letter-size canonicals for infant or numeric size products.
+- **Brand voice alignment:** Look at the dominant pattern across the file. If most size values are spelled out ("Small", "Medium", "Large"), propose that form as canonical rather than abbreviations. If most are abbreviated ("S", "M", "L"), propose abbreviations. Do not override a consistent intentional style in favor of a generic standard.
 
 ---
 
