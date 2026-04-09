@@ -12,6 +12,7 @@ Exit codes:
 import argparse
 import csv
 import html
+import itertools
 import json
 import re
 import sys
@@ -1032,6 +1033,57 @@ def check_warnings(products: list[Product], columns: list[str], metadata: dict) 
                 "code": "default_title_product",
                 "message": f"Product '{product.handle}' uses Shopify default single-variant pattern (Title / Default Title). Skipped from option checks.",
                 "details": {"handle": product.handle},
+            })
+
+    # Variant count mismatch (incomplete option matrix)
+    for product in products:
+        if is_default_title_product(product):
+            continue
+        # Collect distinct values per option slot across all rows
+        slot_values: list[set[str]] = [set(), set(), set()]
+        for row in product.rows:
+            for i, (_, name, value) in enumerate([(
+                "Option1", row.option1_name, row.option1_value,
+            ), (
+                "Option2", row.option2_name, row.option2_value,
+            ), (
+                "Option3", row.option3_name, row.option3_value,
+            )]):
+                if name.strip() and value.strip():
+                    slot_values[i].add(value.strip())
+        # Only flag when at least 2 option slots are in use
+        active_slots = [v for v in slot_values if v]
+        if len(active_slots) < 2:
+            continue
+        expected = 1
+        for s in active_slots:
+            expected *= len(s)
+        actual = len(product.rows)
+        if actual < expected:
+            # Build the list of all expected combinations and subtract observed ones
+            observed_combos: set[tuple[str, ...]] = set()
+            for row in product.rows:
+                combo = tuple(
+                    v.strip() for v in [row.option1_value, row.option2_value, row.option3_value]
+                    if v.strip()
+                )
+                observed_combos.add(combo)
+            # Generate full expected matrix
+            full_matrix = list(itertools.product(*active_slots))
+            missing = [list(c) for c in full_matrix if c not in observed_combos]
+            warnings.append({
+                "code": "variant_count_mismatch",
+                "message": (
+                    f"Product '{product.handle}' has {actual} variant rows but the option matrix "
+                    f"suggests {expected} combinations. {len(missing)} combination(s) appear missing."
+                ),
+                "details": {
+                    "handle": product.handle,
+                    "expected_count": expected,
+                    "actual_count": actual,
+                    "missing_count": len(missing),
+                    "missing_combinations": missing[:20],  # cap at 20 to avoid huge output
+                },
             })
 
     return warnings
