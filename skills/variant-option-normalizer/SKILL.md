@@ -157,8 +157,9 @@ After generating both outputs, ask the merchant:
 
 - Where to save the corrected CSV (suggest a filename based on the input, e.g. `shopify-products-normalized.csv` in the same directory).
 - Where to save the change log (suggest a filename alongside the CSV, e.g. `shopify-products-normalized-changelog.md`).
+- Whether to save the approved canonical mapping as `approved_mapping.json` alongside the CSV. This file captures every original-to-canonical value mapping confirmed in Turn 2. On future exports from the same store, it can be reapplied directly to skip re-analysis for values already resolved.
 
-Write both files to the confirmed paths before closing out the turn.
+Write all confirmed files to their confirmed paths before closing out the turn.
 
 Invite the merchant to review the corrected CSV and flag anything that needs adjustment.
 
