@@ -131,7 +131,15 @@ Wait for explicit confirmation before producing output. If the merchant override
 
 ### Turn 3: Produce Output
 
-Generate two outputs:
+Before writing any output, run this validation checklist. If any check fails, stop and report the issue to the merchant instead of producing a broken file.
+
+- **Row count:** Total rows in corrected CSV matches total rows in input (minus any duplicate rows explicitly approved for removal).
+- **No emergent duplicates:** After applying all canonical mappings, no product has two variant rows with the same normalized Option1 + Option2 + Option3 combination unless the merchant explicitly approved a merge.
+- **Required columns intact:** Handle, Title, Option1 Name, and Option1 Value are present and non-empty on every row where they were non-empty in the input.
+- **No option cells cleared:** No Option Value cell that was populated in the input is now empty unless the merchant approved that change.
+- **Change log count matches edits:** The number of change log entries accounts for every cell that was modified.
+
+If all checks pass, generate two outputs:
 
 1. **Corrected CSV** as a downloadable file. Same column structure as the input. All header columns preserved. Changes applied inline.
 2. **Change log** as a Markdown document using the output structure below.
