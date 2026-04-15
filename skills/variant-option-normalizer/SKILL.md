@@ -58,9 +58,9 @@ When presenting the script's JSON findings to the merchant:
 
 **Supplement the script's findings with LLM-only checks:**
 
-- **Semantic alias detection:** Look for values that are semantically equivalent but not in the script's known alias map. Scope this check to values within the same `option_name` group only — do not compare across option slots. Examples: "Crimson" and "Cherry Red" within a Color option, "Cobalt" and "Royal Blue" within a Color option. Do not propose merging values that are close but intentionally distinct (e.g., "Fir Green" and "Forest Green" may be separate SKUs — flag as a question, not a finding). Never merge across different option names (e.g., do not conflate a size value with a color value even if they share a word).
+- **Semantic alias detection:** Look for values that are semantically equivalent but not in the script's known alias map. Scope this check to values within the same `option_name` group only. Do not compare across option slots. Examples: "Crimson" and "Cherry Red" within a Color option, "Cobalt" and "Royal Blue" within a Color option. Do not propose merging values that are close but intentionally distinct (e.g., "Fir Green" and "Forest Green" may be separate SKUs. Flag as a question, not a finding). Never merge across different option names (e.g., do not conflate a size value with a color value even if they share a word).
 - **Locale and unit awareness:** Values that look like aliases may actually be distinct. "US 10" and "UK 9" are different shoe sizes and must never be merged. "S (AU)" and "S" may differ. When a value includes a locale or unit qualifier, treat it as distinct unless the merchant confirms otherwise.
-- **Context-aware judgment:** Determine whether an ambiguous value is a size, color, or material based on the `option_name` column and the surrounding values in that product. Read the `size_system` field from any size ordering findings to constrain size alias proposals — do not suggest apparel letter-size canonicals for infant or numeric size products.
+- **Context-aware judgment:** Determine whether an ambiguous value is a size, color, or material based on the `option_name` column and the surrounding values in that product. Read the `size_system` field from any size ordering findings to constrain size alias proposals and do not suggest apparel letter-size canonicals for infant or numeric size products.
 - **Brand voice alignment:** Look at the dominant pattern across the file. If most size values are spelled out ("Small", "Medium", "Large"), propose that form as canonical rather than abbreviations. If most are abbreviated ("S", "M", "L"), propose abbreviations. Do not override a consistent intentional style in favor of a generic standard.
 
 ---
@@ -134,7 +134,7 @@ After the merchant reviews the audit, present the proposed normalization plan:
 2. **Ambiguous choices.** Where multiple valid canonical forms exist (e.g., "Grey" vs "Gray", "Navy Blue" vs "Navy"), ask the merchant to choose. Do not assume a preference.
 3. **Size ordering.** Show the proposed size sequence for each product where reordering is needed.
 4. **Duplicates.** Confirm what action to take (flag only, remove second row, or merge).
-5. **Missing variant images — fill-by-color proposal.** For each missing image flagged in the audit, check whether any sibling variant on the same product shares the same Option1 value (color) and already has a Variant Image URL. If so, include a proposed fill in the normalization plan table showing the source URL and which rows it would be copied to. Present this as a proposed action, not an automatic fix. If no sibling has an image for that color, leave it flagged as before.
+5. **Missing variant images (fill-by-color proposal).** For each missing image flagged in the audit, check whether any sibling variant on the same product shares the same Option1 value (color) and already has a Variant Image URL. If so, include a proposed fill in the normalization plan table showing the source URL and which rows it would be copied to. Present this as a proposed action, not an automatic fix. If no sibling has an image for that color, leave it flagged as before.
 6. **Post-normalization collision check.** Before presenting the plan, apply the proposed canonical mappings mentally across each product's variant rows. If any two distinct values on the same product would map to the same canonical form (e.g., both "XL" and "Extra Large" normalizing to "XL"), flag this explicitly in the plan. Do not silently merge these rows. Present both rows and ask the merchant to confirm which to keep, or whether they are intentionally distinct values that should not be merged.
 
 Wait for explicit confirmation before producing output. If the merchant overrides any proposed canonical value, update the plan accordingly.
@@ -176,10 +176,10 @@ The audit script runs 8 checks: option value aliases, case inconsistencies, whit
 
 Behavioral notes for interpreting results:
 
-- **Size sequence:** Only applies to Option columns the script classifies as containing size values. Read the `size_system` field in size ordering findings and use it to constrain your alias proposals — do not suggest apparel letter sizes for a product with an infant or numeric size system.
-- **Missing variant images:** Only runs when the input CSV includes the `Variant Image` column. Detects missing URLs only — does not validate whether populated URLs resolve.
+- **Size sequence:** Only applies to Option columns the script classifies as containing size values. Read the `size_system` field in size ordering findings and use it to constrain your alias proposals. Do not suggest apparel letter sizes for a product with an infant or numeric size system.
+- **Missing variant images:** Only runs when the input CSV includes the `Variant Image` column. Detects missing URLs only. It does not validate whether populated URLs resolve.
 - **Duplicate variants:** Comparison is after normalizing case and trimming whitespace, so duplicates hidden by casing differences are caught. If duplicates have different prices or inventory, flag for manual review rather than auto-merging.
-- **Handle/title drift:** The script flags all mismatches. Apply your own judgment — filter out acceptable differences (gendered suffixes, minor punctuation) before presenting to the merchant.
+- **Handle/title drift:** The script flags all mismatches. Apply your own judgment. Filter out acceptable differences (gendered suffixes, minor punctuation) before presenting to the merchant.
 - **Row reordering for size fixes:** When reordering variant rows, keep product-level metadata (Title, Body, Vendor, Tags, Image Src, SEO fields, Published, Status) on the first row of each product handle group. If a row moves into the first position, transfer those fields to it and clear them from the displaced row.
 
 ---
@@ -255,6 +255,16 @@ Valid category values: `synonym_normalized`, `case_normalized`, `whitespace_remo
 
 Only include sections where changes were made. Skip clean sections.
 
+
+## Gotchas
+
+Common LLM behavior patterns that produce incorrect output for this skill:
+
+1. **Inventing alias relationships not in the data.** Every alias suggestion must trace back to actual values in the CSV. Do not propose merging two color names because they are "similar" unless the script flagged them or you found them in the same option_name group with overlapping semantics. If uncertain, flag as a question to the merchant.
+2. **Over-normalizing intentional brand choices.** All-caps color names (e.g., "SLATE") or spelled-out sizes ("Extra Large" across an entire product line) may be deliberate brand style. Check whether the pattern is consistent within a product before proposing a change. Consistent usage is intentional usage.
+3. **Treating variant_count_mismatch warnings as real gaps.** This warning computes expected combinations from pre-normalized values. If a product has "Slate", "slate", and "SLATE" as case variants, the script counts them as three distinct colors and reports missing combinations. After normalization these collapse to one color, eliminating the gap. Always interpret this warning in context of the normalization plan.
+
+---
 ---
 
 ## Edge Cases
