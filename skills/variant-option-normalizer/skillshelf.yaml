@@ -1,0 +1,60 @@
+version: "1.0"
+category: catalog-operations
+subcategories:
+  - variants
+  - data-quality
+  - shopify
+level: intermediate
+primitive: false
+platforms:
+  - shopify
+tags:
+  - variants
+  - normalization
+  - data-cleanup
+  - product-csv
+  - catalog-operations
+  - bulk-edit
+
+certified: false
+
+date_added: "2026-04-05"
+date_updated: "2026-04-07"
+
+author:
+  name: Raqib Abdullah
+  url: https://github.com/raqibdev
+
+input_schema:
+  required:
+    - Shopify product export CSV
+  recommended:
+    - Brand style guide for naming conventions
+
+output_schema:
+  format: Two files
+  sections:
+    - Corrected product CSV
+    - Change log (Markdown)
+
+faq:
+  - question: What does this skill do?
+    answer: >-
+      It scans a Shopify product CSV for inconsistent option values (color
+      aliases, size label variants, case issues), fixes them, reorders size
+      sequences, flags duplicates and missing images, and returns a corrected
+      CSV plus a change log.
+  - question: What input does it need?
+    answer: >-
+      A Shopify product export CSV. Paste rows directly or upload the file.
+      The skill works with partial exports (a subset of products).
+  - question: Will it change my SKUs or prices?
+    answer: >-
+      No. The skill only modifies Option Name and Option Value columns plus
+      variant row ordering. SKUs, prices, inventory, and all other fields are
+      preserved exactly.
+  - question: What if I disagree with a proposed canonical value?
+    answer: >-
+      The skill presents its normalization plan before writing output and asks
+      for confirmation on any ambiguous cases. You can override any proposed
+      canonical value before the corrected CSV is produced.

@@ -1,0 +1,72 @@
+{
+  "option_name_synonyms": [
+    ["Color", "Colour", "Colorway", "Colourway", "Shade"],
+
+    ["Size", "Sizes", "Sizing", "Dimension", "Dimensions"],
+
+    ["Material", "Fabric", "Composition", "Fiber", "Fibre", "Fabric Content", "Fabric Composition"],
+
+    ["Style", "Design"],
+
+    ["Fit", "Cut", "Silhouette"],
+
+    ["Pattern", "Print", "Graphic"],
+
+    ["Flavor", "Flavour", "Taste", "Variety"],
+
+    ["Scent", "Fragrance", "Aroma"],
+
+    ["Length", "Leg Length"],
+
+    ["Inseam", "Inseam Length"],
+
+    ["Waist", "Waist Size", "Waist Measurement"],
+
+    ["Weight", "Mass", "Net Weight", "Net Wt"],
+
+    ["Volume", "Capacity"],
+
+    ["Finish", "Texture", "Surface"],
+
+    ["Pack", "Pack Size", "Bundle", "Bundle Size", "Set", "Count", "Quantity", "Servings", "Serving Count", "Serving Size"],
+
+    ["Strength", "Potency", "Concentration", "Dose", "Dosage"],
+
+    ["Edition", "Version", "Gen", "Generation"],
+
+    ["Sleeve", "Sleeve Length"],
+
+    ["Age", "Age Group", "Age Range", "Ages"],
+
+    ["Voltage", "Wattage", "Power", "Watts"],
+
+    ["Metal", "Metal Type", "Metal Color", "Metal Finish"],
+
+    ["Resistance", "Resistance Level", "Tension"]
+  ],
+  "color_aliases": {
+    "gray": ["grey"],
+    "dark gray": ["dark grey"],
+    "light gray": ["light grey"],
+    "heather gray": ["heather grey"],
+    "charcoal gray": ["charcoal grey"],
+    "slate gray": ["slate grey"],
+    "steel gray": ["steel grey"],
+    "silver gray": ["silver grey"],
+    "warm gray": ["warm grey"],
+    "cool gray": ["cool grey"],
+    "medium gray": ["medium grey"],
+    "dark heather gray": ["dark heather grey", "dark heather"],
+    "marl gray": ["marl grey"],
+    "charcoal heather": ["charcoal"],
+    "navy blue": ["navy"],
+    "cream": ["ivory"],
+    "off-white": ["off white", "offwhite", "off white"],
+    "tan": ["khaki", "beige"],
+    "hot pink": ["fuchsia", "magenta"],
+    "wine": ["maroon", "burgundy"],
+    "plum": ["eggplant"],
+    "lavender": ["lilac"],
+    "blush": ["rose"]
+  }
+}
