@@ -1,0 +1,32 @@
+{
+  "male": [
+    "\\bmen'?s\\b",
+    "\\bmens\\b",
+    "\\bmale\\b",
+    "\\bman'?s\\b",
+    "\\bguys?\\b",
+    "\\bboy'?s\\b",
+    "\\bboys\\b",
+    "\\bfor him\\b",
+    "\\bfather'?s\\b",
+    "\\bgentlemen'?s\\b"
+  ],
+  "female": [
+    "\\bwomen'?s\\b",
+    "\\bwomens\\b",
+    "\\bfemale\\b",
+    "\\bwoman'?s\\b",
+    "\\bladies\\b",
+    "\\blady'?s\\b",
+    "\\bgirl'?s\\b",
+    "\\bgirls\\b",
+    "\\bfor her\\b",
+    "\\bmother'?s\\b"
+  ],
+  "unisex": [
+    "\\bunisex\\b",
+    "\\bgender.?neutral\\b",
+    "\\ball genders?\\b",
+    "\\beveryone\\b"
+  ]
+}

@@ -1,0 +1,23 @@
+version: "0.1.0"
+category: catalog-operations
+subcategories:
+  - attributes
+  - google-shopping
+  - shopify
+level: intermediate
+primitive: false
+platforms:
+  - shopify
+tags:
+  - product-data
+  - google-shopping
+  - apparel
+  - attributes
+  - csv
+  - metafields
+  - merchant-center
+date_added: "2026-04-18"
+date_updated: "2026-04-18"
+author:
+  name: Raqib Abdullah
+  url: https://github.com/raqibdev
