@@ -1,0 +1,56 @@
+version: "1.0"
+category: ecommerce-operations
+level: intermediate
+primitive: false
+certified: false
+platforms:
+  - shopify
+
+tags:
+  - shopify
+  - product-tags
+  - taxonomy
+  - data-cleaning
+  - bulk-editing
+  - catalog-management
+  - ecommerce-automation
+
+date_added: "2026-03-26"
+date_updated: "2026-03-26"
+
+author:
+  name: Miran Kamran
+  url: https://www.linkedin.com/in/miran-kamran/
+
+faq:
+  - question: Will this skill change my product data beyond tags?
+    answer: >-
+      No. This skill only modifies product tags. Titles, descriptions,
+      pricing, and other product data remain unchanged.
+
+  - question: Can I use this for bulk Shopify updates?
+    answer: >-
+      Yes. The skill can generate Shopify-compatible CSV outputs that
+      can be directly imported using the Shopify Admin bulk editor.
+
+  - question: Do I need to provide a taxonomy?
+    answer: >-
+      No. If no taxonomy is provided, the skill will infer a clean and
+      minimal taxonomy from your product data. You can optionally provide
+      your own taxonomy for stricter control.
+
+  - question: Will it remove important tags?
+    answer: >-
+      The skill prioritizes high-signal tags and removes duplicates,
+      inconsistencies, and low-value tags. It is designed to preserve
+      meaningful tags while improving overall structure.
+
+  - question: Can it handle large product catalogs?
+    answer: >-
+      Yes. The skill is designed for scalability and can process large
+      datasets while maintaining consistent formatting and taxonomy.
+
+  - question: Does this follow Shopify tag limits?
+    answer: >-
+      Yes. The skill respects Shopify constraints and avoids excessive
+      tagging, keeping outputs clean and optimized for performance.
