@@ -13,6 +13,7 @@ tags:
   - variants
 level: intermediate
 primitive: true
+model_tier: medium
 platforms:
   - platform-agnostic
 author:

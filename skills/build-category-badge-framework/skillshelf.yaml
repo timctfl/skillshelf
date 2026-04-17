@@ -2,6 +2,7 @@ version: "1.0"
 category: feeds-and-merchandising
 level: intermediate
 primitive: false
+model_tier: medium
 platforms:
   - platform-agnostic
 tags:

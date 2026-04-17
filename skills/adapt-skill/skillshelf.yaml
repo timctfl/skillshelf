@@ -7,6 +7,7 @@ subcategories:
 
 level: intermediate
 primitive: false
+model_tier: medium
 
 platforms:
   - platform-agnostic

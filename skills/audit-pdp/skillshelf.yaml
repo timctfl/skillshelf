@@ -2,6 +2,7 @@ version: "1.0"
 category: conversion-optimization
 level: intermediate
 primitive: false
+model_tier: high
 platforms:
   - platform-agnostic
 tags:

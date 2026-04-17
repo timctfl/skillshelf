@@ -2,6 +2,7 @@ version: "0.1.0"
 category: brand-and-identity
 level: beginner
 primitive: true
+model_tier: high
 platforms:
   - platform-agnostic
 tags:

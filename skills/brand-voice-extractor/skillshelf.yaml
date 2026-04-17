@@ -7,6 +7,7 @@ subcategories:
 
 level: beginner
 primitive: true
+model_tier: premium
 
 platforms:
   - platform-agnostic

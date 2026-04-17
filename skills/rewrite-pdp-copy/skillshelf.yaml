@@ -2,6 +2,7 @@ version: "1.1"
 category: product-content
 level: intermediate
 primitive: false
+model_tier: high
 platforms:
   - platform-agnostic
 tags:

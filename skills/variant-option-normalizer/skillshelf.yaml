@@ -6,6 +6,7 @@ subcategories:
   - shopify
 level: intermediate
 primitive: false
+model_tier: low
 platforms:
   - shopify
 tags:

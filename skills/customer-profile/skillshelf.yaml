@@ -2,6 +2,7 @@ version: "0.1.0"
 category: customer-research
 level: intermediate
 primitive: true
+model_tier: high
 platforms:
   - platform-agnostic
 tags:
