@@ -2,6 +2,7 @@ version: "1.0"
 category: operations-and-process
 level: intermediate
 primitive: true
+model_tier: high
 platforms:
   - platform-agnostic
 tags:

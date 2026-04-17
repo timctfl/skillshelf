@@ -4,6 +4,7 @@ category: feeds-and-merchandising
 
 level: intermediate
 primitive: false
+model_tier: medium
 
 platforms:
   - shopify

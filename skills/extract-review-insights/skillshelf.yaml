@@ -2,6 +2,7 @@ version: "1.0"
 category: customer-research
 level: intermediate
 primitive: false
+model_tier: medium
 certified: true
 platforms:
   - platform-agnostic

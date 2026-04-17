@@ -7,5 +7,6 @@ tags:
   - market-landscape
 level: beginner
 primitive: true
+model_tier: high
 platforms:
   - platform-agnostic
