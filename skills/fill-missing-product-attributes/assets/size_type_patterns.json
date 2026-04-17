@@ -1,0 +1,8 @@
+{
+  "regular": ["\\bregular\\b", "\\bstandard\\b"],
+  "petite": ["\\bpetite\\b"],
+  "plus": ["\\bplus\\b", "\\bplus.size\\b", "\\bplus_size\\b", "\\bcurvy\\b"],
+  "tall": ["\\btall\\b"],
+  "big": ["\\bbig\\b", "\\bbig.tall\\b"],
+  "maternity": ["\\bmaternity\\b", "\\bpregnancy\\b", "\\bbump\\b"]
+}

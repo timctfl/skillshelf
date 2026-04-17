@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 """Apply approved attribute fills to a Shopify product CSV.
 
-Reads the original CSV plus approved_fills.json (produced by the LLM inference
-stage after user review). Writes three output files:
+Reads the original CSV, deterministic_fills.json (from Stage 1), and
+approved_fills.json (from Stage 2 LLM inference + user review). Merges both
+fill sources and writes three output files:
+
     <stem>-filled.csv   Corrected CSV, same column structure as input
     change_log.csv      Record of every change made
-    needs_review.csv    Items that could not be written (low confidence, null, conflict, etc.)
+    needs_review.csv    Items that could not be written
 
 Usage:
-    python3 scripts/apply_fills.py <csv_path> <approved_fills_json> \\
-        [--output-dir /path/to/output/]
+    python3 scripts/apply_fills.py <csv_path> \\
+        [--deterministic-fills deterministic_fills.json] \\
+        [--approved-fills approved_fills.json] \\
+        [--output-dir /path/to/output/] \\
+        [--dry-run]
 
 Exit codes:
     0 - Completed successfully
@@ -20,42 +25,54 @@ Exit codes:
 import argparse
 import csv
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 
-SCRIPT_VERSION = "1.0.0"
+SCRIPT_VERSION = "2.0.0"
 
 VALID_GENDER = {"male", "female", "unisex"}
 VALID_AGE_GROUP = {"newborn", "infant", "toddler", "kids", "adult"}
-VALID_SIZE_SYSTEM = {"US", "UK", "EU", "AU", "DE", "FR", "JP", "CN", "IT", "BR", "MEX"}
 
 ENUM_VALIDATORS: dict[str, set[str]] = {
     "gender": VALID_GENDER,
     "age_group": VALID_AGE_GROUP,
 }
 
-# Columns the script must never write to regardless of what the fills say
-PROHIBITED_COLUMN_PATTERNS = (
-    "Option1 Value", "Option2 Value", "Option3 Value",
-)
+FIELD_THRESHOLDS = {
+    "gender": 0.90,
+    "age_group": 0.90,
+    "color": 0.80,
+    "material": 0.70,
+    "size": 0.95,
+    "size_system": 0.95,
+    "size_type": 0.90,
+}
+
+PROHIBITED_COLUMNS = frozenset({"Option1 Value", "Option2 Value", "Option3 Value"})
 
 
 # ---------------------------------------------------------------------------
-# CSV parsing (minimal — we only need rows and columns)
+# CSV parsing
 # ---------------------------------------------------------------------------
 
 def detect_encoding_and_bom(file_path: Path) -> tuple[str, bool]:
     with open(file_path, "rb") as f:
-        raw = f.read(4)
-    if raw[:3] == b"\xef\xbb\xbf":
+        head = f.read(4)
+    if head[:3] == b"\xef\xbb\xbf":
         return "utf-8-sig", True
-    return "utf-8-sig", False
+    if head[:2] in (b"\xff\xfe", b"\xfe\xff"):
+        return "utf-16", False
+    return "utf-8", False
+
+
+def get(row: dict, key: str) -> str:
+    return row.get(key, "") or ""
 
 
 def parse_csv(file_path: Path) -> tuple[list[dict], list[str]]:
-    """Return (rows, column_names)."""
     encoding, _ = detect_encoding_and_bom(file_path)
     try:
         with open(file_path, newline="", encoding=encoding) as f:
@@ -71,26 +88,49 @@ def parse_csv(file_path: Path) -> tuple[list[dict], list[str]]:
 
 
 # ---------------------------------------------------------------------------
+# Robust JSON parsing (handles LLM output artifacts)
+# ---------------------------------------------------------------------------
+
+def parse_llm_json(raw: str) -> dict:
+    """Parse JSON that may contain markdown fences, trailing commas, or smart quotes."""
+    s = raw.strip()
+    s = re.sub(r"^```(?:json)?\s*", "", s, flags=re.MULTILINE)
+    s = re.sub(r"\s*```\s*$", "", s, flags=re.MULTILINE)
+    s = s.replace("\u201c", '"').replace("\u201d", '"')
+    s = s.replace("\u2018", "'").replace("\u2019", "'")
+    s = re.sub(r",(\s*[}\]])", r"\1", s)
+    try:
+        return json.loads(s)
+    except json.JSONDecodeError as e:
+        sys.stderr.write(f"JSON parse failed: {e}\n")
+        sys.stderr.write(f"First 500 chars:\n{s[:500]}\n")
+        sys.exit(2)
+
+
+def load_fills_file(path: Path) -> dict:
+    try:
+        with open(path, encoding="utf-8") as f:
+            raw = f.read()
+        return parse_llm_json(raw)
+    except FileNotFoundError:
+        print(f"Fatal: File not found: {path}", file=sys.stderr)
+        sys.exit(1)
+
+
+# ---------------------------------------------------------------------------
 # Validation
 # ---------------------------------------------------------------------------
 
 def is_prohibited_column(col: str) -> bool:
-    if col in PROHIBITED_COLUMN_PATTERNS:
+    if col in PROHIBITED_COLUMNS:
         return True
     if col.startswith("Variant Metafield:"):
         return True
     return False
 
 
-def validate_fills(
-    fills: list[dict],
-    rows: list[dict],
-    columns: list[str],
-) -> list[str]:
-    """Return list of error strings. Empty = all checks pass."""
+def validate_fills(fills: list[dict], column_set: set[str]) -> list[str]:
     errors: list[str] = []
-    column_set = set(columns)
-
     for fill in fills:
         if not fill.get("approved") or fill.get("proposed_value") is None:
             continue
@@ -105,7 +145,10 @@ def validate_fills(
             continue
 
         if is_prohibited_column(target_col):
-            errors.append(f"Row {row_number}: target_column '{target_col}' is prohibited — never write to Option Values or Variant Metafields")
+            errors.append(
+                f"Row {row_number}: target_column '{target_col}' is prohibited "
+                "(never write to Option Values or Variant Metafields)"
+            )
 
         if target_col not in column_set:
             errors.append(f"Row {row_number}: target_column '{target_col}' not in CSV header")
@@ -121,43 +164,78 @@ def validate_fills(
     return errors
 
 
+def verify_non_target_columns_unchanged(
+    input_rows: list[dict],
+    output_rows: list[dict],
+    target_columns: set[str],
+) -> list[str]:
+    """Return error strings for any non-target column that changed between input and output."""
+    errors: list[str] = []
+    for idx, (inp, out) in enumerate(zip(input_rows, output_rows)):
+        for col in inp:
+            if col in target_columns:
+                continue
+            if inp.get(col) != out.get(col):
+                errors.append(
+                    f"Row {idx + 2}: non-target column '{col}' was modified. "
+                    f"Input: {inp.get(col)!r}, Output: {out.get(col)!r}"
+                )
+    return errors
+
+
 # ---------------------------------------------------------------------------
 # Apply fills
 # ---------------------------------------------------------------------------
 
 def apply_fills(
     csv_path: Path,
-    fills_path: Path,
+    deterministic_fills_path: Path | None,
+    approved_fills_path: Path | None,
     output_dir: Path,
+    dry_run: bool = False,
 ) -> int:
-    """Apply approved fills to CSV. Returns 0 on success, 1/2 on error."""
     rows, columns = parse_csv(csv_path)
     if not columns:
         print("Fatal: CSV has no columns.", file=sys.stderr)
         return 1
 
-    try:
-        with open(fills_path, encoding="utf-8") as f:
-            fills_data = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError) as e:
-        print(f"Fatal: Cannot read approved_fills.json: {e}", file=sys.stderr)
-        return 1
+    column_set = set(columns)
 
-    all_fills: list[dict] = fills_data.get("fills", [])
+    all_fills: list[dict] = []
+    all_conflicts: list[dict] = []
+    all_needs_review_pre: list[dict] = []
 
-    # Separate approved fills from needs_review entries
+    # Load deterministic fills (Stage 1 output, pre-approved)
+    if deterministic_fills_path and deterministic_fills_path.exists():
+        det_data = load_fills_file(deterministic_fills_path)
+        all_fills.extend(det_data.get("fills", []))
+        all_conflicts.extend(det_data.get("conflicts", []))
+        all_needs_review_pre.extend(det_data.get("needs_review", []))
+
+    # Load approved fills (Stage 2 LLM output after merchant review)
+    if approved_fills_path and approved_fills_path.exists():
+        appr_data = load_fills_file(approved_fills_path)
+        all_fills.extend(appr_data.get("fills", []))
+        all_conflicts.extend(appr_data.get("conflicts", []))
+
+    if not all_fills and not all_conflicts and not all_needs_review_pre:
+        print("Warning: No fills or conflicts found in any input file.", file=sys.stderr)
+
+    # Separate approved fills from everything else
     approved: list[dict] = []
     needs_review_entries: list[dict] = []
 
     for fill in all_fills:
-        if fill.get("approved") and fill.get("proposed_value") is not None:
+        value = fill.get("proposed_value")
+        if fill.get("approved") is True and value is not None:
             approved.append(fill)
         else:
-            reason = fill.get("source", "")
-            if fill.get("proposed_value") is None:
+            if value is None:
                 reason = "llm_returned_null"
-            elif not fill.get("approved"):
+            elif fill.get("approved") is False:
                 reason = fill.get("reject_reason", "user_rejected")
+            else:
+                reason = fill.get("reject_reason", "not_approved")
             needs_review_entries.append({
                 "Handle": fill.get("handle", ""),
                 "Variant SKU": fill.get("variant_sku", ""),
@@ -166,36 +244,54 @@ def apply_fills(
                 "Reason": reason,
                 "Evidence Quote": fill.get("evidence_quote", ""),
                 "Confidence": fill.get("confidence", ""),
+                "Suggested Value": value or "",
             })
 
-    # Validation pass
-    errors = validate_fills(approved, rows, columns)
+    # Conflicts from Stage 1
+    for c in all_conflicts:
+        needs_review_entries.append({
+            "Handle": c.get("handle", ""),
+            "Variant SKU": c.get("variant_sku", ""),
+            "Field": c.get("field", ""),
+            "Target Column": c.get("target_column", c.get("field", "")),
+            "Reason": c.get("reason", "conflict_with_existing_value"),
+            "Evidence Quote": c.get("evidence_quote", ""),
+            "Confidence": c.get("confidence", ""),
+            "Suggested Value": c.get("extracted_value", ""),
+        })
+
+    # Pre-fill needs_review (below-threshold, no-column, too-many-colors)
+    for nr in all_needs_review_pre:
+        needs_review_entries.append({
+            "Handle": nr.get("handle", ""),
+            "Variant SKU": nr.get("variant_sku", ""),
+            "Field": nr.get("field", ""),
+            "Target Column": nr.get("target_column", ""),
+            "Reason": nr.get("reason", ""),
+            "Evidence Quote": nr.get("evidence_quote", ""),
+            "Confidence": nr.get("confidence", ""),
+            "Suggested Value": nr.get("suggested_value", ""),
+        })
+
+    errors = validate_fills(approved, column_set)
     if errors:
         print("Validation errors — no output written:", file=sys.stderr)
         for e in errors:
             print(f"  {e}", file=sys.stderr)
         return 2
 
-    # Build lookup: row_number -> list of approved fills
+    # Collect the set of target columns actually being written to
+    target_columns: set[str] = set()
+    for fill in approved:
+        tc = fill.get("target_column", "")
+        if tc and not is_prohibited_column(tc):
+            target_columns.add(tc)
+
     fills_by_row: dict[int, list[dict]] = {}
     for fill in approved:
         rn = fill.get("row_number")
         if rn is not None:
             fills_by_row.setdefault(rn, []).append(fill)
-
-    # Also include deterministic fills passed through the fills file
-    # (detect_missing_attributes.py deterministic fills are bundled in fills_data)
-    conflict_entries: list[dict] = fills_data.get("conflicts", [])
-    for conflict in conflict_entries:
-        needs_review_entries.append({
-            "Handle": conflict.get("handle", ""),
-            "Variant SKU": conflict.get("variant_sku", ""),
-            "Field": conflict.get("field", ""),
-            "Target Column": conflict.get("target_column", conflict.get("field", "")),
-            "Reason": "conflict_with_existing_value",
-            "Evidence Quote": f"Option value '{conflict.get('extracted_value','')}' vs existing '{conflict.get('existing_value','')}'",
-            "Confidence": 1.0,
-        })
 
     timestamp = datetime.now(timezone.utc).isoformat()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -204,8 +300,8 @@ def apply_fills(
     change_log_rows: list[dict] = []
 
     for idx, row in enumerate(rows):
-        row_number = idx + 2  # 1-based; header is row 1
-        output_row = dict(row)  # copy
+        row_number = idx + 2
+        output_row = dict(row)
 
         for fill in fills_by_row.get(row_number, []):
             field = fill["field"]
@@ -214,7 +310,7 @@ def apply_fills(
             confidence = fill.get("confidence", 1.0)
 
             if is_prohibited_column(target_col):
-                continue  # safety check (already caught in validation)
+                continue
 
             existing = (row.get(target_col) or "").strip()
             if existing:
@@ -226,10 +322,16 @@ def apply_fills(
                     "Reason": "conflict_with_existing_value",
                     "Evidence Quote": fill.get("evidence_quote", ""),
                     "Confidence": confidence,
+                    "Suggested Value": proposed,
                 })
                 continue
 
             output_row[target_col] = proposed
+
+            threshold = FIELD_THRESHOLDS.get(field, 0.90)
+            needs_review_flag = "TRUE" if (
+                confidence is not None and float(confidence) < threshold + 0.15
+            ) else "FALSE"
 
             change_log_rows.append({
                 "Timestamp": timestamp,
@@ -242,12 +344,11 @@ def apply_fills(
                 "Source": fill.get("source", ""),
                 "Confidence": confidence,
                 "Evidence Quote": fill.get("evidence_quote", ""),
-                "Needs Review": "TRUE" if (confidence is not None and float(confidence) < 0.90) else "FALSE",
+                "Needs Review": needs_review_flag,
             })
 
         output_rows.append(output_row)
 
-    # Row count check
     if len(output_rows) != len(rows):
         print(
             f"Fatal: Output row count {len(output_rows)} != input row count {len(rows)}",
@@ -255,20 +356,36 @@ def apply_fills(
         )
         return 1
 
-    # Write corrected CSV (atomic: write to temp then rename)
+    # Byte-identical check for non-target columns
+    integrity_errors = verify_non_target_columns_unchanged(rows, output_rows, target_columns)
+    if integrity_errors:
+        print("Fatal: Non-target column integrity check failed — no output written:", file=sys.stderr)
+        for e in integrity_errors:
+            print(f"  {e}", file=sys.stderr)
+        return 2
+
+    if dry_run:
+        print("Dry run: corrected CSV not written.", file=sys.stderr)
+        _write_logs_only(output_dir, csv_path, change_log_rows, needs_review_entries)
+        summary = {
+            "status": "dry_run",
+            "input_rows": len(rows),
+            "fills_would_apply": len(change_log_rows),
+            "needs_review_count": len(needs_review_entries),
+        }
+        print(json.dumps(summary, indent=2))
+        return 0
+
     stem = csv_path.stem
     filled_path = output_dir / f"{stem}-filled.csv"
     temp_path = output_dir / f"{stem}-filled.csv.tmp"
 
     try:
         with open(temp_path, "w", newline="", encoding="utf-8") as f:
-            writer = csv.DictWriter(
-                f, fieldnames=columns, extrasaction="ignore"
-            )
+            writer = csv.DictWriter(f, fieldnames=columns, extrasaction="ignore")
             writer.writeheader()
-            for row in output_rows:
-                # Filter out None keys (DictWriter bug with trailing commas)
-                clean_row = {k: v for k, v in row.items() if k is not None}
+            for r in output_rows:
+                clean_row = {k: v for k, v in r.items() if k is not None}
                 writer.writerow(clean_row)
         temp_path.rename(filled_path)
     except Exception as e:
@@ -277,28 +394,10 @@ def apply_fills(
             temp_path.unlink()
         return 1
 
-    # Write change_log.csv
-    change_log_path = output_dir / "change_log.csv"
-    change_log_fields = [
-        "Timestamp", "Handle", "Variant SKU", "Field", "Target Column",
-        "Old Value", "New Value", "Source", "Confidence", "Evidence Quote", "Needs Review",
-    ]
-    with open(change_log_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=change_log_fields)
-        writer.writeheader()
-        writer.writerows(change_log_rows)
+    change_log_path, needs_review_path = _write_logs_only(
+        output_dir, csv_path, change_log_rows, needs_review_entries
+    )
 
-    # Write needs_review.csv
-    needs_review_path = output_dir / "needs_review.csv"
-    needs_review_fields = [
-        "Handle", "Variant SKU", "Field", "Target Column", "Reason", "Evidence Quote", "Confidence",
-    ]
-    with open(needs_review_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=needs_review_fields)
-        writer.writeheader()
-        writer.writerows(needs_review_entries)
-
-    # Print summary
     summary = {
         "status": "completed",
         "input_rows": len(rows),
@@ -315,30 +414,83 @@ def apply_fills(
     return 0
 
 
+def _write_logs_only(
+    output_dir: Path,
+    csv_path: Path,
+    change_log_rows: list[dict],
+    needs_review_entries: list[dict],
+) -> tuple[Path, Path]:
+    change_log_path = output_dir / "change_log.csv"
+    change_log_fields = [
+        "Timestamp", "Handle", "Variant SKU", "Field", "Target Column",
+        "Old Value", "New Value", "Source", "Confidence", "Evidence Quote", "Needs Review",
+    ]
+    with open(change_log_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=change_log_fields, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(change_log_rows)
+
+    needs_review_path = output_dir / "needs_review.csv"
+    needs_review_fields = [
+        "Handle", "Variant SKU", "Field", "Target Column",
+        "Reason", "Evidence Quote", "Confidence", "Suggested Value",
+    ]
+    with open(needs_review_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=needs_review_fields, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(needs_review_entries)
+
+    return change_log_path, needs_review_path
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Apply approved attribute fills to a Shopify product CSV."
     )
     parser.add_argument("csv_path", type=Path, help="Path to original Shopify product CSV")
-    parser.add_argument("approved_fills", type=Path, help="Path to approved_fills.json")
+    parser.add_argument(
+        "--deterministic-fills", type=Path, default=None,
+        dest="deterministic_fills",
+        help="Path to deterministic_fills.json from Stage 1 (default: csv_dir/deterministic_fills.json)",
+    )
+    parser.add_argument(
+        "--approved-fills", type=Path, default=None,
+        dest="approved_fills",
+        help="Path to approved_fills.json from Stage 2 (optional)",
+    )
     parser.add_argument(
         "--output-dir", type=Path, default=None,
-        help="Directory for output files (default: same directory as csv_path)"
+        help="Directory for output files (default: same directory as csv_path)",
+    )
+    parser.add_argument(
+        "--dry-run", action="store_true",
+        help="Write change_log and needs_review but NOT the corrected CSV",
     )
     args = parser.parse_args()
 
-    for path in (args.csv_path, args.approved_fills):
-        if not path.exists():
-            print(f"Fatal: File not found: {path}", file=sys.stderr)
-            return 1
-        if not path.is_file():
-            print(f"Fatal: Not a file: {path}", file=sys.stderr)
-            return 1
+    if not args.csv_path.exists():
+        print(f"Fatal: File not found: {args.csv_path}", file=sys.stderr)
+        return 1
+    if not args.csv_path.is_file():
+        print(f"Fatal: Not a file: {args.csv_path}", file=sys.stderr)
+        return 1
 
     output_dir = args.output_dir or args.csv_path.parent
 
+    det_fills = args.deterministic_fills
+    if det_fills is None:
+        candidate = args.csv_path.parent / "deterministic_fills.json"
+        if candidate.exists():
+            det_fills = candidate
+
+    approved_fills = args.approved_fills
+
     try:
-        return apply_fills(args.csv_path, args.approved_fills, output_dir)
+        return apply_fills(
+            args.csv_path, det_fills, approved_fills, output_dir, args.dry_run
+        )
+    except SystemExit:
+        raise
     except Exception as e:
         print(f"Fatal: {e}", file=sys.stderr)
         import traceback

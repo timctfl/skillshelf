@@ -1,11 +1,12 @@
 ---
 name: fill-missing-product-attributes
 description: >-
-  Fills missing color, size, material, gender, and age_group values in a
-  Shopify product CSV using option values, tags, and title patterns.
-  Outputs a corrected CSV with confidence scores and a change log.
+  Fixes Google Merchant Center "missing value" disapprovals in Shopify product
+  CSVs. Fills blank color, size, material, gender, and age_group fields using
+  options, tags, and title patterns. Never overwrites existing data. English
+  catalogs only.
 license: Apache-2.0
-compatibility: "Requires Python 3.10+. Falls back to pure LLM inference if Python is unavailable."
+requires: "Python 3.10+ with code execution. Cannot run without script execution."
 ---
 
 # Fill Missing Product Attributes
@@ -42,18 +43,23 @@ This skill uses a hybrid approach: a Python script handles deterministic extract
 **Stage 1: Run the detection script**
 
 ```
-python3 scripts/detect_missing_attributes.py <csv_path> --assets-dir assets/
+python3 scripts/detect_missing_attributes.py <csv_path> --assets-dir assets/ --output-dir <dir>
 ```
 
-The script outputs JSON to stdout and writes `needs_inference.json` to the same directory as the CSV. Capture the stdout JSON as the basis for the audit report.
+The script outputs JSON to stdout and writes two files to the output directory: `deterministic_fills.json` (pre-approved fills for Stage 3) and `needs_inference.json` (rows for LLM inference). Capture the stdout JSON as the basis for the audit report.
 
 **Stage 3: Apply approved fills**
 
 ```
-python3 scripts/apply_fills.py <csv_path> approved_fills.json --output-dir <dir>
+python3 scripts/apply_fills.py <csv_path> \
+    --deterministic-fills deterministic_fills.json \
+    --approved-fills approved_fills.json \
+    --output-dir <dir>
 ```
 
-**Fallback:** If the script fails, fall back to LLM-only analysis. Read the CSV directly, apply the same extraction logic manually, and note in the change log that the script was unavailable.
+Both fill files are optional — if only deterministic fills are available (no LLM inference needed), omit `--approved-fills`. The script auto-discovers `deterministic_fills.json` in the CSV's directory if `--deterministic-fills` is not provided.
+
+**If the script fails:** Report the error verbatim to the merchant. Do not attempt to fill attributes manually without the deterministic extraction stage running. This skill's safety guarantees (closed vocabulary matching, enum validation, evidence-required output) depend on the Python script.
 
 For the full attribute column reference (all four naming generations of Google Shopping metafield columns), see [references/shopify_csv_columns.md](references/shopify_csv_columns.md).
 
@@ -61,14 +67,21 @@ For the full attribute column reference (all four naming generations of Google S
 
 ## Confidence Scoring
 
-Deterministic fills carry source-assigned confidence. LLM fills carry self-reported confidence (capped at 0.90). See [references/extraction_sources.md](references/extraction_sources.md) for the full table.
+Deterministic fills carry source-assigned confidence. LLM fills carry self-reported confidence (capped at 0.90). Thresholds are per-field because fields carry different risk profiles with Google.
 
-| Confidence | Action |
-|---|---|
-| >= 0.90 | Auto-write. `Needs Review` = FALSE in change log. |
-| 0.75 to 0.89 | Auto-write. `Needs Review` = TRUE in change log. |
-| 0.50 to 0.74 | Do NOT write. Add to `needs_review.csv`. |
-| < 0.50 | Do NOT write. Do not surface unless merchant asks. |
+**Auto-write thresholds (fills below threshold go to needs_review.csv):**
+
+| Field | Threshold | Rationale |
+|---|---|---|
+| `gender` | 0.90 | Wrong value triggers Google misrepresentation flag |
+| `age_group` | 0.90 | Same |
+| `color` | 0.80 | Must match PDP; wrong value = disapproval |
+| `material` | 0.70 | Cosmetic impact only |
+| `size` | 0.95 | Only auto-written when extracted from option value |
+| `size_system` | 0.95 | Explicit US/UK/EU from option name only |
+| `size_type` | 0.90 | Token scan of option value only |
+
+See [references/extraction_sources.md](references/extraction_sources.md) for confidence values by source.
 
 ---
 
@@ -115,7 +128,7 @@ Ask the merchant to provide their Shopify product CSV. Once provided:
 
 Only include sections where there is something to show.
 
-**Apparel detection:** The script gates on `Product Category` first (checks for "Apparel", "Clothing", "Footwear"). Falls back to the `Type` column against a known term list. Products with neither signal are skipped entirely.
+**Apparel detection:** The script gates on `Product Category` first (checks for "Apparel", "Clothing", "Footwear"). Falls back to the `Type` column against a known term list. If both are empty, falls back to high-signal title tokens (shirt, tee, dress, jacket, etc.). Products with no signal in any of the three tiers are skipped entirely.
 
 ### Turn 2: LLM Inference (Stage 2 — Claude does this autonomously)
 
@@ -234,7 +247,7 @@ Stop and report to the merchant rather than proceeding with bad data.
 
 | Error | What to do |
 |---|---|
-| Script exits with code 1 | Report the error message verbatim. Fall back to LLM-only analysis if the merchant wants to continue. |
+| Script exits with code 1 | Report the error message verbatim. Do not attempt to fill attributes without the script. |
 | Script exits with code 2 (validation failure) | The validation error describes what would go wrong. Report it and do not apply any fills. |
 | Missing required CSV columns (Handle, Title) | Tell the merchant which columns are missing. Ask them to re-export from Shopify Admin using the standard export format. |
 | Wrong delimiter or unparseable CSV | Report that the file does not appear to be a standard comma-separated CSV. Shopify exports use UTF-8 with comma delimiters. Ask the merchant to re-export or check if the file was opened and re-saved by Excel. |

@@ -4,10 +4,10 @@ subcategories:
   - attributes
   - google-shopping
   - shopify
-level: intermediate
 primitive: false
 platforms:
   - shopify
+language: en
 tags:
   - product-data
   - google-shopping
@@ -16,6 +16,7 @@ tags:
   - csv
   - metafields
   - merchant-center
+  - disapproval-fix
 date_added: "2026-04-18"
 date_updated: "2026-04-18"
 author:
