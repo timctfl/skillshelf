@@ -1,0 +1,66 @@
+version: "0.1.0"
+category: catalog-operations
+subcategories:
+  - pdp
+  - shopify
+  - template
+level: intermediate
+primitive: false
+platforms:
+  - shopify
+tags:
+  - pdp
+  - shopify
+  - content-template
+  - metafields
+  - store-setup
+  - onboarding
+certified: false
+date_added: "2026-04-16"
+date_updated: "2026-04-16"
+author:
+  name: Tim Petrella
+  url: https://www.linkedin.com/in/timpetrella/
+input_schema:
+  required:
+    - Connected Shopify store
+    - Reference product URL
+  recommended:
+    - 2 additional reference product URLs for static versus dynamic detection
+output_schema:
+  format: Structured JSON (PDP content template)
+  sections:
+    - Template sections with Shopify source mappings and per-section guidance
+    - Body_html assembly pattern for write-back
+faq:
+  - question: Why does this skill need a connected Shopify store?
+    answer: >-
+      The template maps each visible PDP section to the Shopify field or
+      metafield it comes from. That mapping requires reading the product's
+      actual data (title, body_html, metafields with definitions) from
+      Shopify, not guessing from the rendered page.
+  - question: Do I run this once or per product?
+    answer: >-
+      Once per store. The template describes the structure of your PDPs in
+      general, not one product's copy. Every downstream skill
+      (rewrite-pdp-copy, write-product-descriptions, audit-pdp) reuses this
+      template for every product.
+  - question: What inputs does the platform fetch automatically?
+    answer: >-
+      When you pick a reference product, the platform fetches the product
+      data from Shopify, the rendered storefront page as markdown, and a
+      full-page screenshot of the PDP. You do not upload anything manually.
+  - question: Why does picking additional reference products help?
+    answer: >-
+      Metafields with identical values across two or three reference products
+      (return policy language, shipping info, brand story) get flagged as
+      static and excluded from downstream runs unless asked for. Metafields
+      that vary per product (ingredients, descriptions, features) are
+      flagged dynamic and drive every run. One product still produces a
+      usable template; two or three sharpen the classification.
+  - question: Can I edit the template after it is produced?
+    answer: >-
+      Yes. The review screen lets you rename sections, change sources,
+      change classification, and adjust length and guidance. The template
+      is saved to your store's account and can be edited from the dashboard
+      at any time.
