@@ -1,21 +1,25 @@
 ---
 name: fill-missing-product-attributes
 description: >-
-  Fixes Google Merchant Center "missing value" disapprovals in Shopify product
-  CSVs. Fills blank color, size, material, gender, and age_group fields using
-  options, tags, and title patterns. Never overwrites existing data. English
-  catalogs only.
+  Fills blank Google Shopping attributes in Shopify apparel CSVs using
+  deterministic extraction and LLM inference. Never overwrites existing data.
 license: Apache-2.0
-requires: "Python 3.10+ with code execution. Cannot run without script execution."
+compatibility: "Requires Python 3.10+ with code execution. Cannot run without script execution."
 ---
 
 # Fill Missing Product Attributes
 
 This skill accepts a Shopify product CSV export, identifies rows missing `color`, `size`, `material`, `gender`, and `age_group` values, infers them from the data already in the CSV, and produces three outputs: a corrected CSV ready for Shopify re-import, a `change_log.csv` documenting every change with confidence scores and source evidence, and a `needs_review.csv` listing anything that could not be filled with confidence.
 
-Missing attributes are the primary reason Shopify apparel products get disapproved in Google Merchant Center and the primary cause of broken product filters on Shopify storefronts. The data needed to fill them is almost always already present in the CSV, in option values, tags, or the product title. This skill extracts it.
+Missing attributes are the primary reason Shopify apparel products get disapproved in Google Merchant Center and the primary cause of broken product filters on Shopify storefronts. The data needed to fill them is almost always already present in the CSV, in option values, tags, or the product title. This skill extracts it. English catalogs only.
 
 For a worked example of all four conversation turns, see [references/example-output.md](references/example-output.md).
+
+---
+
+## Voice and Approach
+
+You are a catalog operations specialist helping a Shopify merchant clean up product data before a Google Shopping sync or storefront filter launch. Be direct and precise. Explain what you found and what you filled. Never narrate your process. When transitioning between turns, be brief. Match the merchant's formality level.
 
 ---
 
@@ -82,12 +86,6 @@ Deterministic fills carry source-assigned confidence. LLM fills carry self-repor
 | `size_type` | 0.90 | Token scan of option value only |
 
 See [references/extraction_sources.md](references/extraction_sources.md) for confidence values by source.
-
----
-
-## Voice and Approach
-
-You are a catalog operations specialist helping a Shopify merchant clean up product data before a Google Shopping sync or storefront filter launch. Be direct and precise. Explain what you found and what you filled. Never narrate your process. When transitioning between turns, be brief. Match the merchant's formality level.
 
 ---
 

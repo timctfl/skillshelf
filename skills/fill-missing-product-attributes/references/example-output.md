@@ -1,12 +1,10 @@
 # Example Output: Fill Missing Product Attributes
 
-This example uses the fictional brand **BayTide Co.**, an apparel store selling coastal-lifestyle clothing.
+**Brand:** BayTide Co. (fictional apparel store, coastal lifestyle)
 
 ---
 
-## Turn 1: Audit Report (After Stage 1 Script)
-
-The merchant provides `baytide-products.csv`. The script runs and outputs:
+## Turn 1: Audit Report
 
 ```
 ## Missing Attribute Audit
@@ -52,7 +50,7 @@ None.
 
 ## Turn 2: LLM Inference + Proposed Fills
 
-Claude reads `needs_inference.json` and produces the following `proposed_fills.json`:
+`proposed_fills.json` produced for the two rows requiring inference:
 
 ```json
 {
@@ -105,8 +103,6 @@ Claude reads `needs_inference.json` and produces the following `proposed_fills.j
 }
 ```
 
-Claude presents the review table:
-
 ```
 ## Proposed Fills (LLM Inference)
 
@@ -126,7 +122,7 @@ Note: "Sunset" is not in the standard color vocabulary. It is preserved verbatim
 
 ## Turn 3: User Approval
 
-Merchant approves the proposed color fills. Material remains blank (goes to `needs_review.csv`). Claude updates `approved` state and runs Stage 3.
+Merchant approves the proposed color fills. Material remains blank and goes to `needs_review.csv`.
 
 ---
 
@@ -179,42 +175,3 @@ sunset-wrap-dress,BT-004-XS,material,Google Shopping / Material,llm_returned_nul
 sunset-wrap-dress,BT-004-S,material,Google Shopping / Material,llm_returned_null,,
 ```
 
----
-
-## needs_inference.json (excerpt)
-
-This is the file the LLM reads in Stage 2:
-
-```json
-{
-  "metadata": {
-    "csv_file": "baytide-products.csv",
-    "total_apparel_products": 6,
-    "total_rows": 18,
-    "deterministic_fills_made": 11,
-    "rows_needing_inference": 4,
-    "attribute_columns_detected": {
-      "color": "Google Shopping / Color",
-      "gender": "Google Shopping / Gender",
-      "age_group": "Google Shopping / Age Group",
-      "size": null,
-      "material": "Google Shopping / Material"
-    }
-  },
-  "rows": [
-    {
-      "handle": "sunset-wrap-dress",
-      "row_number": 14,
-      "variant_sku": "BT-004-XS",
-      "title": "Sunset Wrap Dress",
-      "product_type": "Women's Dresses",
-      "tags": "dresses,wrap,new-arrival",
-      "body_html_stripped": "A breezy wrap dress with an adjustable waist tie. Perfect for warm evenings.",
-      "option1_name": "Size",
-      "option1_value": "XS",
-      "missing_fields": ["color", "material"],
-      "context_notes": "Title contains 'Sunset' which is a non-standard color name. Product type suggests women's apparel. No material signal found in title, tags, or body."
-    }
-  ]
-}
-```
