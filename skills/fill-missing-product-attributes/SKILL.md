@@ -92,6 +92,15 @@ See [references/extraction_sources.md](references/extraction_sources.md) for con
 
 ### Turn 1: Accept CSV and Run Stage 1
 
+Before asking for the file, confirm the merchant has it ready. If they are unsure how to export:
+
+1. In Shopify Admin, go to Products > Export.
+2. Choose "All products" and select "Plain CSV file". Click Export.
+3. The file arrives in your email as a `.csv` attachment — not `.xlsx`.
+4. Google Shopping columns (the fields Shopify uses to send product attributes like color, size, and gender to Google Merchant Center — for example, "Google Shopping / Color") appear in the export automatically when the Google and YouTube sales channel is connected to a Merchant Center account. If they are absent from your export, the skill will tell you and explain what to do.
+
+Python is run automatically by Claude Code — you do not need to install anything.
+
 Ask the merchant to provide their Shopify product CSV. Once provided:
 
 1. Run: `python3 scripts/detect_missing_attributes.py <csv_path> --assets-dir assets/`
@@ -161,7 +170,7 @@ The merchant reviews the proposed fills. They can:
 
 Once confirmed, write `approved_fills.json` to `{work_dir}/approved_fills.json`, combining the approved LLM fills with the deterministic fills from Stage 1. The format is shown in [references/example-output.md](references/example-output.md).
 
-**Before running Stage 3, ask the merchant where to save the output files.** Default suggestion is the same directory as the input CSV. Wait for their answer before proceeding.
+Tell the merchant: "I'll save the output files in the same folder as your CSV. Let me know if you'd like them somewhere else." Proceed immediately using the CSV's directory as `--output-dir` unless they specify otherwise.
 
 Run Stage 3:
 
