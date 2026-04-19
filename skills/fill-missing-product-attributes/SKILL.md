@@ -188,7 +188,7 @@ If all checks pass, report the exact paths where the three files were written:
 
 **Closing reminders:**
 
-- Import path in Shopify admin: Settings > Import products.
+- Import path in Shopify admin: Products > Import (top right of the Products list page).
 - Back up the current CSV export before importing.
 - Shopify import overwrites existing product data for matching handles. It cannot delete variants, only add or update.
 - If `needs_review.csv` has rows with `reason = conflict_with_existing_value`, those require manual inspection to resolve which value is correct.

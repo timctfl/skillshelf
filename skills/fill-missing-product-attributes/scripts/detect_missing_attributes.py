@@ -37,7 +37,7 @@ from pathlib import Path
 
 SCRIPT_VERSION = "2.0.0"
 
-TARGET_FIELDS = ("color", "size", "material", "gender", "age_group")
+TARGET_FIELDS = ("color", "size", "size_system", "size_type", "material", "gender", "age_group")
 
 REQUIRED_ASSETS = [
     "apparel_signal_terms.txt",
@@ -148,6 +148,20 @@ GS_COLUMN_PATTERNS: dict[str, list[re.Pattern]] = {
         re.compile(r"^product\.metafields\.shopify\.material$", re.IGNORECASE),
         re.compile(r"^product\.metafields\.custom\.material$", re.IGNORECASE),
         re.compile(r"^mm-google-shopping:material$", re.IGNORECASE),
+    ],
+    "size_system": [
+        re.compile(r"^product\.metafields\.mm-google-shopping\.size_system$", re.IGNORECASE),
+        re.compile(r"^Google Shopping / Size System$", re.IGNORECASE),
+        re.compile(r"^product\.metafields\.shopify\.size_system$", re.IGNORECASE),
+        re.compile(r"^product\.metafields\.custom\.size_system$", re.IGNORECASE),
+        re.compile(r"^mm-google-shopping:size_system$", re.IGNORECASE),
+    ],
+    "size_type": [
+        re.compile(r"^product\.metafields\.mm-google-shopping\.size_type$", re.IGNORECASE),
+        re.compile(r"^Google Shopping / Size Type$", re.IGNORECASE),
+        re.compile(r"^product\.metafields\.shopify\.size_type$", re.IGNORECASE),
+        re.compile(r"^product\.metafields\.custom\.size_type$", re.IGNORECASE),
+        re.compile(r"^mm-google-shopping:size_type$", re.IGNORECASE),
     ],
 }
 

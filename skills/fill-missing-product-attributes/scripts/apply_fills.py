@@ -487,9 +487,8 @@ def apply_fills(
 
             output_row[target_col] = proposed
 
-            threshold = FIELD_THRESHOLDS.get(field, 0.90)
             needs_review_flag = "TRUE" if (
-                confidence is not None and float(confidence) < threshold + 0.15
+                confidence is not None and float(confidence) < 0.90
             ) else "FALSE"
 
             change_log_rows.append({
