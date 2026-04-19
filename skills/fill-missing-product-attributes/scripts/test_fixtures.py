@@ -4,7 +4,7 @@
 All fills in expected_output.csv are deterministic (option values, tag prefixes,
 title extraction, body HTML patterns). No LLM stage is exercised here.
 
-Stage 2 (LLM inference) is excluded by design — it requires a live model and
+Stage 2 (LLM inference) is excluded by design: it requires a live model and
 produces non-deterministic output. To test Stage 2, write a pre-built
 approved_fills.json fixture and pass it to apply_fills.py via --approved-fills.
 
@@ -120,7 +120,7 @@ def main() -> int:
                 print(f)
             return 1
 
-        print(f"PASS: {len(actual_rows)} rows — all fields match expected_output.csv")
+        print(f"PASS: {len(actual_rows)} rows. All fields match expected_output.csv")
         return 0
 
 

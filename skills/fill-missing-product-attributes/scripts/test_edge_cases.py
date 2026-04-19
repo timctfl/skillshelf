@@ -3,7 +3,7 @@
 
 Covers: XLSX rejection, empty CSV, --dry-run flag, needs_review.csv conflict
 entries, and Latin-1 encoding. The LLM inference stage (Stage 2) is excluded
-by design — it requires a live model. To test Stage 2, write a pre-built
+by design: it requires a live model. To test Stage 2, write a pre-built
 approved_fills.json fixture and pass it directly to apply_fills.py via
 --approved-fills.
 

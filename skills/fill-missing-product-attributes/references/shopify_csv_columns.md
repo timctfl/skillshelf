@@ -19,12 +19,12 @@ If none of the above patterns are found in the header for a given attribute, the
 For each target attribute (color, gender, age_group, size, material):
 
 1. Does the CSV header contain a Google Shopping metafield column for this attribute?
-   YES → write there
-   NO  → does it contain a Shopify Standard Taxonomy column?
-          YES → write there
-          NO  → does it contain a custom merchant metafield column matching the attribute?
-                YES → write there (never invent new namespace)
-                NO  → add to needs_review.csv with reason: no_target_column_in_csv
+   YES: write there
+   NO: does it contain a Shopify Standard Taxonomy column?
+          YES: write there
+          NO: does it contain a custom merchant metafield column matching the attribute?
+                YES: write there (never invent new namespace)
+                NO: add to needs_review.csv with reason: no_target_column_in_csv
 ```
 
 ## Prohibited Columns (Never Write Here)

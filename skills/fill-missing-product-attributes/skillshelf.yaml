@@ -51,8 +51,8 @@ faq:
   - question: What does this skill do?
     answer: >-
       It finds color, size, size_system, size_type, material, gender, and
-      age_group values already present in your Shopify apparel CSV — in option
-      names, tags, and product titles — and writes them to the correct attribute
+      age_group values already present in your Shopify apparel CSV: in option
+      names, tags, and product titles. It writes them to the correct attribute
       columns. It fills only blank fields. Nothing is overwritten. The output is
       a corrected CSV ready for Shopify re-import, a change log, and a
       needs-review file for anything it could not resolve with confidence.

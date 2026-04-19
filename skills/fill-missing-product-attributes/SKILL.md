@@ -10,7 +10,7 @@ compatibility: "Requires Python 3.10+ with code execution. Cannot run without sc
 
 # Fill Missing Product Attributes
 
-The data you need is almost always already in the CSV — in option names, tags, or the product title. It just isn't in the right column yet. This skill finds it and moves it.
+The data you need is almost always already in the CSV: in option names, tags, or the product title. It just isn't in the right column yet. This skill finds it and moves it.
 
 This skill accepts a Shopify product CSV export, locates `color`, `size`, `material`, `gender`, and `age_group` values scattered across option columns, tag prefixes, and product titles, and writes them into the correct attribute columns. It produces three outputs: a corrected CSV ready for Shopify re-import, a `change_log.md` documenting every change with confidence scores and source evidence, and a `needs_review.csv` listing anything that could not be filled with confidence.
 
@@ -55,7 +55,7 @@ This skill uses a hybrid approach: a Python script handles deterministic extract
 python3 scripts/detect_missing_attributes.py <csv_path> --assets-dir assets/
 ```
 
-The script creates a temporary directory automatically (e.g. `/tmp/fill-attrs-XXXX`) and writes `deterministic_fills.json` and `needs_inference.json` there. The stdout JSON includes a `work_dir` key with the temp directory path — capture and retain this path for all subsequent stages. Do not pass `--output-dir` unless the merchant specifically requests a custom location for the intermediate files.
+The script creates a temporary directory automatically (e.g. `/tmp/fill-attrs-XXXX`) and writes `deterministic_fills.json` and `needs_inference.json` there. The stdout JSON includes a `work_dir` key with the temp directory path. Capture and retain this path for all subsequent stages. Do not pass `--output-dir` unless the merchant specifically requests a custom location for the intermediate files.
 
 **Stage 3: Apply approved fills**
 
@@ -101,10 +101,10 @@ Before asking for the file, confirm the merchant has it ready. If they are unsur
 
 1. In Shopify Admin, go to Products > Export.
 2. Choose "All products" and select "Plain CSV file". Click Export.
-3. The file arrives in your email as a `.csv` attachment — not `.xlsx`.
-4. Google Shopping columns (the fields Shopify uses to send product attributes like color, size, and gender to Google Merchant Center — for example, "Google Shopping / Color") appear in the export automatically when the Google and YouTube sales channel is connected to a Merchant Center account. If they are absent from your export, the skill will tell you and explain what to do.
+3. The file arrives in your email as a `.csv` attachment, not `.xlsx`.
+4. Google Shopping columns (the fields Shopify uses to send product attributes like color, size, and gender to Google Merchant Center, for example "Google Shopping / Color") appear in the export automatically when the Google and YouTube sales channel is connected to a Merchant Center account. If they are absent from your export, the skill will tell you and explain what to do.
 
-Python is run automatically by Claude Code — you do not need to install anything.
+Python is run automatically by Claude Code. You do not need to install anything.
 
 Ask the merchant to provide their Shopify product CSV. Once provided:
 
@@ -134,20 +134,20 @@ Ask the merchant to provide their Shopify product CSV. Once provided:
 [List: handle (product type)]
 
 ### Conflicts Detected (Not Overwritten)
-[Table: Handle | Field | Option Value | Existing Value — if any]
+[Table: Handle | Field | Option Value | Existing Value (if any)]
 ```
 
 Only include sections where there is something to show.
 
 **Apparel detection:** The script gates on `Product Category` first (checks for "Apparel", "Clothing", "Footwear"). Falls back to the `Type` column against a known term list. If both are empty, falls back to high-signal title tokens (shirt, tee, dress, jacket, etc.). Products with no signal in any of the three tiers are skipped entirely.
 
-### Turn 2: LLM Inference (Stage 2 — Claude does this autonomously)
+### Turn 2: LLM Inference (Stage 2, Claude does this autonomously)
 
 After presenting the extraction report, read `needs_inference.json` from the `work_dir` path reported in Stage 1's stdout JSON and infer remaining fields without asking the merchant first.
 
 **Rules for this stage:**
 
-- Every fill must include an `evidence_quote` — the exact substring from `title`, `body_html_stripped`, or `tags` that supports the inference. If you cannot quote evidence, return `null`.
+- Every fill must include an `evidence_quote`: the exact substring from `title`, `body_html_stripped`, or `tags` that supports the inference. If you cannot quote evidence, return `null`.
 - For `gender` and `age_group`, only output values from the closed enums: `gender` = male/female/unisex; `age_group` = newborn/infant/toddler/kids/adult.
 - Cap self-reported confidence at 0.90.
 - If `title` has fewer than 3 meaningful words AND `tags` is empty AND `body_html_stripped` is empty, return `null` for all fields with source `llm_insufficient_context`.
@@ -162,7 +162,7 @@ Hold all inferences in conversation memory. Do not write any file at this stage.
 |---|---|---|---|---|---|---|
 ```
 
-Where "Action" is: "Auto-approve (high confidence)" / "Review recommended" / "Flagged — your input needed".
+Where "Action" is: "Auto-approve (high confidence)" / "Review recommended" / "Flagged: your input needed".
 
 If any proposed color is not a Google standard color name but matches the product's own text, note: "Value preserved verbatim from product title to match PDP text per Google's feed matching requirement."
 
@@ -194,7 +194,7 @@ Once confirmed, write `approved_fills.json` to `{work_dir}/approved_fills.json` 
 }
 ```
 
-Set `"approved": true` for accepted fills. Set `"approved": false` with `"reject_reason": "user_rejected"` for any the merchant rejected. Null fills from Stage 2 (where no value could be inferred) do not need an entry — they will land in `needs_review.csv` automatically.
+Set `"approved": true` for accepted fills. Set `"approved": false` with `"reject_reason": "user_rejected"` for any the merchant rejected. Null fills from Stage 2 (where no value could be inferred) do not need an entry. They will land in `needs_review.csv` automatically.
 
 Tell the merchant: "I'll save the output files in the same folder as your CSV. Let me know if you'd like them somewhere else." Proceed immediately using the CSV's directory as `--output-dir` unless they specify otherwise.
 
@@ -217,9 +217,9 @@ Before presenting output, run this checklist:
 
 If all checks pass, report the exact paths where the three files were written:
 
-1. **`<stem>-filled.csv`** — corrected Shopify CSV, ready for re-import.
-2. **`change_log.md`** — human-readable Markdown log grouped by product: handle, field, value set, source (plain English), confidence %, and REVIEW/OK status.
-3. **`needs_review.csv`** — items that could not be filled: Priority (HIGH/MEDIUM/LOW), Handle, Product Title, SKU, Field, Target Column, Reason (plain English), Action (what to do), Evidence Quote, Confidence, Suggested Value.
+1. **`<stem>-filled.csv`**: corrected Shopify CSV, ready for re-import.
+2. **`change_log.md`**: human-readable Markdown log grouped by product: handle, field, value set, source (plain English), confidence %, and REVIEW/OK status.
+3. **`needs_review.csv`**: items that could not be filled: Priority (HIGH/MEDIUM/LOW), Handle, Product Title, SKU, Field, Target Column, Reason (plain English), Action (what to do), Evidence Quote, Confidence, Suggested Value.
 
 **Closing reminders:**
 
@@ -236,7 +236,7 @@ Suggest running this skill again after the next supplier data import or before a
 
 ## Extraction Constraints
 
-Four rules apply at inference time. These are not full spec coverage — they are the constraints that govern safe extraction:
+Four rules apply at inference time. These are not full spec coverage. They are the constraints that govern safe extraction:
 
 - `color` must be preserved verbatim from the product's own text. Do not normalize "Desert Sand" to "Tan". The feed must match the product landing page.
 - `color` supports up to 3 slash-separated values. Flag more than 3 in `needs_review.csv`. Do not truncate silently.
@@ -271,7 +271,7 @@ This skill expects Shopify's native product export format. If the merchant provi
 
 ### All products are single-variant (default title)
 
-If all products use the "Default Title" variant option (Shopify's single-variant placeholder), option-based extraction does not apply — there are no Color, Size, or Material option names to read. Title extraction, tag extraction, and body HTML extraction still run normally. These products appear in the "Needs LLM Inference" section for any fields the script cannot resolve from title or tags alone. Note in the extraction report that option-based extraction was not applicable.
+If all products use the "Default Title" variant option (Shopify's single-variant placeholder), option-based extraction does not apply. There are no Color, Size, or Material option names to read. Title extraction, tag extraction, and body HTML extraction still run normally. These products appear in the "Needs LLM Inference" section for any fields the script cannot resolve from title or tags alone. Note in the extraction report that option-based extraction was not applicable.
 
 ---
 

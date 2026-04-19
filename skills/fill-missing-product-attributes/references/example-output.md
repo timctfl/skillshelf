@@ -39,7 +39,7 @@
 
 ### Skipped (Non-Apparel)
 
-- `ceramic-mug` (Type: "Kitchen & Dining") — apparel attributes not applicable
+- `ceramic-mug` (Type: "Kitchen & Dining"): apparel attributes not applicable
 
 ### Conflicts Detected (No Overwrite Applied)
 
@@ -58,9 +58,9 @@ Claude holds inferences in memory and presents a review table. No intermediate f
 | Handle | SKU | Field | Proposed Value | Confidence | Evidence | Action |
 |---|---|---|---|---|---|---|
 | sunset-wrap-dress | BT-004-XS | color | Sunset | 0.82 | "Sunset Wrap Dress" | Review recommended |
-| sunset-wrap-dress | BT-004-XS | material | — | — | Insufficient context | Flagged — needs your input |
+| sunset-wrap-dress | BT-004-XS | material | - | - | Insufficient context | Flagged: your input needed |
 | sunset-wrap-dress | BT-004-S | color | Sunset | 0.82 | "Sunset Wrap Dress" | Review recommended |
-| sunset-wrap-dress | BT-004-S | material | — | — | Insufficient context | Flagged — needs your input |
+| sunset-wrap-dress | BT-004-S | material | - | - | Insufficient context | Flagged: your input needed |
 
 Note: "Sunset" is not in the standard color vocabulary. It is preserved verbatim from the product title, which matches the PDP text per Google's feed matching requirement. If this product has a different display color on your PDP (e.g. "Orange" or "Gold"), please update before approving.
 

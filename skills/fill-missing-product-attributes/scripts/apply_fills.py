@@ -436,7 +436,7 @@ def apply_fills(
 
     errors = validate_fills(approved, column_set)
     if errors:
-        print("Validation errors — no output written:", file=sys.stderr)
+        print("Validation errors. No output written:", file=sys.stderr)
         for e in errors:
             print(f"  {e}", file=sys.stderr)
         return 2
@@ -519,7 +519,7 @@ def apply_fills(
     # Byte-identical check for non-target columns
     integrity_errors = verify_non_target_columns_unchanged(rows, output_rows, target_columns)
     if integrity_errors:
-        print("Fatal: Non-target column integrity check failed — no output written:", file=sys.stderr)
+        print("Fatal: Non-target column integrity check failed. No output written:", file=sys.stderr)
         for e in integrity_errors:
             print(f"  {e}", file=sys.stderr)
         return 2

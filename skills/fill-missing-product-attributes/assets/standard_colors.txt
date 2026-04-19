@@ -1,7 +1,7 @@
 # Standard color vocabulary for title tokenization
 # One color per line (title-cased)
 # Source: Shopify Standard Product Taxonomy base colors + Google Merchant Center color list
-# Single-token colors only — multi-word colors are in standard_color_bigrams.txt
+# Single-token colors only. Multi-word colors are in standard_color_bigrams.txt
 Black
 White
 Red
