@@ -129,7 +129,7 @@ Only include sections where there is something to show.
 
 ### Turn 2: LLM Inference (Stage 2 — Claude does this autonomously)
 
-After presenting the audit, read `needs_inference.json` (written by Stage 1 to the CSV's directory) and infer remaining fields without asking the merchant first.
+After presenting the audit, read `needs_inference.json` from the `work_dir` path reported in Stage 1's stdout JSON and infer remaining fields without asking the merchant first.
 
 **Rules for this stage:**
 
