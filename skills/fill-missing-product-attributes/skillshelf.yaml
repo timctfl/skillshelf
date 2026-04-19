@@ -6,6 +6,7 @@ subcategories:
   - google-shopping
   - shopify
 primitive: false
+model_tier: medium
 platforms:
   - shopify
 tags:
