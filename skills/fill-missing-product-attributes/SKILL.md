@@ -47,21 +47,20 @@ This skill uses a hybrid approach: a Python script handles deterministic extract
 **Stage 1: Run the detection script**
 
 ```
-python3 scripts/detect_missing_attributes.py <csv_path> --assets-dir assets/ --output-dir <dir>
+python3 scripts/detect_missing_attributes.py <csv_path> --assets-dir assets/
 ```
 
-The script outputs JSON to stdout and writes two files to the output directory: `deterministic_fills.json` (pre-approved fills for Stage 3) and `needs_inference.json` (rows for LLM inference). Capture the stdout JSON as the basis for the audit report.
+The script creates a temporary directory automatically (e.g. `/tmp/fill-attrs-XXXX`) and writes `deterministic_fills.json` and `needs_inference.json` there. The stdout JSON includes a `work_dir` key with the temp directory path — capture and retain this path for all subsequent stages. Do not pass `--output-dir` unless the merchant specifically requests a custom location for the intermediate files.
 
 **Stage 3: Apply approved fills**
 
 ```
 python3 scripts/apply_fills.py <csv_path> \
-    --deterministic-fills deterministic_fills.json \
-    --approved-fills approved_fills.json \
-    --output-dir <dir>
+    --work-dir <work_dir> \
+    --output-dir <confirmed_output_dir>
 ```
 
-Both fill files are optional — if only deterministic fills are available (no LLM inference needed), omit `--approved-fills`. The script auto-discovers `deterministic_fills.json` in the CSV's directory if `--deterministic-fills` is not provided.
+`--work-dir` is the path from the Stage 1 `work_dir` key. The script auto-discovers `deterministic_fills.json` and `approved_fills.json` inside it. After successful completion, the temp directory is deleted automatically. If only deterministic fills are available (no LLM inference needed), the script proceeds without `approved_fills.json`.
 
 **If the script fails:** Report the error verbatim to the merchant. Do not attempt to fill attributes manually without the deterministic extraction stage running. This skill's safety guarantees (closed vocabulary matching, enum validation, evidence-required output) depend on the Python script.
 
@@ -140,7 +139,7 @@ After presenting the audit, read `needs_inference.json` (written by Stage 1 to t
 - If `title` has fewer than 3 meaningful words AND `tags` is empty AND `body_html_stripped` is empty, return `null` for all fields with source `llm_insufficient_context`.
 - Do not default `age_group` to `adult` without evidence.
 
-Produce `proposed_fills.json` in the format from [references/example-output.md](references/example-output.md).
+Produce `proposed_fills.json` in the format from [references/example-output.md](references/example-output.md) and write it to `{work_dir}/proposed_fills.json`.
 
 Then present a review table to the merchant:
 
@@ -162,16 +161,15 @@ The merchant reviews the proposed fills. They can:
 - Reject specific rows by handle and field
 - Override a value
 
-Once confirmed, write `approved_fills.json` combining the approved LLM fills with the deterministic fills from Stage 1. The format is shown in [references/example-output.md](references/example-output.md).
+Once confirmed, write `approved_fills.json` to `{work_dir}/approved_fills.json`, combining the approved LLM fills with the deterministic fills from Stage 1. The format is shown in [references/example-output.md](references/example-output.md).
 
-**Before running Stage 3, ask the merchant where to save the output files.** Default suggestion is the current working directory. Wait for their answer before proceeding.
+**Before running Stage 3, ask the merchant where to save the output files.** Default suggestion is the same directory as the input CSV. Wait for their answer before proceeding.
 
 Run Stage 3:
 
 ```
 python3 scripts/apply_fills.py <csv_path> \
-    --deterministic-fills deterministic_fills.json \
-    --approved-fills approved_fills.json \
+    --work-dir <work_dir> \
     --output-dir <confirmed_output_dir>
 ```
 

@@ -26,6 +26,7 @@ import argparse
 import csv
 import json
 import re
+import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -261,6 +262,7 @@ def apply_fills(
     deterministic_fills_path: Path | None,
     approved_fills_path: Path | None,
     output_dir: Path,
+    work_dir: Path | None = None,
     dry_run: bool = False,
 ) -> int:
     rows, columns = parse_csv(csv_path)
@@ -470,12 +472,18 @@ def apply_fills(
         output_dir, csv_path, change_log_rows, needs_review_entries
     )
 
+    work_dir_cleaned = False
+    if work_dir and work_dir.exists():
+        shutil.rmtree(work_dir, ignore_errors=True)
+        work_dir_cleaned = True
+
     summary = {
         "status": "completed",
         "input_rows": len(rows),
         "output_rows": len(output_rows),
         "fills_applied": len(change_log_rows),
         "needs_review_count": len(needs_review_entries),
+        "work_dir_cleaned": work_dir_cleaned,
         "output_files": {
             "filled_csv": str(filled_path),
             "change_log": str(change_log_path),
@@ -521,14 +529,20 @@ def main() -> int:
     )
     parser.add_argument("csv_path", type=Path, help="Path to original Shopify product CSV")
     parser.add_argument(
+        "--work-dir", type=Path, default=None,
+        dest="work_dir",
+        help="Temp directory from Stage 1 (work_dir in stdout JSON). Used to auto-locate "
+             "deterministic_fills.json and approved_fills.json, and cleaned up after success.",
+    )
+    parser.add_argument(
         "--deterministic-fills", type=Path, default=None,
         dest="deterministic_fills",
-        help="Path to deterministic_fills.json from Stage 1 (default: csv_dir/deterministic_fills.json)",
+        help="Path to deterministic_fills.json from Stage 1 (overrides --work-dir lookup)",
     )
     parser.add_argument(
         "--approved-fills", type=Path, default=None,
         dest="approved_fills",
-        help="Path to approved_fills.json from Stage 2 (optional)",
+        help="Path to approved_fills.json from Stage 2 (overrides --work-dir lookup)",
     )
     parser.add_argument(
         "--output-dir", type=Path, default=None,
@@ -548,18 +562,26 @@ def main() -> int:
         return 1
 
     output_dir = args.output_dir or args.csv_path.parent
+    work_dir: Path | None = args.work_dir
 
     det_fills = args.deterministic_fills
     if det_fills is None:
-        candidate = args.csv_path.parent / "deterministic_fills.json"
-        if candidate.exists():
-            det_fills = candidate
+        search_dirs = [work_dir, args.csv_path.parent] if work_dir else [args.csv_path.parent]
+        for d in search_dirs:
+            candidate = d / "deterministic_fills.json"
+            if candidate.exists():
+                det_fills = candidate
+                break
 
     approved_fills = args.approved_fills
+    if approved_fills is None and work_dir:
+        candidate = work_dir / "approved_fills.json"
+        if candidate.exists():
+            approved_fills = candidate
 
     try:
         return apply_fills(
-            args.csv_path, det_fills, approved_fills, output_dir, args.dry_run
+            args.csv_path, det_fills, approved_fills, output_dir, work_dir, args.dry_run
         )
     except SystemExit:
         raise

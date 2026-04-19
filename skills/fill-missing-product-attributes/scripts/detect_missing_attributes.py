@@ -5,7 +5,12 @@ Runs deterministic extraction (option values, tags, title vocabulary, body HTML,
 sibling propagation) and outputs three artifacts:
   - deterministic_fills.json  fills already made, pre-approved for Stage 3
   - needs_inference.json      rows the LLM should attempt
-  - stdout JSON               human-readable audit report
+  - stdout JSON               human-readable audit report (includes work_dir path)
+
+When --output-dir is omitted, a temporary directory is created automatically
+(e.g. /tmp/fill-attrs-XXXX). The work_dir path is emitted in the stdout JSON
+so downstream stages can locate the intermediate files. Pass --work-dir to
+apply_fills.py to clean up the temp directory after Stage 3 completes.
 
 Usage:
     python3 scripts/detect_missing_attributes.py <csv_path> \\
@@ -22,6 +27,7 @@ import csv
 import json
 import re
 import sys
+import tempfile
 import textwrap
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -1177,6 +1183,7 @@ def run_detection(
             "needs_review_pre_fill": len(needs_review_pre),
             "attribute_columns_detected": attr_columns,
             "prohibited_columns_found": prohibited_found,
+            "work_dir": str(output_dir),
             "deterministic_fills_file": str(det_fills_path),
             "needs_inference_file": str(inference_path),
         },
@@ -1215,7 +1222,10 @@ def main() -> int:
     if assets_dir is None:
         assets_dir = Path(__file__).parent.parent / "assets"
 
-    output_dir = args.output_dir or args.csv_path.parent
+    if args.output_dir:
+        output_dir = args.output_dir
+    else:
+        output_dir = Path(tempfile.mkdtemp(prefix="fill-attrs-"))
 
     try:
         result = run_detection(args.csv_path, assets_dir, output_dir)
