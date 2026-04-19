@@ -34,6 +34,14 @@ input_schema:
 
 output_schema:
   format: Three files
+  fields_filled:
+    - color
+    - size
+    - size_system
+    - size_type
+    - material
+    - gender
+    - age_group
   sections:
     - Corrected Shopify CSV ready for re-import (<stem>-filled.csv)
     - Human-readable Markdown change log grouped by product with confidence and source (change_log.md)
@@ -42,11 +50,11 @@ output_schema:
 faq:
   - question: What does this skill do?
     answer: >-
-      It scans a Shopify apparel CSV for rows missing color, size, material,
-      gender, and age_group values, infers them from option values, tags, and
-      product titles, and produces a corrected CSV plus a change log and a
-      needs-review file. Nothing is ever overwritten — only blank fields are
-      filled.
+      It scans a Shopify apparel CSV for rows missing color, size, size_system,
+      size_type, material, gender, and age_group values, infers them from option
+      values, tags, and product titles, and produces a corrected CSV plus a
+      change log and a needs-review file. Nothing is ever overwritten — only
+      blank fields are filled.
   - question: What input does it need?
     answer: >-
       A Shopify product CSV exported from Shopify Admin. The CSV must include
