@@ -16,7 +16,7 @@ This skill accepts a Shopify product CSV export, locates `color`, `size`, `mater
 
 Unfilled attribute columns break Shopify storefront filters (customers cannot filter by color or size) and cause apparel products to be disapproved in Google Shopping. Both problems share the same root cause: the data exists in the catalog but hasn't been consolidated into the fields that power filters and feeds. This skill does that consolidation. English catalogs only.
 
-This skill works upstream of both Shopify storefront and Google Shopping. It enriches source data in Shopify. After importing the corrected CSV and syncing, use `audit-google-merchant-feed` to validate feed quality and catch any issues introduced by the feed tool.
+This skill works upstream of both Shopify storefront and Google Shopping. It enriches source data in Shopify. After importing the corrected CSV and syncing, use the Audit Google Merchant Feed skill to validate feed quality and catch any issues introduced by the feed tool.
 
 For a worked example of all four conversation turns, see [references/example-output.md](references/example-output.md).
 
@@ -230,7 +230,7 @@ If all checks pass, report the exact paths where the three files were written:
 
 Suggest running this skill again after the next supplier data import or before any Google Shopping campaign launch.
 
-**Next step:** After importing the corrected CSV and syncing to Google Merchant Center, run `audit-google-merchant-feed` to validate feed quality and catch any remaining issues introduced by the feed tool.
+**Next step:** After importing the corrected CSV and syncing to Google Merchant Center, run the Audit Google Merchant Feed skill to validate feed quality and catch any remaining issues introduced by the feed tool.
 
 ---
 
@@ -243,11 +243,15 @@ Four rules apply at inference time. These are not full spec coverage. They are t
 - `age_group` has no safe default. Flag products with no age signal rather than assuming `adult`.
 - `size_system` must come from an explicit source (option name contains US/UK/EU etc.). Do not infer it.
 
-For the full attribute spec, accepted enums, and feed validation, run `audit-google-merchant-feed` after importing the corrected CSV.
+For the full attribute spec, accepted enums, and feed validation, run the Audit Google Merchant Feed skill after importing the corrected CSV.
 
 ---
 
 ## Edge Cases
+
+### Small catalogs (under 10 rows)
+
+The script runs normally. Sibling propagation does not apply because there are too few variant rows to establish patterns. Each row is treated independently. Confidence scores may be lower than on larger catalogs because sibling evidence is absent. All extracted values still require the same evidence quote standard. Thin results are expected and noted in the extraction report.
 
 ### Non-apparel mixed catalogs
 

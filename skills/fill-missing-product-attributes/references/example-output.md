@@ -1,9 +1,3 @@
-# Example Output: Fill Missing Product Attributes
-
-**Brand:** BayTide Co. (fictional apparel store, coastal lifestyle)
-
----
-
 ## Turn 1: Extraction Report
 
 ```
