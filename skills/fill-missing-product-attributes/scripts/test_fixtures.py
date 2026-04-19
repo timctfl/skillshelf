@@ -4,6 +4,13 @@
 All fills in expected_output.csv are deterministic (option values, tag prefixes,
 title extraction, body HTML patterns). No LLM stage is exercised here.
 
+Stage 2 (LLM inference) is excluded by design — it requires a live model and
+produces non-deterministic output. To test Stage 2, write a pre-built
+approved_fills.json fixture and pass it to apply_fills.py via --approved-fills.
+
+For edge-case tests (XLSX rejection, empty CSV, --dry-run, needs_review.csv
+conflict entries, Latin-1 encoding) see test_edge_cases.py.
+
 Usage:
     python3 scripts/test_fixtures.py
 
