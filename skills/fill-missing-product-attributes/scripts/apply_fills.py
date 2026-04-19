@@ -6,7 +6,7 @@ approved_fills.json (from Stage 2 LLM inference + user review). Merges both
 fill sources and writes three output files:
 
     <stem>-filled.csv   Corrected CSV, same column structure as input
-    change_log.csv      Record of every change made
+    change_log.md       Record of every change made (Markdown)
     needs_review.csv    Items that could not be written
 
 Usage:
@@ -83,6 +83,93 @@ REASON_ACTIONS: dict[str, str] = {
 _HIGH_PRIORITY_REASONS = {"conflict_with_existing_value", "conflict_between_sources"}
 _LOW_PRIORITY_REASONS = {"no_target_column_in_csv", "non_english_input", "user_rejected", "not_approved"}
 _HIGH_PRIORITY_FIELDS = {"gender", "age_group"}
+
+_SOURCE_LABELS: dict[str, str] = {
+    "option_value": "Option value",
+    "title_color_vocab": "Title color vocabulary match",
+    "title_color_bigram": "Title color bigram match",
+    "title_material_vocab": "Title keyword match",
+    "title_material_synonym": "Title synonym match",
+    "title_gender_keyword": "Title gender keyword",
+    "title_age_keyword": "Title age keyword",
+    "body_compound_material": "Body compound material match",
+    "tag_prefix": "Tag prefix",
+    "llm_inference": "LLM inference",
+    "sibling_propagation": "Sibling variant propagation",
+    "llm_title_inference": "LLM title inference",
+}
+
+
+def _write_change_log_md(
+    path: Path,
+    rows: list[dict],
+    title_lookup: dict[str, str],
+) -> None:
+    timestamp = rows[0].get("Timestamp", "") if rows else ""
+    by_handle: dict[str, list[dict]] = {}
+    for row in rows:
+        by_handle.setdefault(row.get("Handle", ""), []).append(row)
+
+    lines: list[str] = [
+        "# Attribute Fill Change Log",
+        "",
+        f"Run timestamp: `{timestamp}`",
+        "",
+        f"**{len(rows)} attributes filled** across **{len(by_handle)} products**",
+        "",
+        "| Symbol | Meaning |",
+        "|--------|---------|",
+        "| REVIEW | Needs human review before importing |",
+        "| OK | High confidence, safe to import |",
+        "",
+        "---",
+        "",
+    ]
+
+    for handle, changes in by_handle.items():
+        title = title_lookup.get(handle, "")
+        lines.append(f"## {handle}")
+        if title:
+            lines += ["", f"**{title}**"]
+        lines += [
+            "",
+            "| Field | Value Set | Source | Confidence | Status |",
+            "|-------|-----------|--------|------------|--------|",
+        ]
+        for ch in changes:
+            field = ch.get("Target Column") or ch.get("Field", "")
+            value = ch.get("New Value", "")
+            source_key = ch.get("Source", "")
+            evidence = ch.get("Evidence Quote", "")
+            source_label = _SOURCE_LABELS.get(source_key, source_key)
+            source_cell = f"{source_label}: `{evidence}`" if evidence else source_label
+            conf_raw = ch.get("Confidence", "")
+            try:
+                conf_pct = f"{float(conf_raw) * 100:.0f}%"
+            except (ValueError, TypeError):
+                conf_pct = str(conf_raw)
+            status = "REVIEW" if str(ch.get("Needs Review", "")).upper() == "TRUE" else "OK"
+            lines.append(f"| {field} | {value} | {source_cell} | {conf_pct} | {status} |")
+        lines += ["", "---", ""]
+
+    lines += [
+        "## Source Legend",
+        "",
+        "| Source Key | Meaning |",
+        "|------------|---------|",
+        "| `option_value` | Extracted directly from Shopify variant option (Color, Size, etc.) |",
+        "| `title_color_vocab` | Matched a known color word in the product title |",
+        "| `title_color_bigram` | Matched a two-word color phrase in the product title |",
+        "| `title_material_vocab` | Matched a known material word in the product title |",
+        '| `title_material_synonym` | Matched a material synonym (e.g., "merino" maps to Wool) |',
+        "| `title_gender_keyword` | Matched a gender keyword in the product title (e.g., \"Men's\", \"Women's\") |",
+        '| `title_age_keyword` | Matched an age keyword in the product title (e.g., "Baby", "Kids") |',
+        "| `body_compound_material` | Extracted dominant material from a compound fabric description in the body |",
+        '| `tag_prefix` | Read from a structured Shopify tag (e.g., `color:red`, `gender:female`) |',
+        "| `llm_inference` | Inferred by the language model from available product context |",
+        "| `sibling_propagation` | Copied from another variant of the same product |",
+    ]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def _get_priority(reason_code: str, field: str) -> str:
@@ -440,7 +527,7 @@ def apply_fills(
 
     if dry_run:
         print("Dry run: corrected CSV not written.", file=sys.stderr)
-        _write_logs_only(output_dir, csv_path, change_log_rows, needs_review_entries)
+        _write_logs_only(output_dir, csv_path, change_log_rows, needs_review_entries, title_lookup)
         summary = {
             "status": "dry_run",
             "input_rows": len(rows),
@@ -469,7 +556,7 @@ def apply_fills(
         return 1
 
     change_log_path, needs_review_path = _write_logs_only(
-        output_dir, csv_path, change_log_rows, needs_review_entries
+        output_dir, csv_path, change_log_rows, needs_review_entries, title_lookup
     )
 
     work_dir_cleaned = False
@@ -499,16 +586,10 @@ def _write_logs_only(
     csv_path: Path,
     change_log_rows: list[dict],
     needs_review_entries: list[dict],
+    title_lookup: dict[str, str] | None = None,
 ) -> tuple[Path, Path]:
-    change_log_path = output_dir / "change_log.csv"
-    change_log_fields = [
-        "Timestamp", "Handle", "Variant SKU", "Field", "Target Column",
-        "Old Value", "New Value", "Source", "Confidence", "Evidence Quote", "Needs Review",
-    ]
-    with open(change_log_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=change_log_fields, extrasaction="ignore")
-        writer.writeheader()
-        writer.writerows(change_log_rows)
+    change_log_path = output_dir / "change_log.md"
+    _write_change_log_md(change_log_path, change_log_rows, title_lookup or {})
 
     needs_review_path = output_dir / "needs_review.csv"
     needs_review_fields = [

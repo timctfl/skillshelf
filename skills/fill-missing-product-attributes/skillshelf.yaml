@@ -36,7 +36,7 @@ output_schema:
   format: Three files
   sections:
     - Corrected Shopify CSV ready for re-import (<stem>-filled.csv)
-    - Change log CSV with confidence scores and evidence per fill (change_log.csv)
+    - Human-readable Markdown change log grouped by product with confidence and source (change_log.md)
     - Needs-review CSV listing rows that could not be filled with confidence (needs_review.csv)
 
 faq:

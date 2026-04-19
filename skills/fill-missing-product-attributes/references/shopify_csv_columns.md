@@ -51,7 +51,7 @@ Key columns the scripts read:
 | `Option1 Name` / `Option1 Value` | First option. If Name is "Color" or "Colour", Value is extracted as color. |
 | `Option2 Name` / `Option2 Value` | Second option. Same logic. |
 | `Option3 Name` / `Option3 Value` | Third option. Same logic. |
-| `Variant SKU` | Used as a row identifier in change_log.csv and needs_review.csv. |
+| `Variant SKU` | Used as a row identifier in change_log.md and needs_review.csv. |
 | `Google Shopping / Gender` | Target write column for gender (old format, most common in existing exports). |
 | `Google Shopping / Age Group` | Target write column for age_group. |
 | `Google Shopping / Color` | Target write column for color (if present). |

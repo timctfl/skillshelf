@@ -9,7 +9,7 @@ compatibility: "Requires Python 3.10+ with code execution. Cannot run without sc
 
 # Fill Missing Product Attributes
 
-This skill accepts a Shopify product CSV export, identifies rows missing `color`, `size`, `material`, `gender`, and `age_group` values, infers them from the data already in the CSV, and produces three outputs: a corrected CSV ready for Shopify re-import, a `change_log.csv` documenting every change with confidence scores and source evidence, and a `needs_review.csv` listing anything that could not be filled with confidence.
+This skill accepts a Shopify product CSV export, identifies rows missing `color`, `size`, `material`, `gender`, and `age_group` values, infers them from the data already in the CSV, and produces three outputs: a corrected CSV ready for Shopify re-import, a `change_log.md` documenting every change with confidence scores and source evidence, and a `needs_review.csv` listing anything that could not be filled with confidence.
 
 Missing attributes are the primary reason Shopify apparel products get disapproved in Google Merchant Center and the primary cause of broken product filters on Shopify storefronts. The data needed to fill them is almost always already present in the CSV, in option values, tags, or the product title. This skill extracts it. English catalogs only.
 
@@ -139,9 +139,7 @@ After presenting the audit, read `needs_inference.json` (written by Stage 1 to t
 - If `title` has fewer than 3 meaningful words AND `tags` is empty AND `body_html_stripped` is empty, return `null` for all fields with source `llm_insufficient_context`.
 - Do not default `age_group` to `adult` without evidence.
 
-Produce `proposed_fills.json` in the format from [references/example-output.md](references/example-output.md) and write it to `{work_dir}/proposed_fills.json`.
-
-Then present a review table to the merchant:
+Hold all inferences in conversation memory. Do not write any file at this stage. Present a review table to the merchant:
 
 ```
 ## Proposed Fills (LLM Inference)
@@ -180,12 +178,12 @@ Before presenting output, run this checklist:
 - Row count in corrected CSV matches input row count.
 - No Option1/2/3 Value columns were modified.
 - No `Variant Metafield:` columns were written to.
-- `change_log.csv` has one entry per fill applied.
+- `change_log.md` has one entry per fill applied.
 
 If all checks pass, report the exact paths where the three files were written:
 
 1. **`<stem>-filled.csv`** — corrected Shopify CSV, ready for re-import.
-2. **`change_log.csv`** — one row per change: Handle, SKU, Field, Target Column, Old Value, New Value, Source, Confidence, Evidence Quote, Needs Review.
+2. **`change_log.md`** — human-readable Markdown log grouped by product: handle, field, value set, source (plain English), confidence %, and REVIEW/OK status.
 3. **`needs_review.csv`** — items that could not be filled: Priority (HIGH/MEDIUM/LOW), Handle, Product Title, SKU, Field, Target Column, Reason (plain English), Action (what to do), Evidence Quote, Confidence, Suggested Value.
 
 **Closing reminders:**

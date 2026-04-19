@@ -16,14 +16,14 @@ The `detect_missing_attributes.py` script mines these sources in priority order.
 | Title color bigram | 0.90 | Token pair in `assets/standard_color_bigrams.txt` (e.g. "Navy Blue") |
 | Title material standard vocab | 0.85 | Token in `assets/standard_materials.txt` |
 | Title material-implying synonym | 0.80 | Token in `assets/material_synonyms.json` keys (e.g. "merino" implies wool) |
-| LLM inference | as-reported, capped at 0.90 | From `proposed_fills.json` confidence field |
+| LLM inference | as-reported, capped at 0.90 | Self-reported by Claude during inference |
 
 ## Confidence Threshold Policy
 
 | Confidence | Action |
 |---|---|
-| >= 0.90 | Auto-write to output CSV. Log as "high confidence" in change_log.csv (`Needs Review` = FALSE). |
-| 0.75 to 0.89 | Auto-write to output CSV. Log as "review recommended" in change_log.csv (`Needs Review` = TRUE). |
+| >= 0.90 | Auto-write to output CSV. Log as "high confidence" in change_log.md (`Needs Review` = FALSE). |
+| 0.75 to 0.89 | Auto-write to output CSV. Log as "review recommended" in change_log.md (`Needs Review` = TRUE). |
 | 0.50 to 0.74 | Do NOT write. Add to `needs_review.csv` with reason `confidence_below_threshold`. |
 | < 0.50 | Do NOT write. Do not surface unless merchant explicitly requests low-confidence items. |
 | No fill found | Do NOT write. Send to LLM stage via `needs_inference.json`. |

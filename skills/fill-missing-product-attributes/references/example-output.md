@@ -50,58 +50,7 @@ None.
 
 ## Turn 2: LLM Inference + Proposed Fills
 
-`proposed_fills.json` produced for the two rows requiring inference:
-
-```json
-{
-  "fills": [
-    {
-      "handle": "sunset-wrap-dress",
-      "row_number": 14,
-      "variant_sku": "BT-004-XS",
-      "field": "color",
-      "proposed_value": "Sunset",
-      "confidence": 0.82,
-      "evidence_quote": "Sunset Wrap Dress",
-      "source": "llm_title_inference",
-      "approved": true
-    },
-    {
-      "handle": "sunset-wrap-dress",
-      "row_number": 14,
-      "variant_sku": "BT-004-XS",
-      "field": "material",
-      "proposed_value": null,
-      "confidence": null,
-      "evidence_quote": null,
-      "source": "llm_insufficient_context",
-      "approved": false
-    },
-    {
-      "handle": "sunset-wrap-dress",
-      "row_number": 15,
-      "variant_sku": "BT-004-S",
-      "field": "color",
-      "proposed_value": "Sunset",
-      "confidence": 0.82,
-      "evidence_quote": "Sunset Wrap Dress",
-      "source": "llm_title_inference",
-      "approved": true
-    },
-    {
-      "handle": "sunset-wrap-dress",
-      "row_number": 15,
-      "variant_sku": "BT-004-S",
-      "field": "material",
-      "proposed_value": null,
-      "confidence": null,
-      "evidence_quote": null,
-      "source": "llm_insufficient_context",
-      "approved": false
-    }
-  ]
-}
-```
+Claude holds inferences in memory and presents a review table. No intermediate file is written at this stage.
 
 ```
 ## Proposed Fills (LLM Inference)
@@ -148,23 +97,70 @@ sunset-wrap-dress,Sunset Wrap Dress,...,female,,,...
 sunset-wrap-dress,,,...,female,,,...
 ```
 
-### change_log.csv
+### change_log.md
 
-```
-Timestamp,Handle,Variant SKU,Field,Target Column,Old Value,New Value,Source,Confidence,Evidence Quote,Needs Review
-2026-04-18T14:00:00Z,mens-linen-shirt,BT-001-S,gender,Google Shopping / Gender,,male,title_gender_keyword,0.92,"Men's Linen Relaxed Shirt",FALSE
-2026-04-18T14:00:00Z,mens-linen-shirt,BT-001-S,material,Google Shopping / Material,,Linen,title_material_vocab,0.85,"Men's Linen Relaxed Shirt",FALSE
-2026-04-18T14:00:00Z,mens-linen-shirt,BT-001-M,gender,Google Shopping / Gender,,male,sibling_propagation,0.97,BT-001-S (sibling),FALSE
-2026-04-18T14:00:00Z,mens-linen-shirt,BT-001-M,material,Google Shopping / Material,,Linen,sibling_propagation,0.97,BT-001-S (sibling),FALSE
-2026-04-18T14:00:00Z,womens-swim-top,BT-002-XS,color,Google Shopping / Color,,Coral,option_value,1.0,Coral,FALSE
-2026-04-18T14:00:00Z,womens-swim-top,BT-002-XS,gender,Google Shopping / Gender,,female,title_gender_keyword,0.92,"Women's Rash Guard Top",FALSE
-2026-04-18T14:00:00Z,womens-swim-top,BT-002-S,color,Google Shopping / Color,,Coral,sibling_propagation,0.97,BT-002-XS (sibling),FALSE
-2026-04-18T14:00:00Z,womens-swim-top,BT-002-S,gender,Google Shopping / Gender,,female,sibling_propagation,0.97,BT-002-XS (sibling),FALSE
-2026-04-18T14:00:00Z,kids-board-shorts,BT-003-6,age_group,Google Shopping / Age Group,,kids,title_age_keyword,0.92,"Kids' Board Shorts",FALSE
-2026-04-18T14:00:00Z,kids-board-shorts,BT-003-6,gender,Google Shopping / Gender,,male,tag_prefix,0.98,gender:boys,FALSE
-2026-04-18T14:00:00Z,kids-board-shorts,BT-003-8,age_group,Google Shopping / Age Group,,kids,sibling_propagation,0.97,BT-003-6 (sibling),FALSE
-2026-04-18T14:00:00Z,sunset-wrap-dress,BT-004-XS,color,Google Shopping / Color,,Sunset,llm_title_inference,0.82,"Sunset Wrap Dress",TRUE
-2026-04-18T14:00:00Z,sunset-wrap-dress,BT-004-S,color,Google Shopping / Color,,Sunset,llm_title_inference,0.82,"Sunset Wrap Dress",TRUE
+```markdown
+# Attribute Fill Change Log
+
+Run timestamp: `2026-04-18T14:00:00Z`
+
+**13 attributes filled** across **4 products**
+
+| Symbol | Meaning |
+|--------|---------|
+| REVIEW | Needs human review before importing |
+| OK | High confidence, safe to import |
+
+---
+
+## mens-linen-shirt
+
+**Men's Linen Relaxed Shirt**
+
+| Field | Value Set | Source | Confidence | Status |
+|-------|-----------|--------|------------|--------|
+| Google Shopping / Gender | male | Title gender keyword: `Men's Linen Relaxed Shirt` | 92% | OK |
+| Google Shopping / Material | Linen | Title keyword match: `Men's Linen Relaxed Shirt` | 85% | OK |
+| Google Shopping / Gender | male | Sibling variant propagation: `BT-001-S (sibling)` | 97% | OK |
+| Google Shopping / Material | Linen | Sibling variant propagation: `BT-001-S (sibling)` | 97% | OK |
+
+---
+
+## womens-swim-top
+
+**Women's Rash Guard Top**
+
+| Field | Value Set | Source | Confidence | Status |
+|-------|-----------|--------|------------|--------|
+| Google Shopping / Color | Coral | Option value: `Coral` | 100% | OK |
+| Google Shopping / Gender | female | Title gender keyword: `Women's Rash Guard Top` | 92% | OK |
+| Google Shopping / Color | Coral | Sibling variant propagation: `BT-002-XS (sibling)` | 97% | OK |
+| Google Shopping / Gender | female | Sibling variant propagation: `BT-002-XS (sibling)` | 97% | OK |
+
+---
+
+## kids-board-shorts
+
+**Kids' Board Shorts**
+
+| Field | Value Set | Source | Confidence | Status |
+|-------|-----------|--------|------------|--------|
+| Google Shopping / Age Group | kids | Title age keyword: `Kids' Board Shorts` | 92% | OK |
+| Google Shopping / Gender | male | Tag prefix: `gender:boys` | 98% | OK |
+| Google Shopping / Age Group | kids | Sibling variant propagation: `BT-003-6 (sibling)` | 97% | OK |
+
+---
+
+## sunset-wrap-dress
+
+**Sunset Wrap Dress**
+
+| Field | Value Set | Source | Confidence | Status |
+|-------|-----------|--------|------------|--------|
+| Google Shopping / Color | Sunset | LLM title inference: `Sunset Wrap Dress` | 82% | REVIEW |
+| Google Shopping / Color | Sunset | LLM title inference: `Sunset Wrap Dress` | 82% | REVIEW |
+
+---
 ```
 
 ### needs_review.csv
