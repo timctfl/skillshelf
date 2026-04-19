@@ -168,7 +168,28 @@ The merchant reviews the proposed fills. They can:
 - Reject specific rows by handle and field
 - Override a value
 
-Once confirmed, write `approved_fills.json` to `{work_dir}/approved_fills.json`, combining the approved LLM fills with the deterministic fills from Stage 1. The format is shown in [references/example-output.md](references/example-output.md).
+Once confirmed, write `approved_fills.json` to `{work_dir}/approved_fills.json` with the following structure:
+
+```json
+{
+  "fills": [
+    {
+      "handle": "sunset-wrap-dress",
+      "row_number": 4,
+      "variant_sku": "BT-004-XS",
+      "field": "color",
+      "target_column": "Google Shopping / Color",
+      "proposed_value": "Sunset",
+      "confidence": 0.82,
+      "source": "llm_inference",
+      "evidence_quote": "Sunset Wrap Dress",
+      "approved": true
+    }
+  ]
+}
+```
+
+Set `"approved": true` for accepted fills. Set `"approved": false` with `"reject_reason": "user_rejected"` for any the merchant rejected. Null fills from Stage 2 (where no value could be inferred) do not need an entry — they will land in `needs_review.csv` automatically.
 
 Tell the merchant: "I'll save the output files in the same folder as your CSV. Let me know if you'd like them somewhere else." Proceed immediately using the CSV's directory as `--output-dir` unless they specify otherwise.
 
@@ -208,7 +229,7 @@ Suggest running this skill again after the next supplier data import or before a
 
 ## Google Merchant Center Spec
 
-For the exact accepted values, required/recommended status, and non-obvious rules for all five attributes, see [references/google_merchant_spec.md](references/google_merchant_spec.md).
+For the exact accepted values, required/recommended status, and non-obvious rules for all seven attributes, see [references/google_merchant_spec.md](references/google_merchant_spec.md).
 
 Key rules to enforce during inference:
 
@@ -243,7 +264,7 @@ This skill expects Shopify's native product export format. If the merchant provi
 
 ### All products are single-variant (default title)
 
-If all products use the default "Title" option with no Color, Size, or Material options, the script will find no option-based fills. Title and tag extraction still runs. Note in the audit report that option-based extraction was not applicable.
+If all products use the "Default Title" variant option (Shopify's single-variant placeholder), option-based extraction does not apply — there are no Color, Size, or Material option names to read. Title extraction, tag extraction, and body HTML extraction still run normally. These products appear in the "Needs LLM Inference" section for any fields the script cannot resolve from title or tags alone. Note in the audit report that option-based extraction was not applicable.
 
 ---
 
@@ -258,3 +279,5 @@ Stop and report to the merchant rather than proceeding with bad data.
 | Missing required CSV columns (Handle, Title) | Tell the merchant which columns are missing. Ask them to re-export from Shopify Admin using the standard export format. |
 | Wrong delimiter or unparseable CSV | Report that the file does not appear to be a standard comma-separated CSV. Shopify exports use UTF-8 with comma delimiters. Ask the merchant to re-export or check if the file was opened and re-saved by Excel. |
 | All fills land in needs_review.csv | This means the CSV has no target columns for any attribute. Tell the merchant their CSV needs Google Shopping columns added before this skill can write anything. |
+| File is .xlsx or .xls | Tell the merchant to export as a CSV from Shopify Admin: Products > Export > Plain CSV file. Excel workbooks cannot be imported by this skill. |
+| Stage 3 exits with code 2 citing a JSON parse error | The approved_fills.json file contains malformed JSON. Re-run Stage 2 inference and write the file again. This is a transient generation failure. |
