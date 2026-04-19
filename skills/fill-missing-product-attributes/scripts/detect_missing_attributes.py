@@ -1040,6 +1040,7 @@ def run_detection(
             group.row_fills[row.row_number] = resolved_fills
 
     # FIRST: sibling propagation (before title extraction categorization)
+    # Fills stored in-place on group.row_fills; return value not used.
     propagate_siblings(apparel_groups, attr_columns)
 
     # Categorize all fills after propagation
