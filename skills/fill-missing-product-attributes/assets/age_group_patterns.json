@@ -1,0 +1,35 @@
+{
+  "newborn": [
+    "\\bnewborn\\b",
+    "\\b0\\s*-\\s*3\\s*mo",
+    "\\b0\\s*to\\s*3\\s*mo"
+  ],
+  "infant": [
+    "\\binfant\\b",
+    "\\bbaby\\b",
+    "\\bbabies\\b",
+    "\\b3\\s*-\\s*12\\s*mo",
+    "\\bbaby'?s\\b"
+  ],
+  "toddler": [
+    "\\btoddler\\b",
+    "\\btoddlers\\b",
+    "\\b1\\s*-\\s*5\\s*yr",
+    "\\btoddler'?s\\b"
+  ],
+  "kids": [
+    "\\bkid'?s?\\b",
+    "\\bkids\\b",
+    "\\bchild(?:ren)?'?s?\\b",
+    "\\bjunior\\b",
+    "\\byouth\\b",
+    "\\bboy'?s\\b",
+    "\\bgirl'?s\\b",
+    "\\bboys\\b",
+    "\\bgirls\\b"
+  ],
+  "adult": [
+    "\\badult\\b",
+    "\\badults\\b"
+  ]
+}

@@ -1,0 +1,43 @@
+# Standard material vocabulary for title tokenization
+# One material per line (title-cased)
+# Source: Common apparel materials used in Shopify product titles
+Cotton
+Polyester
+Wool
+Silk
+Linen
+Leather
+Suede
+Denim
+Cashmere
+Nylon
+Spandex
+Elastane
+Rayon
+Viscose
+Acrylic
+Bamboo
+Hemp
+Canvas
+Fleece
+Velvet
+Satin
+Chiffon
+Tweed
+Corduroy
+Jersey
+Modal
+Lyocell
+Tencel
+Microfiber
+Sherpa
+Twill
+Ripstop
+Mesh
+Knit
+Woven
+Felt
+Flannel
+Oxford
+Poplin
+Chambray
