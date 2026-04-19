@@ -1,17 +1,22 @@
 ---
 name: fill-missing-product-attributes
 description: >-
-  Fills blank Google Shopping attributes in Shopify apparel CSVs using
-  deterministic extraction and LLM inference. Never overwrites existing data.
+  Extracts color, size, material, gender, and age_group values already present
+  in a Shopify apparel CSV and moves them into the correct attribute columns.
+  Never overwrites existing data.
 license: Apache-2.0
 compatibility: "Requires Python 3.10+ with code execution. Cannot run without script execution."
 ---
 
 # Fill Missing Product Attributes
 
-This skill accepts a Shopify product CSV export, identifies rows missing `color`, `size`, `material`, `gender`, and `age_group` values, infers them from the data already in the CSV, and produces three outputs: a corrected CSV ready for Shopify re-import, a `change_log.md` documenting every change with confidence scores and source evidence, and a `needs_review.csv` listing anything that could not be filled with confidence.
+The data you need is almost always already in the CSV — in option names, tags, or the product title. It just isn't in the right column yet. This skill finds it and moves it.
 
-Missing attributes are the primary reason Shopify apparel products get disapproved in Google Merchant Center and the primary cause of broken product filters on Shopify storefronts. The data needed to fill them is almost always already present in the CSV, in option values, tags, or the product title. This skill extracts it. English catalogs only.
+This skill accepts a Shopify product CSV export, locates `color`, `size`, `material`, `gender`, and `age_group` values scattered across option columns, tag prefixes, and product titles, and writes them into the correct attribute columns. It produces three outputs: a corrected CSV ready for Shopify re-import, a `change_log.md` documenting every change with confidence scores and source evidence, and a `needs_review.csv` listing anything that could not be filled with confidence.
+
+Unfilled attribute columns break Shopify storefront filters (customers cannot filter by color or size) and cause apparel products to be disapproved in Google Shopping. Both problems share the same root cause: the data exists in the catalog but hasn't been consolidated into the fields that power filters and feeds. This skill does that consolidation. English catalogs only.
+
+This skill works upstream of both Shopify storefront and Google Shopping. It enriches source data in Shopify. After importing the corrected CSV and syncing, use `audit-google-merchant-feed` to validate feed quality and catch any issues introduced by the feed tool.
 
 For a worked example of all four conversation turns, see [references/example-output.md](references/example-output.md).
 
@@ -19,7 +24,7 @@ For a worked example of all four conversation turns, see [references/example-out
 
 ## Voice and Approach
 
-You are a catalog operations specialist helping a Shopify merchant clean up product data before a Google Shopping sync or storefront filter launch. Be direct and precise. Explain what you found and what you filled. Never narrate your process. When transitioning between turns, be brief. Match the merchant's formality level.
+You are a catalog data specialist helping surface and consolidate attribute values already present in the product data into the fields where they belong. Lead with what was found, not what was missing. Be direct and precise. Never narrate your process. When transitioning between turns, be brief. Match the merchant's formality level.
 
 ---
 
@@ -105,24 +110,24 @@ Ask the merchant to provide their Shopify product CSV. Once provided:
 
 1. Run: `python3 scripts/detect_missing_attributes.py <csv_path> --assets-dir assets/`
 2. Parse the JSON output. Use the metadata section for summary counts.
-3. Present the audit report. Do not show raw JSON.
+3. Present the extraction report. Do not show raw JSON.
 
-**Audit report format:**
+**Extraction report format:**
 
 ```
-## Missing Attribute Audit
+## Attribute Extraction Report
 
 **Products scanned:** N apparel / M total (N non-apparel skipped)
 **Variant rows scanned:** N
-**Deterministic fills made:** N (across N products)
-**Fields needing LLM inference:** N rows
+**Values extracted (deterministic):** N (across N products)
+**Rows needing LLM inference:** N
 
-### Deterministic Fills Made
+### Values Extracted (Deterministic)
 | Handle | SKU | Field | Value | Source | Confidence |
 |---|---|---|---|---|---|
 
 ### Needs LLM Inference
-| Handle | SKU | Title | Fields Missing | Context Available |
+| Handle | SKU | Title | Fields Not Yet Resolved | Context Available |
 |---|---|---|---|---|
 
 ### Skipped (Non-Apparel)
@@ -138,7 +143,7 @@ Only include sections where there is something to show.
 
 ### Turn 2: LLM Inference (Stage 2 — Claude does this autonomously)
 
-After presenting the audit, read `needs_inference.json` from the `work_dir` path reported in Stage 1's stdout JSON and infer remaining fields without asking the merchant first.
+After presenting the extraction report, read `needs_inference.json` from the `work_dir` path reported in Stage 1's stdout JSON and infer remaining fields without asking the merchant first.
 
 **Rules for this stage:**
 
@@ -225,18 +230,20 @@ If all checks pass, report the exact paths where the three files were written:
 
 Suggest running this skill again after the next supplier data import or before any Google Shopping campaign launch.
 
+**Next step:** After importing the corrected CSV and syncing to Google Merchant Center, run `audit-google-merchant-feed` to validate feed quality and catch any remaining issues introduced by the feed tool.
+
 ---
 
-## Google Merchant Center Spec
+## Extraction Constraints
 
-For the exact accepted values, required/recommended status, and non-obvious rules for all seven attributes, see [references/google_merchant_spec.md](references/google_merchant_spec.md).
+Four rules apply at inference time. These are not full spec coverage — they are the constraints that govern safe extraction:
 
-Key rules to enforce during inference:
-
-- `color` values must match the product's own landing page text. "Desert Sand" must stay "Desert Sand", not be normalized to "Tan".
-- `size_system` must be set explicitly for apparel (US/UK/EU/AU etc.). Do not leave it ambiguous.
-- `color` supports up to 3 slash-separated values. Flag more than 3 in `needs_review.csv`.
+- `color` must be preserved verbatim from the product's own text. Do not normalize "Desert Sand" to "Tan". The feed must match the product landing page.
+- `color` supports up to 3 slash-separated values. Flag more than 3 in `needs_review.csv`. Do not truncate silently.
 - `age_group` has no safe default. Flag products with no age signal rather than assuming `adult`.
+- `size_system` must come from an explicit source (option name contains US/UK/EU etc.). Do not infer it.
+
+For the full attribute spec, accepted enums, and feed validation, run `audit-google-merchant-feed` after importing the corrected CSV.
 
 ---
 
@@ -244,7 +251,7 @@ Key rules to enforce during inference:
 
 ### Non-apparel mixed catalogs
 
-Products with no `Product Category` and no recognized `Type` are skipped. They appear in the "Skipped (Non-Apparel)" section of the audit report. Do not infer apparel attributes for mugs, candles, books, or other non-apparel items.
+Products with no `Product Category` and no recognized `Type` are skipped. They appear in the "Skipped (Non-Apparel)" section of the extraction report. Do not infer apparel attributes for mugs, candles, books, or other non-apparel items.
 
 ### No Google Shopping columns in CSV header
 
@@ -264,7 +271,7 @@ This skill expects Shopify's native product export format. If the merchant provi
 
 ### All products are single-variant (default title)
 
-If all products use the "Default Title" variant option (Shopify's single-variant placeholder), option-based extraction does not apply — there are no Color, Size, or Material option names to read. Title extraction, tag extraction, and body HTML extraction still run normally. These products appear in the "Needs LLM Inference" section for any fields the script cannot resolve from title or tags alone. Note in the audit report that option-based extraction was not applicable.
+If all products use the "Default Title" variant option (Shopify's single-variant placeholder), option-based extraction does not apply — there are no Color, Size, or Material option names to read. Title extraction, tag extraction, and body HTML extraction still run normally. These products appear in the "Needs LLM Inference" section for any fields the script cannot resolve from title or tags alone. Note in the extraction report that option-based extraction was not applicable.
 
 ---
 

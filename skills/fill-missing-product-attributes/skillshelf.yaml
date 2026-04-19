@@ -3,7 +3,7 @@ category: catalog-operations
 level: advanced
 subcategories:
   - attributes
-  - google-shopping
+  - data-enrichment
   - shopify
 primitive: false
 model_tier: medium
@@ -11,13 +11,13 @@ platforms:
   - shopify
 tags:
   - product-data
-  - google-shopping
+  - data-enrichment
+  - catalog-hygiene
   - apparel
   - attributes
   - csv
   - metafields
-  - merchant-center
-  - disapproval-fix
+  - storefront-filters
 certified: false
 date_added: "2026-04-18"
 date_updated: "2026-04-19"
@@ -50,11 +50,12 @@ output_schema:
 faq:
   - question: What does this skill do?
     answer: >-
-      It scans a Shopify apparel CSV for rows missing color, size, size_system,
-      size_type, material, gender, and age_group values, infers them from option
-      values, tags, and product titles, and produces a corrected CSV plus a
-      change log and a needs-review file. Nothing is ever overwritten — only
-      blank fields are filled.
+      It finds color, size, size_system, size_type, material, gender, and
+      age_group values already present in your Shopify apparel CSV — in option
+      names, tags, and product titles — and writes them to the correct attribute
+      columns. It fills only blank fields. Nothing is overwritten. The output is
+      a corrected CSV ready for Shopify re-import, a change log, and a
+      needs-review file for anything it could not resolve with confidence.
   - question: What input does it need?
     answer: >-
       A Shopify product CSV exported from Shopify Admin. The CSV must include

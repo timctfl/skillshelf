@@ -4,17 +4,17 @@
 
 ---
 
-## Turn 1: Audit Report
+## Turn 1: Extraction Report
 
 ```
-## Missing Attribute Audit
+## Attribute Extraction Report
 
 **Products scanned:** 6 apparel / 7 total (1 non-apparel skipped: "Ceramic Coffee Mug")
 **Variant rows scanned:** 18
-**Deterministic fills made:** 11 (across 5 products)
-**Fields needing LLM inference:** 4 rows across 2 products
+**Values extracted (deterministic):** 11 (across 5 products)
+**Rows needing LLM inference:** 4 rows across 2 products
 
-### Deterministic Fills Made
+### Values Extracted (Deterministic)
 
 | Handle | Variant SKU | Field | Value | Source | Confidence |
 |---|---|---|---|---|---|
