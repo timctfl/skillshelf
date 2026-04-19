@@ -164,10 +164,15 @@ The merchant reviews the proposed fills. They can:
 
 Once confirmed, write `approved_fills.json` combining the approved LLM fills with the deterministic fills from Stage 1. The format is shown in [references/example-output.md](references/example-output.md).
 
+**Before running Stage 3, ask the merchant where to save the output files.** Default suggestion is the current working directory. Wait for their answer before proceeding.
+
 Run Stage 3:
 
 ```
-python3 scripts/apply_fills.py <csv_path> approved_fills.json --output-dir <dir>
+python3 scripts/apply_fills.py <csv_path> \
+    --deterministic-fills deterministic_fills.json \
+    --approved-fills approved_fills.json \
+    --output-dir <confirmed_output_dir>
 ```
 
 ### Turn 4: Deliver Output
@@ -179,13 +184,11 @@ Before presenting output, run this checklist:
 - No `Variant Metafield:` columns were written to.
 - `change_log.csv` has one entry per fill applied.
 
-If all checks pass, offer three files for download:
+If all checks pass, report the exact paths where the three files were written:
 
 1. **`<stem>-filled.csv`** — corrected Shopify CSV, ready for re-import.
 2. **`change_log.csv`** — one row per change: Handle, SKU, Field, Target Column, Old Value, New Value, Source, Confidence, Evidence Quote, Needs Review.
-3. **`needs_review.csv`** — items that could not be filled: Handle, SKU, Field, Target Column, Reason, Evidence Quote, Confidence.
-
-Ask where to save the files before writing.
+3. **`needs_review.csv`** — items that could not be filled: Priority (HIGH/MEDIUM/LOW), Handle, Product Title, SKU, Field, Target Column, Reason (plain English), Action (what to do), Evidence Quote, Confidence, Suggested Value.
 
 **Closing reminders:**
 

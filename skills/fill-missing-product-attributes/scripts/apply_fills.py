@@ -53,6 +53,75 @@ FIELD_THRESHOLDS = {
 
 PROHIBITED_COLUMNS = frozenset({"Option1 Value", "Option2 Value", "Option3 Value"})
 
+REASON_LABELS: dict[str, str] = {
+    "conflict_with_existing_value": "Conflicts with existing value",
+    "conflict_between_sources": "Conflicting sources",
+    "below_threshold": "Low confidence",
+    "too_many_colors": "Too many colors (max 3 allowed)",
+    "no_target_column_in_csv": "No target column in CSV",
+    "non_english_input": "Non-English product",
+    "llm_returned_null": "Insufficient data for inference",
+    "llm_insufficient_context": "Insufficient data for inference",
+    "user_rejected": "Rejected by user",
+    "not_approved": "Not confirmed",
+}
+
+REASON_ACTIONS: dict[str, str] = {
+    "conflict_with_existing_value": "Check both values and update the correct one in Shopify admin.",
+    "conflict_between_sources": "Multiple sources suggest different values. Verify the correct value in Shopify admin.",
+    "below_threshold": "Low confidence fill. Verify the suggested value before importing.",
+    "too_many_colors": "Google allows max 3 slash-separated colors. Edit to keep the 3 most important.",
+    "no_target_column_in_csv": "Re-export CSV with Google Shopping columns enabled, then re-run this skill.",
+    "non_english_input": "Non-English product. Fill this attribute manually in Shopify admin.",
+    "llm_returned_null": "Not enough product data to infer. Fill manually in Shopify admin.",
+    "llm_insufficient_context": "Not enough product data to infer. Fill manually in Shopify admin.",
+    "user_rejected": "You rejected this fill. Update manually in Shopify admin if needed.",
+    "not_approved": "Fill was not confirmed. Update manually in Shopify admin if needed.",
+}
+
+_HIGH_PRIORITY_REASONS = {"conflict_with_existing_value", "conflict_between_sources"}
+_LOW_PRIORITY_REASONS = {"no_target_column_in_csv", "non_english_input", "user_rejected", "not_approved"}
+_HIGH_PRIORITY_FIELDS = {"gender", "age_group"}
+
+
+def _get_priority(reason_code: str, field: str) -> str:
+    if reason_code in _HIGH_PRIORITY_REASONS:
+        return "HIGH"
+    if reason_code in _LOW_PRIORITY_REASONS:
+        return "LOW"
+    if field in _HIGH_PRIORITY_FIELDS:
+        return "HIGH"
+    if field == "color":
+        return "MEDIUM"
+    return "LOW"
+
+
+def _build_title_lookup(rows: list[dict]) -> dict[str, str]:
+    lookup: dict[str, str] = {}
+    for row in rows:
+        handle = (row.get("Handle") or "").strip()
+        title = (row.get("Title") or "").strip()
+        if handle and title and handle not in lookup:
+            lookup[handle] = title
+    return lookup
+
+
+def _enrich_needs_review(entries: list[dict], title_lookup: dict[str, str]) -> list[dict]:
+    priority_order = {"HIGH": 0, "MEDIUM": 1, "LOW": 2}
+    enriched = []
+    for e in entries:
+        reason_code = e.get("Reason", "")
+        field = e.get("Field", "")
+        enriched.append({
+            **e,
+            "Product Title": title_lookup.get(e.get("Handle", ""), ""),
+            "Priority": _get_priority(reason_code, field),
+            "Reason": REASON_LABELS.get(reason_code, reason_code),
+            "Action": REASON_ACTIONS.get(reason_code, "Resolve manually in Shopify admin."),
+        })
+    enriched.sort(key=lambda x: priority_order.get(x.get("Priority", "LOW"), 2))
+    return enriched
+
 
 # ---------------------------------------------------------------------------
 # CSV parsing
@@ -200,6 +269,7 @@ def apply_fills(
         return 1
 
     column_set = set(columns)
+    title_lookup = _build_title_lookup(rows)
 
     all_fills: list[dict] = []
     all_conflicts: list[dict] = []
@@ -364,6 +434,8 @@ def apply_fills(
             print(f"  {e}", file=sys.stderr)
         return 2
 
+    needs_review_entries = _enrich_needs_review(needs_review_entries, title_lookup)
+
     if dry_run:
         print("Dry run: corrected CSV not written.", file=sys.stderr)
         _write_logs_only(output_dir, csv_path, change_log_rows, needs_review_entries)
@@ -432,8 +504,8 @@ def _write_logs_only(
 
     needs_review_path = output_dir / "needs_review.csv"
     needs_review_fields = [
-        "Handle", "Variant SKU", "Field", "Target Column",
-        "Reason", "Evidence Quote", "Confidence", "Suggested Value",
+        "Priority", "Handle", "Product Title", "Variant SKU", "Field", "Target Column",
+        "Reason", "Action", "Evidence Quote", "Confidence", "Suggested Value",
     ]
     with open(needs_review_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=needs_review_fields, extrasaction="ignore")
