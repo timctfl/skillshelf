@@ -356,6 +356,8 @@ def apply_fills(
     if not columns:
         print("Fatal: CSV has no columns.", file=sys.stderr)
         return 1
+    if not rows:
+        print("Warning: CSV contains no data rows. Nothing to process.", file=sys.stderr)
 
     column_set = set(columns)
     title_lookup = _build_title_lookup(rows)

@@ -931,6 +931,9 @@ def run_detection(
 
     groups, columns, csv_metadata = parse_csv(csv_path)
 
+    if csv_metadata["total_rows"] == 0:
+        print("Warning: CSV contains no data rows. Nothing to process.", file=sys.stderr)
+
     apparel_signal, apparel_fallback = load_apparel_terms(assets_dir)
     single_colors, bigrams = load_color_vocab(assets_dir)
     materials_set, synonyms_dict = load_material_vocab(assets_dir)
@@ -1230,6 +1233,13 @@ def main() -> int:
         return 1
     if not args.csv_path.is_file():
         print(f"Fatal: Not a file: {args.csv_path}", file=sys.stderr)
+        return 1
+    if args.csv_path.suffix.lower() in (".xlsx", ".xls"):
+        print(
+            "Fatal: File is an Excel workbook (.xlsx/.xls). "
+            "Export as a CSV from Shopify Admin: Products > Export > Plain CSV file.",
+            file=sys.stderr,
+        )
         return 1
 
     assets_dir = args.assets_dir
