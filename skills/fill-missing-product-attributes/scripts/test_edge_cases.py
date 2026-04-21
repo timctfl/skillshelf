@@ -2,10 +2,10 @@
 """Edge-case tests for the fill-missing-product-attributes skill.
 
 Covers: XLSX rejection, empty CSV, --dry-run flag, needs_review.csv conflict
-entries, and Latin-1 encoding. The LLM inference stage (Stage 2) is excluded
-by design: it requires a live model. To test Stage 2, write a pre-built
-approved_fills.json fixture and pass it directly to apply_fills.py via
---approved-fills.
+entries, Latin-1 encoding, and wide real-world Shopify export schema. The LLM
+inference stage (Stage 2) is excluded by design: it requires a live model. To
+test Stage 2, write a pre-built approved_fills.json fixture and pass it
+directly to apply_fills.py via --approved-fills.
 
 Usage:
     python3 scripts/test_edge_cases.py
@@ -22,9 +22,11 @@ import tempfile
 from pathlib import Path
 
 SKILL_DIR = Path(__file__).parent.parent
+REPO_ROOT = SKILL_DIR.parent.parent
 FIXTURES_DIR = SKILL_DIR / "fixtures"
 SCRIPTS_DIR = SKILL_DIR / "scripts"
 ASSETS_DIR = SKILL_DIR / "assets"
+REAL_STORE_CSV = REPO_ROOT / "fixtures" / "greatoutdoorsco" / "shopify-products.csv"
 
 INPUT_CSV = FIXTURES_DIR / "test_apparel_missing.csv"
 
@@ -204,6 +206,23 @@ def test_latin1_encoding() -> None:
 
 
 # ---------------------------------------------------------------------------
+# Test 6: Wide real-world Shopify export schema does not crash the pipeline
+# ---------------------------------------------------------------------------
+def test_real_store_schema() -> None:
+    name = "real_store_schema"
+    if not REAL_STORE_CSV.exists():
+        fail(name, f"real store fixture not found: {REAL_STORE_CSV}")
+        return
+    with tempfile.TemporaryDirectory() as tmp:
+        result = run(DETECT + [str(REAL_STORE_CSV), "--assets-dir", str(ASSETS_DIR),
+                                "--output-dir", tmp])
+    if result.returncode != 0:
+        fail(name, f"Expected exit 0, got {result.returncode}. stderr: {result.stderr}")
+        return
+    ok(name)
+
+
+# ---------------------------------------------------------------------------
 # Run all tests
 # ---------------------------------------------------------------------------
 def main() -> int:
@@ -212,6 +231,7 @@ def main() -> int:
     test_dry_run()
     test_needs_review_conflict_row()
     test_latin1_encoding()
+    test_real_store_schema()
 
     if failures:
         print(f"\n{len(failures)} test(s) failed:")
@@ -219,7 +239,7 @@ def main() -> int:
             print(f)
         return 1
 
-    print(f"\nAll {5 - len(failures)} edge-case tests passed.")
+    print(f"\nAll {6 - len(failures)} edge-case tests passed.")
     return 0
 
 

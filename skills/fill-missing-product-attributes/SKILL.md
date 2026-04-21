@@ -261,6 +261,10 @@ Products with no `Product Category` and no recognized `Type` are skipped. They a
 
 If the CSV has no target column for an attribute (e.g., no "Google Shopping / Color" column), the script logs those rows in `needs_review.csv` with reason `no_target_column_in_csv`. Tell the merchant to re-export with the Google Shopping columns included, or use Matrixify to add the columns.
 
+### Partial Google Shopping columns (gender and age_group present, color/size/material absent)
+
+This is the most common real-store pattern. Stores that connected Google Shopping but never configured apparel-specific attributes will have `Google Shopping / Gender` and `Google Shopping / Age Group` columns in their export, but no `Google Shopping / Color`, `Google Shopping / Size`, or `Google Shopping / Material` columns. The script runs without error, makes 0 deterministic fills, and routes all color/size/material candidates to `needs_review.csv` with reason `no_target_column_in_csv`. Tell the merchant: their export is missing the apparel attribute columns. They need to either (a) add `Google Shopping / Color`, `Google Shopping / Size`, and `Google Shopping / Material` columns to the CSV manually before running this skill, or (b) use Matrixify to add those columns and re-export.
+
 ### Multilingual product titles
 
 Version 1 does not infer attributes from non-English titles. Return `null` for those fields and add a note in `needs_review.csv` with reason `non_english_input`. Document this clearly.
