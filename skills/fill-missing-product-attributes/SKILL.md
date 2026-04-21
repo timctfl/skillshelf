@@ -1,0 +1,298 @@
+---
+name: fill-missing-product-attributes
+description: >-
+  Extracts color, size, material, gender, and age_group values already present
+  in a Shopify apparel CSV and moves them into the correct attribute columns.
+  Never overwrites existing data.
+license: Apache-2.0
+compatibility: "Requires Python 3.10+ with code execution. Cannot run without script execution."
+---
+
+# Fill Missing Product Attributes
+
+The data you need is almost always already in the CSV: in option names, tags, or the product title. It just isn't in the right column yet. This skill finds it and moves it.
+
+This skill accepts a Shopify product CSV export, locates `color`, `size`, `material`, `gender`, and `age_group` values scattered across option columns, tag prefixes, and product titles, and writes them into the correct attribute columns. It produces three outputs: a corrected CSV ready for Shopify re-import, a `change_log.md` documenting every change with confidence scores and source evidence, and a `needs_review.csv` listing anything that could not be filled with confidence.
+
+Unfilled attribute columns break Shopify storefront filters (customers cannot filter by color or size) and cause apparel products to be disapproved in Google Shopping. Both problems share the same root cause: the data exists in the catalog but hasn't been consolidated into the fields that power filters and feeds. This skill does that consolidation. English catalogs only.
+
+This skill works upstream of both Shopify storefront and Google Shopping. It enriches source data in Shopify. After importing the corrected CSV and syncing, use the Audit Google Merchant Feed skill to validate feed quality and catch any issues introduced by the feed tool.
+
+For a worked example of all four conversation turns, see [references/example-output.md](references/example-output.md).
+
+---
+
+## Voice and Approach
+
+You are a catalog data specialist helping surface and consolidate attribute values already present in the product data into the fields where they belong. Lead with what was found, not what was missing. Be direct and precise. Never narrate your process. When transitioning between turns, be brief. Match the merchant's formality level.
+
+---
+
+## Conservative Defaults
+
+This skill applies two absolute constraints to prevent data corruption:
+
+1. **Never modify Option1/2/3 Value columns.** Changing these values in a Shopify CSV import deletes and recreates variant IDs, breaking inventory sync, subscription references, and Google product history tracking. Fills go to Google Shopping metafield columns, never to option value cells.
+
+2. **Never write to `Variant Metafield:` columns.** Shopify CSV import silently drops variant metafield columns. Writing there does nothing and misleads the merchant into thinking the fix was applied.
+
+Additional defaults:
+
+- Never overwrite an existing non-empty value. If a field already has data, it stays.
+- Never default `age_group` to `adult` without evidence. Absence of a child signal is not adult evidence.
+- Never invent a color not present in the row's own text. Evidence quote is required for every fill.
+- Color values with more than 3 slash-separated colors are flagged in `needs_review.csv`, not truncated.
+
+---
+
+## Script Execution
+
+This skill uses a hybrid approach: a Python script handles deterministic extraction (option values, tag prefixes, title vocabulary, sibling propagation). Claude handles semantic inference for cases the script cannot resolve.
+
+**Stage 1: Run the detection script**
+
+```
+python3 scripts/detect_missing_attributes.py <csv_path> --assets-dir assets/
+```
+
+The script creates a temporary directory automatically (e.g. `/tmp/fill-attrs-XXXX`) and writes `deterministic_fills.json` and `needs_inference.json` there. The stdout JSON includes a `work_dir` key with the temp directory path. Capture and retain this path for all subsequent stages. Do not pass `--output-dir` unless the merchant specifically requests a custom location for the intermediate files.
+
+**Stage 3: Apply approved fills**
+
+```
+python3 scripts/apply_fills.py <csv_path> \
+    --work-dir <work_dir> \
+    --output-dir <confirmed_output_dir>
+```
+
+`--work-dir` is the path from the Stage 1 `work_dir` key. The script auto-discovers `deterministic_fills.json` and `approved_fills.json` inside it. After successful completion, the temp directory is deleted automatically. If only deterministic fills are available (no LLM inference needed), the script proceeds without `approved_fills.json`.
+
+**If the script fails:** Report the error verbatim to the merchant. Do not attempt to fill attributes manually without the deterministic extraction stage running. This skill's safety guarantees (closed vocabulary matching, enum validation, evidence-required output) depend on the Python script.
+
+For the full attribute column reference (all four naming generations of Google Shopping metafield columns), see [references/shopify_csv_columns.md](references/shopify_csv_columns.md).
+
+---
+
+## Confidence Scoring
+
+Deterministic fills carry source-assigned confidence. LLM fills carry self-reported confidence (capped at 0.90). Thresholds are per-field because fields carry different risk profiles with Google.
+
+**Auto-write thresholds (fills below threshold go to needs_review.csv):**
+
+| Field | Threshold | Rationale |
+|---|---|---|
+| `gender` | 0.90 | Wrong value triggers Google misrepresentation flag |
+| `age_group` | 0.90 | Same |
+| `color` | 0.80 | Must match PDP; wrong value = disapproval |
+| `material` | 0.70 | Cosmetic impact only |
+| `size` | 0.95 | Only auto-written when extracted from option value |
+| `size_system` | 0.95 | Explicit US/UK/EU from option name only |
+| `size_type` | 0.90 | Token scan of option value only |
+
+See [references/extraction_sources.md](references/extraction_sources.md) for confidence values by source.
+
+---
+
+## Conversation Flow
+
+### Turn 1: Accept CSV and Run Stage 1
+
+Before asking for the file, confirm the merchant has it ready. If they are unsure how to export:
+
+1. In Shopify Admin, go to Products > Export.
+2. Choose "All products" and select "Plain CSV file". Click Export.
+3. The file arrives in your email as a `.csv` attachment, not `.xlsx`.
+4. Google Shopping columns (the fields Shopify uses to send product attributes like color, size, and gender to Google Merchant Center, for example "Google Shopping / Color") appear in the export automatically when the Google and YouTube sales channel is connected to a Merchant Center account. If they are absent from your export, the skill will tell you and explain what to do.
+
+Python is run automatically by Claude Code. You do not need to install anything.
+
+Ask the merchant to provide their Shopify product CSV. Once provided:
+
+1. Run: `python3 scripts/detect_missing_attributes.py <csv_path> --assets-dir assets/`
+2. Parse the JSON output. Use the metadata section for summary counts.
+3. Present the extraction report. Do not show raw JSON.
+
+**Extraction report format:**
+
+```
+## Attribute Extraction Report
+
+**Products scanned:** N apparel / M total (N non-apparel skipped)
+**Variant rows scanned:** N
+**Values extracted (deterministic):** N (across N products)
+**Rows needing LLM inference:** N
+
+### Values Extracted (Deterministic)
+| Handle | SKU | Field | Value | Source | Confidence |
+|---|---|---|---|---|---|
+
+### Needs LLM Inference
+| Handle | SKU | Title | Fields Not Yet Resolved | Context Available |
+|---|---|---|---|---|
+
+### Skipped (Non-Apparel)
+[List: handle (product type)]
+
+### Conflicts Detected (Not Overwritten)
+[Table: Handle | Field | Option Value | Existing Value (if any)]
+```
+
+Only include sections where there is something to show.
+
+**Apparel detection:** The script gates on `Product Category` first (checks for "Apparel", "Clothing", "Footwear"). Falls back to the `Type` column against a known term list. If both are empty, falls back to high-signal title tokens (shirt, tee, dress, jacket, etc.). Products with no signal in any of the three tiers are skipped entirely.
+
+### Turn 2: LLM Inference (Stage 2, Claude does this autonomously)
+
+After presenting the extraction report, read `needs_inference.json` from the `work_dir` path reported in Stage 1's stdout JSON and infer remaining fields without asking the merchant first.
+
+**Rules for this stage:**
+
+- Every fill must include an `evidence_quote`: the exact substring from `title`, `body_html_stripped`, or `tags` that supports the inference. If you cannot quote evidence, return `null`.
+- For `gender` and `age_group`, only output values from the closed enums: `gender` = male/female/unisex; `age_group` = newborn/infant/toddler/kids/adult.
+- Cap self-reported confidence at 0.90.
+- If `title` has fewer than 3 meaningful words AND `tags` is empty AND `body_html_stripped` is empty, return `null` for all fields with source `llm_insufficient_context`.
+- Do not default `age_group` to `adult` without evidence.
+
+Hold all inferences in conversation memory. Do not write any file at this stage. Present a review table to the merchant:
+
+```
+## Proposed Fills (LLM Inference)
+
+| Handle | SKU | Field | Proposed Value | Confidence | Evidence | Action |
+|---|---|---|---|---|---|---|
+```
+
+Where "Action" is: "Auto-approve (high confidence)" / "Review recommended" / "Flagged: your input needed".
+
+If any proposed color is not a Google standard color name but matches the product's own text, note: "Value preserved verbatim from product title to match PDP text per Google's feed matching requirement."
+
+### Turn 3: User Approval
+
+The merchant reviews the proposed fills. They can:
+- Approve all (say "approve all" or "looks good")
+- Reject specific rows by handle and field
+- Override a value
+
+Once confirmed, write `approved_fills.json` to `{work_dir}/approved_fills.json` with the following structure:
+
+```json
+{
+  "fills": [
+    {
+      "handle": "sunset-wrap-dress",
+      "row_number": 4,
+      "variant_sku": "BT-004-XS",
+      "field": "color",
+      "target_column": "Google Shopping / Color",
+      "proposed_value": "Sunset",
+      "confidence": 0.82,
+      "source": "llm_inference",
+      "evidence_quote": "Sunset Wrap Dress",
+      "approved": true
+    }
+  ]
+}
+```
+
+Set `"approved": true` for accepted fills. Set `"approved": false` with `"reject_reason": "user_rejected"` for any the merchant rejected. Null fills from Stage 2 (where no value could be inferred) do not need an entry. They will land in `needs_review.csv` automatically.
+
+Tell the merchant: "I'll save the output files in the same folder as your CSV. Let me know if you'd like them somewhere else." Proceed immediately using the CSV's directory as `--output-dir` unless they specify otherwise.
+
+Run Stage 3:
+
+```
+python3 scripts/apply_fills.py <csv_path> \
+    --work-dir <work_dir> \
+    --output-dir <confirmed_output_dir>
+```
+
+### Turn 4: Deliver Output
+
+Before presenting output, run this checklist:
+
+- Row count in corrected CSV matches input row count.
+- No Option1/2/3 Value columns were modified.
+- No `Variant Metafield:` columns were written to.
+- `change_log.md` has one entry per fill applied.
+
+If all checks pass, report the exact paths where the three files were written:
+
+1. **`<stem>-filled.csv`**: corrected Shopify CSV, ready for re-import.
+2. **`change_log.md`**: human-readable Markdown log grouped by product: handle, field, value set, source (plain English), confidence %, and REVIEW/OK status.
+3. **`needs_review.csv`**: items that could not be filled: Priority (HIGH/MEDIUM/LOW), Handle, Product Title, SKU, Field, Target Column, Reason (plain English), Action (what to do), Evidence Quote, Confidence, Suggested Value.
+
+**Closing reminders:**
+
+- Import path in Shopify admin: Products > Import (top right of the Products list page).
+- Back up the current CSV export before importing.
+- Shopify import overwrites existing product data for matching handles. It cannot delete variants, only add or update.
+- If `needs_review.csv` has rows with `reason = conflict_with_existing_value`, those require manual inspection to resolve which value is correct.
+
+Suggest running this skill again after the next supplier data import or before any Google Shopping campaign launch.
+
+**Next step:** After importing the corrected CSV and syncing to Google Merchant Center, run the Audit Google Merchant Feed skill to validate feed quality and catch any remaining issues introduced by the feed tool.
+
+---
+
+## Extraction Constraints
+
+Four rules apply at inference time. These are not full spec coverage. They are the constraints that govern safe extraction:
+
+- `color` must be preserved verbatim from the product's own text. Do not normalize "Desert Sand" to "Tan". The feed must match the product landing page.
+- `color` supports up to 3 slash-separated values. Flag more than 3 in `needs_review.csv`. Do not truncate silently.
+- `age_group` has no safe default. Flag products with no age signal rather than assuming `adult`.
+- `size_system` must come from an explicit source (option name contains US/UK/EU etc.). Do not infer it.
+
+For the full attribute spec, accepted enums, and feed validation, run the Audit Google Merchant Feed skill after importing the corrected CSV.
+
+---
+
+## Edge Cases
+
+### Small catalogs (under 10 rows)
+
+The script runs normally. Sibling propagation does not apply because there are too few variant rows to establish patterns. Each row is treated independently. Confidence scores may be lower than on larger catalogs because sibling evidence is absent. All extracted values still require the same evidence quote standard. Thin results are expected and noted in the extraction report.
+
+### Non-apparel mixed catalogs
+
+Products with no `Product Category` and no recognized `Type` are skipped. They appear in the "Skipped (Non-Apparel)" section of the extraction report. Do not infer apparel attributes for mugs, candles, books, or other non-apparel items.
+
+### No Google Shopping columns in CSV header
+
+If the CSV has no target column for an attribute (e.g., no "Google Shopping / Color" column), the script logs those rows in `needs_review.csv` with reason `no_target_column_in_csv`. Tell the merchant to re-export with the Google Shopping columns included, or use Matrixify to add the columns.
+
+### Partial Google Shopping columns (gender and age_group present, color/size/material absent)
+
+This is the most common real-store pattern. Stores that connected Google Shopping but never configured apparel-specific attributes will have `Google Shopping / Gender` and `Google Shopping / Age Group` columns in their export, but no `Google Shopping / Color`, `Google Shopping / Size`, or `Google Shopping / Material` columns. The script runs without error, makes 0 deterministic fills, and routes all color/size/material candidates to `needs_review.csv` with reason `no_target_column_in_csv`. Tell the merchant: their export is missing the apparel attribute columns. They need to either (a) add `Google Shopping / Color`, `Google Shopping / Size`, and `Google Shopping / Material` columns to the CSV manually before running this skill, or (b) use Matrixify to add those columns and re-export.
+
+### Multilingual product titles
+
+Version 1 does not infer attributes from non-English titles. Return `null` for those fields and add a note in `needs_review.csv` with reason `non_english_input`. Document this clearly.
+
+### Large catalogs (over 5,000 rows)
+
+Shopify's CSV import limit is 15 MB. For catalogs over 5,000 rows, chunk the CSV by product handle groups and process each chunk separately. The script handles each run independently. Combine the change logs after all chunks are processed.
+
+### Matrixify or third-party export formats
+
+This skill expects Shopify's native product export format. If the merchant provides a Matrixify export, identify the column mapping differences and proceed. Note the format in the change log.
+
+### All products are single-variant (default title)
+
+If all products use the "Default Title" variant option (Shopify's single-variant placeholder), option-based extraction does not apply. There are no Color, Size, or Material option names to read. Title extraction, tag extraction, and body HTML extraction still run normally. These products appear in the "Needs LLM Inference" section for any fields the script cannot resolve from title or tags alone. Note in the extraction report that option-based extraction was not applicable.
+
+---
+
+## Error Handling
+
+Stop and report to the merchant rather than proceeding with bad data.
+
+| Error | What to do |
+|---|---|
+| Script exits with code 1 | Report the error message verbatim. Do not attempt to fill attributes without the script. |
+| Script exits with code 2 (validation failure) | The validation error describes what would go wrong. Report it and do not apply any fills. |
+| Missing required CSV columns (Handle, Title) | Tell the merchant which columns are missing. Ask them to re-export from Shopify Admin using the standard export format. |
+| Wrong delimiter or unparseable CSV | Report that the file does not appear to be a standard comma-separated CSV. Shopify exports use UTF-8 with comma delimiters. Ask the merchant to re-export or check if the file was opened and re-saved by Excel. |
+| All fills land in needs_review.csv | This means the CSV has no target columns for any attribute. Tell the merchant their CSV needs Google Shopping columns added before this skill can write anything. |
+| File is .xlsx or .xls | Tell the merchant to export as a CSV from Shopify Admin: Products > Export > Plain CSV file. Excel workbooks cannot be imported by this skill. |
+| Stage 3 exits with code 2 citing a JSON parse error | The approved_fills.json file contains malformed JSON. Re-run Stage 2 inference and write the file again. This is a transient generation failure. |

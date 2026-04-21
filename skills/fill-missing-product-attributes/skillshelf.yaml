@@ -1,0 +1,81 @@
+version: "1.0"
+category: catalog-operations
+level: advanced
+subcategories:
+  - attributes
+  - data-enrichment
+  - shopify
+primitive: false
+model_tier: medium
+platforms:
+  - shopify
+tags:
+  - product-data
+  - data-enrichment
+  - catalog-hygiene
+  - apparel
+  - attributes
+  - csv
+  - metafields
+  - storefront-filters
+certified: false
+date_added: "2026-04-18"
+date_updated: "2026-04-19"
+author:
+  name: Raqib Abdullah
+  url: https://github.com/raqibdev
+
+input_schema:
+  required:
+    - Shopify product CSV (native Admin export format)
+  recommended:
+    - CSV re-exported with Google Shopping columns included
+    - Python 3.10+ with code execution enabled
+
+output_schema:
+  format: Three files
+  fields_filled:
+    - color
+    - size
+    - size_system
+    - size_type
+    - material
+    - gender
+    - age_group
+  sections:
+    - Corrected Shopify CSV ready for re-import (<stem>-filled.csv)
+    - Human-readable Markdown change log grouped by product with confidence and source (change_log.md)
+    - Needs-review CSV listing rows that could not be filled with confidence (needs_review.csv)
+
+faq:
+  - question: What does this skill do?
+    answer: >-
+      It finds color, size, size_system, size_type, material, gender, and
+      age_group values already present in your Shopify apparel CSV: in option
+      names, tags, and product titles. It writes them to the correct attribute
+      columns. It fills only blank fields. Nothing is overwritten. The output is
+      a corrected CSV ready for Shopify re-import, a change log, and a
+      needs-review file for anything it could not resolve with confidence.
+  - question: What input does it need?
+    answer: >-
+      A Shopify product CSV exported from Shopify Admin. The CSV must include
+      Google Shopping columns for the fills to land anywhere. Python 3.10+
+      with code execution is required. The skill cannot run without the
+      detection script.
+  - question: Will it change my SKUs, prices, or option values?
+    answer: >-
+      No. The skill only writes to Google Shopping metafield columns. Option
+      values, SKUs, prices, and inventory are never touched. Changing option
+      values would break variant IDs and inventory sync, so that constraint is
+      absolute.
+  - question: What happens to products it cannot fill?
+    answer: >-
+      They appear in needs_review.csv with a reason code and any available
+      evidence. Nothing is written to those rows. You can inspect them
+      manually or re-run the skill after adding more product data.
+  - question: Does it work on non-apparel products?
+    answer: >-
+      No. The skill gates on Product Category, then the Type column, then
+      high-signal title tokens. Products with no apparel signal in any of
+      those three tiers are skipped and listed in the audit report. Non-apparel
+      attributes are not inferred.

@@ -1,0 +1,45 @@
+# Standard two-word color terms for title bigram matching
+# One bigram per line (title-cased, space-separated)
+# Script checks adjacent token pairs against this list
+Navy Blue
+Hot Pink
+Dark Green
+Light Blue
+Sky Blue
+Royal Blue
+Forest Green
+Mint Green
+Olive Green
+Dark Brown
+Light Gray
+Dark Gray
+Light Grey
+Dark Grey
+Off White
+Dusty Rose
+Powder Blue
+Cobalt Blue
+Hunter Green
+Sage Green
+Dark Navy
+Deep Blue
+Deep Red
+Warm Brown
+Cool Gray
+Pale Pink
+Soft Pink
+Burnt Orange
+Dark Purple
+Light Purple
+Bright Red
+Deep Purple
+Pale Blue
+Steel Blue
+Slate Gray
+Slate Grey
+Stone Gray
+Dark Teal
+Light Teal
+Warm Gray
+Warm Grey
+Cool Grey

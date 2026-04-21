@@ -1,0 +1,54 @@
+# Standard color vocabulary for title tokenization
+# One color per line (title-cased)
+# Source: Shopify Standard Product Taxonomy base colors + Google Merchant Center color list
+# Single-token colors only. Multi-word colors are in standard_color_bigrams.txt
+Black
+White
+Red
+Blue
+Green
+Yellow
+Orange
+Purple
+Pink
+Brown
+Gray
+Grey
+Navy
+Beige
+Tan
+Gold
+Silver
+Ivory
+Cream
+Coral
+Teal
+Olive
+Maroon
+Khaki
+Lavender
+Turquoise
+Indigo
+Violet
+Rust
+Sage
+Charcoal
+Burgundy
+Fuchsia
+Magenta
+Lilac
+Mint
+Peach
+Taupe
+Champagne
+Bronze
+Copper
+Rose
+Crimson
+Scarlet
+Amber
+Camel
+Sand
+Slate
+Plum
+Mauve

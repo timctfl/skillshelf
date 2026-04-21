@@ -1,0 +1,43 @@
+# High-signal apparel tokens for title-based fallback detection.
+# Used only when Product Category and Type columns are both empty.
+# Conservative: only tokens that are almost never used for non-apparel products.
+shirt
+tee
+dress
+pants
+jeans
+jacket
+coat
+sweater
+hoodie
+skirt
+shoes
+boots
+hat
+blouse
+blazer
+shorts
+socks
+leggings
+cardigan
+jumpsuit
+romper
+onesie
+bodysuit
+swimsuit
+bikini
+scarf
+gloves
+mittens
+vest
+trousers
+joggers
+parka
+raincoat
+windbreaker
+polo
+tunic
+kimono
+caftan
+dungarees
+overalls
