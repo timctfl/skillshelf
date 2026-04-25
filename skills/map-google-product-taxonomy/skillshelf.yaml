@@ -19,3 +19,42 @@ date_added: "2026-04-23"
 author:
   name: Raqib Abdullah
   url: https://github.com/raqibdev
+
+faq:
+  - question: What does this skill do?
+    answer: >-
+      It reads your product CSV and assigns every product to the correct
+      category in the Google Product Taxonomy. You get a supplemental CSV
+      with the google_product_category field filled in, ready to merge into
+      your Google Shopping feed.
+  - question: Why does google_product_category matter for my store?
+    answer: >-
+      Google requires this field for all apparel products and recommends it
+      for everything else. Products without it — or with only a top-level
+      category — are demoted or disapproved in Shopping. Mapping to a specific
+      leaf category (four or more levels deep) improves placement and
+      eligibility.
+  - question: What file do I need to provide?
+    answer: >-
+      A Shopify product export CSV (Admin > Products > Export > All products,
+      Plain CSV file) or any CSV that has at minimum a product title column.
+      A description column improves accuracy but is not required. Google
+      Merchant Center feed XML is also accepted.
+  - question: Will it overwrite taxonomy values I have already set?
+    answer: >-
+      No. Any product that already has a category path three or more levels
+      deep is preserved as-is. The skill only classifies products where the
+      field is empty, missing, or contains only a broad top-level path.
+  - question: What happens with my apparel products?
+    answer: >-
+      Apparel products are flagged automatically. The skill notes in the report
+      that Google Shopping requires color, size, gender, and age_group for any
+      product mapped to the Apparel & Accessories tree. You will need to supply
+      those attributes before submitting the feed — the Audit a Google Merchant
+      Feed skill will surface any that are still missing.
+  - question: Can I correct a category the skill got wrong?
+    answer: >-
+      Yes. Medium and low-confidence classifications are presented for your
+      review before the output is written. You can override any proposed
+      category, and your choice is recorded in the classification report with
+      a merchant-override source so you can audit it later.
