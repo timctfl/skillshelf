@@ -1,0 +1,2240 @@
+{
+  "version": "2021-09-01",
+  "source": "Google Product Taxonomy (curated subset — verify IDs at https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt)",
+  "notes": "Covers 93 categories across 15 verticals. IDs verified against the official taxonomy-with-ids.en-US.txt where possible; null IDs indicate the path is correct but the numeric ID needs verification at https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt before submitting to Google Merchant Center. Uncovered verticals (zero categories): Business & Industrial, Hardware, Religious & Ceremonial. Path strings are stable and accepted by Google regardless of numeric ID version.",
+  "categories": [
+    {
+      "id": 5598,
+      "path": "Apparel & Accessories > Clothing > Outerwear > Coats & Jackets",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "jacket",
+          "coat",
+          "parka",
+          "anorak",
+          "windbreaker",
+          "raincoat",
+          "rain jacket",
+          "ski jacket",
+          "snow jacket",
+          "softshell jacket",
+          "hardshell",
+          "rain shell",
+          "wind jacket"
+        ],
+        "medium": [
+          "outerwear",
+          "shell",
+          "waterproof",
+          "weatherproof",
+          "gore-tex",
+          "goretex"
+        ],
+        "low": [
+          "weather",
+          "storm",
+          "wind",
+          "rain"
+        ]
+      }
+    },
+    {
+      "id": 1831,
+      "path": "Apparel & Accessories > Clothing > Outerwear > Vests",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "vest",
+          "gilet",
+          "down vest",
+          "puffer vest",
+          "fleece vest",
+          "insulated vest"
+        ],
+        "medium": [
+          "outerwear",
+          "layering"
+        ],
+        "low": [
+          "warm",
+          "insulation"
+        ]
+      }
+    },
+    {
+      "id": 5322,
+      "path": "Apparel & Accessories > Clothing > Activewear",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "activewear",
+          "athletic wear",
+          "workout",
+          "gym",
+          "sports bra",
+          "compression",
+          "running tights",
+          "yoga pants",
+          "leggings"
+        ],
+        "medium": [
+          "performance",
+          "training",
+          "athletic",
+          "sweat",
+          "moisture wicking"
+        ],
+        "low": [
+          "active",
+          "sport",
+          "fitness"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Apparel & Accessories > Clothing > Activewear > Active Shorts",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "running shorts",
+          "athletic shorts",
+          "gym shorts",
+          "training shorts",
+          "workout shorts",
+          "hiking shorts",
+          "trail shorts",
+          "board shorts"
+        ],
+        "medium": [
+          "performance shorts",
+          "sport shorts"
+        ],
+        "low": [
+          "active",
+          "quick dry"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Apparel & Accessories > Clothing > Activewear > Active Tops",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "running shirt",
+          "athletic shirt",
+          "performance tee",
+          "base layer top",
+          "baselayer",
+          "thermal top",
+          "merino base",
+          "merino top"
+        ],
+        "medium": [
+          "wicking",
+          "quick-dry top",
+          "sport shirt"
+        ],
+        "low": [
+          "active",
+          "moisture management"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Apparel & Accessories > Clothing > Activewear > Fleece Tops & Pullovers",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "fleece pullover",
+          "fleece jacket",
+          "fleece hoodie",
+          "polar fleece",
+          "microfleece",
+          "midlayer",
+          "mid layer"
+        ],
+        "medium": [
+          "fleece",
+          "pullover",
+          "sweatshirt"
+        ],
+        "low": [
+          "warm",
+          "cozy",
+          "soft"
+        ]
+      }
+    },
+    {
+      "id": 212,
+      "path": "Apparel & Accessories > Clothing > Shirts & Tops",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "t-shirt",
+          "tshirt",
+          "tee shirt",
+          "polo shirt",
+          "button-down shirt",
+          "dress shirt",
+          "blouse",
+          "henley",
+          "tank top"
+        ],
+        "medium": [
+          "shirt",
+          "top",
+          "tee"
+        ],
+        "low": [
+          "casual",
+          "everyday"
+        ]
+      }
+    },
+    {
+      "id": 204,
+      "path": "Apparel & Accessories > Clothing > Pants",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "pants",
+          "trousers",
+          "chinos",
+          "cargo pants",
+          "joggers",
+          "softshell pants",
+          "ski pants",
+          "snow pants",
+          "hiking pants",
+          "trail pants"
+        ],
+        "medium": [
+          "bottoms",
+          "slacks"
+        ],
+        "low": [
+          "lower body"
+        ]
+      }
+    },
+    {
+      "id": 207,
+      "path": "Apparel & Accessories > Clothing > Shorts",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "shorts",
+          "cutoffs",
+          "bermuda shorts",
+          "cargo shorts"
+        ],
+        "medium": [
+          "bottoms"
+        ],
+        "low": [
+          "summer",
+          "casual"
+        ]
+      }
+    },
+    {
+      "id": 2271,
+      "path": "Apparel & Accessories > Clothing > Dresses",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "dress",
+          "maxi dress",
+          "midi dress",
+          "mini dress",
+          "wrap dress",
+          "sundress",
+          "shift dress"
+        ],
+        "medium": [
+          "gown",
+          "frock"
+        ],
+        "low": [
+          "feminine",
+          "women's clothing"
+        ]
+      }
+    },
+    {
+      "id": 205,
+      "path": "Apparel & Accessories > Clothing > Jeans",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "jeans",
+          "denim",
+          "skinny jeans",
+          "straight leg jeans",
+          "bootcut jeans",
+          "slim jeans"
+        ],
+        "medium": [
+          "denim pants"
+        ],
+        "low": [
+          "casual bottoms"
+        ]
+      }
+    },
+    {
+      "id": 211,
+      "path": "Apparel & Accessories > Clothing > Swimwear",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "swimsuit",
+          "bikini",
+          "swimwear",
+          "swim trunks",
+          "board shorts",
+          "bathing suit",
+          "one-piece swimsuit",
+          "rashguard",
+          "rash guard"
+        ],
+        "medium": [
+          "swim",
+          "beach wear",
+          "pool"
+        ],
+        "low": [
+          "beach",
+          "water"
+        ]
+      }
+    },
+    {
+      "id": 209,
+      "path": "Apparel & Accessories > Clothing > Underwear & Socks > Socks",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "socks",
+          "hiking socks",
+          "wool socks",
+          "crew socks",
+          "ankle socks",
+          "no-show socks",
+          "compression socks",
+          "trail socks"
+        ],
+        "medium": [
+          "sock",
+          "hosiery",
+          "stockings"
+        ],
+        "low": [
+          "foot"
+        ]
+      }
+    },
+    {
+      "id": 5338,
+      "path": "Apparel & Accessories > Clothing > Underwear & Socks > Thermal Underwear",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "thermal underwear",
+          "base layer",
+          "long underwear",
+          "thermals",
+          "longjohns",
+          "merino wool base layer",
+          "baselayer bottom"
+        ],
+        "medium": [
+          "base layer",
+          "underlayer",
+          "insulating layer"
+        ],
+        "low": [
+          "warmth",
+          "cold weather"
+        ]
+      }
+    },
+    {
+      "id": 206,
+      "path": "Apparel & Accessories > Clothing Accessories > Hats & Caps",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "hat",
+          "cap",
+          "beanie",
+          "trucker hat",
+          "baseball cap",
+          "snapback",
+          "bucket hat",
+          "beret",
+          "fedora",
+          "sun hat",
+          "wide brim hat",
+          "knit cap",
+          "wool hat"
+        ],
+        "medium": [
+          "headwear",
+          "head covering"
+        ],
+        "low": [
+          "sun protection",
+          "head"
+        ]
+      }
+    },
+    {
+      "id": 170,
+      "path": "Apparel & Accessories > Clothing Accessories > Gloves & Mittens",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "gloves",
+          "mittens",
+          "ski gloves",
+          "winter gloves",
+          "touchscreen gloves",
+          "fleece gloves"
+        ],
+        "medium": [
+          "hand wear",
+          "handwear"
+        ],
+        "low": [
+          "cold",
+          "winter"
+        ]
+      }
+    },
+    {
+      "id": 543673,
+      "path": "Apparel & Accessories > Clothing Accessories > Scarves & Wraps",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "scarf",
+          "neck gaiter",
+          "buff",
+          "balaclava",
+          "snood",
+          "wrap",
+          "shawl",
+          "neckerchief"
+        ],
+        "medium": [
+          "neck warmer",
+          "face covering"
+        ],
+        "low": [
+          "neck",
+          "face protection"
+        ]
+      }
+    },
+    {
+      "id": 178,
+      "path": "Apparel & Accessories > Clothing Accessories > Sunglasses",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "sunglasses",
+          "sunnies",
+          "polarized sunglasses",
+          "sport sunglasses",
+          "aviators",
+          "wayfarers"
+        ],
+        "medium": [
+          "eyewear",
+          "shades",
+          "UV protection glasses"
+        ],
+        "low": [
+          "UV",
+          "sun"
+        ]
+      }
+    },
+    {
+      "id": 169,
+      "path": "Apparel & Accessories > Clothing Accessories > Belts",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "belt",
+          "leather belt",
+          "woven belt",
+          "elastic belt"
+        ],
+        "medium": [
+          "waistband"
+        ],
+        "low": [
+          "waist"
+        ]
+      }
+    },
+    {
+      "id": 175,
+      "path": "Apparel & Accessories > Clothing Accessories > Keychains",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "keychain",
+          "key ring",
+          "key fob",
+          "carabiner keychain"
+        ],
+        "medium": [
+          "key holder",
+          "key clip"
+        ],
+        "low": [
+          "keys",
+          "accessory"
+        ]
+      }
+    },
+    {
+      "id": 6551,
+      "path": "Apparel & Accessories > Handbags, Wallets & Cases",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "handbag",
+          "purse",
+          "clutch",
+          "wallet",
+          "card wallet",
+          "bifold",
+          "trifold wallet",
+          "crossbody bag",
+          "shoulder bag"
+        ],
+        "medium": [
+          "bag",
+          "pouch"
+        ],
+        "low": [
+          "carry",
+          "everyday"
+        ]
+      }
+    },
+    {
+      "id": 1545,
+      "path": "Apparel & Accessories > Shoes > Boots",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "boots",
+          "hiking boots",
+          "trail boots",
+          "work boots",
+          "chelsea boots",
+          "ankle boots",
+          "rain boots",
+          "waterproof boots",
+          "winter boots"
+        ],
+        "medium": [
+          "footwear",
+          "shoes"
+        ],
+        "low": [
+          "foot",
+          "walk"
+        ]
+      }
+    },
+    {
+      "id": 185,
+      "path": "Apparel & Accessories > Shoes > Sandals",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "sandals",
+          "flip flops",
+          "thongs",
+          "slides",
+          "sport sandals",
+          "hiking sandals"
+        ],
+        "medium": [
+          "open toe",
+          "summer footwear"
+        ],
+        "low": [
+          "beach",
+          "warm weather"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Apparel & Accessories > Shoes > Athletic Shoes",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "running shoes",
+          "trail running shoes",
+          "athletic shoes",
+          "sneakers",
+          "trainers",
+          "cross-trainers",
+          "tennis shoes",
+          "gym shoes"
+        ],
+        "medium": [
+          "sport shoes",
+          "performance footwear"
+        ],
+        "low": [
+          "athletic",
+          "sport"
+        ]
+      }
+    },
+    {
+      "id": 3032,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Backpacks & Bags > Hiking & Backpacking Packs",
+      "tier": 6,
+      "keywords": {
+        "high": [
+          "hiking pack",
+          "backpacking pack",
+          "trekking pack",
+          "hiking backpack",
+          "daypack",
+          "trail pack",
+          "45l pack",
+          "65l pack",
+          "35l pack",
+          "25l pack",
+          "trek pack"
+        ],
+        "medium": [
+          "backpack",
+          "rucksack",
+          "pack"
+        ],
+        "low": [
+          "carry",
+          "outdoor"
+        ]
+      }
+    },
+    {
+      "id": 3261,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Tents",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "tent",
+          "camping tent",
+          "backpacking tent",
+          "3-season tent",
+          "4-season tent",
+          "2-person tent",
+          "3-person tent",
+          "ultralight tent"
+        ],
+        "medium": [
+          "shelter",
+          "bivouac",
+          "bivy"
+        ],
+        "low": [
+          "camping",
+          "outdoor shelter"
+        ]
+      }
+    },
+    {
+      "id": 3863,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Sleeping Bags",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "sleeping bag",
+          "mummy bag",
+          "down sleeping bag",
+          "synthetic sleeping bag",
+          "3-season sleeping bag",
+          "20 degree sleeping bag",
+          "40 degree sleeping bag"
+        ],
+        "medium": [
+          "sleep system",
+          "quilt"
+        ],
+        "low": [
+          "camping",
+          "sleep"
+        ]
+      }
+    },
+    {
+      "id": 7107,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Hiking Poles",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "trekking poles",
+          "hiking poles",
+          "hiking sticks",
+          "walking poles",
+          "trail poles"
+        ],
+        "medium": [
+          "poles",
+          "sticks"
+        ],
+        "low": [
+          "hiking",
+          "walking"
+        ]
+      }
+    },
+    {
+      "id": 499956,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Camp Furniture",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "camp chair",
+          "camping chair",
+          "folding chair",
+          "camp stool",
+          "hammock",
+          "camp table",
+          "picnic table",
+          "camping cot"
+        ],
+        "medium": [
+          "portable furniture",
+          "fold-up"
+        ],
+        "low": [
+          "camp",
+          "outdoor seating"
+        ]
+      }
+    },
+    {
+      "id": 7393,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Camping Lights & Lanterns",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "headlamp",
+          "camping lantern",
+          "camp light",
+          "trail light",
+          "LED headlamp"
+        ],
+        "medium": [
+          "flashlight",
+          "torch",
+          "lighting"
+        ],
+        "low": [
+          "light",
+          "dark"
+        ]
+      }
+    },
+    {
+      "id": 3827,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Hydration Systems",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "water bottle",
+          "hydration flask",
+          "trail flask",
+          "insulated bottle",
+          "camp water bottle",
+          "hydration bladder",
+          "water reservoir"
+        ],
+        "medium": [
+          "flask",
+          "canteen",
+          "hydration"
+        ],
+        "low": [
+          "drink",
+          "water"
+        ]
+      }
+    },
+    {
+      "id": 7157,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Dry Bags",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "dry bag",
+          "waterproof bag",
+          "dry sack",
+          "roll-top bag",
+          "dry pack"
+        ],
+        "medium": [
+          "waterproof storage",
+          "wet bag"
+        ],
+        "low": [
+          "waterproof",
+          "water resistant bag"
+        ]
+      }
+    },
+    {
+      "id": 499785,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Camping Cookware",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "camp stove",
+          "camping stove",
+          "camp pot",
+          "backpacking stove",
+          "camp cookware",
+          "mess kit"
+        ],
+        "medium": [
+          "camp kitchen",
+          "outdoor cooking"
+        ],
+        "low": [
+          "cooking",
+          "camp meal"
+        ]
+      }
+    },
+    {
+      "id": 3334,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Compasses & GPS",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "compass",
+          "GPS device",
+          "navigation device",
+          "orienteering compass"
+        ],
+        "medium": [
+          "navigation",
+          "wayfinding"
+        ],
+        "low": [
+          "direction",
+          "map"
+        ]
+      }
+    },
+    {
+      "id": 990,
+      "path": "Sporting Goods > Outdoor Recreation > Camping & Hiking > Carabiners",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "carabiner",
+          "locking carabiner",
+          "quickdraw",
+          "biner"
+        ],
+        "medium": [
+          "clip",
+          "connector"
+        ],
+        "low": [
+          "gear",
+          "attachment"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Sporting Goods > Outdoor Recreation > Cycling > Bicycles",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "bicycle",
+          "bike",
+          "mountain bike",
+          "road bike",
+          "gravel bike",
+          "e-bike",
+          "electric bike",
+          "BMX"
+        ],
+        "medium": [
+          "cycling",
+          "cycle"
+        ],
+        "low": [
+          "pedal",
+          "ride"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Sporting Goods > Outdoor Recreation > Cycling > Cycling Apparel",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "cycling jersey",
+          "bike jersey",
+          "cycling shorts",
+          "bib shorts",
+          "cycling gloves",
+          "cycling helmet"
+        ],
+        "medium": [
+          "cycling apparel",
+          "bike clothing"
+        ],
+        "low": [
+          "cycling",
+          "bike"
+        ]
+      }
+    },
+    {
+      "id": 6310,
+      "path": "Sporting Goods > Outdoor Recreation > Water Sports > Kayaks & Canoes",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "kayak",
+          "canoe",
+          "paddleboard",
+          "SUP",
+          "stand up paddle board",
+          "inflatable kayak"
+        ],
+        "medium": [
+          "paddling",
+          "water craft"
+        ],
+        "low": [
+          "water",
+          "paddle"
+        ]
+      }
+    },
+    {
+      "id": 6289,
+      "path": "Sporting Goods > Outdoor Recreation > Water Sports > Surfing",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "surfboard",
+          "bodyboard",
+          "surfing",
+          "surf wax",
+          "leash",
+          "fins"
+        ],
+        "medium": [
+          "surfing gear",
+          "surf accessories"
+        ],
+        "low": [
+          "wave",
+          "surf"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Sporting Goods > Exercise & Fitness > Yoga & Pilates",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "yoga mat",
+          "yoga block",
+          "yoga strap",
+          "pilates",
+          "meditation cushion"
+        ],
+        "medium": [
+          "yoga",
+          "stretch",
+          "flexibility"
+        ],
+        "low": [
+          "mindfulness",
+          "wellness"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Sporting Goods > Exercise & Fitness > Free Weights",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "dumbbell",
+          "barbell",
+          "kettlebell",
+          "weight plate",
+          "free weights",
+          "hand weights"
+        ],
+        "medium": [
+          "strength training",
+          "weight lifting",
+          "resistance"
+        ],
+        "low": [
+          "gym",
+          "fitness",
+          "workout"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Sporting Goods > Exercise & Fitness > Cardio Equipment",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "treadmill",
+          "stationary bike",
+          "elliptical",
+          "rowing machine",
+          "jump rope",
+          "speed rope"
+        ],
+        "medium": [
+          "cardio",
+          "aerobic",
+          "fitness equipment"
+        ],
+        "low": [
+          "exercise",
+          "workout"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Sporting Goods > Team Sports > Soccer",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "soccer ball",
+          "football",
+          "soccer cleats",
+          "shin guards",
+          "goalkeeper gloves"
+        ],
+        "medium": [
+          "soccer",
+          "football kit"
+        ],
+        "low": [
+          "team sport",
+          "pitch"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Sporting Goods > Racquet Sports > Tennis",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "tennis racket",
+          "tennis ball",
+          "tennis racquet",
+          "tennis strings"
+        ],
+        "medium": [
+          "tennis",
+          "racquet sport"
+        ],
+        "low": [
+          "court",
+          "sport"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Electronics > Computers > Laptops",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "laptop",
+          "notebook computer",
+          "MacBook",
+          "Chromebook",
+          "ultrabook",
+          "gaming laptop"
+        ],
+        "medium": [
+          "portable computer",
+          "PC"
+        ],
+        "low": [
+          "computer",
+          "computing"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Electronics > Computers > Tablets",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "tablet",
+          "iPad",
+          "Android tablet",
+          "drawing tablet"
+        ],
+        "medium": [
+          "touchscreen device"
+        ],
+        "low": [
+          "portable",
+          "device"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Electronics > Communications > Phones > Mobile Phones",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "smartphone",
+          "iPhone",
+          "Android phone",
+          "mobile phone",
+          "cell phone"
+        ],
+        "medium": [
+          "phone",
+          "mobile device"
+        ],
+        "low": [
+          "wireless",
+          "cellular"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Electronics > Audio > Headphones",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "headphones",
+          "earbuds",
+          "earphones",
+          "over-ear headphones",
+          "in-ear",
+          "noise cancelling headphones",
+          "wireless earbuds",
+          "AirPods"
+        ],
+        "medium": [
+          "audio",
+          "listening",
+          "hearing"
+        ],
+        "low": [
+          "sound",
+          "music"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Electronics > Audio > Speakers",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "bluetooth speaker",
+          "wireless speaker",
+          "portable speaker",
+          "home speaker",
+          "soundbar"
+        ],
+        "medium": [
+          "speaker",
+          "audio device"
+        ],
+        "low": [
+          "sound",
+          "music"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Electronics > Cameras & Optics > Cameras",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "camera",
+          "DSLR",
+          "mirrorless camera",
+          "action camera",
+          "GoPro",
+          "digital camera",
+          "point and shoot"
+        ],
+        "medium": [
+          "photography",
+          "photo"
+        ],
+        "low": [
+          "image",
+          "shoot"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Electronics > Wearable Technology",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "smartwatch",
+          "fitness tracker",
+          "Apple Watch",
+          "GPS watch",
+          "activity tracker",
+          "wearable"
+        ],
+        "medium": [
+          "smart device",
+          "wrist"
+        ],
+        "low": [
+          "health tracking",
+          "monitoring"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Electronics > Power Accessories > Portable Power",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "power bank",
+          "portable charger",
+          "solar charger",
+          "battery pack"
+        ],
+        "medium": [
+          "portable power",
+          "charging"
+        ],
+        "low": [
+          "battery",
+          "charge"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Home & Garden > Furniture",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "sofa",
+          "couch",
+          "chair",
+          "armchair",
+          "dining table",
+          "desk",
+          "bookcase",
+          "bed frame",
+          "dresser"
+        ],
+        "medium": [
+          "furniture",
+          "seating"
+        ],
+        "low": [
+          "home",
+          "living room",
+          "bedroom"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Home & Garden > Kitchen & Dining > Cookware",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "frying pan",
+          "skillet",
+          "pot",
+          "saucepan",
+          "Dutch oven",
+          "wok",
+          "cast iron",
+          "non-stick pan"
+        ],
+        "medium": [
+          "cookware",
+          "cooking"
+        ],
+        "low": [
+          "kitchen",
+          "stove"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Home & Garden > Linens & Bedding > Towels",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "towel",
+          "bath towel",
+          "hand towel",
+          "beach towel",
+          "camp towel",
+          "quick dry towel",
+          "microfiber towel"
+        ],
+        "medium": [
+          "linens",
+          "drying"
+        ],
+        "low": [
+          "bath",
+          "dry"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Home & Garden > Linens & Bedding > Bedding",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "duvet",
+          "comforter",
+          "bedsheet",
+          "pillow",
+          "pillowcase",
+          "bed linen",
+          "blanket",
+          "throw blanket"
+        ],
+        "medium": [
+          "bedding",
+          "sleep accessories"
+        ],
+        "low": [
+          "bedroom",
+          "bed"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Home & Garden > Lighting",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "lamp",
+          "light fixture",
+          "pendant light",
+          "ceiling light",
+          "floor lamp",
+          "table lamp",
+          "LED bulb"
+        ],
+        "medium": [
+          "lighting",
+          "illumination"
+        ],
+        "low": [
+          "home lighting",
+          "light"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Health & Beauty > Personal Care > Cosmetics > Skin Care > Sunscreen",
+      "tier": 6,
+      "keywords": {
+        "high": [
+          "sunscreen",
+          "sunblock",
+          "SPF",
+          "sun lotion",
+          "UV protection cream",
+          "mineral sunscreen",
+          "reef-safe sunscreen"
+        ],
+        "medium": [
+          "sun protection",
+          "SPF lotion"
+        ],
+        "low": [
+          "UV",
+          "sun care"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Health & Beauty > Personal Care > Cosmetics > Skin Care > Moisturizers & Lotions",
+      "tier": 6,
+      "keywords": {
+        "high": [
+          "moisturizer",
+          "face cream",
+          "body lotion",
+          "serum",
+          "facial oil",
+          "eye cream",
+          "day cream",
+          "night cream"
+        ],
+        "medium": [
+          "hydrating",
+          "skincare",
+          "skin care"
+        ],
+        "low": [
+          "face",
+          "skin"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Health & Beauty > Personal Care > Hair Care",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "shampoo",
+          "conditioner",
+          "hair mask",
+          "hair oil",
+          "dry shampoo",
+          "hair serum",
+          "heat protectant"
+        ],
+        "medium": [
+          "hair care",
+          "hair treatment"
+        ],
+        "low": [
+          "hair",
+          "scalp"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Health & Beauty > Health Care > Vitamins & Supplements",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "vitamin",
+          "supplement",
+          "protein powder",
+          "multivitamin",
+          "omega 3",
+          "probiotic",
+          "collagen powder"
+        ],
+        "medium": [
+          "dietary supplement",
+          "health supplement",
+          "nutrition"
+        ],
+        "low": [
+          "wellness",
+          "health"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Health & Beauty > Personal Care > Oral Care",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "toothbrush",
+          "toothpaste",
+          "dental floss",
+          "mouthwash",
+          "whitening strips",
+          "electric toothbrush"
+        ],
+        "medium": [
+          "oral care",
+          "dental"
+        ],
+        "low": [
+          "teeth",
+          "mouth"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Health & Beauty > Personal Care > Deodorant & Antiperspirant",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "deodorant",
+          "antiperspirant",
+          "natural deodorant"
+        ],
+        "medium": [
+          "body odor",
+          "sweat protection"
+        ],
+        "low": [
+          "personal care",
+          "hygiene"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Food, Beverages & Tobacco > Beverages > Coffee & Tea",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "coffee",
+          "espresso",
+          "tea",
+          "green tea",
+          "cold brew",
+          "instant coffee",
+          "coffee beans",
+          "coffee grounds",
+          "matcha"
+        ],
+        "medium": [
+          "beverage",
+          "hot drink",
+          "brew"
+        ],
+        "low": [
+          "morning",
+          "caffeine"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Food, Beverages & Tobacco > Food Items > Snacks",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "snack",
+          "chips",
+          "crackers",
+          "trail mix",
+          "granola bar",
+          "energy bar",
+          "protein bar",
+          "nut butter",
+          "jerky"
+        ],
+        "medium": [
+          "snacking",
+          "munchies"
+        ],
+        "low": [
+          "eat",
+          "food"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Food, Beverages & Tobacco > Food Items > Candy & Chocolate",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "chocolate",
+          "candy",
+          "gummies",
+          "caramel",
+          "fudge",
+          "truffles",
+          "bonbons"
+        ],
+        "medium": [
+          "sweets",
+          "confectionery"
+        ],
+        "low": [
+          "treat",
+          "dessert"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Toys & Games > Toys > Stuffed Animals",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "stuffed animal",
+          "plush toy",
+          "teddy bear",
+          "soft toy",
+          "plushie"
+        ],
+        "medium": [
+          "toy",
+          "cuddly"
+        ],
+        "low": [
+          "children",
+          "kids"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Toys & Games > Games > Board Games",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "board game",
+          "card game",
+          "dice game",
+          "strategy game",
+          "party game",
+          "family game"
+        ],
+        "medium": [
+          "game",
+          "play"
+        ],
+        "low": [
+          "fun",
+          "entertainment"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Toys & Games > Outdoor Play Equipment",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "trampoline",
+          "swing set",
+          "slide",
+          "outdoor toy",
+          "frisbee",
+          "kite"
+        ],
+        "medium": [
+          "outdoor play",
+          "backyard"
+        ],
+        "low": [
+          "play",
+          "children"
+        ]
+      }
+    },
+    {
+      "id": 3530,
+      "path": "Animals & Pet Supplies > Pet Supplies > Dog Supplies > Dog Food",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "dog food",
+          "kibble",
+          "dog treats",
+          "dog snacks",
+          "puppy food"
+        ],
+        "medium": [
+          "dog nutrition",
+          "pet food"
+        ],
+        "low": [
+          "dog",
+          "canine"
+        ]
+      }
+    },
+    {
+      "id": 5010,
+      "path": "Animals & Pet Supplies > Pet Supplies > Dog Supplies > Dog Toys",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "dog toy",
+          "chew toy",
+          "fetch toy",
+          "dog ball",
+          "rope toy",
+          "squeaky toy"
+        ],
+        "medium": [
+          "dog play",
+          "pet toy"
+        ],
+        "low": [
+          "dog",
+          "pet"
+        ]
+      }
+    },
+    {
+      "id": 6250,
+      "path": "Animals & Pet Supplies > Pet Supplies > Dog Supplies > Dog Collars & Leashes",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "dog collar",
+          "dog leash",
+          "harness",
+          "dog harness",
+          "retractable leash"
+        ],
+        "medium": [
+          "dog walking",
+          "pet collar"
+        ],
+        "low": [
+          "dog",
+          "walk"
+        ]
+      }
+    },
+    {
+      "id": 3367,
+      "path": "Animals & Pet Supplies > Pet Supplies > Cat Supplies > Cat Food",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "cat food",
+          "cat treats",
+          "kitten food",
+          "wet cat food",
+          "dry cat food"
+        ],
+        "medium": [
+          "cat nutrition",
+          "feline food"
+        ],
+        "low": [
+          "cat",
+          "feline"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Animals & Pet Supplies > Pet Supplies > Cat Supplies > Cat Litter & Accessories",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "cat litter",
+          "litter box",
+          "litter tray",
+          "cat litter mat"
+        ],
+        "medium": [
+          "cat hygiene",
+          "pet litter"
+        ],
+        "low": [
+          "cat",
+          "litter"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Vehicles & Parts > Vehicle Parts & Accessories > Motor Vehicle Parts",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "car part",
+          "auto part",
+          "brake pad",
+          "oil filter",
+          "spark plug",
+          "alternator",
+          "radiator"
+        ],
+        "medium": [
+          "vehicle parts",
+          "automotive"
+        ],
+        "low": [
+          "car",
+          "auto",
+          "vehicle"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Vehicles & Parts > Vehicle Parts & Accessories > Motor Vehicle Accessories",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "car charger",
+          "car mount",
+          "dash cam",
+          "roof rack",
+          "cargo carrier",
+          "seat cover"
+        ],
+        "medium": [
+          "car accessory",
+          "auto accessory"
+        ],
+        "low": [
+          "car",
+          "vehicle"
+        ]
+      }
+    },
+    {
+      "id": 548,
+      "path": "Baby & Toddler > Diapering",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "diaper",
+          "nappy",
+          "baby wipes",
+          "diaper bag",
+          "changing pad"
+        ],
+        "medium": [
+          "baby care",
+          "infant care"
+        ],
+        "low": [
+          "baby",
+          "newborn"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Baby & Toddler > Feeding > Bottles & Formula",
+      "tier": 4,
+      "keywords": {
+        "high": [
+          "baby bottle",
+          "baby formula",
+          "infant formula",
+          "nursing bottle",
+          "breast pump"
+        ],
+        "medium": [
+          "baby feeding",
+          "infant feeding"
+        ],
+        "low": [
+          "baby",
+          "infant",
+          "feeding"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Arts & Entertainment > Hobbies & Creative Arts > Art & Crafts Supplies",
+      "tier": 5,
+      "keywords": {
+        "high": [
+          "paint",
+          "canvas",
+          "brush",
+          "colored pencils",
+          "markers",
+          "sketchbook",
+          "watercolor",
+          "acrylic paint"
+        ],
+        "medium": [
+          "art supplies",
+          "craft supplies"
+        ],
+        "low": [
+          "art",
+          "creative",
+          "craft"
+        ]
+      }
+    },
+    {
+      "id": 54,
+      "path": "Arts & Entertainment > Musical Instruments",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "guitar",
+          "piano",
+          "keyboard",
+          "drum",
+          "violin",
+          "ukulele",
+          "bass guitar",
+          "acoustic guitar"
+        ],
+        "medium": [
+          "instrument",
+          "music gear"
+        ],
+        "low": [
+          "music",
+          "play"
+        ]
+      }
+    },
+    {
+      "id": 5709,
+      "path": "Arts & Entertainment > Party & Celebration",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "birthday candles",
+          "party balloon",
+          "party supplies",
+          "streamers",
+          "confetti"
+        ],
+        "medium": [
+          "party",
+          "celebration"
+        ],
+        "low": [
+          "event",
+          "decor"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Software > Computer Software",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "software",
+          "antivirus",
+          "VPN",
+          "photo editing software",
+          "project management software"
+        ],
+        "medium": [
+          "digital software",
+          "program"
+        ],
+        "low": [
+          "download",
+          "digital"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Luggage & Bags > Luggage",
+      "tier": 2,
+      "keywords": {
+        "high": [
+          "suitcase",
+          "carry-on",
+          "carry on luggage",
+          "checked bag",
+          "rolling luggage",
+          "spinner luggage",
+          "hardshell luggage",
+          "trolley bag",
+          "travel suitcase"
+        ],
+        "medium": [
+          "luggage",
+          "travel bag"
+        ],
+        "low": [
+          "travel",
+          "airport"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Luggage & Bags > Backpacks",
+      "tier": 2,
+      "keywords": {
+        "high": [
+          "laptop backpack",
+          "school backpack",
+          "student backpack",
+          "book bag",
+          "commuter backpack",
+          "everyday backpack",
+          "urban backpack"
+        ],
+        "medium": [
+          "backpack",
+          "rucksack"
+        ],
+        "low": [
+          "bag",
+          "school bag"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Luggage & Bags > Messenger Bags",
+      "tier": 2,
+      "keywords": {
+        "high": [
+          "messenger bag",
+          "satchel",
+          "courier bag",
+          "laptop messenger",
+          "briefcase"
+        ],
+        "medium": [
+          "shoulder strap bag",
+          "over the shoulder bag"
+        ],
+        "low": [
+          "work bag",
+          "commute"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Luggage & Bags > Travel Accessories",
+      "tier": 2,
+      "keywords": {
+        "high": [
+          "packing cube",
+          "luggage tag",
+          "passport holder",
+          "neck wallet",
+          "travel organizer",
+          "packing set",
+          "compression bag travel"
+        ],
+        "medium": [
+          "travel accessory",
+          "travel pouch",
+          "document organizer"
+        ],
+        "low": [
+          "travel",
+          "packing"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Office Supplies > Paper Products > Notebooks & Notepads",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "notebook",
+          "notepad",
+          "journal",
+          "spiral notebook",
+          "legal pad",
+          "composition notebook",
+          "bullet journal",
+          "lined notebook"
+        ],
+        "medium": [
+          "note-taking",
+          "writing pad"
+        ],
+        "low": [
+          "notes",
+          "writing"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Office Supplies > Desk Accessories > Desk Organizers",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "desk organizer",
+          "pencil holder",
+          "pen cup",
+          "desk caddy",
+          "cable organizer",
+          "desk tray",
+          "monitor stand",
+          "desk riser"
+        ],
+        "medium": [
+          "desk accessory",
+          "office organizer"
+        ],
+        "low": [
+          "desk",
+          "office"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Office Supplies > Writing Instruments > Pens",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "ballpoint pen",
+          "fountain pen",
+          "gel pen",
+          "rollerball pen",
+          "click pen",
+          "ink pen",
+          "fine liner"
+        ],
+        "medium": [
+          "pen set",
+          "writing pen"
+        ],
+        "low": [
+          "writing",
+          "ink"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Office Supplies > Writing Instruments > Markers",
+      "tier": 3,
+      "keywords": {
+        "high": [
+          "permanent marker",
+          "whiteboard marker",
+          "dry erase marker",
+          "highlighter",
+          "marker set",
+          "felt tip marker"
+        ],
+        "medium": [
+          "marker pen",
+          "whiteboard"
+        ],
+        "low": [
+          "writing",
+          "drawing"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Media > Books",
+      "tier": 2,
+      "keywords": {
+        "high": [
+          "hardcover",
+          "paperback",
+          "novel",
+          "textbook",
+          "workbook",
+          "reference book",
+          "picture book",
+          "graphic novel",
+          "manga"
+        ],
+        "medium": [
+          "book",
+          "reading",
+          "publication"
+        ],
+        "low": [
+          "story",
+          "author"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Media > Music",
+      "tier": 2,
+      "keywords": {
+        "high": [
+          "vinyl record",
+          "LP record",
+          "music album",
+          "CD album",
+          "music CD",
+          "record album",
+          "vinyl LP"
+        ],
+        "medium": [
+          "album",
+          "soundtrack",
+          "music disc"
+        ],
+        "low": [
+          "music",
+          "recording"
+        ]
+      }
+    },
+    {
+      "id": null,
+      "path": "Media > Movies & TV",
+      "tier": 2,
+      "keywords": {
+        "high": [
+          "DVD",
+          "Blu-ray",
+          "movie disc",
+          "blu ray",
+          "TV series box set",
+          "complete series DVD"
+        ],
+        "medium": [
+          "film disc",
+          "movie collection"
+        ],
+        "low": [
+          "movie",
+          "film"
+        ]
+      }
+    }
+  ]
+}
