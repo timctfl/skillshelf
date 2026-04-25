@@ -1,1 +1,4 @@
 skills/*/RandomRefs.md
+__pycache__/
+*.pyc
+*.pyo
