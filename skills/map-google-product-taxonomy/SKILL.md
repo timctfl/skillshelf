@@ -108,7 +108,7 @@ Ask the merchant to share their product data. Accept any of:
 
 - Shopify product export CSV (Admin > Products > Export > All products, Plain CSV file)
 - Any CSV with at minimum a product title column and ideally a description column
-- A Google Merchant Center feed XML file (the script parses `<g:title>` and `<g:description>` fields; note this in the report header)
+- A Google Merchant Center feed XML file (the LLM extracts `<g:title>` and `<g:description>` directly — the script does not parse XML; note this in the report header)
 
 Example prompt: "Share your Shopify product CSV or any product list with titles and descriptions. I will map each product to the correct Google Product Taxonomy category and produce a supplemental CSV ready to merge with your feed."
 
@@ -255,7 +255,7 @@ One row per product. No variant rows. Offer as a downloadable file.
 | Script exits with code 1 | Report the error message verbatim. Fall back to LLM-only classification. Note in report that script was unavailable. |
 | No title column found after auto-detection | List the columns found in the file. Ask the merchant to specify which column contains product titles using `--title-col`. Do not proceed without a title column. |
 | Malformed CSV (encoding or delimiter issues) | Report the issue. Suggest re-exporting from Shopify Admin using UTF-8 encoding and comma delimiters. |
-| Merchant provides Google Merchant Center XML | Parse `<g:title>` and `<g:description>` from feed items. Proceed with classification. Note the XML input format in the report header. |
+| Merchant provides Google Merchant Center XML | Extract `<g:title>` and `<g:description>` from feed items directly (the LLM handles XML; the script does not parse XML). Proceed with classification. Note the XML input format in the report header. |
 | `taxonomy-keywords.json` not found in assets dir | Report the missing file. Fall back to LLM-only classification. Note in report. |
 | All products return low confidence | Likely a niche catalog or non-English titles. Fall back entirely to LLM classification. Note in report that keyword matching had no hits. |
 
