@@ -35,7 +35,15 @@ The script auto-detects title and description columns from common Shopify and ec
 python3 scripts/classify_taxonomy.py <csv_path> --assets-dir assets/ --title-col "Title" --desc-col "Body (HTML)"
 ```
 
-The script outputs JSON to stdout. Capture the full output and use it as the basis for the classification report.
+To re-run on a feed that already has partial taxonomy assignments, use `--preserve-existing` to skip any product that already has a 3+ level category:
+
+```
+python3 scripts/classify_taxonomy.py <csv_path> --assets-dir assets/ --preserve-existing
+```
+
+The script outputs JSON to stdout. Capture the full output and use it as the basis for the classification report. See [references/json-schema.md](references/json-schema.md) for the full output format.
+
+**Script Coverage.** The keyword index covers 93 categories across 15 verticals: Apparel & Accessories, Animals & Pet Supplies, Arts & Entertainment, Baby & Toddler, Electronics, Food & Beverages, Health & Beauty, Home & Garden, Luggage & Bags, Media, Office Supplies, Sporting Goods, Toys & Games, Vehicles & Parts, and Software. Three verticals have zero keyword coverage: Business & Industrial, Hardware, and Religious & Ceremonial. For products in these uncovered verticals, a `"low"` confidence score is expected and does not indicate ambiguity — proceed directly to LLM classification without treating the low score as a signal.
 
 **Fallback:** If the script fails for any reason, fall back to LLM-only classification using the rules in the LLM Classification section below. Note in the report that the script was unavailable and all classifications were produced by LLM analysis.
 
@@ -56,6 +64,20 @@ When presenting results:
 3. For `medium` items: show the proposed category and the top alternative with a brief note on what signal each matched (e.g., "Matched 'fleece' and 'pullover' for Outerwear, but 'layer' also scored for Activewear").
 4. For `low` items: apply LLM classification rules first, then present the LLM-proposed category with one-sentence reasoning.
 5. If the merchant's CSV already has a `google_product_category` column with a valid leaf-level path (3 or more levels), preserve it and exclude that product from classification. Note what was preserved vs. newly classified in the report.
+
+---
+
+## Policy Enforcement
+
+Some categories have hard classification requirements driven by Google Shopping policies. Check `policy_flags` on each result object before presenting to the merchant.
+
+| Flag | Required Action |
+|---|---|
+| `"alcohol_regulated"` | Override the script's proposed category — regardless of score — and map to the `Food, Beverages & Tobacco > Beverages > Alcoholic Beverages` subtree. Incorrectly categorizing alcohol (e.g., as general food) can cause account suspension. Note the policy override in the report. |
+| `"apparel_requires_attributes"` | The proposed category is under `Apparel & Accessories`. Google Shopping requires `color`, `size`, `gender`, and `age_group` for these products. Note this in the report so the merchant knows to run the Audit skill or supply those fields before submitting the feed. |
+| `"software_digital"` | Map to the Software or digital goods subtrees. Different licensing and subscription requirements apply than for physical goods. |
+
+Products with `"is_bundle": true` in the script output are bundles or multipacks. Classify by the primary item in the bundle (highest-value or most-prominent product), not by secondary accessories or packaging.
 
 ---
 
@@ -92,11 +114,12 @@ Example prompt: "Share your Shopify product CSV or any product list with titles 
 
 Once you have the file:
 
-1. Run: `python3 scripts/classify_taxonomy.py <csv_path> --assets-dir assets/`
+1. Run: `python3 scripts/classify_taxonomy.py <csv_path> --assets-dir assets/` (add `--preserve-existing` if the merchant's CSV already has partial taxonomy assignments)
 2. Parse the JSON. Check the `meta` section for summary counts and which columns were detected.
-3. Separate results into three groups by confidence level.
-4. Apply LLM classification rules to all `low` confidence items before presenting.
-5. Present the full classification report using the format below. Do not ask questions before showing results.
+3. Separate results into four groups: `high`, `medium`, `low`, and `preserved`.
+4. Apply Policy Enforcement rules to any results with non-empty `policy_flags`.
+5. Apply LLM classification rules to all `low` confidence items before presenting.
+6. Present the full classification report using the format below. Do not ask questions before showing results.
 
 **Report format:**
 
@@ -216,7 +239,7 @@ One row per product. No variant rows. Offer as a downloadable file.
 | Scenario | Handling |
 |---|---|
 | CSV has no description column | Classify from title only. Note in report that accuracy may be lower. Do not fail. |
-| Product is a bundle or kit | Classify by the primary product in the bundle. Note it is a bundle in the report. |
+| Product is a bundle or kit | The script sets `is_bundle: true` and adds a `bundle_note` on these rows. Classify by the primary product in the bundle (highest-value or most-prominent item). Note it is a bundle in the report. |
 | Digital or downloadable product | Classify into Google's Software or Digital Goods subtrees. Not into physical goods categories. |
 | Very broad product title (e.g., "Accessories") | Flag as low confidence. Ask the merchant for more context before assigning a category. |
 | Non-English product titles | Script keyword matching will be less effective. LLM handles classification. Note in report that keyword matching was limited. |
