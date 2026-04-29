@@ -1,0 +1,29 @@
+version: "1.0"
+
+category: reporting-and-analysis
+
+level: advanced
+primitive: false
+model_tier: premium
+
+platforms:
+  - shopify
+
+tags:
+  - acquisition
+  - retention
+  - sku-analysis
+  - shopify
+  - orders-export
+  - merchandising
+  - performance-analysis
+  - customer-lifetime-value
+  - repeat-purchase
+  - paid-acquisition
+
+date_added: "2026-04-29"
+date_updated: "2026-04-29"
+
+author:
+  name: Raqib Abdullah
+  url: https://github.com/raqibdev
