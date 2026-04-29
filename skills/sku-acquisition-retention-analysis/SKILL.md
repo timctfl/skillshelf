@@ -14,6 +14,12 @@ This skill is for ecommerce managers, performance marketers, and merchandising t
 
 ---
 
+## Analyst Persona
+
+Act as a senior ecommerce analyst, not a data scientist. The merchant does not need to understand how indices are computed. They need to know which products to put money behind, which to protect, and where they are leaking. Translate every index and flag into a business outcome: revenue risk, channel opportunity, or operational action. Do not narrate the script's computation steps. Do not re-explain what acquisition index means every time you reference a value; state what it implies for the business once, then use the implications throughout.
+
+---
+
 ## Script Execution
 
 This skill uses a Python script for deterministic index computation and an LLM for synthesis, classification, and the merchandising brief.
@@ -50,6 +56,7 @@ Tell the user:
 
 **Optional:**
 - Date context: what period does the export cover? If you know your store's typical repurchase window (e.g., 6 weeks for consumables, 12 months for apparel), share that too. It helps calibrate retention index interpretation.
+- Product category: what do you sell? (e.g., consumable skincare, apparel, supplements, home goods). This calibrates what a good repeat purchase rate looks like for your store against category benchmarks.
 
 If you share only the Orders CSV, I'll still produce per-SKU indices and the full merchandising brief. The Category Breakdown section will be omitted."
 
@@ -97,7 +104,7 @@ Produce the complete Markdown report using the Output Structure below. After sha
 
 **`products_csv_provided: false`:** Omit the Category Breakdown section entirely. Note the omission in Confidence Notes.
 
-**`sku_name_conflicts`:** SKUs with more than 3 distinct `Lineitem name` values across orders. Flag each in Products to Watch. The SKU may represent multiple products bundled under one code, or the product was renamed. Do not roll up indices across name variants as if they are the same product.
+**`sku_name_conflicts`:** SKUs with more than 3 distinct `Lineitem name` values across orders. For each conflicting SKU, the `name_variants` field in `sku_results` lists the specific names found. Use those names verbatim when populating the SKU Name Conflicts subsection in Products to Watch. The SKU may represent multiple products bundled under one code, or the product was renamed. Do not roll up indices across name variants as if they are the same product.
 
 ---
 
@@ -207,7 +214,18 @@ Apply these thresholds to `acquisition_index` and `retention_index` from the scr
 
 ### Budget Allocation Signal
 [2-3 sentences on the prospecting vs. retention spend split based on aggregate pattern.
- Reference the single-purchase rate, repeat purchaser count, and any category signals.]
+ Reference the single-purchase rate, repeat purchaser count, and any category signals.
+ If the user provided a product category in Turn 1, compare the store's single-purchase rate
+ against the vertical benchmark in references/vertical-benchmarks.md. State whether the store
+ is above, within, or below the typical range for that category and what the gap means for
+ where to focus spend.]
+
+### Inventory Implications
+[Flag any SKU classified as Superstar (high acq. index AND high ret. index, both > 1.0) or
+ Acquisition Anchor as a high-priority restock item. Use total_orders as a demand proxy.
+ 2-3 bullets only. Format: "SKU [name]: [total_orders] orders, classified as [role].
+ Stockout risk is high. Maintain elevated safety stock." Do not model optimal quantities.
+ Omit this subsection if no Acquisition Anchors or dual-signal SKUs exist in the dataset.]
 
 ## Confidence Notes
 
@@ -224,6 +242,10 @@ Apply these thresholds to `acquisition_index` and `retention_index` from the scr
 - [If sku_name_conflicts non-empty] [N] SKUs have inconsistent naming across orders.
   See Products to Watch.
 - [Any date range implications, seasonal overlap, or other caveats.]
+- [Always include] This analysis uses first-party Shopify transaction data. Platform attribution
+  (Meta, Google) will show different numbers due to click-based vs. purchase-based attribution.
+  Use this analysis as the source of truth for product behavior patterns, not as a replacement
+  for channel-level attribution reporting.
 ```
 
 ---
@@ -242,6 +264,8 @@ Apply these thresholds to `acquisition_index` and `retention_index` from the scr
 | Analysis window under 180 days | `short_window_warning: true` | Flag in Confidence Notes. Seasonal SKUs may show distorted indices. |
 | Same SKU with over 3 distinct names | `sku_name_conflicts` list | Flag in Products to Watch. Do not average indices across name variants. |
 | Long repurchase cycle category (mattress, appliance, furniture) | `high_single_purchase_rate: true` | Explicitly state category context in context paragraph. Retention flow = reactivation cadence, not cross-sell. |
+| Multi-currency store | (no flag; inspect `Currency Code` column if present in CSV) | The script counts orders, not revenue. SKU role classification is unaffected by currency. Do not attempt LTV or revenue comparisons across orders in different currencies without normalizing. Note this in Confidence Notes if the dataset contains multiple currency codes. |
+| B2B or wholesale orders mixed with DTC | (no flag; check order tags or customer tags) | B2B order cycles (high volume, infrequent) will distort retention indices downward for affected SKUs. If the merchant confirms B2B orders are present, note the limitation and recommend re-exporting with a B2B tag filter applied. |
 
 ---
 

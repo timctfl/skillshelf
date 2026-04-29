@@ -21,6 +21,32 @@ tags:
   - repeat-purchase
   - paid-acquisition
 
+subcategories:
+  - customer-lifetime-value
+  - merchandising-strategy
+  - shopify-analytics
+
+input_schema:
+  required:
+    - Shopify Orders export CSV
+  recommended:
+    - Shopify Products export CSV
+  optional:
+    - Product category (e.g., skincare, apparel, supplements)
+    - Repurchase window in days
+
+output_schema:
+  format: Markdown report
+  sections:
+    - Analysis Summary
+    - Product Role Map
+    - Category Breakdown (requires Products CSV)
+    - Acquisition Anchors
+    - Retention Drivers
+    - Products to Watch
+    - Merchandising Brief
+    - Confidence Notes
+
 date_added: "2026-04-29"
 date_updated: "2026-04-29"
 

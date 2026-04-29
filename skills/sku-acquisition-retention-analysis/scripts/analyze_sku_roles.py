@@ -468,11 +468,14 @@ def main() -> None:
         guest_unresolvable_count, first_order, sku_metrics,
     )
 
+    conflict_skus = set(data_quality["sku_name_conflicts"])
     sku_results = []
     for sku, m in sku_metrics.items():
+        all_names = sorted(m.get("_all_names", set()))
         sku_results.append({
             "sku": sku,
             "name": m["name"],
+            "name_variants": all_names if sku in conflict_skus else [],
             "product_type": m.get("product_type", "Not provided"),
             "acq_orders": m["acq_orders"],
             "ret_orders": m["ret_orders"],
