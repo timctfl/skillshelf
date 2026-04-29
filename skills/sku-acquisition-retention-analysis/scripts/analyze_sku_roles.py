@@ -133,10 +133,15 @@ def phase1_parse_filter(raw_rows: list[dict]) -> tuple[list[dict], dict]:
 # ---------------------------------------------------------------------------
 
 def phase2_resolve_customers(valid_rows: list[dict]) -> tuple[list[dict], int]:
-    """Attach _customer_key to each row. Return rows and guest_unresolvable_count."""
-    guest_unresolvable_count = 0
+    """Attach _customer_key to each row. Return rows and guest_unresolvable_count.
 
-    for i, row in enumerate(valid_rows):
+    Guest orders use the order name as the key so all line items from the same
+    guest order resolve to a single customer identity. guest_unresolvable_count
+    counts unique guest order names, not rows, so it maps correctly to orders.
+    """
+    guest_order_names: set[str] = set()
+
+    for row in valid_rows:
         customer_id = row.get("Customer ID", "").strip()
         email = row.get("Email", "").strip().lower()
 
@@ -146,10 +151,10 @@ def phase2_resolve_customers(valid_rows: list[dict]) -> tuple[list[dict], int]:
             row["_customer_key"] = f"email:{email}"
         else:
             order_name = row.get("Name", "").strip()
-            row["_customer_key"] = f"guest-{order_name}-{i}"
-            guest_unresolvable_count += 1
+            row["_customer_key"] = f"guest-order:{order_name}"
+            guest_order_names.add(order_name)
 
-    return valid_rows, guest_unresolvable_count
+    return valid_rows, len(guest_order_names)
 
 # ---------------------------------------------------------------------------
 # Phase 3: Identify first orders
@@ -337,9 +342,10 @@ def phase8_data_quality(
         round(1.0 - (repeat_customers / unique_customers), 4)
         if unique_customers else 0.0
     )
+    unique_order_names = len({r["Name"].strip() for r in valid_rows})
     guest_checkout_rate = (
-        round(guest_unresolvable_count / len(valid_rows), 4)
-        if valid_rows else 0.0
+        round(guest_unresolvable_count / unique_order_names, 4)
+        if unique_order_names else 0.0
     )
 
     sku_name_conflicts = [

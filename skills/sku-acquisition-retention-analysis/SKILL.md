@@ -98,7 +98,7 @@ Produce the complete Markdown report using the Output Structure below. After sha
 
 **Indices:** `acquisition_index` of 1.0 = that SKU acquires at the dataset average. Above 1.0 = over-indexes for new customers. Below 1.0 = under-indexes. Same logic for `retention_index`. The two indices are not perfectly inverse because the dataset averages are computed independently.
 
-**`high_single_purchase_rate: true`:** When most customers have only one order, the dataset acquisition rate is inflated. All retention indices will be compressed toward zero. Before classifying any SKU, write a context paragraph explaining this dynamic. You may shift threshold brackets one level (e.g., treat a retention index of 1.2 as meaningful when the dataset average retention rate is 0.19).
+**`high_single_purchase_rate: true`:** When most customers have only one order, the dataset acquisition rate is inflated. All retention indices will be compressed toward zero. Before classifying any SKU, write a context paragraph explaining this dynamic. Then make a judgment call on threshold adjustment: if the dataset retention rate (`dataset_ret_rate`) is below 0.25, shift threshold brackets one level (e.g., treat a retention index of 1.2 as meaningful). If `dataset_ret_rate` is above 0.30, standard thresholds apply without adjustment. State your decision explicitly in the context paragraph and explain why — do not silently adjust or silently skip adjustment.
 
 **`low_confidence: true`:** A SKU with fewer than 10 total orders. Show it in Products to Watch with its indices but do not classify it as Acquisition Anchor or Retention Driver. A high index on 6 orders can be one customer's purchasing behavior, not a signal.
 
@@ -116,9 +116,12 @@ Apply these thresholds to `acquisition_index` and `retention_index` from the scr
 |---|---|---|---|
 | Acquisition Anchor | > 1.4 | < 0.8 | `low_confidence: false` |
 | Retention Driver | < 0.8 | > 1.4 | `low_confidence: false` |
-| Hybrid | 0.8 to 1.4 | 0.8 to 1.4 | `total_orders > 10` |
+| Superstar | > 1.0 | > 1.0 | Neither exceeds 1.4. `low_confidence: false`. |
+| Hybrid | 0.8 to 1.4 | 0.8 to 1.4 | At least one index below 1.0. `total_orders > 10` |
 | Underperformer | < 0.8 | < 0.8 | `total_orders > 10` |
 | Single-Purchase Commodity | any | any | `acq_rate > 0.95` and `total_orders > 10` |
+
+**Superstar clarification:** A Superstar is a Hybrid SKU where both indices exceed 1.0 — it sends customers in on first purchase AND pulls them back on repeat orders. If either index exceeds 1.4, the stronger role (Acquisition Anchor or Retention Driver) takes precedence in the Role column, but flag it as a dual-signal SKU in the narrative and in Inventory Implications.
 
 **When `high_single_purchase_rate` is true:** Write a context paragraph before the Product Role Map. State the dataset single-purchase rate, what it means for index compression, and that the classification thresholds have been adjusted one bracket where warranted.
 

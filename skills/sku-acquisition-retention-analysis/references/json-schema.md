@@ -125,13 +125,16 @@ Array of per-product-type aggregations, sorted by `total_orders` descending. Emp
 
 ### Signal values for Category Breakdown table
 
-Derive the `Signal` column in the Category Breakdown output table from `avg_acquisition_index` and `avg_retention_index`:
+Derive the `Signal` column in the Category Breakdown output table from `avg_acquisition_index` and `avg_retention_index`. Category averages are dampened relative to individual SKU indices, so category-level thresholds are lower than per-SKU thresholds. Evaluate in order — the first matching rule wins.
 
-| Condition | Signal |
-|---|---|
-| `avg_acquisition_index > 1.4` | Strong acquisition |
-| `avg_retention_index > 1.4` | Strong retention |
-| Both > 1.0 and neither > 1.4 | Mixed |
-| `high_confidence_skus < 2` | Thin data |
+| Priority | Condition | Signal |
+|---|---|---|
+| 1 | `high_confidence_skus < 2` | Thin data |
+| 2 | `avg_acquisition_index > 1.2` | Strong acquisition |
+| 3 | `avg_retention_index > 1.2` | Strong retention |
+| 4 | otherwise | Mixed |
 
-"Thin data" takes precedence over other signals when `high_confidence_skus < 2`.
+Notes:
+- "Thin data" always takes precedence regardless of index values.
+- If both `avg_acquisition_index > 1.2` and `avg_retention_index > 1.2` (rare for category averages), the dominant index wins. "Strong acquisition" if `avg_acquisition_index > avg_retention_index`, otherwise "Strong retention."
+- "Mixed" covers all remaining cases: neither index dominant, or one index slightly above 1.0 but below 1.2.
