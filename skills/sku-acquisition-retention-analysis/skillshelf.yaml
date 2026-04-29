@@ -4,7 +4,7 @@ category: reporting-and-analysis
 
 level: advanced
 primitive: false
-model_tier: premium
+model_tier: medium
 
 platforms:
   - shopify
@@ -53,3 +53,99 @@ date_updated: "2026-04-29"
 author:
   name: Raqib Abdullah
   url: https://github.com/raqibdev
+
+faq:
+  - question:What files do I need to provide?
+    answer: >-
+      The Orders CSV is required. Export it from Shopify Admin > Orders > Export > All orders > Plain CSV file.
+      The Products CSV is strongly recommended but optional. Export it from Shopify Admin > Products > Export > All products > Plain CSV file.
+      Without the Products CSV, the Category Breakdown section is skipped entirely.
+
+  - question:How do I export my Shopify Orders CSV?
+    answer: >-
+      Go to Shopify Admin > Orders. Click Export in the top-right corner. Select "All orders" and choose "Plain CSV file".
+      Export the largest date range you have available. Longer history produces more reliable repeat-purchase signals.
+      Minimum useful range is 6 months. Under 200 valid orders, all findings are directional only.
+
+  - question:What is the acquisition index? What does a value above or below 1.0 mean?
+    answer: >-
+      The acquisition index measures how often a SKU appears in a first-time customer's order relative to the store average.
+      1.0 means the SKU acquires at the dataset average. Above 1.0 means it over-indexes for new customers.
+      Below 1.0 means it under-indexes. The two indices (acquisition and retention) are computed independently and
+      are not perfect inverses of each other.
+
+  - question:Does a high acquisition index mean a product is performing well?
+    answer: >-
+      Not necessarily. A low-margin or loss-leader product with a high acquisition index may be an AOV problem, not a success.
+      The Merchandising Brief addresses whether acquisition anchor SKUs have the margin to support cold-traffic spend.
+      A high acquisition index means the SKU brings in new customers, not that those customers are profitable.
+
+  - question:Why is my single-purchase rate so high? Does it mean something is wrong?
+    answer: >-
+      A high single-purchase rate (over 70%) means most customers have only placed one order in the export window.
+      This compresses all retention indices across every SKU. It may reflect a short data window, a long natural
+      repurchase cycle (e.g., mattresses, appliances), or a genuinely acquisition-heavy store. The skill writes
+      a context paragraph before the Product Role Map explaining what it means for your specific dataset and adjusts
+      classification thresholds accordingly.
+
+  - question:What does "low confidence" mean on a SKU?
+    answer: >-
+      A SKU with fewer than 10 total orders is flagged low-confidence. Its indices may reflect one customer's behavior,
+      not a real signal. Low-confidence SKUs appear in Products to Watch for visibility but are never classified as
+      Acquisition Anchor or Retention Driver. They are not underperformers either. Just insufficient data to classify.
+
+  - question:My Category Breakdown section is missing. Why?
+    answer: >-
+      Category Breakdown requires the Products CSV. Without it, the skill has no product type data to aggregate against.
+      Provide the Products export (Shopify Admin > Products > Export) and re-run for this section to appear.
+
+  - question:What if the Python script fails to run?
+    answer: >-
+      The skill falls back to manual tallying from the raw CSV. All resulting indices are flagged as LLM-estimated
+      rather than script-computed. This is noted in Confidence Notes. Script exit code 1 means success with warnings.
+      Exit code 2 is a fatal input error, usually a malformed or missing CSV column.
+
+  - question:Can I use this for a store with both B2B and DTC orders mixed in?
+    answer: >-
+      With caution. B2B order cycles (high volume, infrequent) will push retention indices down for affected SKUs
+      because wholesale buyers look like single-purchase customers unless they happen to re-order within the export window.
+      The best fix is to re-export with a B2B tag filter applied before running the skill. If that is not possible,
+      the limitation is noted in Confidence Notes.
+
+  - question:My store operates in multiple currencies. Does that affect results?
+    answer: >-
+      No. The script counts orders, not revenue, so SKU role classification is unaffected by currency. However,
+      do not compare AOV or lifetime value figures across orders in different currencies without normalizing first.
+      The skill notes this in Confidence Notes if multiple currency codes are detected.
+
+  - question:What repurchase window should I enter?
+    answer: >-
+      Use your store's typical repurchase cycle. Consumables (skincare, supplements) are typically 4 to 8 weeks.
+      Apparel is typically 3 to 6 months. Furniture or appliances can be 2 or more years. If you do not know it,
+      omit it and the skill will use industry defaults for your product category and state that assumption explicitly.
+
+  - question:Why are some of my products showing up under "Products to Watch" instead of being classified?
+    answer: >-
+      Products land in Products to Watch for one of four reasons: fewer than 10 orders (low confidence),
+      both indices below 0.8 (underperformer), inconsistent SKU naming across orders (name conflict),
+      or detected as a bundle or gift card (cannot decompose component products). Each subsection explains why.
+
+  - question:How is this different from Shopify's built-in analytics?
+    answer: >-
+      Shopify's native reports do not separate products by whether they brought in new customers versus kept
+      existing ones coming back. This skill computes per-SKU acquisition and retention indices from raw order data
+      and translates them into specific channel and budget recommendations. It uses first-party transaction data,
+      so the numbers will differ from Meta or Google attribution reports, which use click-based attribution.
+      This analysis is the source of truth for product behavior patterns, not a channel attribution report.
+
+  - question:Can I put a retention driver in my cold-traffic ad campaigns?
+    answer: >-
+      No. A SKU classified as Retention Driver belongs in post-purchase flows, win-back sequences, or replenishment
+      campaigns. Using it in cold-traffic prospecting wastes spend on an audience that will not convert as well as
+      an Acquisition Anchor would. The skill deliberately separates the two in the Merchandising Brief to prevent this.
+
+  - question:What does the guest checkout rate affect?
+    answer: >-
+      Guest buyers cannot be linked across orders because Shopify does not store a persistent customer ID for them.
+      A high guest checkout rate (over 40%) means the single-purchase rate in the data is likely overstated.
+      Repeat guest buyers appear as new customers on each order. The skill flags this in Confidence Notes.
