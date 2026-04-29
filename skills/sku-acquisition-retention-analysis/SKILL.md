@@ -21,7 +21,7 @@ This skill uses a Python script for deterministic index computation and an LLM f
 **Before any analysis, run the script:**
 
 ```
-python scripts/analyze_sku_roles.py orders.csv [products.csv] [--customers customers.csv] [--pretty]
+python scripts/analyze_sku_roles.py orders.csv [products.csv] [--pretty]
 ```
 
 The script outputs JSON to stdout. Capture the full output and use it as the analytical foundation. Do not derive acquisition or retention indices yourself; use the script's values.
@@ -69,7 +69,6 @@ Run the script against the provided files. Read the `data_quality` block from th
 | Guest checkout rate | [guest_checkout_rate as %] |
 | Cancelled orders dropped | [cancelled_dropped] |
 | Refunded/voided dropped | [refunded_voided_dropped] |
-| Orders after filtering | [total_valid_order_rows] |
 | Products CSV provided | Yes / No |
 ```
 
@@ -224,8 +223,6 @@ Apply these thresholds to `acquisition_index` and `retention_index` from the scr
 - [If partially_refunded_kept > 0] [N] partially refunded orders kept in analysis.
 - [If sku_name_conflicts non-empty] [N] SKUs have inconsistent naming across orders.
   See Products to Watch.
-- [If customers_csv_provided: false] Customer CSV not provided. Customer identity resolved
-  via Customer ID field, with Email as fallback.
 - [Any date range implications, seasonal overlap, or other caveats.]
 ```
 

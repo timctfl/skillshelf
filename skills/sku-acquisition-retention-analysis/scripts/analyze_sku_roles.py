@@ -225,16 +225,22 @@ def phase5_sku_metrics(valid_rows: list[dict]) -> dict[str, dict]:
 # ---------------------------------------------------------------------------
 
 def phase6_indices(sku_metrics: dict[str, dict], valid_rows: list[dict]) -> dict[str, dict]:
-    """Compute per-SKU acquisition_index and retention_index."""
-    total_lines = sum(
-        1 for r in valid_rows if r.get("Lineitem sku", "").strip()
-    )
-    acq_lines = sum(
-        1 for r in valid_rows
-        if r.get("Lineitem sku", "").strip() and r["_tag"] == "acquisition"
-    )
+    """Compute per-SKU acquisition_index and retention_index against an order-level baseline.
 
-    dataset_acq_rate = acq_lines / total_lines if total_lines else 0.0
+    Uses unique order names (not line item rows) so multi-SKU orders don't distort
+    the baseline when first orders tend to have larger baskets than repeat orders.
+    """
+    order_tags: dict[str, str] = {}
+    for r in valid_rows:
+        if r.get("Lineitem sku", "").strip():
+            order_name = r["Name"].strip()
+            if order_name not in order_tags:
+                order_tags[order_name] = r["_tag"]
+
+    total_orders_count = len(order_tags)
+    acq_orders_count = sum(1 for t in order_tags.values() if t == "acquisition")
+
+    dataset_acq_rate = acq_orders_count / total_orders_count if total_orders_count else 0.0
     dataset_ret_rate = 1.0 - dataset_acq_rate
 
     for sku, m in sku_metrics.items():
@@ -321,12 +327,11 @@ def phase8_data_quality(
     sku_metrics: dict[str, dict],
 ) -> dict:
     unique_customers = len(first_order)
+    customer_all_orders: dict[str, set] = defaultdict(set)
+    for r in valid_rows:
+        customer_all_orders[r["_customer_key"]].add(r["Name"].strip())
     repeat_customers = sum(
-        1 for ck, first_name in first_order.items()
-        if any(
-            r["_customer_key"] == ck and r["Name"].strip() != first_name
-            for r in valid_rows
-        )
+        1 for ck in first_order if len(customer_all_orders[ck]) > 1
     )
     single_purchase_rate = (
         round(1.0 - (repeat_customers / unique_customers), 4)
@@ -384,10 +389,6 @@ def main() -> None:
         help="Path to Shopify Products export CSV (optional)"
     )
     parser.add_argument(
-        "--customers", dest="customers_csv", default=None,
-        help="Path to Shopify Customers export CSV (reserved for future use)"
-    )
-    parser.add_argument(
         "--pretty", action="store_true", help="Pretty-print JSON output"
     )
     args = parser.parse_args()
@@ -423,7 +424,6 @@ def main() -> None:
                 "analysis_window_days": 0,
                 "short_window_warning": False,
                 "products_csv_provided": products_rows is not None,
-                "customers_csv_provided": args.customers_csv is not None,
             },
             "data_quality": {
                 "total_raw_order_rows": len(raw_rows),
@@ -493,7 +493,6 @@ def main() -> None:
             "analysis_window_days": data_quality["analysis_window_days"],
             "short_window_warning": data_quality["short_window_warning"],
             "products_csv_provided": products_csv_provided,
-            "customers_csv_provided": args.customers_csv is not None,
         },
         "data_quality": data_quality,
         "dataset_rates": {

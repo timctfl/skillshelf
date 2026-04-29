@@ -4,19 +4,19 @@
 
 | Metric | Value |
 |---|---|
-| Date range | 2024-03-01 to 2026-02-28 |
-| Analysis window | 730 days |
-| Valid orders | 3,412 |
-| Unique customers | 2,847 |
-| Repeat purchasers | 684 (24%) |
-| Single-purchase rate | 76% |
-| Guest checkout rate | 18% |
-| Cancelled orders dropped | 94 |
-| Refunded/voided dropped | 47 |
-| Partially refunded kept | 11 |
+| Date range | 2024-03-01 to 2026-02-25 |
+| Analysis window | 725 days |
+| Valid orders | 982 |
+| Unique customers | 402 |
+| Repeat purchasers | 117 (29%) |
+| Single-purchase rate | 71% |
+| Guest checkout rate | 0% |
+| Cancelled orders dropped | 7 |
+| Refunded/voided dropped | 8 |
+| Partially refunded kept | 0 |
 | Products CSV provided | Yes |
 
-76% of GlowSkin Co. customers have placed only one order in the 24-month window. This is typical for skincare brands where repurchase cycles are 4 to 8 weeks but customer re-activation rates are low. A 76% single-purchase rate compresses all retention indices across the dataset: the dataset retention rate is only 0.24, so a SKU with a retention index of 1.5 represents a meaningfully different purchase pattern even though the raw retention order count appears small. All indices below have been computed against this compressed baseline. SKUs with retention index above 1.4 represent genuine repeat-purchase anchors even in a low-repurchase store.
+71% of GlowSkin Co. customers placed only one order in the 24-month window. This is high but not unusual for a mid-tier skincare brand where repurchase cycles are 6 to 10 weeks but re-activation rates are low. The dataset acquisition rate is 59.3% of orders (not customers): 59 of every 100 unique orders in this dataset are first orders. The dataset retention rate is 40.7%. Retention indices are computed against this 0.41 baseline, so a retention index of 1.4 means a SKU appears in repeat orders 40% more often than the dataset average, which is a real and actionable signal even at this single-purchase rate. No threshold adjustment is warranted here. The baseline is healthy enough that the standard 1.4 threshold distinguishes genuine behavioral patterns.
 
 ---
 
@@ -24,18 +24,18 @@
 
 | SKU | Product Name | Type | Acq. Orders | Ret. Orders | Acq. Index | Ret. Index | Role | Confidence |
 |---|---|---|---|---|---|---|---|---|
-| GLWSH-001-BLK | GlowWash Brightening Cleanser | Cleanser | 1,042 | 221 | 1.72 | 0.33 | Acquisition Anchor | High |
-| GLWSH-002-ORG | GlowWash Gentle Foam Cleanser | Cleanser | 731 | 187 | 1.61 | 0.36 | Acquisition Anchor | High |
-| GLVCS-003-30 | GlowBoost Vitamin C Serum 30ml | Serum | 198 | 283 | 0.52 | 1.83 | Retention Driver | High |
-| GLNRT-004-50 | GlowNourish Retinol Night Cream | Moisturizer | 167 | 201 | 0.49 | 1.61 | Retention Driver | High |
-| GLMST-005-100 | GlowMist Hydrating Toner | Moisturizer | 312 | 198 | 0.87 | 1.18 | Hybrid | High |
-| GLSPF-006-40 | GlowShield SPF 40 Moisturizer | Moisturizer | 289 | 139 | 1.24 | 0.74 | Hybrid | High |
-| GLLIP-007-CLR | GlowTint Tinted Lip Balm | Lip | 94 | 51 | 0.72 | 0.54 | Underperformer | High |
-| GLGFT-008-HOL | GlowSkin Holiday Gift Set | Gift Set | 88 | 14 | 1.89 | 0.21 | Acquisition Anchor | High |
-| GLEYE-009-BLK | GlowEye Brightening Eye Cream | Serum | 31 | 29 | 0.97 | 1.31 | Hybrid | High |
-| GLSRM-010-NEW | GlowRenew Peptide Serum | Serum | 18 | 6 | 1.41 | 0.68 | Acquisition Anchor | High |
-| *GLMSK-011-CLY* | *GlowClear Clay Mask* | *Cleanser* | *6* | *4* | *1.44* | *0.57* | *Products to Watch* | *Low* |
-| *GLTNR-012-ROS* | *GlowRose Facial Mist* | *Moisturizer* | *4* | *3* | *1.08* | *0.87* | *Products to Watch* | *Low* |
+| GLMSK-011-CLY | GlowClear Clay Mask | Cleanser | 64 | 59 | 0.88 | 1.18 | Hybrid | High |
+| GLMST-005-100 | GlowMist Hydrating Toner | Moisturizer | 61 | 45 | 0.97 | 1.04 | Hybrid | High |
+| GLEYE-009-BLK | GlowEye Brightening Eye Cream | Serum | 51 | 47 | 0.88 | 1.18 | Hybrid | High |
+| GLTNR-012-ROS | GlowRose Facial Mist | Moisturizer | 56 | 39 | 0.99 | 1.01 | Hybrid | High |
+| GLLIP-007-CLR | GlowTint Tinted Lip Balm | Lip | 58 | 34 | 1.06 | 0.91 | Hybrid | High |
+| GLSPF-006-40 | GlowShield SPF 40 Moisturizer | Moisturizer | 57 | 17 | 1.30 | 0.56 | Hybrid | High |
+| GLSRM-010-NEW | GlowRenew Peptide Serum | Serum | 53 | 19 | 1.24 | 0.65 | Hybrid | High |
+| GLWSH-002-ORG | GlowWash Gentle Foam Cleanser | Cleanser | 60 | 11 | 1.43 | 0.38 | Acquisition Anchor | High |
+| GLWSH-001-BLK | GlowWash Brightening Cleanser | Cleanser | 52 | 14 | 1.33 | 0.52 | Hybrid | High |
+| GLNRT-004-50 | GlowNourish Retinol Night Cream | Moisturizer | 12 | 51 | 0.32 | 1.99 | Retention Driver | High |
+| GLGFT-008-HOL | GlowSkin Holiday Gift Set | Gift Set | 51 | 10 | 1.41 | 0.40 | Acquisition Anchor | High |
+| GLVCS-003-30 | GlowBoost Vitamin C Serum 30ml | Serum | 13 | 48 | 0.36 | 1.93 | Retention Driver | High |
 
 ---
 
@@ -43,60 +43,41 @@
 
 | Product Type | SKUs | Total Orders | Avg Acq. Index | Avg Ret. Index | Signal |
 |---|---|---|---|---|---|
-| Cleanser | 4 | 2,083 | 1.51 | 0.36 | Strong acquisition |
-| Serum | 3 | 565 | 0.97 | 1.27 | Strong retention |
-| Moisturizer | 3 | 938 | 0.87 | 1.18 | Mixed |
-| Gift Set | 1 | 102 | 1.89 | 0.21 | Thin data |
-| Lip | 1 | 145 | 0.72 | 0.54 | Thin data |
+| Moisturizer | 4 | 338 | 0.90 | 1.15 | Mixed |
+| Cleanser | 3 | 260 | 1.21 | 0.69 | Strong acquisition |
+| Serum | 3 | 231 | 0.83 | 1.25 | Strong retention |
+| Lip | 1 | 92 | 1.06 | 0.91 | Thin data |
+| Gift Set | 1 | 61 | 1.41 | 0.40 | Thin data |
 
 ---
 
 ## Acquisition Anchors
 
-**GlowWash Brightening Cleanser** (acq. index 1.72, 1,042 acq. orders / 1,263 total)
-At the $28 entry price this is the most common first product in the GlowSkin assortment. Cleansers are high-search-intent purchases: customers searching "brightening cleanser" or "gentle face wash" land here first. The product appears in 37% of all first orders. Strong fit for cold-traffic paid social and Google Shopping acquisition campaigns.
+**GlowWash Gentle Foam Cleanser** (acq. index 1.43, 60 acq. orders / 71 total)
+The cleanest acquisition signal in the catalog. 85% of this SKU's appearances are in first orders, compared to a 59% dataset average. At a lower entry price than the Brightening variant, it is likely the first touchpoint for cost-conscious customers searching "gentle cleanser" or "foam face wash." Strong fit for cold-traffic paid social and Google Shopping prospecting.
 
-**GlowWash Gentle Foam Cleanser** (acq. index 1.61, 731 acq. orders / 918 total)
-The $24 alternative cleanser follows the same acquisition pattern. Together the two cleansers account for over half of all first-order line items, suggesting the cleanser category is the primary acquisition entry point for this store.
+**GlowSkin Holiday Gift Set** (acq. index 1.41, 51 acq. orders / 61 total)
+Acquisition anchor by the numbers, but interpret with caution: all 61 orders fall in November and December across two Q4 seasons. The gift set is a seasonal gifting driver, not a consistent acquisition vehicle. It should not be treated as an evergreen prospecting SKU. Strong candidate for Q4-only cold-traffic campaigns; outside Q4, it adds no acquisition signal.
 
-**GlowSkin Holiday Gift Set** (acq. index 1.89, 88 acq. orders / 102 total)
-The highest acquisition index in the catalog, but interpret with caution: all 102 orders fall in November and December 2024 and 2025. The gift set is seasonal gifting, not a consistent acquisition driver. Treating it as an evergreen acquisition anchor would misallocate spend. Strong for Q4 prospecting campaigns only.
-
-**GlowShield SPF 40 Moisturizer** (acq. index 1.24, 289 acq. orders / 428 total)
-Hybrid with an acquisition lean. Lower threshold than true anchors but notable: SPF products are commonly purchased as first products in warmer months. Suitable for seasonal acquisition campaigns (March to August) alongside the cleansers.
+**Near-threshold candidates (not classified as anchors):** GlowWash Brightening Cleanser (acq. index 1.33) and GlowShield SPF 40 Moisturizer (acq. index 1.30) both over-index for acquisition but fall below the 1.4 threshold. The Brightening Cleanser accounts for 79% first-order appearances and likely shares a customer segment with the Gentle Foam variant. SPF 40's acquisition lean may be seasonal: warmer-month search intent for sun protection. Both are suitable for prospecting campaigns at lower priority than the confirmed anchors.
 
 ---
 
 ## Retention Drivers
 
-**GlowBoost Vitamin C Serum 30ml** (ret. index 1.83, 283 ret. orders / 481 total)
-The strongest retention signal in the catalog. Vitamin C serums are a 4 to 6 week replenishment product: customers who start the routine come back to replenish. This SKU should anchor the post-purchase replenishment flow triggered at Day 35 after the first purchase of any product. It also makes an ideal cross-sell for customers whose first order was a cleanser (the most common first product).
+**GlowNourish Retinol Night Cream** (ret. index 1.99, 51 ret. orders / 63 total)
+The strongest retention signal in the catalog. 81% of this SKU's appearances are in repeat orders. Retinol is a results-driven category: customers who start a retinol routine return to replenish it on a 6 to 8 week cycle. This SKU should anchor the post-purchase cross-sell flow for customers whose first order was a cleanser, triggered at Day 21 to 30. The cleanser-to-retinol pairing is the highest-potential LTV path in this dataset.
 
-**GlowNourish Retinol Night Cream** (ret. index 1.61, 201 ret. orders / 368 total)
-Night cream with a 6 to 8 week usage cycle. Second-strongest retention signal. Customers who receive this SKU in a cross-sell flow after their first cleanser purchase are 3x more likely to become repeat buyers than the average single-cleanser customer. Target for Day 21 post-purchase email when cleanser is the first product.
+**GlowBoost Vitamin C Serum 30ml** (ret. index 1.93, 48 ret. orders / 61 total)
+Second-strongest retention signal. 79% repeat appearances. Vitamin C serums have a 30 to 45 day replenishment cycle at daily use. This SKU should have a replenishment trigger at Day 40 post-purchase and a cross-sell trigger at Day 30 for customers who bought any cleanser as their first product. Together, the Night Cream and Vitamin C Serum account for a disproportionate share of repeat purchase behavior in this dataset. Concentrating retention resources on these two SKUs will have more impact than spreading email flows across the full catalog.
 
 ---
 
 ## Products to Watch
 
-### Low-Confidence SKUs
-
-| SKU | Product Name | Acq. Index | Ret. Index | Orders | Note |
-|---|---|---|---|---|---|
-| GLMSK-011-CLY | GlowClear Clay Mask | 1.44 | 0.57 | 10 | Borderline low-confidence. Indices are plausible but one cohort could shift them. Monitor as volume grows. |
-| GLTNR-012-ROS | GlowRose Facial Mist | 1.08 | 0.87 | 7 | Under 10 orders. No reliable signal. |
-
-### Underperformers
-
-| SKU | Product Name | Acq. Index | Ret. Index | Total Orders |
-|---|---|---|---|---|
-| GLLIP-007-CLR | GlowTint Tinted Lip Balm | 0.72 | 0.54 | 145 |
-
-GlowTint under-indexes for both acquisition and retention. It neither brings in new customers nor keeps them coming back. At 145 orders across 24 months this is not a thin-data issue. The product is not driving channel performance in either direction. Candidates for merchandising review: bundle with a retention driver to improve attach rate, reduce paid visibility, or evaluate margin contribution independently.
-
 ### Bundle and Gift Card SKUs
 
-**GLGFT-008-HOL (GlowSkin Holiday Gift Set):** Bundle SKU. The acquisition index (1.89) reflects gifting behavior in Q4, not the bundled products individually. The constituent products (cleanser, serum, toner) each have their own SKUs with more reliable annual signals. Do not use the gift set index to infer acquisition potential for its components.
+**GLGFT-008-HOL (GlowSkin Holiday Gift Set):** Bundle SKU. The acquisition index (1.41) reflects Q4 gifting behavior and cannot be decomposed into the constituent products. The bundled cleansers, serums, and toners each have their own SKU-level signals with more reliable annual patterns. Do not use the gift set index to infer acquisition potential for its individual components.
 
 ---
 
@@ -104,39 +85,37 @@ GlowTint under-indexes for both acquisition and retention. It neither brings in 
 
 ### Acquisition Campaign Recommendations
 
-1. **Lead cold-traffic campaigns with GlowWash Brightening Cleanser (GLWSH-001-BLK, acq. index 1.72).** At $28 this is the lowest-friction entry point into the GlowSkin assortment. Feature it as the hero product in paid social prospecting and Google Shopping. Its acquisition index of 1.72 means it appears in first orders 72% more often than the dataset average.
+1. **Lead cold-traffic prospecting with GlowWash Gentle Foam Cleanser (GLWSH-002-ORG, acq. index 1.43).** With 85% of its orders from first-time buyers, this is the clearest acquisition entry point in the assortment. Feature it as the hero product in paid social and Google Shopping. Its $24 price point minimizes first-purchase friction.
 
-2. **Add GlowWash Gentle Foam Cleanser (GLWSH-002-ORG, acq. index 1.61) as the alternative acquisition SKU.** Use skin type targeting to split paid traffic: oily/combination skin to the Brightening Cleanser, dry/sensitive skin to the Gentle Foam. Both over-index heavily for acquisition.
+2. **Run GlowWash Brightening Cleanser (GLWSH-001-BLK, acq. index 1.33) as the secondary acquisition SKU.** Use skin-type or intent targeting to split prospecting traffic: dry or sensitive skin to the Gentle Foam, oily or combination to the Brightening. Both cleansers over-index for acquisition; running both avoids saturating a single audience.
 
-3. **Run GlowSkin Holiday Gift Set (GLGFT-008-HOL, acq. index 1.89) as a Q4-only acquisition vehicle.** Launch prospecting campaigns in October with the gift set as the featured product. Do not carry this into January; the signal is entirely seasonal.
+3. **Activate GlowShield SPF 40 Moisturizer (GLSPF-006-40, acq. index 1.30) in seasonal acquisition campaigns from March through August.** Its acquisition lean suggests warmer-month search intent for SPF. A targeted prospecting test against a cleanser-only campaign would confirm whether SPF has an independent acquisition role or is dependent on seasonal timing.
 
-4. **Test GlowShield SPF 40 Moisturizer (GLSPF-006-40, acq. index 1.24) in seasonal acquisition campaigns from March through August.** The acquisition lean is consistent across two spring/summer seasons in the data. A modest prospecting budget test against a cleanser-focused campaign would validate whether SPF has a standalone acquisition role.
+4. **Use GlowSkin Holiday Gift Set (GLGFT-008-HOL, acq. index 1.41) for Q4 prospecting only.** Launch cold-traffic campaigns in October featuring the gift set. Do not carry it into January; the acquisition signal is entirely seasonal and does not reflect an evergreen product behavior.
 
-5. **Do not feature GlowBoost Vitamin C Serum or GlowNourish Retinol Night Cream in cold-traffic acquisition ads.** Both are retention drivers (ret. index 1.83 and 1.61 respectively). Featuring them in prospecting campaigns means paying acquisition CPMs to show products that do not convert first-time buyers at above-average rates.
+5. **Do not feature GlowNourish Retinol Night Cream or GlowBoost Vitamin C Serum in cold-traffic ads.** Both are strong retention drivers (ret. index 1.99 and 1.93 respectively). Paying prospecting CPMs to show products that appear in only 19% to 21% of first orders means spending acquisition budget on products that do not convert new customers at above-average rates.
 
 ### Retention Flow Recommendations
 
-1. **Day 35 post-purchase: trigger GlowBoost Vitamin C Serum cross-sell for all cleanser first-purchase customers.** The serum's 4 to 6 week replenishment cycle aligns with this trigger. Cleanser buyers who also purchase the serum represent the highest-LTV cohort in the data. Personalize the subject line: "Your [product] routine is working. Time to layer in your serum."
+1. **Day 21 post-purchase: cross-sell GlowNourish Retinol Night Cream to cleanser first-buyers.** Retinol and brightening or gentle cleansers form a natural routine pairing. The 21-day delay gives the customer time to establish the cleanser habit before introducing a second step. Personalize subject line: "Your [cleanser] routine is set. Add retinol before bed."
 
-2. **Day 21 post-purchase: trigger GlowNourish Retinol Night Cream cross-sell for Brightening Cleanser first-purchase customers.** Retinol and brightening cleanser is a natural routine pairing. The 21-day delay gives the customer time to form a cleanser habit before introducing a second step.
+2. **Day 40 replenishment trigger for GlowBoost Vitamin C Serum purchasers.** The 30ml bottle lasts approximately 40 days at daily use. Trigger a replenishment email with a direct add-to-cart link. This is the highest-volume repeat-purchase SKU in the catalog and warrants a dedicated replenishment cadence, not a generic cross-sell email.
 
-3. **Day 45 replenishment reminder for GlowBoost Vitamin C Serum purchasers.** The 30ml serum lasts approximately 45 days at daily use. Trigger a replenishment email with a direct add-to-cart link.
+3. **Day 30 post-purchase: cross-sell GlowBoost Vitamin C Serum to cleanser first-buyers.** Position the serum as the logical next step after cleanser: "Your morning routine, completed." The serum's 79% repeat-order share indicates high satisfaction among customers who do adopt it.
 
-4. **Winback campaign: 1,412 lapsed single-purchase customers who bought a cleanser 90+ days ago and have not returned.** Lead the winback with a serum trial offer (GLVCS-003-30). The serum's strong retention index suggests it is the product most likely to convert a single-purchase cleanser customer into a repeat buyer.
+4. **Winback flow: lead with a Vitamin C Serum trial offer for lapsed single-purchase cleanser buyers.** Of the 285 single-purchase customers, the majority purchased a cleanser as their first and only product. Cleanser-first customers who have not returned within 90 days are the highest-potential winback segment. The Vitamin C Serum's strong retention signal suggests it is the most likely second-purchase product to convert them.
 
-5. **Do not put GlowWash Brightening Cleanser or GlowWash Gentle Foam Cleanser in post-purchase cross-sell flows as primary recommendations.** Both are acquisition anchors. A customer who already owns a cleanser does not need another cleanser cross-sell in their inbox; route them to retention-indexed products.
+5. **Do not recommend GlowWash Gentle Foam or GlowWash Brightening Cleanser as primary post-purchase cross-sell targets.** A customer who already owns a cleanser does not need another cleanser recommended in their post-purchase flow. Route cleanser first-buyers toward retention-indexed SKUs (Night Cream, Vitamin C Serum) rather than back to the category they entered through.
 
 ### Budget Allocation Signal
 
-GlowSkin Co. has a 76% single-purchase rate, meaning the large majority of revenue comes from new customers, not repeat buyers. The current business model is heavily dependent on acquisition. With only 684 repeat buyers in 24 months, the retention opportunity is large and underutilized. A prospecting-heavy budget split (70% acquisition, 30% retention) is defensible given the current customer base size, but the 30% retention budget should be concentrated on the 684 existing repeat buyers and the 1,412 lapsed single-purchase cleanser buyers most likely to convert, rather than spread across general retention channels. As the repeat buyer cohort grows, the retention budget share should increase: the serum and night cream data suggests that customers who are converted to a second purchase have significantly higher lifetime purchase rates.
+GlowSkin Co. has a 71% single-purchase rate: most revenue currently comes from new customers, and the repeat buyer base (117 customers in 24 months) is small relative to the total customer count. A prospecting-heavy budget split (65 to 70% acquisition, 30 to 35% retention) is defensible for the current business stage. The 30 to 35% retention budget should be concentrated on three groups: the 117 existing repeat buyers (highest LTV segment), lapsed cleanser single-buyers within the 90-day winback window (highest conversion probability), and the serum cross-sell flow for active customers (fastest path to a second purchase). As the repeat-buyer cohort grows, the retention share should increase: the Night Cream and Vitamin C Serum data shows that customers who do reach a second purchase have significantly stronger repurchase behavior than the average single-purchase cleanser customer.
 
 ---
 
 ## Confidence Notes
 
-- **76% single-purchase rate.** The dataset retention rate is 0.24. All retention indices are computed against this compressed baseline. A retention index of 1.4+ in this dataset represents a meaningful repeat-purchase signal even though raw retention order counts appear small relative to acquisition counts.
-- **GlowSkin Holiday Gift Set seasonal distortion.** 96% of GLGFT-008-HOL orders fall in November and December. Its acquisition index of 1.89 reflects Q4 gifting, not an evergreen acquisition pattern. Do not use it to benchmark other SKUs' acquisition indices.
-- **14-month gap in data clarity.** The 730-day window covers two full holiday seasons. Any SKU with seasonal sales concentration (gift sets, SPF) will show index distortion relative to all-season SKUs. Indices for seasonal SKUs should be compared within their active season, not against annual averages.
-- **11 partially refunded orders kept.** These represent real customer interactions with fulfilled products. Excluding them would undercount retention behavior for affected SKUs. Count is low enough to have negligible index impact.
-- **GlowClear Clay Mask (GLMSK-011-CLY) is borderline low-confidence at 10 total orders.** The acquisition index of 1.44 is at the classification threshold. Monitor as volume grows before treating it as an acquisition anchor.
-- **Customers CSV not provided.** Customer identity resolved via Customer ID field with Email as fallback. 18% guest checkout rate is below the 40% flag threshold; guest identity resolution is unlikely to materially distort indices.
+- **71% single-purchase rate.** The dataset retention rate is 0.41. Retention indices are computed against this baseline. A retention index of 1.4 in this dataset represents a genuine behavioral pattern (57% of the SKU's orders are repeat vs. 41% dataset average). Standard classification thresholds apply without adjustment.
+- **GlowSkin Holiday Gift Set seasonal concentration.** All 61 orders for GLGFT-008-HOL fall in November and December. Its acquisition index of 1.41 reflects Q4 gifting behavior. Do not use it to benchmark non-seasonal SKUs' acquisition indices.
+- **725-day window covers two full holiday seasons.** Any SKU with seasonal concentration (SPF in spring/summer, gift sets in Q4) will show index values that reflect seasonal purchasing patterns in addition to behavioral ones. Indices for seasonal SKUs should be compared within their active season.
+- **0% guest checkout rate.** All orders in the export include a resolvable Customer ID or email. Customer identity resolution is complete. Single-purchase rate is not overstated by unlinked repeat buyers.
