@@ -1,0 +1,28 @@
+version: "1.0"
+
+category: conversion-optimization
+subcategories:
+  - dynamic-content
+  - product-finders
+
+level: intermediate
+primitive: false
+model_tier: high
+
+platforms:
+  - cartful-studio
+
+tags:
+  - squirrelly
+  - studio-templates
+  - dynamic-content-rules
+  - regional-pricing
+  - quiz-logic
+  - product-feed-fields
+  - conditional-rendering
+
+date_added: "2026-04-30"
+
+author:
+  name: Jose Borrayo
+  url: https://www.linkedin.com/in/jcborrayo/
